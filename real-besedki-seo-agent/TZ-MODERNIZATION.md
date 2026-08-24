@@ -23,7 +23,7 @@
 | CLI `health` | ✅ | `python3 real-besedki-seo-agent/main.py health` |
 | Интеграция в check/report | ✅ | `main.py` |
 | SSH/server logs | ⏳ | нет доступа из CLI по умолчанию |
-| Авто-исправление P0 | ⏳ | рамка в TZ; инфра-P0 — вручную/с «да» |
+| Авто-исправление P0/P1 | ✅ | Этап 2: AUTOMATION-PROMPT.md, actions.py |
 | Viewport 375–1920 | ⏳ | этап 2 (Playwright) |
 | JS console errors | ⏳ | этап 2 (Playwright) |
 

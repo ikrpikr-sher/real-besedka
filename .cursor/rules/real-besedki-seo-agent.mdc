@@ -1,28 +1,19 @@
 ---
-description: SEO-агент real-besedki.ru — Site Health P0/P1/P2, TZ-MODERNIZATION, AUTOMATION-PROMPT. Этап 1 — чтение; P0 — приоритет.
+description: SEO-агент real-besedki.ru — Этап 2 автономные правки, P0/P1/P2, деплой. Каталог и цены — catalog-safety.
 alwaysApply: true
 ---
 
 # Real Besedki SEO
 
-Сайт **https://real-besedki.ru/** · **REAL БЕСЕДКИ** · ООО «Пулман»
+Сайт **https://real-besedki.ru/** · код `besedki-seo/` · агент `real-besedki-seo-agent/`
 
-**Модернизация:** `real-besedki-seo-agent/TZ-MODERNIZATION.md`  
-**Автопрогон:** `real-besedki-seo-agent/AUTOMATION-PROMPT.md`  
-**Журнал:** `SEO-AUDIT-REAL-BESEDKI.md`  
-**Скилл:** `.cursor/skills/real-besedki-seo-agent/SKILL.md`
+**Этап 2:** чинить и деплоить самостоятельно. Журнал: `SEO-AUDIT-REAL-BESEDKI.md` · автопрогон: `AUTOMATION-PROMPT.md`
 
-## Порядок
+**P0 → P1 → P2.** Сначала `health`, потом backlog с правками.
 
-**P0 (авария) → P1 (SEO) → P2 (рост).** При P0 SEO-задачи приостановлены.
-
-## CLI (первым — health)
+**Не трогать:** priceFrom, целый katalog.json на прод, Директ, Авито.
 
 ```bash
-python3 real-besedki-seo-agent/main.py health
-python3 real-besedki-seo-agent/main.py weekday
+bash scripts/seo-weekday.sh
+cd besedki-seo && bash scripts/deploy.sh
 ```
-
-Будни: `bash scripts/seo-weekday.sh`
-
-Доступность и заявка важнее позиций. Не выдумывать метрики. Директ и Авито — другие агенты.

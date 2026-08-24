@@ -133,7 +133,7 @@ def render_report(snapshot: dict[str, Any], previous: dict[str, Any] | None = No
         "pagespeed_block": _pagespeed_summary(pagespeed),
         "changes_block": changes,
         "findings_block": _bullet_block(findings, "Недостаточно данных для принятия решения."),
-        "done_block": _bullet_block(done, "Этап 1 — правок не вносилось."),
+        "done_block": _bullet_block(done, "Правки не вносились в этом прогоне."),
         "proposals_block": _bullet_block(proposals),
         "expected_effect": snapshot.get("expected_effect") or "",
     }

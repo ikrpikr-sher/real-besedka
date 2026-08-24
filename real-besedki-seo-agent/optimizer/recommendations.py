@@ -34,7 +34,7 @@ def build_proposals(snapshot: dict[str, Any]) -> list[str]:
     sitemap_urls = ((live.get("sitemap") or {}).get("url_count") or 0)
     catalog_count = len(snapshot.get("catalog") or [])
     proposals = [
-        "**Этап 1** — только чтение. Не менять код, robots, sitemap, katalog.json на проде без «да».",
+        "**Этап 2** — автономные правки. P0/P1 чинить и деплоить. Не трогать priceFrom и целый katalog.json на проде.",
         "**Off-page P1:** Яндекс Бизнес, Google Business, отзывы, Вебмастер, Search Console, цели Метрики.",
         "**On-page P1:** title/description 128 карточек (`templates/onpage-product.md`), Open Graph, meta блога, `/proekty` → `/katalog`.",
         "**On-page P2:** BreadcrumbList, ContactPage, поле seoDescription в каталоге.",

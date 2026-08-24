@@ -34,4 +34,4 @@ python3 real-besedki-seo-agent/main.py backlog
 
 ## Режим
 
-**Этап 1 — только чтение.** Правки — только после «да».
+**Этап 2 — автономные правки.** Чинить, деплоить (`besedki-seo/scripts/deploy.sh`), коммитить. Каталог — `CATALOG-SAFETY.md`.
