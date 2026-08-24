@@ -6,6 +6,7 @@
 
 ```bash
 cd /Users/user/real-besedka
+python3 real-besedki-seo-agent/main.py health      # P0 site health (первым!)
 python3 real-besedki-seo-agent/main.py report      # аудит + светофор + check
 python3 real-besedki-seo-agent/main.py check      # полная проверка прода
 python3 real-besedki-seo-agent/main.py pagespeed  # PageSpeed mobile (weekly)

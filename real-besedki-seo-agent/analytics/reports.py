@@ -61,6 +61,17 @@ def render_report(snapshot: dict[str, Any], previous: dict[str, Any] | None = No
     content = snapshot.get("content") or {}
     traffic_light = snapshot.get("traffic_light") or {}
     pagespeed = snapshot.get("pagespeed") or {}
+    site_health = snapshot.get("site_health") or {}
+    health_summary = site_health.get("summary") or {}
+    p0_issues = [i for i in (site_health.get("issues") or []) if i.get("priority") == "P0"]
+    health_lines = [
+        f"**Аварийный режим:** {'ДА' if site_health.get('emergency_mode') else 'нет'}",
+        f"P0: {health_summary.get('p0_count', 0)} · P1: {health_summary.get('p1_count', 0)} · P2: {health_summary.get('p2_count', 0)}",
+    ]
+    for issue in p0_issues[:5]:
+        health_lines.append(f"- **P0:** {issue.get('problem')} — {issue.get('cause') or '—'}")
+    if not site_health:
+        health_lines = ["Site Health не запускался — выполните `main.py health`"]
 
     home_title = live_home.get("title") or home_seo.get("title") or layout.get("title") or "н/д"
     home_desc = live_home.get("description") or home_seo.get("description") or layout.get("description") or "н/д"
@@ -97,6 +108,8 @@ def render_report(snapshot: dict[str, Any], previous: dict[str, Any] | None = No
         "robots_status": "200" if robots.get("exists") else (str(robots.get("status") or "н/д")),
         "critical_count": str(counts["critical"]),
         "warning_count": str(counts["warning"]),
+        "p0_count": str(health_summary.get("p0_count", 0)),
+        "p1_count": str(health_summary.get("p1_count", 0)),
         "organic_traffic": "н/д — нет выгрузки Метрики",
         "organic_leads": "н/д — нет выгрузки Метрики",
         "index_status": "н/д — нет Вебмастера / GSC",
@@ -116,6 +129,7 @@ def render_report(snapshot: dict[str, Any], previous: dict[str, Any] | None = No
         "metrica_in_repo": "да" if local.get("metrica_in_repo") else "нет",
         "proekty_links": str(content.get("proekty_links") or 0),
         "traffic_light_block": render_traffic_light_block(traffic_light) if traffic_light else "н/д — запустите с `--no-live` без check или `main.py check`",
+        "health_block": "\n".join(health_lines),
         "pagespeed_block": _pagespeed_summary(pagespeed),
         "changes_block": changes,
         "findings_block": _bullet_block(findings, "Недостаточно данных для принятия решения."),

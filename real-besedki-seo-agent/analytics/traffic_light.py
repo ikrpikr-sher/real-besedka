@@ -28,14 +28,17 @@ def compute_traffic_light(
     site_check: dict[str, Any] | None,
     live: dict[str, Any] | None,
     content: dict[str, Any] | None,
+    site_health: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     content = content or {}
     check = site_check or {}
     live = live or {}
+    health = site_health or {}
     summary = check.get("summary") or {}
     client = check.get("client_signals") or {}
     robots = live.get("robots") or {}
     sitemap = live.get("sitemap") or {}
+    p0_count = (health.get("summary") or {}).get("p0_count", 0)
 
     # Открыть сайт
     routes_ok = summary.get("routes_ok", 0)
@@ -74,6 +77,11 @@ def compute_traffic_light(
     find_status = _status(find_ok, find_partial and not find_ok)
 
     blockers: list[str] = []
+    if p0_count:
+        blockers.insert(0, f"Site Health P0: {p0_count} аварийных проблем — см. logs/*_health.md")
+        for issue in (health.get("issues") or [])[:3]:
+            if issue.get("priority") == "P0":
+                blockers.append(issue.get("problem") or "")
     if open_status != "ok":
         bad = [r["path"] for r in check.get("routes") or [] if not r.get("ok")]
         if bad:
@@ -95,7 +103,7 @@ def compute_traffic_light(
         blockers.append("Нет данных Вебмастера/GSC — позиции не оцениваем")
 
     overall = "ok"
-    if any(s == "fail" for s in (open_status, view_status, lead_status)):
+    if p0_count or any(s == "fail" for s in (open_status, view_status, lead_status)):
         overall = "fail"
     elif any(s == "partial" for s in (open_status, view_status, lead_status, find_status)):
         overall = "partial"
@@ -116,7 +124,9 @@ def compute_traffic_light(
         "view_product": {"status": view_status, "label": _label(view_status)},
         "submit_lead": {"status": lead_status, "label": _label(lead_status)},
         "find_in_search": {"status": find_status, "label": _label(find_status)},
-        "blockers": blockers[:8],
+        "blockers": blockers[:10],
+        "emergency_mode": bool(p0_count),
+        "p0_count": p0_count,
     }
 
 

@@ -14,6 +14,8 @@
 | URL в sitemap (прод) | {{sitemap_count}} |
 | robots.txt | {{robots_status}} |
 | Критических находок | {{critical_count}} |
+| P0 (авария) | {{p0_count}} |
+| P1 | {{p1_count}} |
 | Предупреждений | {{warning_count}} |
 | Органический трафик | {{organic_traffic}} |
 | Заявки с органики | {{organic_leads}} |
@@ -23,7 +25,11 @@
 
 ---
 
-## Светофор для клиента
+## Site Health (P0 → P1 → P2)
+
+{{health_block}}
+
+---
 
 {{traffic_light_block}}
 

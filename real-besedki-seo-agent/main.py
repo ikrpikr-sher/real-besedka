@@ -27,6 +27,8 @@ from sources.live import fetch_live
 from sources.local import scan_repo
 from sources.pagespeed import fetch_weekly_pagespeed
 from sources.site_check import run_site_check
+from site_health.report import render_health_report
+from site_health.runner import run_site_health
 from database.yadro_store import list_runs, save_run
 from sources.yadro import (
     cluster_summary,
@@ -43,13 +45,16 @@ from sources.yadro import (
 )
 
 
-def collect(live: bool, *, with_check: bool = False, with_pagespeed: bool = False) -> dict:
+def collect(live: bool, *, with_check: bool = False, with_pagespeed: bool = False, with_health: bool = True) -> dict:
     local = scan_repo()
     catalog = parse_catalog()
     content = audit_content()
     live_data = None
     site_check = None
+    site_health = None
     pagespeed = None
+    if with_health and (live or with_check):
+        site_health = run_site_health()
     if live or with_check:
         site_check = run_site_check()
     if live:
@@ -59,7 +64,7 @@ def collect(live: bool, *, with_check: bool = False, with_pagespeed: bool = Fals
     if with_pagespeed:
         pagespeed = fetch_weekly_pagespeed()
     audit_findings = analyze(local, live_data, catalog, content)
-    traffic_light = compute_traffic_light(site_check, live_data, content)
+    traffic_light = compute_traffic_light(site_check, live_data, content, site_health=site_health)
     snapshot = {
         "site_id": "real-besedki",
         "site_url": SITE_URL,
@@ -70,6 +75,7 @@ def collect(live: bool, *, with_check: bool = False, with_pagespeed: bool = Fals
         "catalog": catalog,
         "content": content,
         "site_check": site_check,
+        "site_health": site_health,
         "pagespeed": pagespeed,
         "traffic_light": traffic_light,
         "audit_findings": audit_findings,
@@ -84,22 +90,46 @@ def collect(live: bool, *, with_check: bool = False, with_pagespeed: bool = Fals
     return snapshot
 
 
+def run_health() -> int:
+    print("SITE HEALTH: P0 → P1 → P2 (read-only диагностика)")
+    health = run_site_health()
+    text = render_health_report(health)
+    logs = ROOT / "logs"
+    logs.mkdir(exist_ok=True)
+    stamp = health.get("report_date") or date.today().isoformat()
+    md_path = logs / f"{stamp}_health.md"
+    json_path = logs / f"{stamp}_health.json"
+    md_path.write_text(text, encoding="utf-8")
+    json_path.write_text(json.dumps(health, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+    print(text)
+    if health.get("emergency_mode"):
+        print(f"\n⚠️  АВАРИЙНЫЙ РЕЖИМ: {health['summary'].get('p0_count', 0)} проблем P0. SEO-задачи приостановлены.")
+    print(f"Файлы: {md_path} , {json_path}")
+    return 1 if health.get("emergency_mode") else 0
+
+
 def run_check(with_pagespeed: bool) -> int:
     print("РЕЖИМ: ТОЛЬКО ЧТЕНИЕ. Проверка сайта на проде.")
+    health = run_site_health()
     site_check = run_site_check()
     content = audit_content()
     live_data = fetch_live(SITE_URL, extra_paths=["/katalog/poisk"])
     pagespeed = fetch_weekly_pagespeed() if with_pagespeed else None
-    traffic_light = compute_traffic_light(site_check, live_data, content)
+    traffic_light = compute_traffic_light(site_check, live_data, content, site_health=health)
     text = render_check_report(site_check, traffic_light, pagespeed)
+    health_block = render_health_report(health)
     logs = ROOT / "logs"
     logs.mkdir(exist_ok=True)
     stamp = date.today().isoformat()
     path = logs / f"{stamp}_check.md"
-    path.write_text(text, encoding="utf-8")
-    print(text)
+    combined = health_block + "\n\n---\n\n" + text
+    path.write_text(combined, encoding="utf-8")
+    (logs / f"{stamp}_health.json").write_text(
+        json.dumps(health, ensure_ascii=False, indent=2, default=str), encoding="utf-8"
+    )
+    print(combined)
     print(f"Файл: {path}")
-    return 0
+    return 1 if health.get("emergency_mode") else 0
 
 
 def run_pagespeed() -> int:
@@ -136,6 +166,24 @@ def run_backlog(no_live: bool) -> int:
     print(text)
     print(f"Файл: {path}")
     return 0
+
+
+def run_weekday(with_pagespeed: bool = False) -> int:
+    """Полный будничный прогон: health → check → report → backlog."""
+    is_monday = date.today().weekday() == 0
+    pagespeed = with_pagespeed or is_monday
+    print("=== WEEKDAY: health → check → report → backlog ===")
+    codes = []
+    codes.append(run_health())
+    codes.append(run_check(pagespeed))
+    codes.append(run_report(no_live=False, with_pagespeed=pagespeed))
+    codes.append(run_backlog(no_live=False))
+    exit_code = max(codes)
+    if exit_code:
+        print(f"\n⚠️  Weekday завершён с кодом {exit_code} (см. logs/)")
+    else:
+        print("\n✓ Weekday OK")
+    return exit_code
 
 
 def run_report(no_live: bool, with_pagespeed: bool) -> int:
@@ -383,8 +431,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="SEO-агент real-besedki.ru")
     parser.add_argument(
         "command",
-        choices=["report", "check", "backlog", "pagespeed", "yadro", "gsc"],
-        help="report/check — аудит сайта; backlog — P1/P2; pagespeed — PSI; yadro; gsc",
+        choices=["report", "check", "health", "weekday", "backlog", "pagespeed", "yadro", "gsc"],
+        help="weekday — полный будничный прогон; health — P0; report/check — аудит",
     )
     parser.add_argument(
         "action",
@@ -408,6 +456,10 @@ def main() -> int:
 
     if args.command == "report":
         return run_report(args.no_live, args.pagespeed)
+    if args.command == "health":
+        return run_health()
+    if args.command == "weekday":
+        return run_weekday(args.pagespeed)
     if args.command == "check":
         return run_check(args.pagespeed)
     if args.command == "backlog":

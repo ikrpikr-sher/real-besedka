@@ -1,19 +1,28 @@
 ---
-description: SEO-агент real-besedki.ru — полное ТЗ TZ-FULL.md, журнал SEO-AUDIT-REAL-BESEDKI.md. Этап 1 — только чтение.
+description: SEO-агент real-besedki.ru — Site Health P0/P1/P2, TZ-MODERNIZATION, AUTOMATION-PROMPT. Этап 1 — чтение; P0 — приоритет.
 alwaysApply: true
 ---
 
 # Real Besedki SEO
 
-Сайт **https://real-besedki.ru/** · **REAL БЕСЕДКИ** — ООО «Пулман» · металлические беседки, каркас 80×80, пол фанера.
+Сайт **https://real-besedki.ru/** · **REAL БЕСЕДКИ** · ООО «Пулман»
 
-**Полное ТЗ:** `real-besedki-seo-agent/TZ-FULL.md` (30 разделов)  
+**Модернизация:** `real-besedki-seo-agent/TZ-MODERNIZATION.md`  
+**Автопрогон:** `real-besedki-seo-agent/AUTOMATION-PROMPT.md`  
 **Журнал:** `SEO-AUDIT-REAL-BESEDKI.md`  
-**Код:** `besedki-seo/` · **Каталог:** `/katalog/{category}/{slug}` · 128 товаров
+**Скилл:** `.cursor/skills/real-besedki-seo-agent/SKILL.md`
 
-Этап 1 — только чтение. Не менять код, robots, sitemap, `katalog.json` на проде без «да». Не выдумывать позиции и трафик.
+## Порядок
 
-**Скилл:** `.cursor/skills/real-besedki-seo-agent/SKILL.md`  
-**CLI:** `python3 real-besedki-seo-agent/main.py report`
+**P0 (авария) → P1 (SEO) → P2 (рост).** При P0 SEO-задачи приостановлены.
 
-Директ и Авито — другие агенты.
+## CLI (первым — health)
+
+```bash
+python3 real-besedki-seo-agent/main.py health
+python3 real-besedki-seo-agent/main.py weekday
+```
+
+Будни: `bash scripts/seo-weekday.sh`
+
+Доступность и заявка важнее позиций. Не выдумывать метрики. Директ и Авито — другие агенты.

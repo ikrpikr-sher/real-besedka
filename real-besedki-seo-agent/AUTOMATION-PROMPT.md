@@ -11,7 +11,8 @@
 1. `real-besedki-seo-agent/TZ-FULL.md` — полное ТЗ §1–30, приоритеты
 2. `.cursor/skills/real-besedki-seo-agent/SKILL.md`
 3. `SEO-AUDIT-REAL-BESEDKI.md` — журнал; обновлять, не дублировать закрытые строки
-4. `real-besedki-seo-agent/templates/site-health.md` — чеклист A–H
+4. `real-besedki-seo-agent/TZ-MODERNIZATION.md` — P0/P1/P2, site_health
+5. `real-besedki-seo-agent/templates/site-health.md` — чеклист A–H
 
 ## Режим
 
@@ -26,10 +27,14 @@
 ## Команды (из корня репозитория)
 
 ```bash
+python3 real-besedki-seo-agent/main.py health
+python3 real-besedki-seo-agent/main.py weekday    # полный будничный прогон
 python3 real-besedki-seo-agent/main.py check
 python3 real-besedki-seo-agent/main.py report
 python3 real-besedki-seo-agent/main.py backlog
 ```
+
+**Порядок:** `health` (P0) → `check` → `report` → `backlog`. Или одной командой: `weekday`. При P0 SEO-задачи **приостановлены**.
 
 Если сегодня **понедельник** — дополнительно:
 
@@ -39,7 +44,8 @@ python3 real-besedki-seo-agent/main.py pagespeed
 
 ## Каждый прогон
 
-1. Выполнить `check` → `report` → `backlog` (и `pagespeed` по понедельникам)
+1. **Обязательно** из корня репозитория: `bash scripts/seo-weekday.sh` (health → check → report → backlog; по понедельникам + pagespeed)
+2. При **P0** — только диагностика/безопасные правки, SEO backlog не трогать
 2. Сверить с критичным блоком TZ-FULL: индексация, robots, sitemap, 404/редиректы, title/H1, schema, карточки
 3. **Обновить** `SEO-AUDIT-REAL-BESEDKI.md` — таблица:
 
@@ -56,4 +62,16 @@ python3 real-besedki-seo-agent/main.py pagespeed
 
 ## Правки сайта
 
-Только предлагать в backlog и журнале (🔴). Исправлять код — только после «да» владельца.
+P0: можно чинить автоматически только если причина однозначна, минимальный diff, backup, без цен/каталога/дизайна.
+
+P1/P2: только предлагать в backlog (🔴). Код — после «да» владельца.
+
+## Автоматический прогон (Cursor Automation / cron)
+
+```bash
+bash scripts/seo-weekday.sh
+# или
+python3 real-besedki-seo-agent/main.py weekday
+```
+
+Расписание: **Пн–Пт 9:00 Europe/Moscow**

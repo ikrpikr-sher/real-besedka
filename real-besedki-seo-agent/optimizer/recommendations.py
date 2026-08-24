@@ -4,10 +4,17 @@ from typing import Any
 
 
 def build_findings(snapshot: dict[str, Any]) -> list[str]:
+    health = snapshot.get("site_health") or {}
+    p0 = [i for i in health.get("issues") or [] if i.get("priority") == "P0"]
+    p0_msgs: list[str] = []
+    if p0:
+        p0_msgs.append(f"P0 ({len(p0)}): {p0[0].get('problem')}")
+        for issue in p0[1:3]:
+            p0_msgs.append(f"P0: {issue.get('problem')}")
     items = snapshot.get("audit_findings") or []
     critical = [i["message"] for i in items if i.get("severity") == "critical"]
     warnings = [i["message"] for i in items if i.get("severity") == "warning"]
-    out = critical[:8]
+    out = p0_msgs + critical[:8]
     if len(out) < 6:
         out.extend(warnings[: 6 - len(out)])
     if not out:
