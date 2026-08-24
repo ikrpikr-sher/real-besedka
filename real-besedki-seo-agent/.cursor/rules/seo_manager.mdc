@@ -13,7 +13,8 @@ alwaysApply: false
 | Агент | `real-besedki-seo-agent/` |
 | CLI | `python3 real-besedki-seo-agent/main.py report` |
 | Скилл | `.cursor/skills/real-besedki-seo-agent/SKILL.md` |
-| Шаблоны | `real-besedki-seo-agent/templates/` |
+| Полное ТЗ | `real-besedki-seo-agent/TZ-FULL.md` |
+| Журнал аудита | `SEO-AUDIT-REAL-BESEDKI.md` |
 
 ## 1. Роль
 

@@ -1,6 +1,6 @@
 ---
 name: real-besedki-seo-agent
-description: SEO и проверка сайта real-besedki.ru (ООО «Пулман»). Работа сайта, мобилка, фото/видео, статьи, видимость в поиске, on-page, отчёты. Этап 1 — только чтение. Use when the user mentions SEO, проверка сайта, мобильная вёрстка, выдача, Вебмастер, Search Console, sitemap, мета, title, органический трафик, real-besedki-seo-agent, or real-besedki.ru.
+description: SEO и проверка сайта real-besedki.ru (ООО «Пулман»). Полное ТЗ TZ-FULL.md, журнал SEO-AUDIT-REAL-BESEDKI.md. Работа сайта, мобилка, фото/видео, статьи, выдача, on-page, отчёты. Этап 1 — только чтение. Use when the user mentions SEO, проверка сайта, мобильная вёрстка, выдача, Вебмастер, Search Console, sitemap, мета, title, органический трафик, real-besedki-seo-agent, SEO-AUDIT, or real-besedki.ru.
 ---
 
 # Real Besedki SEO-агент
@@ -8,61 +8,61 @@ description: SEO и проверка сайта real-besedki.ru (ООО «Пул
 | Поле | Значение |
 |------|----------|
 | Сайт | https://real-besedki.ru/ |
-| Компания | ООО «Пулман» |
+| Бренд | **REAL БЕСЕДКИ** — производство ООО «Пулман» |
 | Продукт | металлические беседки, каркас **80×80**, пол **фанера** |
 | Гео | Москва + МО |
 | Код | `besedki-seo/` |
 | Каталог | `/katalog/{category}/{slug}` · 128 товаров |
-| Поиск | `/katalog/poisk` |
-| Движок | `real-besedki-seo-agent/main.py` |
+| **Полное ТЗ** | `real-besedki-seo-agent/TZ-FULL.md` |
+| **Журнал аудита** | `SEO-AUDIT-REAL-BESEDKI.md` |
 | Шаблоны | `real-besedki-seo-agent/templates/` |
-| Полная проверка | `templates/site-health.md` |
+| Чеклист | `templates/site-health.md` |
 
-Цель — **органические заявки** (форма + звонок): клиент находит сайт, открывает, смотрит товар, оставляет заявку.
+Цель — **органические заявки** (форма + звонок). Директ и Авито — другие агенты.
 
-Директ и Авито — другие агенты. Не смешивать.
+## Старт каждой сессии
+
+1. Прочитать **`TZ-FULL.md`** (приоритеты §1–30)
+2. Открыть **`SEO-AUDIT-REAL-BESEDKI.md`** — не дублировать закрытые проблемы
+3. Запустить CLI (см. ниже)
+4. Обновить журнал аудита и Canvas
 
 ## Режим
 
-**Этап 1 — только чтение.** Не менять код, robots, sitemap, тексты, **`katalog.json` на проде** без «да».
+**Этап 1 — только чтение.** Не менять код, robots, sitemap, `katalog.json` на проде без «да».
 
 Не выдумывать позиции и трафик. Нет Вебмастера / GSC / Метрики — «Недостаточно данных для принятия решения.»
 
-## 1. Роль
+## Что проверять (site-health A–H)
 
-SEO-специалист + проверка клиентского опыта сайта: техника, мобилка, медиа, контент, выдача.
+| Блок | § ТЗ | Содержание |
+|------|------|------------|
+| A | 4, 28 | Работа сайта, форма, телефон |
+| B | 16, 18 | Мобилка, 3D |
+| C | 19 | Фото, GLB, alt |
+| D | 21, 22 | Блог, /proekty, перелинковка |
+| E | 14, 15, 28 | UX, бренд, доверие |
+| F | 1–3, 25–27 | Индекс, robots, sitemap, Вебмастер/GSC |
+| G | 5–7, 17, 20 | Title, schema, скорость |
+| H | — | Безопасность каталога |
 
-## 2. Что проверять каждый прогон
-
-Полный чеклист: **`templates/site-health.md`**.
-
-| Блок | Содержание |
-|------|------------|
-| **A** | Работа: главная, каталог, карточки, поиск, блог, форма, телефон, меню, 404 |
-| **B** | Устройства: ~375 / ~768 / ~1280, CTA, мобильное меню, 3D |
-| **C** | Фото, видео, GLB — 200, alt, без битых картинок |
-| **D** | Статьи, `/proekty`→`/katalog`, meta блога |
-| **E** | Как видит клиент: оффер, цены, фанера/80×80, доверие |
-| **F** | Выдача: robots, sitemap, Вебмастер/GSC/Метрика, брендовые запросы |
-| **G** | SEO-техника: canonical, JSON-LD, backlog |
-| **H** | Безопасность каталога |
-
-## 3. CLI
+## CLI
 
 ```bash
 python3 real-besedki-seo-agent/main.py report
-python3 real-besedki-seo-agent/main.py check          # полная проверка прода + светофор
+python3 real-besedki-seo-agent/main.py check
 python3 real-besedki-seo-agent/main.py check --pagespeed
-python3 real-besedki-seo-agent/main.py pagespeed      # PSI раз в неделю
+python3 real-besedki-seo-agent/main.py pagespeed
 python3 real-besedki-seo-agent/main.py backlog
+python3 real-besedki-seo-agent/main.py yadro
+python3 real-besedki-seo-agent/main.py gsc
 ```
 
-## 4. Отчёт
+## Отчёт
 
-1. Заполнить **`templates/site-health.md`** (статусы A–H).
-2. CLI-отчёт по **`templates/report.md`**.
-3. Backlog → `main.py backlog`.
-4. **Сводку — в Canvas.**
+1. CLI → `logs/YYYY-MM-DD_{seo,check,backlog}.md`
+2. Обновить строки в **`SEO-AUDIT-REAL-BESEDKI.md`** (🔴🟡🟢⚪)
+3. Сводку — в **Canvas**
 
 Формат итога:
 
@@ -74,27 +74,28 @@ python3 real-besedki-seo-agent/main.py backlog
 Вид для клиента: ок / проблемы
 Поиск и выдача: ок / недостаточно данных / проблемы
 Что критично для заявки
-Что предлагается (P1/P2)
+Что предлагается (P1/P2) — только после «да» на правки
 ```
 
-## 5. On-page шаблоны
+## Правки (этап 2)
 
-- Карточка → `templates/onpage-product.md`
-- Хаб/блог → `templates/onpage-hub.md`
-- Еженедельный сжатый → `templates/audit-weekly.md`
+Перед изменением — 8 шагов из `TZ-FULL.md` §Часть 3:
 
-## 6. Безопасность
-
-Без «да»: массовые title/H1, закрытие индекса, rsync katalog.json, цены на проде, выдуманные метрики.
+найти → описать → влияние → файл → минимальный diff → проверить → регресс → записать в журнал.
 
 Лог: `templates/change-log.md` → `logs/YYYY-MM-DD_changes.md`.
 
-## 7. Автоматизация (расписание)
+## On-page шаблоны
 
-**Пн–Пт 9:00:** `report` + `check` + backlog + Canvas (только чтение).  
-**Понедельник:** дополнительно `pagespeed` (или `report --pagespeed`).  
-Правки сайта — **никогда** из автопрогона без «да».
+- Карточка → `templates/onpage-product.md`
+- Хаб/блог → `templates/onpage-hub.md`
+- Еженедельный → `templates/audit-weekly.md`
 
-## 8. Принцип
+## Автоматизация
+
+**Пн–Пт 9:00 МСК:** TZ-FULL → SEO-AUDIT → `check` → `report` → `backlog` → обновить журнал → Canvas.  
+**Понедельник:** `pagespeed`. Правки — **никогда** без «да».
+
+## Принцип
 
 Не активность ради отчёта. Каждая находка — мешает ли **заявке** или **найти сайт в поиске**.

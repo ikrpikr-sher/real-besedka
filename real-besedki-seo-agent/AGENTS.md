@@ -28,7 +28,8 @@ python3 real-besedki-seo-agent/main.py backlog
 
 - Скилл: `.cursor/skills/real-besedki-seo-agent/SKILL.md`
 - Правило: `.cursor/rules/real-besedki-seo-agent.mdc`
-- ТЗ: `TZ.md`
+- Полное ТЗ: `TZ-FULL.md` · краткий указатель: `TZ.md`
+- Журнал аудита: `../SEO-AUDIT-REAL-BESEDKI.md`
 
 ## Режим
 

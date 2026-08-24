@@ -165,5 +165,6 @@ def render_backlog(snapshot: dict[str, Any]) -> str:
             f"| {row['priority']} | {row['area']} | {row['task']} | {row['target']} | {row['effort']} |"
         )
     lines.append("")
+    lines.append("Журнал: `SEO-AUDIT-REAL-BESEDKI.md` · ТЗ: `real-besedki-seo-agent/TZ-FULL.md`")
     lines.append("Этап 2 — только после «да» на конкретную строку.")
     return "\n".join(lines) + "\n"
