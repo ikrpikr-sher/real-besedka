@@ -1,0 +1,20 @@
+---
+description: SEO-агент real-besedki.ru — работа сайта, мобилка, медиа, статьи, выдача, on-page. Код besedki-seo, каталог /katalog/. Этап 1 — только чтение.
+alwaysApply: true
+---
+
+# Real Besedki SEO
+
+Сайт **https://real-besedki.ru/** · ООО «Пулман» · металлические беседки, каркас 80×80, пол фанера. Цель — органические заявки: клиент находит сайт, открывает, оставляет заявку.
+
+**Код сайта:** `besedki-seo/` · **Каталог:** `/katalog/{category}/{slug}` · **128 товаров**
+
+Проверять: работа сайта, устройства, фото/видео, статьи, вид для клиента, поиск/выдача. Чеклист: `real-besedki-seo-agent/templates/site-health.md`.
+
+Этап 1 — только чтение. Не менять код, robots, sitemap, `katalog.json` на проде без «да». Не выдумывать позиции и трафик.
+
+**Скилл:** `.cursor/skills/real-besedki-seo-agent/SKILL.md`  
+**Шаблоны:** `real-besedki-seo-agent/templates/`  
+**CLI:** `python3 real-besedki-seo-agent/main.py report`
+
+Директ и Авито не смешивать с этим агентом.

@@ -33,9 +33,44 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Avito cabinet secrets and MCP runtime state
+avito/*.env
+!avito/*.env.example
+avito/.state/
+
+# Avito AI-agent runtime
+avito-ai-agent/.env
+avito-ai-agent/logs/*.md
+avito-ai-agent/logs/*.json
+avito-ai-agent/database/*.db
+
+# Google Search Console service account
+secrets/
+*.gserviceaccount.json
+
+# SEO AI-agent runtime
+real-besedki-seo-agent/.env
+real-besedki-seo-agent/logs/*.md
+real-besedki-seo-agent/logs/*.json
+real-besedki-seo-agent/database/*.db
+
+
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# agent skill caches (not part of site)
+.agents/
+skills-lock.json
+
+/app/generated/prisma
+
+# SEO agent secrets
+real-besedki-seo-agent/.env.*
+!real-besedki-seo-agent/.env.example
+real-besedki-seo-agent/reports/_keyso_probe/
+real-besedki-seo-agent/__pycache__/
+real-besedki-seo-agent/**/__pycache__/

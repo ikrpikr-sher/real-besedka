@@ -1,0 +1,2280 @@
+{
+  "date": "2026-08-15",
+  "source": "Keys.so API msk",
+  "own": {
+    "domain": "real-besedki.ru",
+    "note": "в индексе видимости почти нет"
+  },
+  "serp_phrases": {
+    "металлическая беседка": {
+      "ws": 19250,
+      "wsk": 1089,
+      "adscnt": 0,
+      "cpc": 17,
+      "top": [
+        {
+          "pos": 1,
+          "domain": "mangalplus.ru",
+          "url": "/besedki-s-mangalom",
+          "vis": 622
+        },
+        {
+          "pos": 2,
+          "domain": "m.avito.ru",
+          "url": "/moskva/remont_i_stroitelstvo/gotovye_stroeniya_i_sruby/besedka-ASgBAgICAkRYlrI68I4O3o_OAQ?q=%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BA%D0%B0+%D0%BC%D0%B5%D1%82%D0%B0%D0%BB%D0%BB%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F",
+          "vis": 4078126
+        },
+        {
+          "pos": 3,
+          "domain": "bestmebelik.ru",
+          "url": "/metallicheskie-besedki-dlya-dachi.html",
+          "vis": 4156
+        },
+        {
+          "pos": 4,
+          "domain": "metal-mangal.ru",
+          "url": "/besedka-s-mangalom-i-pechjyu-diplomat-s-kryshkoj-barbekyu",
+          "vis": 1674
+        },
+        {
+          "pos": 5,
+          "domain": "aliexpress.ru",
+          "url": "/popular/беседка-металлическая",
+          "vis": 249847
+        },
+        {
+          "pos": 6,
+          "domain": "safamaster.ru",
+          "url": "/shop/besedki-i-navesy/navesy-besedki",
+          "vis": 248
+        },
+        {
+          "pos": 7,
+          "domain": "moscow.promportal.su",
+          "url": "/tags/29721/metallicheskaya-besedka",
+          "vis": 2669
+        },
+        {
+          "pos": 8,
+          "domain": "livemaster.ru",
+          "url": "/item/44085634-dacha-i-sad-besedka-iz-metalla-s-ograzhdeniem",
+          "vis": 151970
+        },
+        {
+          "pos": 9,
+          "domain": "sima-land.ru",
+          "url": "/metallicheskie-besedki-dlya-dachi-fps",
+          "vis": 151424
+        },
+        {
+          "pos": 10,
+          "domain": "childresidence.ru",
+          "url": "/products/besedka-dlya-dachi-posidelka-2-2-2-1-m-metall-pod-polikarbonat",
+          "vis": 21944
+        },
+        {
+          "pos": 11,
+          "domain": "m.avito.ru",
+          "url": "/moskva_i_mo/remont_i_stroitelstvo/gotovye_stroeniya_i_sruby-ASgBAgICAURYlrI6?q=%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BA%D0%B0+%D0%BC%D0%B5%D1%82%D0%B0%D0%BB%D0%BB%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F",
+          "vis": 4078126
+        },
+        {
+          "pos": 12,
+          "domain": "7412023.ru",
+          "url": "/catalog/alcove",
+          "vis": 6
+        },
+        {
+          "pos": 13,
+          "domain": "rammetall.ru",
+          "url": "/catalog/k-4833768-besedki",
+          "vis": 10
+        },
+        {
+          "pos": 14,
+          "domain": "akc11.ru",
+          "url": "/catalog/besedki/metallicheskie_besedki_dlya_dachi",
+          "vis": 346
+        },
+        {
+          "pos": 15,
+          "domain": "metall-kovka24.ru",
+          "url": "/besedki",
+          "vis": 118
+        }
+      ]
+    },
+    "беседка из металла": {
+      "ws": 28488,
+      "wsk": 1940,
+      "adscnt": 6,
+      "cpc": 18,
+      "top": [
+        {
+          "pos": 1,
+          "domain": "dachabel.ru",
+          "url": "/besedki-dlya-dachi/tproduct/916220950162-besedka-astra",
+          "vis": 1417
+        },
+        {
+          "pos": 2,
+          "domain": "ur-met.ru",
+          "url": "/geo/msk/shop/category/besedki",
+          "vis": 241
+        },
+        {
+          "pos": 3,
+          "domain": "metal-mangal.ru",
+          "url": "/besedka",
+          "vis": 1674
+        },
+        {
+          "pos": 4,
+          "domain": "livemaster.ru",
+          "url": "/item/44085634-dacha-i-sad-besedka-iz-metalla-s-ograzhdeniem",
+          "vis": 151970
+        },
+        {
+          "pos": 5,
+          "domain": "mangalplus.ru",
+          "url": "/besedki-s-mangalom",
+          "vis": 622
+        },
+        {
+          "pos": 6,
+          "domain": "metall-kovka24.ru",
+          "url": "/besedki/po-izgotovleniyu/svarnye-besedki",
+          "vis": 118
+        },
+        {
+          "pos": 7,
+          "domain": "m.avito.ru",
+          "url": "/all/dlya_doma_i_dachi?q=%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%D0%BD%D1%8B%D0%B5+%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BA%D0%B8+%D0%B8%D0%B7+%D0%BC%D0%B5%D1%82%D0%B0%D0%BB%D0%BB%D0%B0",
+          "vis": 4078126
+        },
+        {
+          "pos": 8,
+          "domain": "satom.ru",
+          "url": "/k/besedki-iz-metalla",
+          "vis": 899
+        },
+        {
+          "pos": 9,
+          "domain": "artli-kovka.ru",
+          "url": "/catalog/besedki_i_navesy",
+          "vis": 139
+        },
+        {
+          "pos": 10,
+          "domain": "plastmebel.ru",
+          "url": "/catalog/besedki-tenty-shatry/besedki/metallicheskie-besedki",
+          "vis": 284
+        },
+        {
+          "pos": 11,
+          "domain": "rammetall.ru",
+          "url": "/catalog/k-4833768-besedki",
+          "vis": 10
+        },
+        {
+          "pos": 12,
+          "domain": "spectorgstroy.ru",
+          "url": "/catalog/metallicheskie-besedki",
+          "vis": 5
+        },
+        {
+          "pos": 13,
+          "domain": "msk.teplicy.ru",
+          "url": "/catalog/tovary-dlya-sadovodov/besedki",
+          "vis": 510
+        },
+        {
+          "pos": 14,
+          "domain": "childresidence.ru",
+          "url": "/products/besedka-dlya-dachi-lotos-3-0-3-0-2-8-m-metall-razbornaya-pod-polikarbonat",
+          "vis": 21944
+        },
+        {
+          "pos": 15,
+          "domain": "mos-mangal.ru",
+          "url": "/kategoria/kovanie-besedki",
+          "vis": 29
+        }
+      ]
+    },
+    "беседка с остеклением": {
+      "ws": 934,
+      "wsk": 51,
+      "adscnt": 7,
+      "cpc": 16,
+      "top": [
+        {
+          "pos": 1,
+          "domain": "msknaves.ru",
+          "url": "/products/zasteklyennye-konstruktsii",
+          "vis": 211
+        },
+        {
+          "pos": 2,
+          "domain": "pkgreenwood.ru",
+          "url": "/besedka-iz-dereva-odnoskatnaya-grin-vud-2-s-razdvizhnym-ostekleniem-3-kh-5-6-m-art-gr2-13",
+          "vis": 1430
+        },
+        {
+          "pos": 3,
+          "domain": "h-wd.ru",
+          "url": "/besedki/zasteklyennye-besedki",
+          "vis": 652
+        },
+        {
+          "pos": 4,
+          "domain": "rusbesedka.ru",
+          "url": "/produktsiia/besedki-dlya-dachi/zakrytye-i-zasteklyennye-besedki",
+          "vis": 241
+        },
+        {
+          "pos": 5,
+          "domain": "corpsun.ru",
+          "url": "/zasteklennyye-besedki",
+          "vis": 406
+        },
+        {
+          "pos": 6,
+          "domain": "greenbesedka.ru",
+          "url": "/katalog-besedok/zakrytye-zasteklennye-besedki-dlya-dachi.html",
+          "vis": 222
+        },
+        {
+          "pos": 7,
+          "domain": "m.avito.ru",
+          "url": "/moskva_i_mo/remont_i_stroitelstvo/gotovye_stroeniya_i_sruby-ASgBAgICAURYlrI6?q=%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BA%D0%B0+%D0%B7%D0%B0%D1%81%D1%82%D0%B5%D0%BA%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F",
+          "vis": 4078126
+        },
+        {
+          "pos": 8,
+          "domain": "master-besedok.ru",
+          "url": "/besedki-zasteklennye",
+          "vis": 792
+        },
+        {
+          "pos": 9,
+          "domain": "vse-besedki.ru",
+          "url": "/product-category/zasteklennye-besedki",
+          "vis": 54
+        },
+        {
+          "pos": 10,
+          "domain": "oasis-stroy.ru",
+          "url": "/catalog/zasteklennye-besedki",
+          "vis": 21
+        },
+        {
+          "pos": 11,
+          "domain": "vasha-besedka.ru",
+          "url": "/catalog/besedki/osteklennye",
+          "vis": 95
+        },
+        {
+          "pos": 12,
+          "domain": "barbeku.pro",
+          "url": "/katalog/besedki-dlya-barbekyu/steklyannye",
+          "vis": 164
+        },
+        {
+          "pos": 13,
+          "domain": "oknober.ru",
+          "url": "/doma-i-kottedzhi/osteklenie-besedok",
+          "vis": 652
+        },
+        {
+          "pos": 14,
+          "domain": "дерко.рф",
+          "url": "/glass",
+          "vis": 4
+        },
+        {
+          "pos": 15,
+          "domain": "bezramnoeosteklenie.ru",
+          "url": "/blog/varianty-ostekleniya-besedki",
+          "vis": 197
+        }
+      ]
+    },
+    "беседка под ключ": {
+      "ws": 9158,
+      "wsk": 766,
+      "adscnt": 7,
+      "cpc": 35,
+      "top": [
+        {
+          "pos": 1,
+          "domain": "master-besedok.ru",
+          "url": "/",
+          "vis": 792
+        },
+        {
+          "pos": 2,
+          "domain": "pkgreenwood.ru",
+          "url": "/category/besedki-i-navesy",
+          "vis": 1430
+        },
+        {
+          "pos": 3,
+          "domain": "h-wd.ru",
+          "url": "/besedki",
+          "vis": 652
+        },
+        {
+          "pos": 4,
+          "domain": "m.avito.ru",
+          "url": "/moskva_i_mo/remont_i_stroitelstvo/gotovye_stroeniya_i_sruby/besedka-ASgBAgICAkRYlrI68I4O3o_OAQ?q=%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BA%D0%B0+%D0%BF%D0%BE%D0%B4+%D0%BA%D0%BB%D1%8E%D1%87",
+          "vis": 4078126
+        },
+        {
+          "pos": 5,
+          "domain": "kingwoods.ru",
+          "url": "/products/sadovye-besedki",
+          "vis": 1386
+        },
+        {
+          "pos": 6,
+          "domain": "nadvorike.ru",
+          "url": "/",
+          "vis": 19
+        },
+        {
+          "pos": 7,
+          "domain": "dachabel.ru",
+          "url": "/besedki-dlya-dachi",
+          "vis": 1417
+        },
+        {
+          "pos": 8,
+          "domain": "rusbesedka.ru",
+          "url": "/produktsiia/besedki-dlya-dachi",
+          "vis": 241
+        },
+        {
+          "pos": 9,
+          "domain": "arh-besedki.ru",
+          "url": "/besedki-po-aktsii",
+          "vis": 1263
+        },
+        {
+          "pos": 10,
+          "domain": "msknaves.ru",
+          "url": "/products/zasteklyennye-konstruktsii",
+          "vis": 211
+        },
+        {
+          "pos": 11,
+          "domain": "vasha-besedka.ru",
+          "url": "/catalog/besedki",
+          "vis": 95
+        },
+        {
+          "pos": 12,
+          "domain": "kotahouse.ru",
+          "url": "/",
+          "vis": 77
+        },
+        {
+          "pos": 13,
+          "domain": "besedkiloft.ru",
+          "url": "/",
+          "vis": 24
+        },
+        {
+          "pos": 14,
+          "domain": "darnex.ru",
+          "url": "/besedki.html",
+          "vis": 200
+        },
+        {
+          "pos": 15,
+          "domain": "detinez.ru",
+          "url": "/besedki",
+          "vis": 1667
+        }
+      ]
+    },
+    "беседка лофт": {
+      "ws": 7680,
+      "wsk": 858,
+      "adscnt": 4,
+      "cpc": 15,
+      "top": [
+        {
+          "pos": 1,
+          "domain": "m.avito.ru",
+          "url": "/all/remont_i_stroitelstvo/gotovye_stroeniya_i_sruby/besedka-ASgBAgICAkRYlrI68I4O3o_OAQ?q=%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BA%D0%B0+%D0%BB%D0%BE%D1%84%D1%82",
+          "vis": 4078126
+        },
+        {
+          "pos": 2,
+          "domain": "arh-besedki.ru",
+          "url": "/besedki-loft",
+          "vis": 1263
+        },
+        {
+          "pos": 3,
+          "domain": "livemaster.ru",
+          "url": "/item/56053206-dacha-i-sad-stilnaya-besedka-loft-250-300-240-sm",
+          "vis": 151970
+        },
+        {
+          "pos": 4,
+          "domain": "safamaster.ru",
+          "url": "/shop/besedki-i-navesy/besedki-dlya-dachi/besedka-v-stile-loft-8x4-m-pod-klyuch",
+          "vis": 248
+        },
+        {
+          "pos": 5,
+          "domain": "market.yandex.ru",
+          "url": "/card/besedka-dlya-dachi-so-skameykami-loft/4316754520",
+          "vis": 1614998
+        },
+        {
+          "pos": 6,
+          "domain": "pineshop.ru",
+          "url": "/derevyannie-besedki/besedki-v-stile-loft",
+          "vis": 471
+        },
+        {
+          "pos": 7,
+          "domain": "ozon.ru",
+          "url": "/product/besedka-kvadratnaya-iz-dereva-so-sborkoy-na-uchastke-sadovye-besedki-v-stile-loft-razmer-3h3-m-oreh-1634590167",
+          "vis": 3953056
+        },
+        {
+          "pos": 8,
+          "domain": "metal-mangal.ru",
+          "url": "/loft-besedki",
+          "vis": 1674
+        },
+        {
+          "pos": 9,
+          "domain": "zavod360.ru",
+          "url": "/catalog/mangal_loft/besedka_s_mangalom_v_stile_loft_drovnitsa",
+          "vis": 283
+        },
+        {
+          "pos": 10,
+          "domain": "cherdak-masterskaya.ru",
+          "url": "/sadovaya-mebel/besedki-dlya-sada",
+          "vis": 341
+        },
+        {
+          "pos": 11,
+          "domain": "pkgreenwood.ru",
+          "url": "/besedka-iz-dereva-odnoskatnaya-loft-3-kh-6-m-art-bl2-01",
+          "vis": 1430
+        },
+        {
+          "pos": 12,
+          "domain": "vse-dlya-dachi.ru",
+          "url": "/product/беседка-d-4-8",
+          "vis": 7
+        },
+        {
+          "pos": 13,
+          "domain": "msk-mangal.ru",
+          "url": "/catalog/product/besedka-s-mangalom-v-stile-loft-s-pechyu-zharovney-i-tumbami-premium",
+          "vis": 700
+        },
+        {
+          "pos": 14,
+          "domain": "kovkagrad.ru",
+          "url": "/catalog/mangaly/mangal-besedka/17188",
+          "vis": 695
+        },
+        {
+          "pos": 15,
+          "domain": "zavod360.ru",
+          "url": "/catalog/mangal_loft/mangal_besedka_v_stile_loft_zakrytyy_zhar",
+          "vis": 283
+        }
+      ]
+    },
+    "закрытая беседка": {
+      "ws": 21043,
+      "wsk": 979,
+      "adscnt": 6,
+      "cpc": 19,
+      "top": [
+        {
+          "pos": 1,
+          "domain": "pkgreenwood.ru",
+          "url": "/category/besedki-i-navesy/zakrytye-besedki",
+          "vis": 1430
+        },
+        {
+          "pos": 2,
+          "domain": "rusbesedka.ru",
+          "url": "/produktsiia/besedki-dlya-dachi/zakrytye-i-zasteklyennye-besedki",
+          "vis": 241
+        },
+        {
+          "pos": 3,
+          "domain": "arh-besedki.ru",
+          "url": "/zakrytye-besedki",
+          "vis": 1263
+        },
+        {
+          "pos": 4,
+          "domain": "greenbesedka.ru",
+          "url": "/katalog-besedok/zakrytye-zasteklennye-besedki-dlya-dachi/zakrytaya-zasteklennaya-besedka-3x6-detail.html",
+          "vis": 222
+        },
+        {
+          "pos": 5,
+          "domain": "h-wd.ru",
+          "url": "/besedki/zasteklyennye-besedki",
+          "vis": 652
+        },
+        {
+          "pos": 6,
+          "domain": "timberlock.ru",
+          "url": "/catalog/besedki-dlya-dachi/zakrytyie?display=price",
+          "vis": 59
+        },
+        {
+          "pos": 7,
+          "domain": "m-strana.ru",
+          "url": "/articles/zakrytye-besedki-dlya-dachi",
+          "vis": 41138
+        },
+        {
+          "pos": 8,
+          "domain": "msknaves.ru",
+          "url": "/products/zasteklyennye-konstruktsii",
+          "vis": 211
+        },
+        {
+          "pos": 9,
+          "domain": "master-besedok.ru",
+          "url": "/besedki-zasteklennye",
+          "vis": 792
+        },
+        {
+          "pos": 10,
+          "domain": "masterbesedka.ru",
+          "url": "/katalog/zasteklennye",
+          "vis": 1
+        },
+        {
+          "pos": 11,
+          "domain": "barbeku.pro",
+          "url": "/katalog/besedki-dlya-barbekyu/steklyannye",
+          "vis": 164
+        },
+        {
+          "pos": 12,
+          "domain": "mir-besedok.ru",
+          "url": "/product-category/besedki-dlya-dachi/zakrytye-i-zasteklennye",
+          "vis": 3
+        },
+        {
+          "pos": 13,
+          "domain": "russkayaderevnya.ru",
+          "url": "/catalog/dachnye-postroyki-i-konstruktsii/besedki/zakrytye-i-zasteklennye-besedki",
+          "vis": 30
+        },
+        {
+          "pos": 14,
+          "domain": "vbesedki.ru",
+          "url": "/shop/besedki/zakrytye",
+          "vis": 77
+        },
+        {
+          "pos": 15,
+          "domain": "wildberries.ru",
+          "url": "/catalog/848693871/detail.aspx",
+          "vis": 2571057
+        }
+      ]
+    },
+    "беседка 3х3 металлическая": {
+      "ws": null,
+      "wsk": null,
+      "adscnt": null,
+      "cpc": null,
+      "top": []
+    },
+    "беседка 3х4 металлическая": {
+      "ws": null,
+      "wsk": null,
+      "adscnt": null,
+      "cpc": null,
+      "top": []
+    },
+    "беседка с мангалом": {
+      "ws": 55325,
+      "wsk": 2008,
+      "adscnt": 3,
+      "cpc": 22,
+      "top": [
+        {
+          "pos": 1,
+          "domain": "mangalplus.ru",
+          "url": "/besedki-s-mangalom",
+          "vis": 622
+        },
+        {
+          "pos": 2,
+          "domain": "metkof.ru",
+          "url": "/catalog/product/besedka-s-mangalom-graciya",
+          "vis": 236
+        },
+        {
+          "pos": 3,
+          "domain": "metal-mangal.ru",
+          "url": "/besedka",
+          "vis": 1674
+        },
+        {
+          "pos": 4,
+          "domain": "msk-mangal.ru",
+          "url": "/catalog/category/besedki-s-mangalom",
+          "vis": 700
+        },
+        {
+          "pos": 5,
+          "domain": "arh-besedki.ru",
+          "url": "/besedki-s-mangalom",
+          "vis": 1263
+        },
+        {
+          "pos": 6,
+          "domain": "msk-mangal.ru",
+          "url": "/catalog/product/besedka-s-mangalom-moykoy-i-mestom-pod-tandyr-terrasa-14",
+          "vis": 700
+        },
+        {
+          "pos": 7,
+          "domain": "h-wd.ru",
+          "url": "/besedki/besedki-s-barbekyu-i-mangalnoy-zonoy",
+          "vis": 652
+        },
+        {
+          "pos": 8,
+          "domain": "mangaliero.ru",
+          "url": "/product-category/mangaly-besedki",
+          "vis": 303
+        },
+        {
+          "pos": 9,
+          "domain": "kovkagrad.ru",
+          "url": "/catalog/mangaly/mangal-besedka",
+          "vis": 695
+        },
+        {
+          "pos": 10,
+          "domain": "pineshop.ru",
+          "url": "/derevyannie-besedki/besedka-s-barbekyu",
+          "vis": 471
+        },
+        {
+          "pos": 11,
+          "domain": "artli-kovka.ru",
+          "url": "/catalog/mangaly_besedki/besedki_s_vytyazhkoy",
+          "vis": 139
+        },
+        {
+          "pos": 12,
+          "domain": "market.yandex.ru",
+          "url": "/category/gotovyye-besedki-dlya-dachi-s-mangalom",
+          "vis": 1614998
+        },
+        {
+          "pos": 13,
+          "domain": "barbeku.pro",
+          "url": "/katalog/besedki-dlya-barbekyu",
+          "vis": 164
+        },
+        {
+          "pos": 14,
+          "domain": "prosto-mangal.ru",
+          "url": "/catalog/mangaly-dlya-dachi/besedki-s-mangalom",
+          "vis": 63
+        },
+        {
+          "pos": 15,
+          "domain": "rusbesedka.ru",
+          "url": "/produktsiia/besedki-dlya-dachi/besedki-s-barbekyu",
+          "vis": 241
+        }
+      ]
+    }
+  },
+  "concurents": [
+    {
+      "id": 420852784,
+      "name": "dachabel.ru",
+      "it1": 1,
+      "it3": 1,
+      "it5": 1,
+      "it10": 2,
+      "perc": 50
+    },
+    {
+      "id": 300994831,
+      "name": "h-wd.ru",
+      "it1": 0,
+      "it3": 2,
+      "it5": 2,
+      "it10": 2,
+      "perc": 50
+    },
+    {
+      "id": 29920067,
+      "name": "sima-land.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 29929523,
+      "name": "moscow.promportal.su",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 30215719,
+      "name": "oasis-stroy.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 30601867,
+      "name": "kingwoods.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 1,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 30693519,
+      "name": "greenbesedka.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 137533779,
+      "name": "aliexpress.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 1,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 240361111,
+      "name": "master-besedok.ru",
+      "it1": 1,
+      "it3": 1,
+      "it5": 1,
+      "it10": 2,
+      "perc": 50
+    },
+    {
+      "id": 244425187,
+      "name": "mangalplus.ru",
+      "it1": 1,
+      "it3": 1,
+      "it5": 2,
+      "it10": 2,
+      "perc": 50
+    },
+    {
+      "id": 33571296,
+      "name": "ur-met.ru",
+      "it1": 0,
+      "it3": 1,
+      "it5": 1,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 34458180,
+      "name": "rusbesedka.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 1,
+      "it10": 2,
+      "perc": 50
+    },
+    {
+      "id": 49635036,
+      "name": "msknaves.ru",
+      "it1": 1,
+      "it3": 1,
+      "it5": 1,
+      "it10": 2,
+      "perc": 50
+    },
+    {
+      "id": 133096820,
+      "name": "metal-mangal.ru",
+      "it1": 0,
+      "it3": 1,
+      "it5": 2,
+      "it10": 2,
+      "perc": 50
+    },
+    {
+      "id": 331545054,
+      "name": "childresidence.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 277310985,
+      "name": "nadvorike.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 29917977,
+      "name": "satom.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 29943677,
+      "name": "safamaster.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 29978109,
+      "name": "arh-besedki.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 30067961,
+      "name": "metall-kovka24.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 30634249,
+      "name": "plastmebel.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 30654137,
+      "name": "m.avito.ru",
+      "it1": 0,
+      "it3": 1,
+      "it5": 2,
+      "it10": 4,
+      "perc": 100
+    },
+    {
+      "id": 120392237,
+      "name": "pkgreenwood.ru",
+      "it1": 0,
+      "it3": 2,
+      "it5": 2,
+      "it10": 2,
+      "perc": 50
+    },
+    {
+      "id": 270997488,
+      "name": "vse-besedki.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 29918498,
+      "name": "livemaster.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 1,
+      "it10": 2,
+      "perc": 50
+    },
+    {
+      "id": 29944286,
+      "name": "bestmebelik.ru",
+      "it1": 0,
+      "it3": 1,
+      "it5": 1,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 30630382,
+      "name": "corpsun.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 1,
+      "it10": 1,
+      "perc": 25
+    },
+    {
+      "id": 281169810,
+      "name": "artli-kovka.ru",
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 1,
+      "perc": 25
+    }
+  ],
+  "domains": [
+    {
+      "domain": "dachabel.ru",
+      "segment": "металл",
+      "ok": true,
+      "vis": 1417,
+      "it1": 383,
+      "it3": 650,
+      "it5": 838,
+      "it10": 1184,
+      "it50": 4623,
+      "pagesinindex": 56,
+      "dr": 26,
+      "adscnt": 49,
+      "keys_cnt": 200,
+      "top_words": [
+        "поликарбонат",
+        "дачный туалет",
+        "купить поликарбонат",
+        "беседки",
+        "душ летний",
+        "душ летний",
+        "теплица",
+        "беседка с мангальной зоной"
+      ],
+      "top_urls": [
+        "/",
+        "/besedki-dlya-dachi",
+        "/besedki-dlya-dachi/tproduct/177200928382-besedka-tyulpan-2",
+        "/besedki-dlya-dachi/tproduct/333751691262-besedka-tyulpan",
+        "/besedki-dlya-dachi/tproduct/422962916222-besedka-astra-2-s-vetrozaschitoi",
+        "/besedki-dlya-dachi/tproduct/657901399692-besedka-pion"
+      ]
+    },
+    {
+      "domain": "ur-met.ru",
+      "segment": "металл",
+      "ok": true,
+      "vis": 241,
+      "it1": 176,
+      "it3": 383,
+      "it5": 532,
+      "it10": 880,
+      "it50": 5091,
+      "pagesinindex": 1506,
+      "dr": 23,
+      "adscnt": 98,
+      "keys_cnt": 200,
+      "top_words": [
+        "навес",
+        "сваи винтовые купить",
+        "сварка",
+        "модульный дом купить",
+        "распашные ворота",
+        "воздуховод",
+        "беседка из профильной трубы",
+        "темп подъемник"
+      ],
+      "top_urls": [
+        "/",
+        "/blog/3d-pechat-v-metallokonstruktsiyakh",
+        "/blog/ankernye-sistemy",
+        "/blog/dvukhskatnaya-krysha-i-parapetnaya-krysha-otlichie-i-osobennosti",
+        "/blog/estakady-funktsionalnost-konstruktivnye-osobennosti-i-preimushchestva",
+        "/blog/fakhverkovye-stoyki-dlya-krepleniya-sendvich-paneley-nadezhnoe-reshenie-dlya-sovremennogo-stroitelst"
+      ]
+    },
+    {
+      "domain": "metal-mangal.ru",
+      "segment": "металл+мангал",
+      "ok": true,
+      "vis": 1674,
+      "it1": 491,
+      "it3": 1180,
+      "it5": 1663,
+      "it10": 2536,
+      "it50": 5877,
+      "pagesinindex": 343,
+      "dr": 29,
+      "adscnt": 554,
+      "keys_cnt": 200,
+      "top_words": [
+        "мангал",
+        "купить мангал",
+        "мангал купить",
+        "барбекю",
+        "барбекю",
+        "мангал с крышей",
+        "для казана печь",
+        "навес для мангала"
+      ],
+      "top_urls": [
+        "/",
+        "/adapter-dlya-kazana",
+        "/aksessuary",
+        "/barbekyu-kompleks",
+        "/barbekyu-kompleks-2900600-loft-9",
+        "/barbekyu-kompleks-iz-metalla-stil"
+      ]
+    },
+    {
+      "domain": "mangalplus.ru",
+      "segment": "металл+мангал",
+      "ok": true,
+      "vis": 622,
+      "it1": 206,
+      "it3": 570,
+      "it5": 910,
+      "it10": 1613,
+      "it50": 4290,
+      "pagesinindex": 130,
+      "dr": 22,
+      "adscnt": 46,
+      "keys_cnt": 200,
+      "top_words": [
+        "мангал",
+        "купить мангал",
+        "мангал купить",
+        "беседка с мангальной зоной",
+        "мангал с крышей",
+        "для казана печь",
+        "жаровня",
+        "купить мангальная зона"
+      ],
+      "top_urls": [
+        "/",
+        "/aksessuary-k-mangalam",
+        "/besedka-s-mangalom-esteyt",
+        "/besedka-s-mangalom-esteyt-2",
+        "/besedka-s-mangalom-esteyt-4",
+        "/besedka-s-mangalom-esteyt?variation_id=2732"
+      ]
+    },
+    {
+      "domain": "metall-kovka24.ru",
+      "segment": "ковка",
+      "ok": true,
+      "vis": 118,
+      "it1": 48,
+      "it3": 188,
+      "it5": 370,
+      "it10": 905,
+      "it50": 3824,
+      "pagesinindex": 580,
+      "dr": 24,
+      "adscnt": 0,
+      "keys_cnt": 100,
+      "top_words": [
+        "навес для мангала",
+        "беседка из металла",
+        "навес для бассейна",
+        "перила для лестницы",
+        "металлическая беседка",
+        "навес над мангалом",
+        "калитка из профильной трубы",
+        "перила кованые"
+      ],
+      "top_urls": [
+        "/",
+        "/alyuminievye-perila-dlya-krylcza-chastnogo-doma-2",
+        "/alyuminievye-perila-dlya-krylcza-so-steklyannymi-vstavkami",
+        "/arki",
+        "/arki/po-materialu/stal",
+        "/arki/po-naznacheniyu/dlya-czvetov"
+      ]
+    },
+    {
+      "domain": "rammetall.ru",
+      "segment": "металл",
+      "ok": true,
+      "vis": 10,
+      "it1": 2,
+      "it3": 18,
+      "it5": 39,
+      "it10": 104,
+      "it50": 1063,
+      "pagesinindex": 115,
+      "dr": 11,
+      "adscnt": 0,
+      "keys_cnt": 200,
+      "top_words": [
+        "беседка из металла",
+        "беседка металлическая",
+        "металлическая беседка",
+        "беседка металлическая для дачи",
+        "беседка для дачи металлическая",
+        "металлическая беседка для дачи",
+        "арка металлическая садовая",
+        "арка садовая металлическая"
+      ],
+      "top_urls": [
+        "/",
+        "/about",
+        "/articles/69196",
+        "/catalog",
+        "/catalog/k-12672360-metallicheskoye_kryltso_k_domu",
+        "/catalog/k-12672360-metallicheskoye_kryltso_k_domu?page=2"
+      ]
+    },
+    {
+      "domain": "besedkiloft.ru",
+      "segment": "лофт",
+      "ok": true,
+      "vis": 24,
+      "it1": 7,
+      "it3": 30,
+      "it5": 50,
+      "it10": 103,
+      "it50": 406,
+      "pagesinindex": 28,
+      "dr": 21,
+      "adscnt": 59,
+      "keys_cnt": 200,
+      "top_words": [
+        "беседка деревянная",
+        "беседка с мангалом",
+        "деревянная беседка",
+        "беседка на дачу",
+        "беседку купить для дачи",
+        "беседка из бруса",
+        "беседка деревянная для дачи",
+        "закрытая беседка"
+      ],
+      "top_urls": [
+        "/",
+        "/besedka/besedka-2-v-1-s-hozblokom-dlya-hraneniya-veshhej",
+        "/besedka/besedka-azhurnaya-s-dekorativnymi-reshetkami-na-iskosok",
+        "/besedka/besedka-duet-s-hozblokom-loft",
+        "/besedka/besedka-grafit-loft-s-vertikalnymi-rejkami",
+        "/besedka/besedka-grand-dlya-kompanij-ot-12-chelovek"
+      ]
+    },
+    {
+      "domain": "besedki-amarant.ru",
+      "segment": "дизайн-металл",
+      "ok": true,
+      "vis": 0,
+      "it1": 0,
+      "it3": 0,
+      "it5": 1,
+      "it10": 1,
+      "it50": 14,
+      "pagesinindex": 1,
+      "dr": 8,
+      "adscnt": 1,
+      "keys_cnt": 14,
+      "top_words": [
+        "металлическая беседка",
+        "ооо амарант",
+        "амарант беседки",
+        "фирма амарант",
+        "амарант компания",
+        "амарант фирма",
+        "беседки из металлоконструкций",
+        "амарант металл"
+      ],
+      "top_urls": [
+        "/"
+      ]
+    },
+    {
+      "domain": "amarant.ru",
+      "segment": "дизайн-металл",
+      "ok": true,
+      "vis": 44,
+      "it1": 62,
+      "it3": 128,
+      "it5": 174,
+      "it10": 378,
+      "it50": 3262,
+      "pagesinindex": 212,
+      "dr": 19,
+      "adscnt": 309,
+      "keys_cnt": 200,
+      "top_words": [
+        "качели садовые",
+        "беседка для дачи",
+        "качели",
+        "навес для автомобиля",
+        "крыльцо",
+        "шпалера для малины",
+        "купить мангальная зона",
+        "мангальная зона из металла"
+      ],
+      "top_urls": [
+        "/",
+        "/arka-ajstin",
+        "/arka-azhurnaya-(240h120h50)sm",
+        "/arka-dlya-aktinidii-krepysh",
+        "/arka-dlya-vinograda",
+        "/arka-dvojnaya"
+      ]
+    },
+    {
+      "domain": "besedka-metallicheskaya.ru",
+      "segment": "металл",
+      "ok": true,
+      "vis": 0,
+      "it1": 0,
+      "it3": 1,
+      "it5": 1,
+      "it10": 1,
+      "it50": 104,
+      "pagesinindex": 1,
+      "dr": 10,
+      "adscnt": 0,
+      "keys_cnt": 104,
+      "top_words": [
+        "металлическая беседка",
+        "беседка для дачи металлическая",
+        "беседка металлическая для дачи",
+        "металлическая беседка для дачи",
+        "беседки металлические",
+        "металлические беседки",
+        "беседка для дачи из металла",
+        "беседка из металла для дачи"
+      ],
+      "top_urls": [
+        "/"
+      ]
+    },
+    {
+      "domain": "createmet.ru",
+      "segment": "металл",
+      "ok": true,
+      "vis": 6,
+      "it1": 7,
+      "it3": 34,
+      "it5": 58,
+      "it10": 202,
+      "it50": 2930,
+      "pagesinindex": 362,
+      "dr": 19,
+      "adscnt": 116,
+      "keys_cnt": 200,
+      "top_words": [
+        "перила",
+        "шпалера для малины",
+        "ворота распашные",
+        "балкон французский",
+        "ворота кованые",
+        "кованые ворота",
+        "беседка из металла",
+        "решётки на окна"
+      ],
+      "top_urls": [
+        "/",
+        "/about",
+        "/articles/7-interesnykh-idey-dizayna-vorot-s-elementami-kovki-foto",
+        "/articles/chem-posypayut-metall-pri-kovke",
+        "/articles/etazherki-kovanye-v-stile-provans",
+        "/articles/kholodnaya-kovka-foto-izdeliy"
+      ]
+    },
+    {
+      "domain": "safamaster.ru",
+      "segment": "металл",
+      "ok": true,
+      "vis": 248,
+      "it1": 98,
+      "it3": 391,
+      "it5": 749,
+      "it10": 1515,
+      "it50": 5213,
+      "pagesinindex": 564,
+      "dr": 27,
+      "adscnt": 466,
+      "keys_cnt": 0,
+      "top_words": [],
+      "top_urls": [
+        "/",
+        "/about",
+        "/about/blog/5-reczeptov-marinada-dlya-myasa-s-pomidorami",
+        "/about/blog/5-rekomendaczij-po-ustanovke-kamina",
+        "/about/blog/7-novogodnix-blyud-prigotovlennyx-na-mangale",
+        "/about/blog/banketki-v-prixozhuyu"
+      ]
+    },
+    {
+      "domain": "artli-kovka.ru",
+      "segment": "ковка",
+      "ok": true,
+      "vis": 139,
+      "it1": 30,
+      "it3": 141,
+      "it5": 343,
+      "it10": 962,
+      "it50": 3956,
+      "pagesinindex": 390,
+      "dr": 21,
+      "adscnt": 7,
+      "keys_cnt": 100,
+      "top_words": [
+        "мангал",
+        "зона мангальная",
+        "мангальная зона",
+        "купить мангал",
+        "мангал купить",
+        "беседка с мангальной зоной",
+        "крыльцо для частного дома",
+        "мангал с крышей"
+      ],
+      "top_urls": [
+        "/",
+        "/blog/sovety-pokupatelyam/chto-takoe-menazhnitsa-i-dlya-chego-ona-nuzhna",
+        "/blog/sovety-pokupatelyam/preimushchestva-kovanykh-mangalov",
+        "/blog/sovety-pokupatelyam/samye-vkusnye-retsepty-na-mangale",
+        "/blog/sovety-pokupatelyam/zachem-nuzhna-kryshka-dlya-mangala",
+        "/catalog"
+      ]
+    },
+    {
+      "domain": "spectorgstroy.ru",
+      "segment": "металл",
+      "ok": true,
+      "vis": 5,
+      "it1": 5,
+      "it3": 11,
+      "it5": 14,
+      "it10": 34,
+      "it50": 295,
+      "pagesinindex": 64,
+      "dr": 15,
+      "adscnt": 0,
+      "keys_cnt": 200,
+      "top_words": [
+        "беседка из металла",
+        "беседка металлическая",
+        "металлическая беседка",
+        "беседка для дачи металлическая",
+        "беседка металлическая для дачи",
+        "бочка 200л",
+        "металлическая беседка для дачи",
+        "беседки из металла"
+      ],
+      "top_urls": [
+        "/",
+        "/catalog",
+        "/catalog/-kovanye-skamejki",
+        "/catalog/bordjurnye-kamni-i-vodostochnye-lotki",
+        "/catalog/kovanye-kozyrki",
+        "/catalog/kovanye-kresla"
+      ]
+    },
+    {
+      "domain": "nva-house.ru",
+      "segment": "металл",
+      "ok": true,
+      "vis": 21,
+      "it1": 7,
+      "it3": 33,
+      "it5": 58,
+      "it10": 160,
+      "it50": 688,
+      "pagesinindex": 39,
+      "dr": 17,
+      "adscnt": 8,
+      "keys_cnt": 200,
+      "top_words": [
+        "беседка с мангальной зоной",
+        "беседка из профильной трубы",
+        "беседка 3 на 3",
+        "беседка с мангалом",
+        "беседка из металла",
+        "комплекс мангальный",
+        "металлическая беседка",
+        "беседка с мангальной зоной фото"
+      ],
+      "top_urls": [
+        "/",
+        "/besedki",
+        "/besedki-dlya-dachi",
+        "/besedki-dlya-dachi/besedka-2-na-3-metra-solnechnogorsk",
+        "/besedki-dlya-dachi/besedka-3-na-3-s-odnoskatnoy-kryshey-sertolovo",
+        "/besedki-dlya-dachi/besedka-3-na-3-vsevolozhsk-3"
+      ]
+    },
+    {
+      "domain": "mos-mangal.ru",
+      "segment": "металл+мангал",
+      "ok": true,
+      "vis": 29,
+      "it1": 10,
+      "it3": 46,
+      "it5": 88,
+      "it10": 276,
+      "it50": 2782,
+      "pagesinindex": 445,
+      "dr": 21,
+      "adscnt": 0,
+      "keys_cnt": 200,
+      "top_words": [
+        "мангал",
+        "мангал купить",
+        "смокер",
+        "мангал с крышей",
+        "купить мангал с крышей",
+        "мангал купить с крышей",
+        "мангал с крышей купить",
+        "как коптить рыбу"
+      ],
+      "top_urls": [
+        "/",
+        "/all-reviews",
+        "/all-reviews?pageNum=2",
+        "/blog/barbekyu-elit-bb-marinovannye-svinye-ryobryshki-s-medovo-gorchichnym-sousom",
+        "/blog/besedka-mangal-padishax-mini-shashlyk-s-tomatnym-marinadom-na-kompaniyu-15-chelovek",
+        "/blog/besedka-mangal-padishax-mini-utka-po-pekinski-na-mangale"
+      ]
+    },
+    {
+      "domain": "dekorkovka.ru",
+      "segment": "ковка",
+      "ok": true,
+      "vis": 3,
+      "it1": 1,
+      "it3": 3,
+      "it5": 8,
+      "it10": 72,
+      "it50": 581,
+      "pagesinindex": 112,
+      "dr": 11,
+      "adscnt": 0,
+      "keys_cnt": 100,
+      "top_words": [
+        "шпалера для малины",
+        "арка садовая",
+        "садовая арка",
+        "металлическая беседка",
+        "беседка металлическая для дачи",
+        "металлическая беседка для дачи",
+        "арка металлическая садовая",
+        "арка садовая металлическая"
+      ],
+      "top_urls": [
+        "/",
+        "/contacts",
+        "/products/102833626-mobilnaya_smotrovaya_lestnitsa",
+        "/products/104184710-besedka_dlya_dachi_iz_metalla",
+        "/products/104498766-arochny_kozyrek_nad_kryltsom",
+        "/products/104568085-arka_dlya_klematisa"
+      ]
+    },
+    {
+      "domain": "msknaves.ru",
+      "segment": "навес/остекление",
+      "ok": true,
+      "vis": 211,
+      "it1": 64,
+      "it3": 270,
+      "it5": 448,
+      "it10": 941,
+      "it50": 3690,
+      "pagesinindex": 149,
+      "dr": 22,
+      "adscnt": 237,
+      "keys_cnt": 100,
+      "top_words": [
+        "беседка для дачи",
+        "веранда",
+        "беседки",
+        "навес для автомобиля",
+        "навес",
+        "навес",
+        "беседки для дачи",
+        "терраса к дому"
+      ],
+      "top_urls": [
+        "/",
+        "/bbq",
+        "/contacts",
+        "/design",
+        "/foundation-plate",
+        "/foundation-rails"
+      ]
+    },
+    {
+      "domain": "corpsun.ru",
+      "segment": "остекление",
+      "ok": true,
+      "vis": 406,
+      "it1": 225,
+      "it3": 502,
+      "it5": 716,
+      "it10": 1093,
+      "it50": 2790,
+      "pagesinindex": 168,
+      "dr": 22,
+      "adscnt": 64,
+      "keys_cnt": 200,
+      "top_words": [
+        "терраса",
+        "навес для автомобиля",
+        "навес",
+        "пергола это",
+        "маф",
+        "навесы",
+        "навесы",
+        "навес к дому"
+      ],
+      "top_urls": [
+        "/",
+        "/about-us",
+        "/aktsii/pergola-standart",
+        "/alyuminiyevyye-pergoly-2",
+        "/avtomaticheskiy-naves-dlya-terrasy",
+        "/avtomaticheskiye-navesy"
+      ]
+    },
+    {
+      "domain": "greenbesedka.ru",
+      "segment": "закрытые",
+      "ok": true,
+      "vis": 222,
+      "it1": 48,
+      "it3": 224,
+      "it5": 450,
+      "it10": 1092,
+      "it50": 2744,
+      "pagesinindex": 243,
+      "dr": 28,
+      "adscnt": 121,
+      "keys_cnt": 100,
+      "top_words": [
+        "беседка для дачи",
+        "беседки",
+        "беседки",
+        "беседка с мангальной зоной",
+        "беседки для дачи",
+        "беседки фото",
+        "беседки фото",
+        "беседку купить"
+      ],
+      "top_urls": [
+        "/",
+        "/besedki-bytovki-hozbloki-verandy-green.html",
+        "/besedki-bytovki-hozbloki-verandy-green/bani-sruby-iz-brevna-brusa/banya-iz-brevna150-3x4-1.html",
+        "/besedki-bytovki-hozbloki-verandy-green/besedka-dlya-dachi-s-patio.html",
+        "/besedki-bytovki-hozbloki-verandy-green/besedki-dlya-dachi-iz-blokhausa.html",
+        "/besedki-bytovki-hozbloki-verandy-green/besedki-dlya-dachi-iz-brevna-brusa.html"
+      ]
+    },
+    {
+      "domain": "oasis-stroy.ru",
+      "segment": "остекление",
+      "ok": true,
+      "vis": 21,
+      "it1": 5,
+      "it3": 45,
+      "it5": 102,
+      "it10": 313,
+      "it50": 2289,
+      "pagesinindex": 278,
+      "dr": 20,
+      "adscnt": 0,
+      "keys_cnt": 200,
+      "top_words": [
+        "пергола это",
+        "беседки фото",
+        "беседка с мангалом",
+        "деревянная беседка",
+        "беседка на дачу",
+        "беседки с мангальной зоной",
+        "беседка из бруса",
+        "из бруса беседка"
+      ],
+      "top_urls": [
+        "/",
+        "/3d-vizualizatsiya-s-fotoprivyazkoj",
+        "/arenda-yarmarochnykh-domikov",
+        "/betonnaya-ploshchadka",
+        "/blog/chertezh-pryamougolnoj-besedki",
+        "/blog/kak-postroit-kvadratnuyu-besedku"
+      ]
+    },
+    {
+      "domain": "rusbesedka.ru",
+      "segment": "смешанный",
+      "ok": true,
+      "vis": 241,
+      "it1": 54,
+      "it3": 263,
+      "it5": 534,
+      "it10": 1261,
+      "it50": 4238,
+      "pagesinindex": 293,
+      "dr": 25,
+      "adscnt": 724,
+      "keys_cnt": 100,
+      "top_words": [
+        "беседка для дачи",
+        "беседки",
+        "беседка с мангальной зоной",
+        "навес для автомобиля",
+        "беседки для дачи",
+        "купить мангальная зона",
+        "веранда к дому",
+        "беседки фото"
+      ],
+      "top_urls": [
+        "/",
+        "/blog/kak-podgotovitsya-k-ustanovke-derevyannoy-konstruktsii-prostaya-instruktsiya",
+        "/blog/metall-vs-derevo-pochemu-nelzya-stroit-metallicheskuyu-besedku",
+        "/individualnyi-zakaz",
+        "/nashi-predstavitelstva",
+        "/otzivi"
+      ]
+    },
+    {
+      "domain": "barbeku.pro",
+      "segment": "мангал/закрытые",
+      "ok": true,
+      "vis": 164,
+      "it1": 138,
+      "it3": 324,
+      "it5": 514,
+      "it10": 979,
+      "it50": 2951,
+      "pagesinindex": 161,
+      "dr": 28,
+      "adscnt": 0,
+      "keys_cnt": 100,
+      "top_words": [
+        "беседки",
+        "беседка с мангальной зоной",
+        "барбекюшница",
+        "русская печь",
+        "беседка с мангалом",
+        "мангальная зона из кирпича",
+        "барбекю комплекс",
+        "беседки с мангальной зоной"
+      ],
+      "top_urls": [
+        "/",
+        "/katalog",
+        "/katalog/barbekyu-kompleks-adler",
+        "/katalog/barbekyu-kompleks-chistye-klyuchi-2",
+        "/katalog/barbekyu-kompleks-grigorovo",
+        "/katalog/barbekyu-kompleks-holmy"
+      ]
+    },
+    {
+      "domain": "master-besedok.ru",
+      "segment": "дерево",
+      "ok": true,
+      "vis": 792,
+      "it1": 67,
+      "it3": 241,
+      "it5": 492,
+      "it10": 1273,
+      "it50": 5145,
+      "pagesinindex": 203,
+      "dr": 28,
+      "adscnt": 23,
+      "keys_cnt": 100,
+      "top_words": [
+        "пергола",
+        "беседка для дачи",
+        "беседки",
+        "беседка с мангальной зоной",
+        "беседки для дачи",
+        "пергола это",
+        "окна мягкие для веранды",
+        "беседки фото"
+      ],
+      "top_urls": [
+        "/",
+        "/articles/besedka-bez-sozhaleniy-izbegaem-tipichnykh-oshibok-pri-pokupke-i-ustanovke",
+        "/articles/besedka-na-slozhnom-uchastke-uklon-vysokiy-uroven-gruntovykh-vod-i-nestandartnyy-relef",
+        "/articles/besedka-pod-letnyuyu-kukhnyu-osobennosti-vidy-i-stili-stroitelstvo",
+        "/articles/besedka-u-vody-kak-pravilno-postroit-na-beregu-pruda-ili-ozera",
+        "/articles/besedki-iz-polikarbonata-dostoinstva-i-nedostatki-rekomendatsii-po-ustanovke-besedki-iz-polikarbonat"
+      ]
+    },
+    {
+      "domain": "pkgreenwood.ru",
+      "segment": "дерево",
+      "ok": true,
+      "vis": 1430,
+      "it1": 279,
+      "it3": 768,
+      "it5": 1207,
+      "it10": 1980,
+      "it50": 4304,
+      "pagesinindex": 327,
+      "dr": 33,
+      "adscnt": 0,
+      "keys_cnt": 100,
+      "top_words": [
+        "дом 3 3",
+        "пергола",
+        "беседка для дачи",
+        "беседки",
+        "беседка с мангальной зоной",
+        "беседки для дачи",
+        "кашпо для цветов",
+        "беседки фото"
+      ],
+      "top_urls": [
+        "/",
+        "/arek-iz-dereva-dliya-kofe",
+        "/arka---pergola-dvuskatnaya-s-lavkoy-i-vstavkoy-shpalera-2-x-08-m-art-ap2-02",
+        "/arka---pergola-glubokaya-s-kh-obraznymi-vstavkami-2080-kh-1440-mm-art-aps-02",
+        "/arka---pergola-grinvud-s-vstavkoy-shpalera-2-kh-08-m-art-ap-02-1",
+        "/arka---pergola-iz-dereva-glubokaya-2080-x-1480-mm-art-ags-00"
+      ]
+    },
+    {
+      "domain": "h-wd.ru",
+      "segment": "дерево",
+      "ok": true,
+      "vis": 653,
+      "it1": 214,
+      "it3": 614,
+      "it5": 956,
+      "it10": 1646,
+      "it50": 3505,
+      "pagesinindex": 153,
+      "dr": 23,
+      "adscnt": 0,
+      "keys_cnt": 100,
+      "top_words": [
+        "беседка для дачи",
+        "беседка с мангальной зоной",
+        "навес для автомобиля",
+        "беседки для дачи",
+        "навес для мангала",
+        "беседки фото",
+        "беседку купить",
+        "навес для машины"
+      ],
+      "top_urls": [
+        "/",
+        "/about",
+        "/besedki",
+        "/besedki/besedki-khay-tek",
+        "/besedki/besedki-loft",
+        "/besedki/besedki-premium-klassa"
+      ]
+    },
+    {
+      "domain": "timberlock.ru",
+      "segment": "дерево",
+      "ok": true,
+      "vis": 59,
+      "it1": 41,
+      "it3": 122,
+      "it5": 207,
+      "it10": 483,
+      "it50": 3285,
+      "pagesinindex": 195,
+      "dr": 27,
+      "adscnt": 0,
+      "keys_cnt": 100,
+      "top_words": [
+        "беседка для дачи",
+        "беседки",
+        "хозблок",
+        "хозблок для дачи",
+        "беседку купить",
+        "купить беседку",
+        "беседка купить",
+        "домик дачный"
+      ],
+      "top_urls": [
+        "/",
+        "/catalog",
+        "/catalog/bani-iz-brusa",
+        "/catalog/bani-iz-brusa/30-50-m2",
+        "/catalog/bani-iz-brusa/4x2-5",
+        "/catalog/bani-iz-brusa/6x2-5"
+      ]
+    },
+    {
+      "domain": "kingwoods.ru",
+      "segment": "дерево",
+      "ok": true,
+      "vis": 1386,
+      "it1": 358,
+      "it3": 856,
+      "it5": 1178,
+      "it10": 1948,
+      "it50": 5695,
+      "pagesinindex": 351,
+      "dr": 32,
+      "adscnt": 971,
+      "keys_cnt": 100,
+      "top_words": [
+        "7 на 7 на 7",
+        "дом 3 3",
+        "баня под ключ",
+        "беседка для дачи",
+        "дачный туалет",
+        "туалет дачный",
+        "дом 4 4",
+        "бытовка для дачи"
+      ],
+      "top_urls": [
+        "/",
+        "/aktsii",
+        "/aktsii/credit",
+        "/blog/banya-iz-brusa-svoimi-rukami-prosto-udobno-i-vygodno",
+        "/blog/banya-pod-klyuch-za-1-den-stroitelstvo-po-tekhnologii-minibrusa",
+        "/blog/besedka-dlya-samostoyatelnoy-sborki-kupit-komplekt-i-sobrat-svoimi-rukami"
+      ]
+    },
+    {
+      "domain": "vse-besedki.ru",
+      "segment": "дерево",
+      "ok": true,
+      "vis": 54,
+      "it1": 8,
+      "it3": 56,
+      "it5": 122,
+      "it10": 438,
+      "it50": 2487,
+      "pagesinindex": 69,
+      "dr": 17,
+      "adscnt": 0,
+      "keys_cnt": 100,
+      "top_words": [
+        "пергола",
+        "беседка для дачи",
+        "беседки",
+        "беседка с мангальной зоной",
+        "беседки для дачи",
+        "навес для мангала",
+        "беседки фото",
+        "фото беседки"
+      ],
+      "top_urls": [
+        "/",
+        "/catalog",
+        "/catalog/besedki-dlya-barbekyu/besedka-dlya-grilya-1",
+        "/catalog/besedki-dlya-barbekyu/derevyannyj-naves-dlya-barbekyu-1",
+        "/catalog/besedki-dlya-barbekyu/finskaya-besedka-dlya-grilya",
+        "/catalog/besedki-dlya-barbekyu/gril-domik-katana"
+      ]
+    },
+    {
+      "domain": "vasha-besedka.ru",
+      "segment": "дерево",
+      "ok": true,
+      "vis": 95,
+      "it1": 44,
+      "it3": 148,
+      "it5": 265,
+      "it10": 631,
+      "it50": 1820,
+      "pagesinindex": 161,
+      "dr": 26,
+      "adscnt": 5,
+      "keys_cnt": 100,
+      "top_words": [
+        "беседка для дачи",
+        "беседки",
+        "беседки для дачи",
+        "веранда к дому",
+        "беседку купить",
+        "беседка купить",
+        "беседка 3 на 3",
+        "беседка для дачи купить"
+      ],
+      "top_urls": [
+        "/",
+        "/blog",
+        "/blog/2025/02/21/vidy-besedok-materialy-formy-i-osobennosti",
+        "/catalog/besedki",
+        "/catalog/besedki/1-skatnye",
+        "/catalog/besedki/15-chelovek"
+      ]
+    },
+    {
+      "domain": "nadvorike.ru",
+      "segment": "дерево",
+      "ok": true,
+      "vis": 19,
+      "it1": 1,
+      "it3": 19,
+      "it5": 61,
+      "it10": 273,
+      "it50": 1362,
+      "pagesinindex": 28,
+      "dr": 16,
+      "adscnt": 0,
+      "keys_cnt": 100,
+      "top_words": [
+        "беседка для дачи",
+        "беседки",
+        "беседки для дачи",
+        "беседки фото",
+        "фото беседки",
+        "беседку купить",
+        "беседка купить",
+        "беседка купить для дачи"
+      ],
+      "top_urls": [
+        "/",
+        "/about-gazebos/bath-barrel-turnkey",
+        "/about-gazebos/baths_barrels_for_cottage",
+        "/besedki-s-chetyrekhskatnoj-kryshej",
+        "/besedki-s-domikom",
+        "/besedki-s-dvuhskatnoj-kryshej"
+      ]
+    },
+    {
+      "domain": "arh-besedki.ru",
+      "segment": "дерево",
+      "ok": true,
+      "vis": 1263,
+      "it1": 380,
+      "it3": 1061,
+      "it5": 1588,
+      "it10": 2563,
+      "it50": 4850,
+      "pagesinindex": 500,
+      "dr": 27,
+      "adscnt": 114,
+      "keys_cnt": 100,
+      "top_words": [
+        "пергола",
+        "беседка для дачи",
+        "беседки",
+        "беседки для дачи",
+        "бричка",
+        "беседку купить",
+        "купить беседку",
+        "для колодца домик"
+      ],
+      "top_urls": [
+        "/",
+        "/articles/arba-dlya-sada",
+        "/articles/arenda-yarmarochnykh-domikov",
+        "/articles/banya-bochka-kak-nado-paritsya-v-bane-bochke",
+        "/articles/banya-istoriya-bani",
+        "/articles/besedki-fotogalereya-sadovye-besedki-foto-dachnye-besedki-foto"
+      ]
+    },
+    {
+      "domain": "vipzavod.ru",
+      "segment": "проверка",
+      "ok": true,
+      "vis": 67,
+      "it1": 47,
+      "it3": 143,
+      "it5": 234,
+      "it10": 452,
+      "it50": 1759,
+      "pagesinindex": 95,
+      "dr": 25,
+      "adscnt": 0,
+      "keys_cnt": 100,
+      "top_words": [
+        "маф",
+        "вальцовка",
+        "завод металлоконструкций",
+        "маф это",
+        "малые архитектурные формы",
+        "архитектурные малые формы",
+        "изготовление металлоконструкций",
+        "змк"
+      ],
+      "top_urls": [
+        "/",
+        "/blog/gibka-metalla-tehnologii-metody-i-osobennosti",
+        "/blog/kak-pravilno-svarit-fermy-dlya-navesa-iz-profilnoy-truby",
+        "/blog/lazernaya-rezka-metalla-vidy-oborudovaniya",
+        "/blog/maf-dlya-detskih-ploschadok-vidy-i-osobennosti",
+        "/blog/metallicheskie-fermy-vidy-primenenie-i-etapy-izgotovleniya"
+      ]
+    },
+    {
+      "domain": "rusrolls.ru",
+      "segment": "проверка",
+      "ok": false,
+      "vis": 0,
+      "it10": 0,
+      "keys_cnt": 0
+    },
+    {
+      "domain": "stalpro.ru",
+      "segment": "проверка",
+      "ok": true,
+      "vis": 0,
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 0,
+      "it50": 0,
+      "pagesinindex": 0,
+      "dr": 0,
+      "adscnt": 0,
+      "keys_cnt": 0,
+      "top_words": [],
+      "top_urls": []
+    },
+    {
+      "domain": "real-besedki.ru",
+      "segment": "мы",
+      "ok": true,
+      "vis": 0,
+      "it1": 0,
+      "it3": 0,
+      "it5": 0,
+      "it10": 0,
+      "it50": 1,
+      "pagesinindex": 1,
+      "dr": 8,
+      "adscnt": 0,
+      "keys_cnt": 1,
+      "top_words": [
+        "как облагородить беседку из металла"
+      ],
+      "top_urls": [
+        "/"
+      ]
+    }
+  ],
+  "core": {
+    "phrases": 4485,
+    "plant": 1742,
+    "clusters": [
+      {
+        "кластер": "размер 6х3",
+        "фраз": "1",
+        "сажать": "1",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "100",
+        "сумма_ws": "708",
+        "посадочная": "https://real-besedki.ru/katalog/razmer/6x3",
+        "действие": "хаб размера"
+      },
+      {
+        "кластер": "остекление",
+        "фраз": "87",
+        "сажать": "87",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "99",
+        "сумма_ws": "120660",
+        "посадочная": "https://real-besedki.ru/katalog/besedki-s-ostekleniem",
+        "действие": "каталог остекления"
+      },
+      {
+        "кластер": "под ключ",
+        "фраз": "46",
+        "сажать": "46",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "98",
+        "сумма_ws": "35116",
+        "посадочная": "https://real-besedki.ru/uslugi/besedki-pod-klyuch",
+        "действие": "услуга под ключ / гео"
+      },
+      {
+        "кластер": "размер 3х3",
+        "фраз": "2",
+        "сажать": "2",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "98",
+        "сумма_ws": "419",
+        "посадочная": "https://real-besedki.ru/katalog/razmer/3x3",
+        "действие": "хаб размера"
+      },
+      {
+        "кластер": "голова металл",
+        "фраз": "408",
+        "сажать": "408",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "97",
+        "сумма_ws": "2062147",
+        "посадочная": "https://real-besedki.ru/katalog",
+        "действие": "сажать на каталог/главную"
+      },
+      {
+        "кластер": "мангалы",
+        "фраз": "719",
+        "сажать": "719",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "93",
+        "сумма_ws": "11526275",
+        "посадочная": "https://real-besedki.ru/katalog/mangaly",
+        "действие": "каталог мангалов, не клон «беседка с мангалом»"
+      },
+      {
+        "кластер": "гео ядро",
+        "фраз": "50",
+        "сажать": "50",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "90",
+        "сумма_ws": "68694",
+        "посадочная": "https://real-besedki.ru/uslugi/besedki-pod-klyuch",
+        "действие": "услуга под ключ / гео"
+      },
+      {
+        "кластер": "качели",
+        "фраз": "56",
+        "сажать": "56",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "86",
+        "сумма_ws": "1856172",
+        "посадочная": "https://real-besedki.ru/katalog/kacheli",
+        "действие": "каталог качелей"
+      },
+      {
+        "кластер": "навесы",
+        "фраз": "364",
+        "сажать": "364",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "84",
+        "сумма_ws": "4615389",
+        "посадочная": "https://real-besedki.ru/katalog/navesy",
+        "действие": "каталог навесов"
+      },
+      {
+        "кластер": "открытые",
+        "фраз": "7",
+        "сажать": "7",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "83",
+        "сумма_ws": "10456",
+        "посадочная": "https://real-besedki.ru/katalog/otkrytye-besedki",
+        "действие": "каталог открытых"
+      },
+      {
+        "кластер": "размер 6х4",
+        "фраз": "2",
+        "сажать": "2",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "82",
+        "сумма_ws": "1702",
+        "посадочная": "https://real-besedki.ru/katalog/razmer/6x4",
+        "действие": "хаб размера"
+      },
+      {
+        "кластер": "мягкие окна",
+        "фраз": "373",
+        "сажать": "0",
+        "статья": "373",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "57",
+        "сумма_ws": "976003",
+        "посадочная": "https://real-besedki.ru/blog/osteklenie-ili-myagkie-okna-dlya-besedki",
+        "действие": "сравнение, не продаём мягкие окна"
+      },
+      {
+        "кластер": "масс рынок",
+        "фраз": "2077",
+        "сажать": "0",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "0",
+        "ср_эффективность": "18",
+        "сумма_ws": "36152942",
+        "посадочная": "https://real-besedki.ru/katalog",
+        "действие": "не бить ценой дерево 130–220к"
+      },
+      {
+        "кластер": "дыры лидера",
+        "фраз": "5",
+        "сажать": "0",
+        "статья": "0",
+        "дыра": "5",
+        "минус": "0",
+        "ср_эффективность": "8",
+        "сумма_ws": "20151",
+        "посадочная": "—",
+        "действие": "не создавать URL без SKU"
+      },
+      {
+        "кластер": "минус",
+        "фраз": "283",
+        "сажать": "0",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "283",
+        "ср_эффективность": "0",
+        "сумма_ws": "2712209",
+        "посадочная": "—",
+        "действие": "минус-слова, не сажать"
+      },
+      {
+        "кластер": "шум морфологии",
+        "фраз": "5",
+        "сажать": "0",
+        "статья": "0",
+        "дыра": "0",
+        "минус": "5",
+        "ср_эффективность": "0",
+        "сумма_ws": "9195911",
+        "посадочная": "—",
+        "действие": "не сажать, это словоформа"
+      }
+    ]
+  }
+}
