@@ -19,7 +19,13 @@ def check_viewport_signals() -> dict[str, Any]:
         resp = fetch(f"{SITE_URL.rstrip('/')}{path}")
         body = resp.get("body") or ""
         has_viewport = bool(re.search(r'name=["\']viewport["\']', body, re.I))
-        has_mobile_nav = "mobile-nav" in body or "MobileNav" in body or 'id="mobile-nav' in body
+        has_mobile_nav = (
+            "mobile-nav" in body
+            or "MobileNav" in body
+            or 'id="mobile-nav' in body
+            or bool(re.search(r'lg:hidden[^>]*>\s*Каталог', body))
+            or ('lg:hidden' in body and 'href="/katalog"' in body and "<header" in body.lower())
+        )
         overflow_hidden_body = "overflow-x:hidden" in body.replace(" ", "") or "overflow-x: hidden" in body
         sticky_cta = "sticky" in body.lower() or "safe-area-inset" in body
         results.append(

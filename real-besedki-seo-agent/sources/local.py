@@ -78,10 +78,38 @@ def _scan_page(path: Path, app_dir: Path) -> dict[str, Any]:
     }
 
 
+def _is_site_code(root: Path) -> bool:
+    return (
+        (root / "data" / "katalog.json").exists()
+        or (root / "data" / "seo.json").exists()
+        or (root / "app" / "katalog").exists()
+    )
+
+
+def _empty_scan(*, site_code_missing: bool) -> dict[str, Any]:
+    return {
+        "site_code_missing": site_code_missing,
+        "pages": [],
+        "layout": {},
+        "seo": {},
+        "html_lang": None,
+        "font_subsets": [],
+        "files": {
+            "sitemap_ts": False,
+            "robots_ts": False,
+            "public_robots": False,
+            "public_sitemap": False,
+            "favicon": False,
+        },
+        "metrica_in_repo": False,
+    }
+
+
 def scan_repo(repo_root: Path | None = None) -> dict[str, Any]:
     root = repo_root or SITE_CODE_ROOT
-    if not root.exists():
-        root = SITE_CODE_ROOT.parent
+    if not _is_site_code(root):
+        # Не сканировать create-next-app в корне агентского репо как сайт.
+        return _empty_scan(site_code_missing=True)
     app_dir = root / "app"
     pages: list[dict[str, Any]] = []
     if app_dir.exists():
@@ -133,6 +161,7 @@ def scan_repo(repo_root: Path | None = None) -> dict[str, Any]:
             layout_meta["description"] = home_seo["description"]
 
     return {
+        "site_code_missing": False,
         "pages": pages,
         "layout": layout_meta,
         "seo": seo_pages,

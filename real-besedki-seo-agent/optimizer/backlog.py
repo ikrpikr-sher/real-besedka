@@ -21,6 +21,16 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             }
         )
 
+    local = snapshot.get("local") or {}
+    if local.get("site_code_missing"):
+        add(
+            "P0",
+            "infra",
+            "Подключить код сайта besedki-seo/ и SSH-ключ ~/.ssh/besedki_deploy — иначе деплой on-page невозможен",
+            "besedki-seo/ + ~/.ssh/besedki_deploy",
+            "низкий",
+        )
+
     add(
         "P1",
         "off-page",
@@ -69,13 +79,14 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    add(
-        "P1",
-        "on-page",
-        f"Уникальные title/description {catalog_count} карточек по шаблону",
-        "templates/onpage-product.md",
-        "высокий",
-    )
+    if catalog_count:
+        add(
+            "P1",
+            "on-page",
+            f"Уникальные title/description {catalog_count} карточек по шаблону (пилот 1–3 за прогон)",
+            "templates/onpage-product.md",
+            "высокий",
+        )
     add(
         "P1",
         "on-page",
@@ -131,7 +142,11 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         target = item.get("target") or ""
         if any(x["task"] == msg for x in items):
             continue
-        if "proekty" in msg or "openGraph" in msg or "ДПК" in msg or "seo.json" in msg:
+        if "proekty" in msg or "openGraph" in msg or "Open Graph" in msg or "ДПК" in msg or "seo.json" in msg:
+            continue
+        if "besedki-seo/" in (target or "") and "отсутствует" in msg:
+            continue
+        if "To get started" in msg or "Create Next App" in msg:
             continue
         items.append(
             {
@@ -143,7 +158,7 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             }
         )
 
-    order = {"P1": 0, "P2": 1, "info": 2}
+    order = {"P0": 0, "P1": 1, "P2": 2, "info": 3}
     items.sort(key=lambda x: (order.get(x["priority"], 9), x["area"]))
     return items
 
@@ -166,5 +181,5 @@ def render_backlog(snapshot: dict[str, Any]) -> str:
         )
     lines.append("")
     lines.append("Журнал: `SEO-AUDIT-REAL-BESEDKI.md` · ТЗ: `real-besedki-seo-agent/TZ-FULL.md`")
-    lines.append("Этап 2 — только после «да» на конкретную строку.")
+    lines.append("Этап 2 — автономные правки. Не трогать priceFrom и целый katalog.json на проде.")
     return "\n".join(lines) + "\n"
