@@ -49,12 +49,16 @@ def compute_traffic_light(
 
     # Посмотреть товар (фото + страницы)
     prod_ok = summary.get("product_pages_ok", 0)
-    prod_n = summary.get("product_sample") or 1
+    prod_n = summary.get("product_sample") or 0
     photos_ok = summary.get("photos_ok", 0)
-    photos_n = summary.get("photos_total") or 1
-    view_ok = prod_ok == prod_n and photos_ok == photos_n
-    view_partial = prod_ok >= prod_n - 1 and photos_ok >= photos_n - 2
-    view_status = _status(view_ok, view_partial and not view_ok)
+    photos_n = summary.get("photos_total") or 0
+    if prod_n == 0:
+        view_status = "unknown"
+    else:
+        photos_total = photos_n or prod_n
+        view_ok = prod_ok == prod_n and (photos_n == 0 or photos_ok == photos_n)
+        view_partial = prod_ok >= prod_n - 1 and (photos_n == 0 or photos_ok >= photos_total - 2)
+        view_status = _status(view_ok, view_partial and not view_ok)
 
     # Оставить заявку (сигналы на главной)
     lead_ok = bool(

@@ -5,6 +5,7 @@ from typing import Any
 
 from analytics.metrics import description_len_ok, title_len_ok
 from config import COMMERCIAL_TERMS, NOINDEX_ROUTES, WEAK_TITLE_MARKERS
+from sources.content_audit import _dpk_as_default_floor
 
 
 def _finding(severity: str, area: str, message: str, target: str = "") -> dict[str, str]:
@@ -37,16 +38,29 @@ def analyze(
 ) -> list[dict[str, str]]:
     findings: list[dict[str, str]] = []
     files = local.get("files") or {}
-    if not files.get("sitemap_ts") and not files.get("public_sitemap"):
+    site_code_missing = bool(local.get("site_code_missing"))
+    if site_code_missing:
+        findings.append(
+            _finding(
+                "warning",
+                "infra",
+                "Код сайта besedki-seo/ отсутствует в этом репозитории — on-page правки и деплой из агента невозможны. Аудит только по продy.",
+                "besedki-seo/",
+            )
+        )
+    if not site_code_missing and not files.get("sitemap_ts") and not files.get("public_sitemap"):
         findings.append(_finding("critical", "technical", "В репозитории нет sitemap.ts / sitemap.xml.", "app/sitemap.ts"))
-    if not files.get("robots_ts") and not files.get("public_robots"):
+    if not site_code_missing and not files.get("robots_ts") and not files.get("public_robots"):
         findings.append(_finding("critical", "technical", "В репозитории нет robots.ts / robots.txt.", "app/robots.ts"))
 
     layout = local.get("layout") or {}
     seo_home = (local.get("seo") or {}).get("/") or {}
     home_title = seo_home.get("title") or layout.get("title")
     home_desc = seo_home.get("description") or layout.get("description")
-    if _is_weak_title(home_title):
+    if site_code_missing:
+        home_title = None
+        home_desc = None
+    elif _is_weak_title(home_title):
         findings.append(
             _finding(
                 "critical",
@@ -57,9 +71,9 @@ def analyze(
         )
     elif not title_len_ok(home_title):
         findings.append(_finding("warning", "on-page", f"Длина title главной {len(home_title or '')} символов.", "app/layout.tsx"))
-    if not home_desc:
+    if not site_code_missing and not home_desc:
         findings.append(_finding("critical", "on-page", "Нет meta description на уровне layout.", "app/layout.tsx"))
-    elif not description_len_ok(home_desc) or not _has_commercial(home_desc):
+    elif not site_code_missing and (not description_len_ok(home_desc) or not _has_commercial(home_desc)):
         live_home_desc = None
         if live:
             live_home_desc = next(
@@ -75,15 +89,15 @@ def analyze(
                     "besedki-seo/data/seo.json",
                 )
             )
-    if not layout.get("canonical") and not layout.get("open_graph"):
+    if not site_code_missing and not layout.get("canonical") and not layout.get("open_graph"):
         findings.append(_finding("warning", "on-page", "Нет metadataBase / canonical / openGraph в layout.", "app/layout.tsx"))
-    if not layout.get("json_ld"):
+    if not site_code_missing and not layout.get("json_ld"):
         findings.append(_finding("warning", "on-page", "Нет JSON-LD Organization/Product в исходниках.", "app/layout.tsx"))
 
-    if (local.get("html_lang") or "").lower() != "ru":
+    if not site_code_missing and (local.get("html_lang") or "").lower() != "ru":
         findings.append(_finding("critical", "technical", f"html lang={local.get('html_lang')!r}, ожидается ru.", "app/layout.tsx"))
     subsets = [s.lower() for s in (local.get("font_subsets") or [])]
-    if subsets and "cyrillic" not in subsets and "cyrillic-ext" not in subsets:
+    if not site_code_missing and subsets and "cyrillic" not in subsets and "cyrillic-ext" not in subsets:
         findings.append(
             _finding(
                 "warning",
@@ -150,7 +164,7 @@ def analyze(
                 )
             )
 
-    if not local.get("metrica_in_repo"):
+    if not site_code_missing and not local.get("metrica_in_repo"):
         findings.append(
             _finding(
                 "warning",
@@ -180,20 +194,29 @@ def analyze(
             )
         )
     if not content.get("product_open_graph"):
+        live_og = content.get("product_og_live") or {}
+        extra = ""
+        if live_og.get("checked"):
+            extra = (
+                f" Прод {live_og.get('url')}: og:type={live_og.get('product_og_type') or 'нет'}, "
+                f"og:image={'есть' if live_og.get('product_og_image') else 'нет'}."
+            )
         findings.append(
             _finding(
                 "warning",
                 "on-page",
-                "На карточках товара нет openGraph в generateMetadata — нет превью в Telegram/VK.",
+                "На карточках нет товарного Open Graph (og:image + og:type=product)." + extra,
                 "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
             )
         )
 
     if not catalog:
-        findings.append(_finding("critical", "content", "Каталог data/katalog.json не прочитан.", "besedki-seo/data/katalog.json"))
+        findings.append(_finding("critical", "content", "Каталог не прочитан (нет katalog.json и sitemap не отдал карточки).", "besedki-seo/data/katalog.json"))
     else:
+        source = catalog[0].get("source") if isinstance(catalog[0], dict) else "file"
+        label = "sitemap прода" if source == "sitemap" else "data/katalog.json"
         findings.append(
-            _finding("info", "content", f"В каталоге {len(catalog)} товаров — все должны быть в sitemap.", "besedki-seo/data/katalog.json")
+            _finding("info", "content", f"В каталоге {len(catalog)} товаров ({label}) — все должны быть в sitemap.", "besedki-seo/data/katalog.json")
         )
 
     if live:
@@ -213,12 +236,12 @@ def analyze(
         sitemap = live.get("sitemap") or {}
         skip_live_files = bool(live.get("ssl_blocked") and not live.get("reachable"))
         live_home = next((p for p in (live.get("pages") or []) if p.get("path") == "/"), {})
-        if live_home.get("description") and "дпк" in (live_home.get("description") or "").lower():
+        if live_home.get("description") and _dpk_as_default_floor(live_home.get("description") or ""):
             findings.append(
                 _finding(
                     "warning",
                     "content",
-                    "Живой description: полы ДПК. В брифе бизнеса пол — фанера. Сверить оффер до любых SEO-текстов.",
+                    "Живой description: полы ДПК как база. В брифе пол — фанера. Сверить оффер до любых SEO-текстов.",
                     "/",
                 )
             )

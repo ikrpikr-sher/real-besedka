@@ -172,18 +172,32 @@ def run_site_check(
     search = [_check_search(base, q) for q, _ in SEARCH_QUERIES]
 
     products: list[dict[str, Any]] = []
-    for item in catalog[:product_sample]:
+    sample = catalog if len(catalog) <= product_sample else random.sample(catalog, product_sample)
+    for item in sample:
         resp = _get(item["url"])
         images = item.get("images") or []
         hero = images[0] if images else None
         hero_ok = None
         hero_status = None
+        body = resp.get("body") or ""
+        if not hero and body:
+            live_hero = re.search(
+                r'(?:src|href)="(/images/[^"]+\.(?:webp|jpg|jpeg|png)[^"]*)"',
+                body,
+                re.I,
+            )
+            if live_hero:
+                hero = live_hero.group(1)
         if hero:
             _, hero_status = _resolve_image_url(base, hero)
             hero_ok = hero_status == 200
         model3d = item.get("model3d")
         glb_ok = None
         glb_status = None
+        if not model3d and body:
+            live_glb = re.search(r'(/[\w./-]+\.glb)', body, re.I)
+            if live_glb:
+                model3d = live_glb.group(1)
         if model3d:
             glb_url = model3d if str(model3d).startswith("http") else f"{base}{model3d}"
             glb_resp = _get(glb_url)
