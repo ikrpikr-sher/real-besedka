@@ -47,6 +47,8 @@ export default function SeoToday() {
         <h2 className="text-lg font-semibold">Проверка прода</h2>
         <ul className="list-disc space-y-1 pl-5">
           <li>Маршруты 7/7 · поиск B-51 / В51 · sitemap 216 URL · 0/20 ошибок</li>
+          <li>Карточки 10/10 · hero 10/10 · GLB 10/10 · светофор «клиент может пользоваться»</li>
+          <li>Health повторно: P0=0 · P1=2 · P2=2 · emergency нет</li>
           <li>iPhone UA главная 200, форма и tel:+7 (495) 255-54-77</li>
           <li>SSL до 2026-11-22 · PageSpeed не запускался (не понедельник)</li>
         </ul>

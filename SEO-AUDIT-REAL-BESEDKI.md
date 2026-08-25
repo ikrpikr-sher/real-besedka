@@ -3,7 +3,7 @@
 **Сайт:** https://real-besedki.ru/  
 **Бренд:** REAL БЕСЕДКИ · ООО «Пулман»  
 **Полное ТЗ:** `real-besedki-seo-agent/TZ-FULL.md`  
-**Последнее обновление:** 2026-08-25 06:15 UTC  
+**Последнее обновление:** 2026-08-25 12:52 UTC  
 **Режим:** этап 2 — **автономные правки**
 
 ---
@@ -18,6 +18,7 @@
 | Светофор клиента | открыть ✓ · товар ✓ · заявка ✓ · выдача техника ✓ |
 | P0 | 0 (CF proxy при живом origin больше не авария) |
 | P1 health | CF proxy (owner) + товарный OG |
+| P2 health | ContactPage + H1 «Категория: sravneniya» |
 | Критических в коде сайта | н/д — `besedki-seo/` нет в этом репо |
 | Органика / индекс / заявки | Недостаточно данных (нет Вебмастера / GSC / Метрики) |
 
@@ -37,7 +38,7 @@
 | P1 | Нет данных Вебмастера / GSC / Метрики | кабинеты | — | ⚪ |
 | P1 | Яндекс Бизнес / Google Business — не подтверждено | off-page | — | ⚪ |
 | P1 | Метрика: цели «форма» + «телефон» не проверены | metrika.yandex.ru | счётчик на проде есть (`mc.yandex.ru/watch/111500128`); целей нет в выгрузке | ⚪ |
-| P2 | Meta категорий блога — slug вместо H1 | `/blog/category/proekty-i-idei` | title «Категория «proekty-i-idei»» | 🔴 |
+| P2 | Meta категорий блога — slug вместо H1 | `/blog/category/sravneniya` | H1 «Категория: sravneniya» (проверено 25.08 12:52) | 🔴 |
 | P2 | BreadcrumbList JSON-LD | `/katalog` vs карточки | на карточках есть; на хабе `/katalog` нет | 🟡 |
 | P2 | Нет ContactPage schema на контактах | `/kontakty` | проверено на проде | 🔴 |
 | P2 | Поле `seoDescription` в админке каталога | админка | нет кода сайта в репо | 🔴 |
@@ -66,14 +67,16 @@
 | Живой description: пол фанера, каркас 80×80, Москва и МО | 🟢 |
 | `/proekty` → `/katalog` (301), в статьях блога битых href нет | 🟢 |
 
-## Последний прогон (2026-08-25)
+## Последний прогон (2026-08-25 12:52 UTC)
 
-- iPhone UA главная: **200**, 0.7 с, form + tel + viewport
-- Health после правки детектора: **P0=1 · P1=0 · P2=0**
+- iPhone UA главная: **200**, form + tel + viewport
+- Health: **P0=0 · P1=2** (CF proxy owner_action, товарный OG) **· P2=2** (ContactPage, H1 «Категория: sravneniya») · emergency нет
+- Светофор: открыть ✓ · товар ✓ · заявка ✓ · выдача техника ✓
+- Маршруты **7/7** · поиск B-51 / В51 ✓
 - Карточки: **10/10** (страница + hero + GLB)
-- Sitemap: **0/20** ошибок
+- Sitemap: **0/20** ошибок · 216 URL
 - PageSpeed: не запускался (не понедельник)
-- Логи: `real-besedki-seo-agent/logs/2026-08-25_{health,check,seo,backlog}.md`
+- Логи: `real-besedki-seo-agent/logs/2026-08-25_{health,check}.md`
 
 ---
 
