@@ -16,8 +16,8 @@
 | Карточки (выборка) | 10/10 OK · hero 10/10 · GLB 10/10 |
 | Sitemap (выборка) | 0/20 ошибок · 216 URL на проде |
 | Светофор клиента | открыть ✓ · товар ✓ · заявка ✓ · выдача техника ✓ |
-| P0 | 1 (Cloudflare proxy, in_progress) |
-| P1 health | 0 после сверки мобильного CTA |
+| P0 | 0 (CF proxy при живом origin больше не авария) |
+| P1 health | CF proxy (owner) + товарный OG |
 | Критических в коде сайта | н/д — `besedki-seo/` нет в этом репо |
 | Органика / индекс / заявки | Недостаточно данных (нет Вебмастера / GSC / Метрики) |
 
@@ -27,8 +27,8 @@
 
 | Приоритет | Проблема | URL / объект | Что исправлено | Статус |
 |-----------|----------|--------------|----------------|--------|
-| P0 | Мобильные LTE МО — ERR_CONNECTION_RESET до VPS (маршрут, не код) | инфра | NS уже Cloudflare (lola+moura); A=31.128.44.47, proxy DNS-only | 🟡 |
-| P0 | Cloudflare — NS есть, прокси не активен (нет cf-* headers) | DNS/CDN | без входа в кабинет CF оранжевое облако не включить | 🟡 |
+| P1 | Мобильные LTE МО — риск ERR_CONNECTION_RESET до VPS | инфра | NS Cloudflare; origin 200 со всех UA — не блокируем SEO | 🟡 |
+| P1 | Cloudflare — NS есть, прокси не активен (нет cf-* headers) | DNS/CDN | health: P1 owner_action, если origin живой | 🟡 |
 | P0 | Нет `besedki-seo/` и `~/.ssh/besedki_deploy` в среде агента | репо / SSH | on-page деплой из этого прогона невозможен | 🔴 |
 | P1 | Нет товарного Open Graph (og:image, og:type=product) | карточки | на проде только сайтный OG `website`, без og:image | 🔴 |
 | P1 | 54 ссылки на `/proekty` в блоге | блог | на проде 59 URL блога: href `/proekty` = 0; `/proekty` → 301 `/katalog` | 🟢 |
@@ -100,6 +100,7 @@
 | 2026-08-24 | ТЗ | краткий TZ.md | TZ-FULL.md + этот журнал | внедрение полного ТЗ | 🟢 |
 | 2026-08-25 | агент `scan_repo` / catalog / viewport | ложные critical с create-next-app; 0 карточек; ложный P1 меню | sitemap-каталог, мобильный CTA, без скана стартера | weekday врал без `besedki-seo/` | 🟢 |
 | 2026-08-25 | журнал | P1 /proekty, title, ДПК как 🔴 | сверено с продом | факты, не догадки | 🟢 |
+| 2026-08-25 | health CF / onpage | CF без прокси = P0 emergency | P1 owner_action + живой OG/ContactPage/H1 | ложная авария и слепой backlog | 🟢 |
 
 ---
 

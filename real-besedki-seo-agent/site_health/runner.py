@@ -7,6 +7,7 @@ from config import SITE_URL
 from site_health.client import check_cdn_headers, check_form_and_phone, check_internal_urls
 from site_health.dns import check_dns
 from site_health.domains import check_domain_variants, check_path_redirect
+from site_health.onpage import check_live_onpage, origin_healthy
 from site_health.seo import check_canonical, check_robots, check_sitemap
 from site_health.server import check_server_logs
 from site_health.ssl_check import check_all_ssl
@@ -45,6 +46,7 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
     cdn = check_cdn_headers()
     server = check_server_logs()
     viewport = check_viewport_signals()
+    onpage = check_live_onpage()
 
     dns_issues: list[dict[str, Any]] = []
     if dns.get("ipv6_declared") and dns.get("ipv6_reachable") is False:
@@ -73,16 +75,22 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
             }
         )
     if dns.get("cloudflare_ns") and not cdn.get("cloudflare_headers"):
+        healthy = origin_healthy(internal, client, ua)
         dns_issues.append(
             {
-                "priority": "P0",
+                "priority": "P1" if healthy else "P0",
                 "category": "cdn",
                 "problem": "Cloudflare NS назначены, но прокси ещё не активен",
                 "url": site_url,
                 "cause": f"A={dns.get('a')}, нет cf-* headers",
-                "impact": "Маршрутизация до origin может обрываться на LTE",
+                "impact": (
+                    "Риск обрыва на LTE МО. Origin сейчас отвечает 200 — SEO не блокируем, "
+                    "нужно оранжевое облако в кабинете Cloudflare"
+                    if healthy
+                    else "Маршрутизация до origin может обрываться на LTE; origin не подтверждён"
+                ),
                 "fact_kind": "verified",
-                "status": "in_progress",
+                "status": "owner_action",
             }
         )
 
@@ -116,6 +124,7 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
         cdn,
         server,
         viewport,
+        onpage,
     )
 
     p0 = [i for i in all_issues if i.get("priority") == "P0"]
@@ -148,5 +157,6 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
             "cdn": cdn,
             "server": server,
             "viewport": viewport,
+            "onpage": onpage,
         },
     }

@@ -14,8 +14,9 @@ export default function SeoToday() {
         <h2 className="text-lg font-semibold">Что сломано</h2>
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            <strong>P0.</strong> Cloudflare NS уже lola+moura, но прокси выключен: A=31.128.44.47, нет
-            cf-* headers. Риск обрыва на LTE МО. Кабинет CF в среде нет.
+            <strong>P1, владелец.</strong> Cloudflare NS уже lola+moura, но прокси выключен:
+            A=31.128.44.47, нет cf-* headers. Origin отвечает 200 — это не авария сайта, нужен
+            оранжевый cloud в кабинете CF.
           </li>
           <li>
             <strong>Блокер деплоя.</strong> В репозитории нет <code>besedki-seo/</code> и нет ключа{" "}
@@ -33,6 +34,10 @@ export default function SeoToday() {
           <li>Агент больше не принимает create-next-app за сайт и не рисует ложные critical.</li>
           <li>Выборка карточек с sitemap прода: 10/10 страниц, hero и GLB.</li>
           <li>Ложный P1 «нет мобильного меню» снят: на телефоне CTA «Каталог» + поиск.</li>
+          <li>
+            Health больше не ставит emergency из‑за CF, если origin, форма и телефон живые. В health
+            добавлен живой on-page: товарный OG, ContactPage, H1 категорий блога.
+          </li>
           <li>Прод: /proekty → 301 /katalog; в 59 URL блога нет href /proekty.</li>
           <li>Title карточек уникальны. Пол в сниппете — фанера, ДПК как опция.</li>
         </ul>

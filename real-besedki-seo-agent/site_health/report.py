@@ -75,6 +75,7 @@ def render_health_report(health: dict[str, Any]) -> str:
         lines.append("")
 
     lines.append("---")
-    lines.append("Порядок работы агента: **P0 → P1 → P2**. При P0 SEO-задачи приостановлены.")
+    lines.append("Порядок работы агента: **P0 → P1 → P2**. При P0 (сайт лежит) SEO приостановлены.")
+    lines.append("Cloudflare без прокси при живом origin — P1, действие владельца, SEO не блокирует.")
     lines.append("")
     return "\n".join(lines)
