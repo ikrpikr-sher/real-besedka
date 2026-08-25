@@ -4,7 +4,8 @@
 
 | Дата | Объект (URL / файл) | Было | Стало | Причина | Ожидаемый эффект |
 |------|---------------------|------|-------|---------|------------------|
-| YYYY-MM-DD | `/katalog/.../b-11` | Title: «Беседка B-11» | Title: «…из металла 3×3…» | Слабый сниппет без коммерческих ключей | Рост CTR по НЧ «беседка b-11» |
-| YYYY-MM-DD | `content/blog/foo.mdx` | href `/proekty` | href `/katalog/...` | Лишний 301, потеря веса | Прямая передача ссылочного веса |
+| 2026-08-25 | `sources/local.py` | fallback на create-next-app | `site_code_missing`, без скана стартера | ложные critical weekday | честный аудит прода |
+| 2026-08-25 | `sources/catalog.py` | пустой каталог без json | 129 URL из sitemap | без `besedki-seo/` не проверялись карточки | 10/10 hero/GLB |
+| 2026-08-25 | `site_health/viewport.py` | P1 «нет mobile-nav» | CTA «Каталог» `lg:hidden` = ок | ложный P1 | не блокировать SEO |
 
 **Файл для агента:** дополнять `real-besedki-seo-agent/logs/YYYY-MM-DD_changes.md` после каждого деплоя с SEO-правками.
