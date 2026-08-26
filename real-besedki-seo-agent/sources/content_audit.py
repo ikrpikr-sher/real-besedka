@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from config import SITE_CODE_ROOT
+from config import SITE_CODE_ROOT, SITE_URL
 
 PROEKTY_LINK_RE = re.compile(r"\]\(/proekty[^)]*\)")
 
@@ -22,23 +22,48 @@ def _dpk_as_default_floor(text: str) -> bool:
 def _live_product_og() -> dict[str, Any]:
     from sources.catalog import parse_catalog
     from sources.live import _get
+    from site_health.onpage import parse_og
 
     catalog = parse_catalog()
     if not catalog:
-        return {"checked": False, "product_og_image": False, "product_og_type": None}
+        return {"checked": False, "product_og_image": False, "product_og_type": None, "site_default_og": False}
+    home = _get(f"{SITE_URL.rstrip('/')}/")
+    home_og = parse_og(home.get("body") or "")
     item = catalog[0]
     resp = _get(item["url"])
     body = resp.get("body") or ""
-    og_image = bool(re.search(r'property=["\']og:image["\']', body, re.I))
-    type_m = re.search(r'property=["\']og:type["\'][^>]*content=["\']([^"\']+)', body, re.I)
-    if not type_m:
-        type_m = re.search(r'content=["\']([^"\']+)["\'][^>]*property=["\']og:type["\']', body, re.I)
+    og = parse_og(body)
+    og_image = bool(og.get("image"))
+    site_default = bool(og_image and og.get("image") == home_og.get("image") and (og.get("type") or "") != "product")
     return {
         "checked": resp.get("status") == 200,
         "url": item.get("path"),
-        "product_og_image": og_image,
-        "product_og_type": type_m.group(1) if type_m else None,
+        "product_og_image": og_image and not site_default,
+        "product_og_type": og.get("type"),
+        "site_default_og": site_default,
+        "og_image_url": og.get("image"),
     }
+
+
+def _live_titles_unique(n: int = 8) -> dict[str, Any]:
+    from sources.catalog import parse_catalog
+    from sources.live import _get
+    from site_health.onpage import parse_title
+
+    catalog = parse_catalog()
+    if not catalog:
+        return {"checked": False, "unique": False, "sample": 0}
+    sample = catalog[:n]
+    titles: list[str] = []
+    for item in sample:
+        resp = _get(item["url"])
+        if resp.get("status") != 200:
+            continue
+        title = parse_title(resp.get("body") or "")
+        if title:
+            titles.append(title)
+    unique = len(titles) >= 4 and len(set(titles)) == len(titles)
+    return {"checked": bool(titles), "unique": unique, "sample": len(titles)}
 
 
 def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
@@ -74,12 +99,15 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
     live_og = _live_product_og()
     if live_og.get("checked") and live_og.get("product_og_image") and (live_og.get("product_og_type") or "") == "product":
         has_og_products = True
+    live_titles = _live_titles_unique(8)
 
     return {
         "proekty_links": proekty_links,
         "proekty_files": proekty_files,
         "product_open_graph": has_og_products,
         "product_og_live": live_og,
+        "live_titles_unique": bool(live_titles.get("unique")),
+        "live_titles": live_titles,
         "blog_category_slug_h1": blog_category_slug_h1,
         "seo_json_mentions_dpk": seo_home_dpk,
         "site_code_missing": not root.exists(),

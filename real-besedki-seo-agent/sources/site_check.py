@@ -21,6 +21,8 @@ KEY_ROUTES = (
     "/uslugi",
     "/materialy",
     "/o-kompanii",
+    "/podbor-besedki",
+    "/konfigurator",
 )
 
 SEARCH_QUERIES = (

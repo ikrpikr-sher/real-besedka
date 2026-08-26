@@ -85,7 +85,7 @@ def collect(live: bool, *, with_check: bool = False, with_pagespeed: bool = Fals
     snapshot["expected_effect"] = (
         "Главный риск — массовые правки title/H1 и деплой без сверки с продом. "
         "katalog.json на сервере не перезаписывать rsync-ом. "
-        "После разрешения на этап 2 — OG-теги, title/description товаров, meta блога."
+        "Этап 2: чинить P0/P1 и деплоить. Не трогать priceFrom и целый katalog.json. "
     )
     return snapshot
 
