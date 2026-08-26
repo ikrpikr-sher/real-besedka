@@ -197,9 +197,15 @@ def analyze(
         live_og = content.get("product_og_live") or {}
         extra = ""
         if live_og.get("checked"):
+            if live_og.get("site_default_og"):
+                img = "сайтный hero, не товар"
+            elif live_og.get("product_og_image"):
+                img = "есть"
+            else:
+                img = "нет"
             extra = (
                 f" Прод {live_og.get('url')}: og:type={live_og.get('product_og_type') or 'нет'}, "
-                f"og:image={'есть' if live_og.get('product_og_image') else 'нет'}."
+                f"og:image={img}."
             )
         findings.append(
             _finding(
@@ -245,7 +251,12 @@ def analyze(
                     "/",
                 )
             )
-        if live_home.get("title") and _is_weak_title(home_title) and not _is_weak_title(live_home.get("title")):
+        if (
+            not site_code_missing
+            and live_home.get("title")
+            and _is_weak_title(home_title)
+            and not _is_weak_title(live_home.get("title"))
+        ):
             findings.append(
                 _finding(
                     "warning",

@@ -79,13 +79,23 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    if catalog_count:
+    if catalog_count and not content.get("live_titles_unique"):
         add(
             "P1",
             "on-page",
             f"Уникальные title/description {catalog_count} карточек по шаблону (пилот 1–3 за прогон)",
             "templates/onpage-product.md",
             "высокий",
+        )
+
+    health_issues = (snapshot.get("site_health") or {}).get("issues") or []
+    if any("битые title/H1" in (i.get("problem") or "") for i in health_issues):
+        add(
+            "P1",
+            "content",
+            "Исправить битые title/H1 и тонкий текст 5 статей блога от 25.08 (выпали буквы)",
+            "besedki-seo/content/blog/",
+            "средний",
         )
     add(
         "P1",
