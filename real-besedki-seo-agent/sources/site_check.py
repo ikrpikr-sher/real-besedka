@@ -203,12 +203,14 @@ def run_site_check(
             glb_resp = _get(glb_url)
             glb_status = glb_resp.get("status")
             glb_ok = glb_resp.get("status") == 200
+        parsed = _parse_html(body) if body else {}
         products.append(
             {
                 "slug": item["slug"],
                 "path": item["path"],
                 "page_status": resp.get("status"),
                 "page_ok": resp.get("status") == 200,
+                "title": parsed.get("title"),
                 "hero": hero,
                 "hero_status": hero_status,
                 "hero_ok": hero_ok,

@@ -33,12 +33,32 @@ def build_proposals(snapshot: dict[str, Any]) -> list[str]:
     live_ok = bool(live.get("reachable"))
     sitemap_urls = ((live.get("sitemap") or {}).get("url_count") or 0)
     catalog_count = len(snapshot.get("catalog") or [])
+    health = snapshot.get("site_health") or {}
+    onpage = (health.get("checks") or {}).get("onpage") or {}
+    live_og = content.get("product_og_live") or {}
     proposals = [
         "**Этап 2** — автономные правки. P0/P1 чинить и деплоить. Не трогать priceFrom и целый katalog.json на проде.",
         "**Off-page P1:** Яндекс Бизнес, Google Business, отзывы, Вебмастер, Search Console, цели Метрики.",
-        "**On-page P1:** title/description 128 карточек (`templates/onpage-product.md`), Open Graph, meta блога, `/proekty` → `/katalog`.",
-        "**On-page P2:** BreadcrumbList, ContactPage, поле seoDescription в каталоге.",
     ]
+    if live_og.get("product_og_image_specific") and (live_og.get("product_og_type") or "") != "product":
+        proposals.append(
+            "**On-page:** og:type=product на карточках. Title уникальны — не переписывать 128 штук. `/proekty` → `/katalog` уже 301."
+        )
+    elif not content.get("product_open_graph"):
+        proposals.append(
+            "**On-page P1:** товарный Open Graph (og:image + og:type=product). Title — пилот 1–3 карточки, не массово."
+        )
+    if onpage.get("blog_category_human") is False:
+        proposals.append("**On-page:** человекочитаемые H1 категорий блога.")
+    p2_bits = []
+    if any("ContactPage" in (i.get("problem") or "") for i in health.get("issues") or []):
+        p2_bits.append("ContactPage")
+    if any("BreadcrumbList" in (i.get("problem") or "") for i in health.get("issues") or []):
+        p2_bits.append("BreadcrumbList")
+    if any("/katalog/poisk" in (i.get("problem") or "") for i in health.get("issues") or []):
+        p2_bits.append("noindex /katalog/poisk + убрать из sitemap")
+    p2_bits.append("поле seoDescription в каталоге")
+    proposals.append("**On-page P2:** " + ", ".join(p2_bits) + ".")
     if live_ok and sitemap_urls:
         proposals.append(
             f"Прод: robots 200, sitemap ~{sitemap_urls} URL, каталог /katalog/{{category}}/{{slug}}."
