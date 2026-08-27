@@ -199,16 +199,26 @@ def analyze(
         if live_og.get("checked"):
             extra = (
                 f" Прод {live_og.get('url')}: og:type={live_og.get('product_og_type') or 'нет'}, "
-                f"og:image={'есть' if live_og.get('product_og_image') else 'нет'}."
+                f"og:image={'товарный' if live_og.get('product_og_image_specific') else ('сайтный' if live_og.get('product_og_image') else 'нет')}."
             )
-        findings.append(
-            _finding(
-                "warning",
-                "on-page",
-                "На карточках нет товарного Open Graph (og:image + og:type=product)." + extra,
-                "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
+        if live_og.get("product_og_image_specific") and (live_og.get("product_og_type") or "") != "product":
+            findings.append(
+                _finding(
+                    "warning",
+                    "on-page",
+                    "На карточках og:type≠product, товарный og:image уже есть." + extra,
+                    "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
+                )
             )
-        )
+        else:
+            findings.append(
+                _finding(
+                    "warning",
+                    "on-page",
+                    "На карточках нет товарного Open Graph (og:image + og:type=product)." + extra,
+                    "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
+                )
+            )
 
     if not catalog:
         findings.append(_finding("critical", "content", "Каталог не прочитан (нет katalog.json и sitemap не отдал карточки).", "besedki-seo/data/katalog.json"))
@@ -245,7 +255,12 @@ def analyze(
                     "/",
                 )
             )
-        if live_home.get("title") and _is_weak_title(home_title) and not _is_weak_title(live_home.get("title")):
+        if (
+            not site_code_missing
+            and live_home.get("title")
+            and _is_weak_title(home_title)
+            and not _is_weak_title(live_home.get("title"))
+        ):
             findings.append(
                 _finding(
                     "warning",

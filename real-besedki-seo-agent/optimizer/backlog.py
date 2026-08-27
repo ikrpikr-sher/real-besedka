@@ -70,16 +70,46 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "средний",
         )
 
-    if not content.get("product_open_graph"):
-        add(
-            "P1",
-            "on-page",
-            "Open Graph на карточках товаров (og:title, og:description, og:image)",
-            "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
-            "низкий",
-        )
+    live_og = content.get("product_og_live") or {}
+    health = snapshot.get("site_health") or {}
+    onpage = (health.get("checks") or {}).get("onpage") or {}
+    health_issues = health.get("issues") or []
 
-    if catalog_count:
+    def health_has(*needles: str) -> bool:
+        blob = " ".join((i.get("problem") or "") for i in health_issues).lower()
+        return any(n.lower() in blob for n in needles)
+
+    if not content.get("product_open_graph"):
+        if live_og.get("product_og_image_specific") and (live_og.get("product_og_type") or "") != "product":
+            add(
+                "P2",
+                "on-page",
+                "Поставить og:type=product на карточках (og:image товара уже есть)",
+                "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
+                "низкий",
+            )
+        else:
+            add(
+                "P1",
+                "on-page",
+                "Open Graph на карточках: товарный og:image + og:type=product",
+                "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
+                "низкий",
+            )
+
+    titles = [
+        p.get("title")
+        for p in ((snapshot.get("site_check") or {}).get("products") or [])
+        if p.get("title")
+    ]
+    titles_unique = None
+    if titles:
+        titles_unique = len(set(titles)) == len(titles)
+    if onpage.get("product_titles_unique") is True:
+        titles_unique = True
+    elif onpage.get("product_titles_unique") is False:
+        titles_unique = False
+    if catalog_count and titles_unique is False:
         add(
             "P1",
             "on-page",
@@ -87,13 +117,26 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "templates/onpage-product.md",
             "высокий",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
-    )
+
+    if health_has("H1 категории блога") or (
+        content.get("blog_category_slug_h1") and onpage.get("blog_category_human") is False
+    ):
+        add(
+            "P1",
+            "on-page",
+            "Meta категорий и тегов блога — человекочитаемые H1/title",
+            "besedki-seo/app/blog/",
+            "средний",
+        )
+
+    if onpage.get("garbled_blog") or health_has("битая кириллица"):
+        add(
+            "P1",
+            "content",
+            "Починить title/H1 статей блога со сломанной кириллицей",
+            "besedki-seo/content/blog/",
+            "средний",
+        )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -104,20 +147,30 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    add(
-        "P2",
-        "on-page",
-        "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
-        "besedki-seo/app/katalog/",
-        "средний",
-    )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
+    if health_has("BreadcrumbList"):
+        add(
+            "P2",
+            "on-page",
+            "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
+            "besedki-seo/app/katalog/",
+            "средний",
+        )
+    if health_has("ContactPage"):
+        add(
+            "P2",
+            "on-page",
+            "ContactPage schema на /kontakty",
+            "besedki-seo/app/kontakty/page.tsx",
+            "низкий",
+        )
+    if health_has("/katalog/poisk"):
+        add(
+            "P2",
+            "indexation",
+            "Убрать /katalog/poisk из sitemap и поставить noindex на пустой поиск",
+            "besedki-seo/app/katalog/poisk + sitemap",
+            "низкий",
+        )
     add(
         "P2",
         "on-page",
@@ -142,7 +195,7 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         target = item.get("target") or ""
         if any(x["task"] == msg for x in items):
             continue
-        if "proekty" in msg or "openGraph" in msg or "Open Graph" in msg or "ДПК" in msg or "seo.json" in msg:
+        if "proekty" in msg or "openGraph" in msg or "Open Graph" in msg or "og:type" in msg or "ДПК" in msg or "seo.json" in msg:
             continue
         if "besedki-seo/" in (target or "") and "отсутствует" in msg:
             continue

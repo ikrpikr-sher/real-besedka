@@ -93,6 +93,19 @@ def check_sitemap(sample_size: int = 15) -> dict[str, Any]:
                 "fact_kind": "verified",
             }
         )
+    poisk_locs = [loc for loc in locs if "/katalog/poisk" in loc]
+    if poisk_locs:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "sitemap",
+                "problem": "sitemap содержит служебный /katalog/poisk",
+                "url": f"{CANONICAL_BASE}/sitemap.xml",
+                "cause": poisk_locs[0],
+                "impact": "Страница поиска не должна быть в карте сайта",
+                "fact_kind": "verified",
+            }
+        )
     sample = locs if len(locs) <= sample_size else random.sample(locs, sample_size)
     sample_results = []
     failures = 0

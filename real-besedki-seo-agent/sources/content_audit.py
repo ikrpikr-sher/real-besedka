@@ -20,24 +20,30 @@ def _dpk_as_default_floor(text: str) -> bool:
 
 
 def _live_product_og() -> dict[str, Any]:
+    from site_health.onpage import parse_og, parse_og_images, product_specific_og_images
     from sources.catalog import parse_catalog
     from sources.live import _get
 
     catalog = parse_catalog()
     if not catalog:
-        return {"checked": False, "product_og_image": False, "product_og_type": None}
+        return {
+            "checked": False,
+            "product_og_image": False,
+            "product_og_image_specific": False,
+            "product_og_type": None,
+        }
     item = catalog[0]
     resp = _get(item["url"])
     body = resp.get("body") or ""
-    og_image = bool(re.search(r'property=["\']og:image["\']', body, re.I))
-    type_m = re.search(r'property=["\']og:type["\'][^>]*content=["\']([^"\']+)', body, re.I)
-    if not type_m:
-        type_m = re.search(r'content=["\']([^"\']+)["\'][^>]*property=["\']og:type["\']', body, re.I)
+    og = parse_og(body)
+    images = parse_og_images(body)
+    specific = product_specific_og_images(images)
     return {
         "checked": resp.get("status") == 200,
         "url": item.get("path"),
-        "product_og_image": og_image,
-        "product_og_type": type_m.group(1) if type_m else None,
+        "product_og_image": bool(images),
+        "product_og_image_specific": bool(specific),
+        "product_og_type": og.get("type"),
     }
 
 
@@ -72,7 +78,11 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
         seo_home_dpk = _dpk_as_default_floor(seo_path.read_text(encoding="utf-8"))
 
     live_og = _live_product_og()
-    if live_og.get("checked") and live_og.get("product_og_image") and (live_og.get("product_og_type") or "") == "product":
+    if (
+        live_og.get("checked")
+        and live_og.get("product_og_image_specific")
+        and (live_og.get("product_og_type") or "") == "product"
+    ):
         has_og_products = True
 
     return {
