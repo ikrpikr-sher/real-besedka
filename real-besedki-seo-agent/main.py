@@ -90,17 +90,47 @@ def collect(live: bool, *, with_check: bool = False, with_pagespeed: bool = Fals
     return snapshot
 
 
-def run_health() -> int:
-    print("SITE HEALTH: P0 → P1 → P2 (read-only диагностика)")
-    health = run_site_health()
-    text = render_health_report(health)
+def _write_health_artifacts(health: dict) -> tuple[Path, Path]:
     logs = ROOT / "logs"
     logs.mkdir(exist_ok=True)
     stamp = health.get("report_date") or date.today().isoformat()
     md_path = logs / f"{stamp}_health.md"
     json_path = logs / f"{stamp}_health.json"
-    md_path.write_text(text, encoding="utf-8")
+    md_path.write_text(render_health_report(health), encoding="utf-8")
     json_path.write_text(json.dumps(health, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+    return md_path, json_path
+
+
+def _write_seo_artifacts(snapshot: dict) -> None:
+    logs = ROOT / "logs"
+    logs.mkdir(exist_ok=True)
+    stamp = snapshot["report_date"]
+    slim = {k: snapshot[k] for k in snapshot if k != "live"}
+    slim["live"] = None
+    if snapshot.get("live"):
+        live = dict(snapshot["live"])
+        pages = []
+        for page in live.get("pages") or []:
+            row = dict(page)
+            row.pop("body", None)
+            row.pop("headers", None)
+            pages.append(row)
+        live["pages"] = pages
+        robots = dict(live.get("robots") or {})
+        robots.pop("body_preview", None)
+        live["robots"] = robots
+        slim["live"] = live
+    (logs / f"{stamp}_seo.json").write_text(
+        json.dumps(slim, ensure_ascii=False, indent=2, default=str),
+        encoding="utf-8",
+    )
+
+
+def run_health() -> int:
+    print("SITE HEALTH: P0 → P1 → P2 (read-only диагностика)")
+    health = run_site_health()
+    text = render_health_report(health)
+    md_path, json_path = _write_health_artifacts(health)
     print(text)
     if health.get("emergency_mode"):
         print(f"\n⚠️  АВАРИЙНЫЙ РЕЖИМ: {health['summary'].get('p0_count', 0)} проблем P0. SEO-задачи приостановлены.")
@@ -169,16 +199,46 @@ def run_backlog(no_live: bool) -> int:
 
 
 def run_weekday(with_pagespeed: bool = False) -> int:
-    """Полный будничный прогон: health → check → report → backlog."""
+    """Полный будничный прогон: один collect → health + check + report + backlog."""
     is_monday = date.today().weekday() == 0
     pagespeed = with_pagespeed or is_monday
     print("=== WEEKDAY: health → check → report → backlog ===")
-    codes = []
-    codes.append(run_health())
-    codes.append(run_check(pagespeed))
-    codes.append(run_report(no_live=False, with_pagespeed=pagespeed))
-    codes.append(run_backlog(no_live=False))
-    exit_code = max(codes)
+    previous = last_snapshot("real-besedki")
+    snapshot = collect(live=True, with_check=True, with_pagespeed=pagespeed)
+    health = snapshot.get("site_health") or {}
+    site_check = snapshot.get("site_check") or {}
+    traffic_light = snapshot.get("traffic_light") or {}
+
+    print("SITE HEALTH: P0 → P1 → P2 (read-only диагностика)")
+    health_text = render_health_report(health)
+    md_path, json_path = _write_health_artifacts(health)
+    print(health_text)
+    print(f"Файлы: {md_path} , {json_path}")
+
+    print("РЕЖИМ: ТОЛЬКО ЧТЕНИЕ. Проверка сайта на проде.")
+    check_text = render_check_report(site_check, traffic_light, snapshot.get("pagespeed"))
+    logs = ROOT / "logs"
+    logs.mkdir(exist_ok=True)
+    stamp = snapshot["report_date"]
+    combined = health_text + "\n\n---\n\n" + check_text
+    (logs / f"{stamp}_check.md").write_text(combined, encoding="utf-8")
+    print(combined)
+    print(f"Файл: {logs / f'{stamp}_check.md'}")
+
+    print("РЕЖИМ: ТОЛЬКО ЧТЕНИЕ. Код сайта и прод не изменяются.")
+    report_text = render_report(snapshot, previous)
+    save_snapshot("real-besedki", snapshot)
+    (logs / f"{stamp}_seo.md").write_text(report_text, encoding="utf-8")
+    _write_seo_artifacts(snapshot)
+    print(report_text)
+
+    print("РЕЖИМ: ТОЛЬКО ЧТЕНИЕ. Backlog — план работ, без правок на сайте.")
+    backlog_text = render_backlog(snapshot)
+    (logs / f"{stamp}_backlog.md").write_text(backlog_text, encoding="utf-8")
+    print(backlog_text)
+    print(f"Файл: {logs / f'{stamp}_backlog.md'}")
+
+    exit_code = 1 if health.get("emergency_mode") else 0
     if exit_code:
         print(f"\n⚠️  Weekday завершён с кодом {exit_code} (см. logs/)")
     else:
@@ -202,25 +262,7 @@ def run_report(no_live: bool, with_pagespeed: bool) -> int:
     logs.mkdir(exist_ok=True)
     stamp = snapshot["report_date"]
     (logs / f"{stamp}_seo.md").write_text(text, encoding="utf-8")
-    slim = {k: snapshot[k] for k in snapshot if k != "live"}
-    slim["live"] = None
-    if snapshot.get("live"):
-        live = dict(snapshot["live"])
-        pages = []
-        for page in live.get("pages") or []:
-            row = dict(page)
-            row.pop("body", None)
-            row.pop("headers", None)
-            pages.append(row)
-        live["pages"] = pages
-        robots = dict(live.get("robots") or {})
-        robots.pop("body_preview", None)
-        live["robots"] = robots
-        slim["live"] = live
-    (logs / f"{stamp}_seo.json").write_text(
-        json.dumps(slim, ensure_ascii=False, indent=2, default=str),
-        encoding="utf-8",
-    )
+    _write_seo_artifacts(snapshot)
     print(text)
     return 0
 

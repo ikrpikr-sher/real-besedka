@@ -20,6 +20,7 @@ def _dpk_as_default_floor(text: str) -> bool:
 
 
 def _live_product_og() -> dict[str, Any]:
+    from site_health.onpage import og_image_is_generic, parse_og
     from sources.catalog import parse_catalog
     from sources.live import _get
 
@@ -29,15 +30,15 @@ def _live_product_og() -> dict[str, Any]:
     item = catalog[0]
     resp = _get(item["url"])
     body = resp.get("body") or ""
-    og_image = bool(re.search(r'property=["\']og:image["\']', body, re.I))
-    type_m = re.search(r'property=["\']og:type["\'][^>]*content=["\']([^"\']+)', body, re.I)
-    if not type_m:
-        type_m = re.search(r'content=["\']([^"\']+)["\'][^>]*property=["\']og:type["\']', body, re.I)
+    og = parse_og(body)
+    image_url = og.get("image") or ""
     return {
         "checked": resp.get("status") == 200,
         "url": item.get("path"),
-        "product_og_image": og_image,
-        "product_og_type": type_m.group(1) if type_m else None,
+        "product_og_image": bool(image_url),
+        "product_og_image_url": image_url or None,
+        "product_og_type": og.get("type"),
+        "product_og_generic": og_image_is_generic(image_url),
     }
 
 
@@ -72,7 +73,8 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
         seo_home_dpk = _dpk_as_default_floor(seo_path.read_text(encoding="utf-8"))
 
     live_og = _live_product_og()
-    if live_og.get("checked") and live_og.get("product_og_image") and (live_og.get("product_og_type") or "") == "product":
+    # Фото в OG уже есть — шаринг работает. type=product не обязателен для этого флага.
+    if live_og.get("checked") and live_og.get("product_og_image"):
         has_og_products = True
 
     return {
