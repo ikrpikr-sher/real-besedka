@@ -60,6 +60,10 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         "низкий",
     )
 
+    onpage = ((snapshot.get("site_health") or {}).get("checks") or {}).get("onpage") or {}
+    signals = onpage.get("signals") or {}
+    live_og = content.get("product_og_live") or {}
+
     proekty = int(content.get("proekty_links") or 0)
     if proekty:
         add(
@@ -70,16 +74,28 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "средний",
         )
 
-    if not content.get("product_open_graph"):
+    has_og_image = bool(content.get("product_open_graph") or signals.get("product_og_image") or live_og.get("product_og_image"))
+    og_is_product = bool(signals.get("product_og_type_product") or (live_og.get("product_og_type") or "") == "product")
+    og_generic = bool(signals.get("product_og_image_generic") or live_og.get("product_og_generic"))
+    if not has_og_image:
         add(
             "P1",
             "on-page",
-            "Open Graph на карточках товаров (og:title, og:description, og:image)",
+            "Open Graph на карточках: добавить og:image",
+            "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
+            "низкий",
+        )
+    elif not og_is_product or og_generic:
+        add(
+            "P2",
+            "on-page",
+            "og:type=product и товарный og:image (не сайтный hero) на карточках",
             "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
             "низкий",
         )
 
-    if catalog_count:
+    titles_unique = signals.get("product_titles_unique")
+    if catalog_count and titles_unique is False:
         add(
             "P1",
             "on-page",
@@ -87,13 +103,15 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "templates/onpage-product.md",
             "высокий",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
-    )
+
+    if signals.get("blog_category_h1_human") is False:
+        add(
+            "P1",
+            "on-page",
+            "Meta категорий и тегов блога — человекочитаемые H1/title",
+            "besedki-seo/app/blog/",
+            "средний",
+        )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -104,20 +122,30 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    add(
-        "P2",
-        "on-page",
-        "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
-        "besedki-seo/app/katalog/",
-        "средний",
-    )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
+    if signals.get("katalog_breadcrumbs") is False:
+        add(
+            "P2",
+            "on-page",
+            "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
+            "besedki-seo/app/katalog/",
+            "средний",
+        )
+    if signals.get("contact_page") is False:
+        add(
+            "P2",
+            "on-page",
+            "ContactPage schema на /kontakty",
+            "besedki-seo/app/kontakty/page.tsx",
+            "низкий",
+        )
+    if signals.get("empty_search_in_sitemap") and not signals.get("empty_search_noindex"):
+        add(
+            "P2",
+            "indexation",
+            "Пустой /katalog/poisk: noindex и убрать из sitemap (?q= уже noindex)",
+            "/katalog/poisk",
+            "низкий",
+        )
     add(
         "P2",
         "on-page",
@@ -142,7 +170,7 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         target = item.get("target") or ""
         if any(x["task"] == msg for x in items):
             continue
-        if "proekty" in msg or "openGraph" in msg or "Open Graph" in msg or "ДПК" in msg or "seo.json" in msg:
+        if "proekty" in msg or "openGraph" in msg or "Open Graph" in msg or "og:type" in msg or "og:image" in msg or "ДПК" in msg or "seo.json" in msg:
             continue
         if "besedki-seo/" in (target or "") and "отсутствует" in msg:
             continue
