@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import time
 from typing import Any
 from urllib.parse import quote
 from urllib.request import Request, urlopen
@@ -10,6 +11,7 @@ from config import SITE_URL
 
 PSI_URL = "https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed"
 TIMEOUT = 60
+RETRY_WAIT_SEC = 25
 
 
 def fetch_pagespeed(
@@ -27,15 +29,31 @@ def fetch_pagespeed(
         f"{PSI_URL}?{params}",
         headers={"User-Agent": "real-besedki-seo-agent/1.0"},
     )
-    try:
-        with urlopen(req, timeout=TIMEOUT) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-    except Exception as exc:
+    data = None
+    last_error = None
+    for attempt in range(2):
+        try:
+            with urlopen(req, timeout=TIMEOUT) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+            break
+        except Exception as exc:
+            last_error = exc
+            if attempt == 0 and "429" in str(exc):
+                time.sleep(RETRY_WAIT_SEC)
+                continue
+            return {
+                "url": target,
+                "strategy": strategy,
+                "ok": False,
+                "error": str(exc),
+                "hint": "Задайте PAGESPEED_API_KEY или повторите позже (лимит PSI).",
+            }
+    if data is None:
         return {
             "url": target,
             "strategy": strategy,
             "ok": False,
-            "error": str(exc),
+            "error": str(last_error) if last_error else "PSI не ответил",
             "hint": "Задайте PAGESPEED_API_KEY или повторите позже (лимит PSI).",
         }
 

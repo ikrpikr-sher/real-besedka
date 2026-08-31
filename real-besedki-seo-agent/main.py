@@ -90,17 +90,59 @@ def collect(live: bool, *, with_check: bool = False, with_pagespeed: bool = Fals
     return snapshot
 
 
-def run_health() -> int:
-    print("SITE HEALTH: P0 → P1 → P2 (read-only диагностика)")
-    health = run_site_health()
-    text = render_health_report(health)
+def _write_health_files(health: dict) -> tuple[Path, Path]:
     logs = ROOT / "logs"
     logs.mkdir(exist_ok=True)
     stamp = health.get("report_date") or date.today().isoformat()
     md_path = logs / f"{stamp}_health.md"
     json_path = logs / f"{stamp}_health.json"
-    md_path.write_text(text, encoding="utf-8")
+    md_path.write_text(render_health_report(health), encoding="utf-8")
     json_path.write_text(json.dumps(health, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+    return md_path, json_path
+
+
+def _write_check_file(health: dict, site_check: dict, traffic_light: dict, pagespeed: dict | None) -> Path:
+    logs = ROOT / "logs"
+    logs.mkdir(exist_ok=True)
+    stamp = date.today().isoformat()
+    path = logs / f"{stamp}_check.md"
+    combined = render_health_report(health) + "\n\n---\n\n" + render_check_report(site_check, traffic_light, pagespeed)
+    path.write_text(combined, encoding="utf-8")
+    return path
+
+
+def _write_report_files(snapshot: dict, text: str) -> Path:
+    logs = ROOT / "logs"
+    logs.mkdir(exist_ok=True)
+    stamp = snapshot["report_date"]
+    (logs / f"{stamp}_seo.md").write_text(text, encoding="utf-8")
+    slim = {k: snapshot[k] for k in snapshot if k != "live"}
+    slim["live"] = None
+    if snapshot.get("live"):
+        live = dict(snapshot["live"])
+        pages = []
+        for page in live.get("pages") or []:
+            row = dict(page)
+            row.pop("body", None)
+            row.pop("headers", None)
+            pages.append(row)
+        live["pages"] = pages
+        robots = dict(live.get("robots") or {})
+        robots.pop("body_preview", None)
+        live["robots"] = robots
+        slim["live"] = live
+    (logs / f"{stamp}_seo.json").write_text(
+        json.dumps(slim, ensure_ascii=False, indent=2, default=str),
+        encoding="utf-8",
+    )
+    return logs / f"{stamp}_seo.md"
+
+
+def run_health() -> int:
+    print("SITE HEALTH: P0 → P1 → P2 (read-only диагностика)")
+    health = run_site_health()
+    text = render_health_report(health)
+    md_path, json_path = _write_health_files(health)
     print(text)
     if health.get("emergency_mode"):
         print(f"\n⚠️  АВАРИЙНЫЙ РЕЖИМ: {health['summary'].get('p0_count', 0)} проблем P0. SEO-задачи приостановлены.")
@@ -116,18 +158,9 @@ def run_check(with_pagespeed: bool) -> int:
     live_data = fetch_live(SITE_URL, extra_paths=["/katalog/poisk"])
     pagespeed = fetch_weekly_pagespeed() if with_pagespeed else None
     traffic_light = compute_traffic_light(site_check, live_data, content, site_health=health)
-    text = render_check_report(site_check, traffic_light, pagespeed)
-    health_block = render_health_report(health)
-    logs = ROOT / "logs"
-    logs.mkdir(exist_ok=True)
-    stamp = date.today().isoformat()
-    path = logs / f"{stamp}_check.md"
-    combined = health_block + "\n\n---\n\n" + text
-    path.write_text(combined, encoding="utf-8")
-    (logs / f"{stamp}_health.json").write_text(
-        json.dumps(health, ensure_ascii=False, indent=2, default=str), encoding="utf-8"
-    )
-    print(combined)
+    path = _write_check_file(health, site_check, traffic_light, pagespeed)
+    _write_health_files(health)
+    print(path.read_text(encoding="utf-8"))
     print(f"Файл: {path}")
     return 1 if health.get("emergency_mode") else 0
 
@@ -169,16 +202,41 @@ def run_backlog(no_live: bool) -> int:
 
 
 def run_weekday(with_pagespeed: bool = False) -> int:
-    """Полный будничный прогон: health → check → report → backlog."""
+    """Один collect: health + check + report + backlog (без четырёх прогонов)."""
     is_monday = date.today().weekday() == 0
     pagespeed = with_pagespeed or is_monday
-    print("=== WEEKDAY: health → check → report → backlog ===")
-    codes = []
-    codes.append(run_health())
-    codes.append(run_check(pagespeed))
-    codes.append(run_report(no_live=False, with_pagespeed=pagespeed))
-    codes.append(run_backlog(no_live=False))
-    exit_code = max(codes)
+    print("=== WEEKDAY: one collect (health → check → report → backlog) ===")
+    snapshot = collect(live=True, with_check=True, with_pagespeed=pagespeed)
+    health = snapshot.get("site_health") or {}
+    md_path, json_path = _write_health_files(health)
+    print(render_health_report(health))
+    print(f"Файлы: {md_path} , {json_path}")
+
+    check_path = _write_check_file(
+        health,
+        snapshot.get("site_check") or {},
+        snapshot.get("traffic_light") or {},
+        snapshot.get("pagespeed"),
+    )
+    print(check_path.read_text(encoding="utf-8"))
+    print(f"Файл: {check_path}")
+
+    previous = last_snapshot("real-besedki")
+    report_text = render_report(snapshot, previous)
+    save_snapshot("real-besedki", snapshot)
+    report_path = _write_report_files(snapshot, report_text)
+    print(report_text)
+    print(f"Файл: {report_path}")
+
+    backlog_text = render_backlog(snapshot)
+    logs = ROOT / "logs"
+    logs.mkdir(exist_ok=True)
+    backlog_path = logs / f"{snapshot['report_date']}_backlog.md"
+    backlog_path.write_text(backlog_text, encoding="utf-8")
+    print(backlog_text)
+    print(f"Файл: {backlog_path}")
+
+    exit_code = 1 if health.get("emergency_mode") else 0
     if exit_code:
         print(f"\n⚠️  Weekday завершён с кодом {exit_code} (см. logs/)")
     else:
@@ -197,30 +255,7 @@ def run_report(no_live: bool, with_pagespeed: bool) -> int:
     )
     text = render_report(snapshot, previous)
     save_snapshot("real-besedki", snapshot)
-
-    logs = ROOT / "logs"
-    logs.mkdir(exist_ok=True)
-    stamp = snapshot["report_date"]
-    (logs / f"{stamp}_seo.md").write_text(text, encoding="utf-8")
-    slim = {k: snapshot[k] for k in snapshot if k != "live"}
-    slim["live"] = None
-    if snapshot.get("live"):
-        live = dict(snapshot["live"])
-        pages = []
-        for page in live.get("pages") or []:
-            row = dict(page)
-            row.pop("body", None)
-            row.pop("headers", None)
-            pages.append(row)
-        live["pages"] = pages
-        robots = dict(live.get("robots") or {})
-        robots.pop("body_preview", None)
-        live["robots"] = robots
-        slim["live"] = live
-    (logs / f"{stamp}_seo.json").write_text(
-        json.dumps(slim, ensure_ascii=False, indent=2, default=str),
-        encoding="utf-8",
-    )
+    _write_report_files(snapshot, text)
     print(text)
     return 0
 
