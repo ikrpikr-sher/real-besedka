@@ -2,11 +2,75 @@ from __future__ import annotations
 
 import re
 from typing import Any
+from urllib.parse import urlparse
 
 from config import SITE_URL
 from site_health.http_probe import fetch, parse_page
 
 CANONICAL_BASE = SITE_URL.rstrip("/")
+PRODUCT_PATH_RE = re.compile(r"^/katalog/[^/]+/[^/]+")
+TAG_SITEMAP_WARN = 50
+
+
+def sitemap_composition(locs: list[str]) -> dict[str, int]:
+    counts = {
+        "total": len(locs),
+        "product": 0,
+        "poisk": 0,
+        "blog_tag": 0,
+        "blog_post": 0,
+        "blog_cat": 0,
+        "other": 0,
+    }
+    for loc in locs:
+        path = urlparse(loc).path
+        if "/katalog/poisk" in path:
+            counts["poisk"] += 1
+        elif PRODUCT_PATH_RE.match(path):
+            counts["product"] += 1
+        elif "/blog/tag/" in path:
+            counts["blog_tag"] += 1
+        elif "/blog/category/" in path:
+            counts["blog_cat"] += 1
+        elif path.startswith("/blog"):
+            counts["blog_post"] += 1
+        else:
+            counts["other"] += 1
+    return counts
+
+
+def sitemap_soft_issues(locs: list[str], poisk_robots: str | None = None) -> list[dict[str, Any]]:
+    """P2: пустой поиск в карте без noindex; пачка тегов блога."""
+    issues: list[dict[str, Any]] = []
+    composition = sitemap_composition(locs)
+    poisk_locs = [loc for loc in locs if "/katalog/poisk" in loc]
+    if poisk_locs:
+        robots = (poisk_robots or "").lower()
+        if "noindex" not in robots:
+            issues.append(
+                {
+                    "priority": "P2",
+                    "category": "sitemap",
+                    "problem": "Пустой /katalog/poisk в sitemap без noindex",
+                    "url": poisk_locs[0],
+                    "cause": f"robots={poisk_robots or 'нет'}",
+                    "impact": "Тонкая страница поиска может попасть в индекс",
+                    "fact_kind": "verified",
+                }
+            )
+    if composition["blog_tag"] >= TAG_SITEMAP_WARN:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "sitemap",
+                "problem": f"{composition['blog_tag']} URL тегов блога в sitemap",
+                "url": f"{CANONICAL_BASE}/sitemap.xml",
+                "cause": "теги — тонкие архивы, раздувают карту",
+                "impact": "Краулер тратит бюджет на tag URL вместо карточек и статей",
+                "fact_kind": "verified",
+            }
+        )
+    return issues
 
 
 def check_robots() -> dict[str, Any]:
@@ -115,9 +179,17 @@ def check_sitemap(sample_size: int = 15) -> dict[str, Any]:
                 "evidence": {"failures": failures, "sample": len(sample)},
             }
         )
+    poisk_robots = None
+    poisk_locs = [loc for loc in locs if "/katalog/poisk" in loc]
+    if poisk_locs:
+        parsed = parse_page(fetch(poisk_locs[0]).get("body") or "")
+        poisk_robots = parsed.get("robots_meta")
+    issues.extend(sitemap_soft_issues(locs, poisk_robots))
+    composition = sitemap_composition(locs)
     return {
         "status": resp.get("status"),
         "url_count": len(locs),
+        "composition": composition,
         "bad_locs": bad_locs[:10],
         "sample": sample_results,
         "sample_failures": failures,

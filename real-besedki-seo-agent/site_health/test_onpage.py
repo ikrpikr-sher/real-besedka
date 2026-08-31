@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from site_health.onpage import origin_healthy, parse_h1, parse_jsonld_types, parse_og
+from site_health.onpage import classify_product_og, origin_healthy, parse_h1, parse_jsonld_types, parse_og
 from sources.content_audit import _dpk_as_default_floor
 
 
@@ -26,6 +26,23 @@ class OnpageParseTests(unittest.TestCase):
         text = "В базовой комплектации — фанера. ДПК доступен как опция."
         self.assertFalse(_dpk_as_default_floor(text))
         self.assertTrue(_dpk_as_default_floor("Полы из ДПК под ключ"))
+
+    def test_classify_og_image_vs_type(self) -> None:
+        missing = classify_product_og({"type": "website"})
+        self.assertFalse(missing["has_image"])
+        self.assertFalse(missing["type_product"])
+        preview = classify_product_og(
+            {"type": "website", "image": "https://real-besedki.ru/images/otkrytye-besedki/b-60/01.jpg"}
+        )
+        self.assertTrue(preview["has_image"])
+        self.assertFalse(preview["type_product"])
+        self.assertFalse(preview["generic_hero"])
+        hero = classify_product_og(
+            {"type": "website", "image": "https://real-besedki.ru/images/hero-besedka.jpg"}
+        )
+        self.assertTrue(hero["generic_hero"])
+        ok = classify_product_og({"type": "product", "image": "https://x/a.jpg"})
+        self.assertTrue(ok["has_image"] and ok["type_product"])
 
     def test_origin_healthy(self) -> None:
         internal = {"paths": [{"ok": True}, {"ok": True}]}

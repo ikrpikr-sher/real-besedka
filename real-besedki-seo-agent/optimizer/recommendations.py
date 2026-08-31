@@ -33,12 +33,21 @@ def build_proposals(snapshot: dict[str, Any]) -> list[str]:
     live_ok = bool(live.get("reachable"))
     sitemap_urls = ((live.get("sitemap") or {}).get("url_count") or 0)
     catalog_count = len(snapshot.get("catalog") or [])
+    live_og = content.get("product_og_live") or {}
     proposals = [
         "**Этап 2** — автономные правки. P0/P1 чинить и деплоить. Не трогать priceFrom и целый katalog.json на проде.",
         "**Off-page P1:** Яндекс Бизнес, Google Business, отзывы, Вебмастер, Search Console, цели Метрики.",
-        "**On-page P1:** title/description 128 карточек (`templates/onpage-product.md`), Open Graph, meta блога, `/proekty` → `/katalog`.",
-        "**On-page P2:** BreadcrumbList, ContactPage, поле seoDescription в каталоге.",
     ]
+    if not content.get("product_open_graph"):
+        proposals.append("**On-page P1:** добавить og:image на карточки.")
+    elif (live_og.get("product_og_type") or "") != "product" and live_og.get("checked"):
+        proposals.append("**On-page P2:** og:type=product (фото в og:image уже есть).")
+    if int(content.get("proekty_links") or 0):
+        proposals.append("**On-page P1:** заменить ссылки `/proekty` в блоге на карточки каталога.")
+    if (snapshot.get("local") or {}).get("site_code_missing"):
+        proposals.append(
+            "**Блокер:** нет `besedki-seo/` и `~/.ssh/besedki_deploy` — on-page на прод из агента не выкатить."
+        )
     if live_ok and sitemap_urls:
         proposals.append(
             f"Прод: robots 200, sitemap ~{sitemap_urls} URL, каталог /katalog/{{category}}/{{slug}}."
@@ -47,9 +56,6 @@ def build_proposals(snapshot: dict[str, Any]) -> list[str]:
             proposals.append(
                 f"Сверить sitemap ({sitemap_urls}) с каталогом ({catalog_count} товаров + инфо-страницы)."
             )
-    proekty = int(content.get("proekty_links") or 0)
-    if proekty:
-        proposals.append(f"Заменить {proekty} ссылок /proekty в блоге — см. content_audit.")
     proposals.append(
         "Запросить выгрузку Вебмастера + Метрики: запросы, индекс, цели «форма» и «телефон»."
     )

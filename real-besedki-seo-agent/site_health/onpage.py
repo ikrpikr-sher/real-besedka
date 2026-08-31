@@ -17,6 +17,7 @@ OG_RE_REV = re.compile(
 )
 H1_RE = re.compile(r"<h1\b[^>]*>([\s\S]*?)</h1>", re.I)
 SLUG_H1_RE = re.compile(r"Категория[:\s]+[«\"]?([a-z0-9-]{3,})", re.I)
+GENERIC_OG_RE = re.compile(r"/images/hero-besedka(?:\.|$)", re.I)
 
 
 def parse_og(body: str) -> dict[str, str]:
@@ -30,6 +31,16 @@ def parse_og(body: str) -> dict[str, str]:
 
 def parse_jsonld_types(body: str) -> list[str]:
     return re.findall(r'"@type"\s*:\s*"([^"]+)"', body or "")
+
+
+def classify_product_og(og: dict[str, str]) -> dict[str, bool]:
+    """og:image есть = превью работает. Нет фото — P1. type≠product / общий hero — P2."""
+    image = og.get("image") or ""
+    return {
+        "has_image": bool(image),
+        "generic_hero": bool(image) and bool(GENERIC_OG_RE.search(image)),
+        "type_product": (og.get("type") or "") == "product",
+    }
 
 
 def parse_h1(body: str) -> list[str]:
@@ -81,33 +92,101 @@ def check_live_onpage() -> dict[str, Any]:
     issues: list[dict[str, Any]] = []
     pages: list[dict[str, Any]] = []
 
-    og_bad: list[str] = []
+    no_image: list[str] = []
+    generic_hero: list[str] = []
+    wrong_type: list[str] = []
+    og_titles: list[str] = []
     for path in _product_paths(3):
         resp = fetch(f"{SITE_URL.rstrip('/')}{path}")
         body = resp.get("body") or ""
         og = parse_og(body)
+        flags = classify_product_og(og)
         types = parse_jsonld_types(body)
         row = {
             "path": path,
             "status": resp.get("status"),
             "og_type": og.get("type"),
-            "og_image": bool(og.get("image")),
+            "og_image": flags["has_image"],
+            "og_image_url": og.get("image"),
             "og_title": og.get("title"),
+            "og_generic_hero": flags["generic_hero"],
             "jsonld": types,
         }
         pages.append(row)
-        if resp.get("status") == 200 and (og.get("type") != "product" or not og.get("image")):
-            og_bad.append(path)
+        if resp.get("status") != 200:
+            continue
+        if not flags["has_image"]:
+            no_image.append(path)
+        elif flags["generic_hero"]:
+            generic_hero.append(path)
+        if not flags["type_product"]:
+            wrong_type.append(path)
+        if og.get("title"):
+            og_titles.append(og["title"])
 
-    if og_bad:
+    if no_image:
         issues.append(
             {
                 "priority": "P1",
                 "category": "on-page",
-                "problem": "На карточках нет товарного Open Graph (og:image + og:type=product)",
-                "url": f"{SITE_URL}{og_bad[0]}",
-                "cause": f"выборка {', '.join(og_bad)}: og:type≠product или нет og:image",
+                "problem": "На карточках нет og:image",
+                "url": f"{SITE_URL}{no_image[0]}",
+                "cause": f"выборка {', '.join(no_image)}: нет og:image",
                 "impact": "Превью в Telegram/VK/соцсетях без фото товара — слабее CTR шаринга",
+                "fact_kind": "verified",
+            }
+        )
+    elif generic_hero:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "on-page",
+                "problem": "og:image карточек — общий hero сайта, не фото модели",
+                "url": f"{SITE_URL}{generic_hero[0]}",
+                "cause": f"выборка {', '.join(generic_hero)}: /images/hero-besedka",
+                "impact": "В шаринге одна и та же обложка, не товар",
+                "fact_kind": "verified",
+            }
+        )
+    if wrong_type and not no_image:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "on-page",
+                "problem": "og:type карточек = website, не product",
+                "url": f"{SITE_URL}{wrong_type[0]}",
+                "cause": f"выборка {', '.join(wrong_type)}: og:image есть, og:type≠product",
+                "impact": "Соцсети могут не взять товарный сниппет; превью с фото уже есть",
+                "fact_kind": "verified",
+            }
+        )
+    if og_titles and len(og_titles) != len(set(og_titles)):
+        first_product = next((p["path"] for p in pages if p.get("og_title")), "/katalog")
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "on-page",
+                "problem": "В выборке карточек повторяются og:title",
+                "url": f"{SITE_URL}{first_product}",
+                "cause": "одинаковые og:title на разных URL",
+                "impact": "Слабая уникальность сниппета в шаринге",
+                "fact_kind": "verified",
+            }
+        )
+
+    katalog = fetch(f"{SITE_URL.rstrip('/')}/katalog")
+    k_hub_body = katalog.get("body") or ""
+    k_hub_types = parse_jsonld_types(k_hub_body)
+    pages.append({"path": "/katalog", "status": katalog.get("status"), "jsonld": k_hub_types})
+    if katalog.get("status") == 200 and "BreadcrumbList" not in k_hub_types:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "schema",
+                "problem": "На хабе /katalog нет JSON-LD BreadcrumbList",
+                "url": f"{SITE_URL}/katalog",
+                "cause": f"типы: {', '.join(k_hub_types) or 'нет'}",
+                "impact": "Поиск хуже понимает иерархию каталога",
                 "fact_kind": "verified",
             }
         )

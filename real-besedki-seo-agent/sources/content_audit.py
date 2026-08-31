@@ -72,7 +72,8 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
         seo_home_dpk = _dpk_as_default_floor(seo_path.read_text(encoding="utf-8"))
 
     live_og = _live_product_og()
-    if live_og.get("checked") and live_og.get("product_og_image") and (live_og.get("product_og_type") or "") == "product":
+    # Превью работает, если есть og:image. type=product — отдельный P2.
+    if live_og.get("checked") and live_og.get("product_og_image"):
         has_og_products = True
 
     return {
