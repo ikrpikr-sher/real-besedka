@@ -36,8 +36,10 @@ def build_proposals(snapshot: dict[str, Any]) -> list[str]:
     proposals = [
         "**Этап 2** — автономные правки. P0/P1 чинить и деплоить. Не трогать priceFrom и целый katalog.json на проде.",
         "**Off-page P1:** Яндекс Бизнес, Google Business, отзывы, Вебмастер, Search Console, цели Метрики.",
-        "**On-page P1:** title/description 128 карточек (`templates/onpage-product.md`), Open Graph, meta блога, `/proekty` → `/katalog`.",
-        "**On-page P2:** BreadcrumbList, ContactPage, поле seoDescription в каталоге.",
+        "**On-page:** пилот 1–3 карточки только если title не уникальны или нет og:image. "
+        "og:type=website при живом фото модели — P2, не «нет OG».",
+        "**On-page P2:** og:type=product; noindex пустого `/katalog/poisk` и убрать из sitemap; "
+        "теги блога — noindex или выкинуть из карты. seoDescription в админке.",
     ]
     if live_ok and sitemap_urls:
         proposals.append(

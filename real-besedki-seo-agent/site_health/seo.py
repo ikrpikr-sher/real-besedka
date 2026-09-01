@@ -115,12 +115,48 @@ def check_sitemap(sample_size: int = 15) -> dict[str, Any]:
                 "evidence": {"failures": failures, "sample": len(sample)},
             }
         )
+    poisk_locs = [loc for loc in locs if re.search(r"/katalog/poisk/?$", loc.rstrip("/"))]
+    tag_count = sum(1 for loc in locs if "/blog/tag/" in loc)
+    empty_poisk_noindex = None
+    if poisk_locs:
+        poisk = fetch(poisk_locs[0])
+        parsed = parse_page(poisk.get("body") or "")
+        robots_meta = (parsed.get("robots_meta") or "").lower()
+        empty_poisk_noindex = "noindex" in robots_meta
+        if poisk.get("status") == 200 and not empty_poisk_noindex:
+            issues.append(
+                {
+                    "priority": "P2",
+                    "category": "sitemap",
+                    "problem": "Пустой /katalog/poisk в sitemap без noindex",
+                    "url": poisk_locs[0],
+                    "cause": "страница поиска без запроса индексируема и стоит в карте сайта",
+                    "impact": "Тонкая служебная страница может попасть в индекс",
+                    "fact_kind": "verified",
+                }
+            )
+    if tag_count >= 50:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "sitemap",
+                "problem": f"В sitemap {tag_count} URL тегов блога",
+                "url": f"{CANONICAL_BASE}/sitemap.xml",
+                "cause": "много тонких /blog/tag/* в карте сайта",
+                "impact": "Размытие краула на теги вместо карточек и статей",
+                "fact_kind": "verified",
+                "evidence": {"tag_count": tag_count},
+            }
+        )
     return {
         "status": resp.get("status"),
         "url_count": len(locs),
         "bad_locs": bad_locs[:10],
         "sample": sample_results,
         "sample_failures": failures,
+        "blog_tag_count": tag_count,
+        "empty_poisk_in_sitemap": bool(poisk_locs),
+        "empty_poisk_noindex": empty_poisk_noindex,
         "issues": issues,
     }
 
