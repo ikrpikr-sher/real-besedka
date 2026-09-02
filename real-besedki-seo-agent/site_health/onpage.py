@@ -17,6 +17,21 @@ OG_RE_REV = re.compile(
 )
 H1_RE = re.compile(r"<h1\b[^>]*>([\s\S]*?)</h1>", re.I)
 SLUG_H1_RE = re.compile(r"Категория[:\s]+[«\"]?([a-z0-9-]{3,})", re.I)
+GENERIC_OG_RE = re.compile(r"/images/hero-besedka", re.I)
+
+
+def classify_product_og(og: dict[str, str]) -> dict[str, Any]:
+    """Missing og:image = P1. type=website + model photo = P2. Generic hero = P2."""
+    image = (og.get("image") or "").strip()
+    og_type = (og.get("type") or "").strip().lower()
+    generic = bool(image) and bool(GENERIC_OG_RE.search(image))
+    if not image:
+        return {"kind": "missing_image", "priority": "P1"}
+    if generic:
+        return {"kind": "generic_image", "priority": "P2"}
+    if og_type != "product":
+        return {"kind": "type_website", "priority": "P2"}
+    return {"kind": "ok", "priority": None}
 
 
 def parse_og(body: str) -> dict[str, str]:
@@ -81,33 +96,84 @@ def check_live_onpage() -> dict[str, Any]:
     issues: list[dict[str, Any]] = []
     pages: list[dict[str, Any]] = []
 
-    og_bad: list[str] = []
+    missing_image: list[str] = []
+    generic_image: list[str] = []
+    type_website: list[str] = []
     for path in _product_paths(3):
         resp = fetch(f"{SITE_URL.rstrip('/')}{path}")
         body = resp.get("body") or ""
         og = parse_og(body)
         types = parse_jsonld_types(body)
+        cls = classify_product_og(og)
         row = {
             "path": path,
             "status": resp.get("status"),
             "og_type": og.get("type"),
             "og_image": bool(og.get("image")),
+            "og_image_url": og.get("image"),
             "og_title": og.get("title"),
+            "og_class": cls["kind"],
             "jsonld": types,
         }
         pages.append(row)
-        if resp.get("status") == 200 and (og.get("type") != "product" or not og.get("image")):
-            og_bad.append(path)
+        if resp.get("status") != 200:
+            continue
+        if cls["kind"] == "missing_image":
+            missing_image.append(path)
+        elif cls["kind"] == "generic_image":
+            generic_image.append(path)
+        elif cls["kind"] == "type_website":
+            type_website.append(path)
 
-    if og_bad:
+    if missing_image:
         issues.append(
             {
                 "priority": "P1",
                 "category": "on-page",
-                "problem": "На карточках нет товарного Open Graph (og:image + og:type=product)",
-                "url": f"{SITE_URL}{og_bad[0]}",
-                "cause": f"выборка {', '.join(og_bad)}: og:type≠product или нет og:image",
+                "problem": "На карточках нет og:image",
+                "url": f"{SITE_URL}{missing_image[0]}",
+                "cause": f"выборка {', '.join(missing_image)}: нет og:image",
                 "impact": "Превью в Telegram/VK/соцсетях без фото товара — слабее CTR шаринга",
+                "fact_kind": "verified",
+            }
+        )
+    if generic_image:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "on-page",
+                "problem": "og:image на карточках — общий hero сайта, не фото модели",
+                "url": f"{SITE_URL}{generic_image[0]}",
+                "cause": f"выборка {', '.join(generic_image)}: /images/hero-besedka",
+                "impact": "Шаринг показывает фасад сайта, а не конкретную беседку",
+                "fact_kind": "verified",
+            }
+        )
+    if type_website:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "on-page",
+                "problem": "og:type=website при живом фото модели — лучше product",
+                "url": f"{SITE_URL}{type_website[0]}",
+                "cause": f"выборка {', '.join(type_website)}: og:image есть, og:type≠product",
+                "impact": "Соцсети и мессенджеры хуже понимают карточку как товар",
+                "fact_kind": "verified",
+            }
+        )
+
+    katalog = fetch(f"{SITE_URL.rstrip('/')}/katalog")
+    kat_types = parse_jsonld_types(katalog.get("body") or "")
+    pages.append({"path": "/katalog", "status": katalog.get("status"), "jsonld": kat_types})
+    if katalog.get("status") == 200 and "BreadcrumbList" not in kat_types:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "schema",
+                "problem": "На /katalog нет JSON-LD BreadcrumbList",
+                "url": f"{SITE_URL}/katalog",
+                "cause": f"типы: {', '.join(kat_types) or 'нет'}",
+                "impact": "Хабу каталога хуже хлебные крошки в выдаче",
                 "fact_kind": "verified",
             }
         )
