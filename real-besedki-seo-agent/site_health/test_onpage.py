@@ -2,7 +2,14 @@ from __future__ import annotations
 
 import unittest
 
-from site_health.onpage import origin_healthy, parse_h1, parse_jsonld_types, parse_og
+from site_health.onpage import (
+    classify_product_og,
+    is_slug_h1,
+    origin_healthy,
+    parse_h1,
+    parse_jsonld_types,
+    parse_og,
+)
 from sources.content_audit import _dpk_as_default_floor
 
 
@@ -34,6 +41,39 @@ class OnpageParseTests(unittest.TestCase):
         self.assertTrue(origin_healthy(internal, client, ua))
         self.assertFalse(origin_healthy({"paths": [{"ok": False}]}, client, ua))
         self.assertFalse(origin_healthy(internal, {"home_form": True, "home_tel": False}, ua))
+
+    def test_og_missing_image_is_p1(self) -> None:
+        cls = classify_product_og({"type": "product"})
+        self.assertEqual(cls["kind"], "missing_image")
+        self.assertEqual(cls["priority"], "P1")
+
+    def test_og_website_with_model_photo_is_p2(self) -> None:
+        cls = classify_product_og({"type": "website", "image": "https://real-besedki.ru/uploads/b-27.jpg"})
+        self.assertEqual(cls["kind"], "type_website")
+        self.assertEqual(cls["priority"], "P2")
+
+    def test_og_generic_hero_is_p2(self) -> None:
+        cls = classify_product_og({"type": "website", "image": "https://real-besedki.ru/images/hero-besedka.png"})
+        self.assertEqual(cls["kind"], "generic_image")
+        self.assertEqual(cls["priority"], "P2")
+
+    def test_og_product_with_photo_ok(self) -> None:
+        cls = classify_product_og({"type": "product", "image": "https://real-besedki.ru/uploads/b-27.jpg"})
+        self.assertEqual(cls["kind"], "ok")
+        self.assertIsNone(cls["priority"])
+
+    def test_slug_h1_category_prefix(self) -> None:
+        self.assertTrue(is_slug_h1("Категория: sovety", "/blog/category/sovety"))
+
+    def test_slug_h1_bare_matches_path(self) -> None:
+        self.assertTrue(is_slug_h1("sovety", "/blog/category/sovety"))
+        self.assertFalse(is_slug_h1("Советы", "/blog/category/sovety"))
+        self.assertFalse(is_slug_h1("Сравнения", "/blog/category/sravneniya"))
+
+    def test_leftover_blog_cats_constant(self) -> None:
+        from site_health.onpage import LEFTOVER_BLOG_CATS
+
+        self.assertIn("/blog/category/sovety", LEFTOVER_BLOG_CATS)
 
 
 if __name__ == "__main__":
