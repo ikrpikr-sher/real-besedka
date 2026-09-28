@@ -3,24 +3,27 @@
 **Сайт:** https://real-besedki.ru/  
 **Бренд:** REAL БЕСЕДКИ · ООО «Пулман»  
 **Полное ТЗ:** `real-besedki-seo-agent/TZ-FULL.md`  
-**Последнее обновление:** 2026-08-25 12:52 UTC  
+**Последнее обновление:** 2026-09-28 06:05 UTC  
 **Режим:** этап 2 — **автономные правки**
 
 ---
 
-## Сводка прогона 2026-08-25
+## Сводка прогона 2026-09-28
 
 | Метрика | Значение |
 |---------|----------|
 | Ключевые маршруты | 7/7 OK |
-| Карточки (выборка) | 10/10 OK · hero 10/10 · GLB 10/10 |
-| Sitemap (выборка) | 0/20 ошибок · 216 URL на проде |
+| Карточки (выборка) | 10/10 OK · hero 10/10 · GLB 9/9 (карточки без .glb в HTML пропущены) |
+| Sitemap | 0/20 ошибок · **458** URL: **180** товаров · **153** статьи · **63** тега · **5** категорий блога |
 | Светофор клиента | открыть ✓ · товар ✓ · заявка ✓ · выдача техника ✓ |
-| P0 | 0 (CF proxy при живом origin больше не авария) |
-| P1 health | CF proxy (owner) + товарный OG |
-| P2 health | ContactPage + H1 «Категория: sravneniya» |
+| P0 | 0 |
+| P1 health | 0 |
+| P2 health | 3: og:type=website + фото модели; сирота `/blog/category/sovety`; 63 тега в sitemap |
 | Критических в коде сайта | н/д — `besedki-seo/` нет в этом репо |
 | Органика / индекс / заявки | Недостаточно данных (нет Вебмастера / GSC / Метрики) |
+| PageSpeed mobile | Недостаточно данных (PSI 429 без `PAGESPEED_API_KEY`) |
+
+Каталог на проде без изменений к 25.09: sitemap **458 / 180 / 153 / 63 / 5**. К 10.09 рост был 414 → 458, товары 149 → 180.
 
 ---
 
@@ -28,22 +31,25 @@
 
 | Приоритет | Проблема | URL / объект | Что исправлено | Статус |
 |-----------|----------|--------------|----------------|--------|
-| P1 | Мобильные LTE МО — риск ERR_CONNECTION_RESET до VPS | инфра | NS Cloudflare; origin 200 со всех UA — не блокируем SEO | 🟡 |
-| P1 | Cloudflare — NS есть, прокси не активен (нет cf-* headers) | DNS/CDN | health: P1 owner_action, если origin живой | 🟡 |
 | P0 | Нет `besedki-seo/` и `~/.ssh/besedki_deploy` в среде агента | репо / SSH | on-page деплой из этого прогона невозможен | 🔴 |
-| P1 | Нет товарного Open Graph (og:image, og:type=product) | карточки | на проде только сайтный OG `website`, без og:image | 🔴 |
-| P1 | 54 ссылки на `/proekty` в блоге | блог | на проде 59 URL блога: href `/proekty` = 0; `/proekty` → 301 `/katalog` | 🟢 |
+| P2 | og:type=website при живом фото модели | карточки | og:image = фото модели; `og:type=product` нужен код сайта | 🟡 |
+| P2 | Сирота `/blog/category/sovety`: 200, H1 «sovety», без noindex, не в sitemap | блог | не в карте; 301/noindex — после кода сайта | 🔴 |
+| P2 | 63 URL тегов блога в sitemap | `/sitemap.xml` | thin tags; дроп/noindex — после кода сайта | 🟡 |
+| P2 | Пустой `/katalog/poisk` в карте / без noindex | поиск | хаб и `?q=` оба `noindex, follow`; пустой URL **не** в sitemap | 🟢 |
+| P1 | 54 ссылки на `/proekty` в блоге | блог | `/proekty` → 301 `/katalog`; href в статьях = 0 | 🟢 |
 | P1 | Title карточек не уникальны | каталог | на проде title уникальны: модель + размер + цена «от» | 🟢 |
 | P1 | `seo.json` / сниппет про ДПК vs фанера | главная | живой текст: фанера в базе, ДПК как опция — бриф соблюдён | 🟢 |
+| P1 | Нет товарного Open Graph (og:image) | карточки | на проде og:image = фото модели, не hero сайта | 🟢 |
+| P1 | H1 категорий блога — slug | `/blog/category/*` | в sitemap H1 человекочитаемые (5 шт.) | 🟢 |
+| P2 | BreadcrumbList JSON-LD | `/katalog` и карточки | есть на хабе и на карточках | 🟢 |
+| P2 | ContactPage schema | `/kontakty` | есть на проде | 🟢 |
+| P2 | www/http/слеш — редиректы | домен | 301 на https://real-besedki.ru/; health теперь пишет first hop 301, не скрытый 200 | 🟢 |
+| P1 | Cloudflare — NS есть, прокси не активен | DNS/CDN | NS **Beget** (ns1/ns2.beget.ru + .pro / .com). Не CF. Не открывать как P1 | 🟢 |
 | P1 | Нет данных Вебмастера / GSC / Метрики | кабинеты | — | ⚪ |
 | P1 | Яндекс Бизнес / Google Business — не подтверждено | off-page | — | ⚪ |
 | P1 | Метрика: цели «форма» + «телефон» не проверены | metrika.yandex.ru | счётчик на проде есть (`mc.yandex.ru/watch/111500128`); целей нет в выгрузке | ⚪ |
-| P2 | Meta категорий блога — slug вместо H1 | `/blog/category/sravneniya` | H1 «Категория: sravneniya» (проверено 25.08 12:52) | 🔴 |
-| P2 | BreadcrumbList JSON-LD | `/katalog` vs карточки | на карточках есть; на хабе `/katalog` нет | 🟡 |
-| P2 | Нет ContactPage schema на контактах | `/kontakty` | проверено на проде | 🔴 |
+| P2 | PageSpeed mobile без ключа | PSI | понедельник: оба URL 429 | ⚪ |
 | P2 | Поле `seoDescription` в админке каталога | админка | нет кода сайта в репо | 🔴 |
-| P2 | www/http/слеш — редиректы | домен | 301/канон на https://real-besedki.ru/ | 🟢 |
-| P2 | Мобильное меню «не найдено» | главная | ложный сигнал: на 375 есть CTA «Каталог» + поиск (`lg:hidden`) | 🟢 |
 | P3 | ТОП-20 карточек без уникального текста 800–1500 зн. | карточки | — | 🔴 |
 | P3 | Нет раздела «Наши работы» с кейсами | новый раздел | — | 🔴 |
 | P3 | Нет полноценного раздела отзывов | новый раздел | — | 🔴 |
@@ -53,30 +59,37 @@
 
 ---
 
-## Что уже OK (2026-08-25)
+## Что уже OK (2026-09-28)
 
 | Проверка | Статус |
 |----------|--------|
 | Главная, каталог, блог, контакты, услуги, о компании | 🟢 |
 | Поиск B-51 / В51 | 🟢 |
-| Hero-фото и GLB (выборка 10 карточек с sitemap) | 🟢 |
-| Форма заявки + `tel:+74952555477` | 🟢 |
-| robots.txt, sitemap 216 URL | 🟢 |
+| Hero-фото 10/10 и GLB 9/9 (выборка с sitemap) | 🟢 |
+| Форма заявки + `tel:+74952555477` + viewport | 🟢 |
+| robots.txt, sitemap 458 URL | 🟢 |
 | SSL до 2026-11-22, TLS 1.3, Let's Encrypt YR1 | 🟢 |
-| Title карточек уникальны (выборка 15) | 🟢 |
+| Title карточек уникальны; Product + Offer + BreadcrumbList | 🟢 |
 | Живой description: пол фанера, каркас 80×80, Москва и МО | 🟢 |
-| `/proekty` → `/katalog` (301), в статьях блога битых href нет | 🟢 |
+| `/proekty` → `/katalog` (301) | 🟢 |
+| ContactPage на `/kontakty`; BreadcrumbList на `/katalog` | 🟢 |
+| H1 категорий блога в sitemap: «Как выбрать», «Монтаж и уход», «Проекты и идеи», «Сравнения», «Стили» | 🟢 |
+| Пустой `/katalog/poisk` не в sitemap, `noindex, follow` | 🟢 |
+| NS Beget, origin 31.128.44.47 — без ложной аварии CF | 🟢 |
+| http/www first hop 301 → https://real-besedki.ru/ | 🟢 |
 
-## Последний прогон (2026-08-25 12:52 UTC)
+## Последний прогон (2026-09-28 06:05 UTC)
 
-- iPhone UA главная: **200**, form + tel + viewport
-- Health: **P0=0 · P1=2** (CF proxy owner_action, товарный OG) **· P2=2** (ContactPage, H1 «Категория: sravneniya») · emergency нет
+- iPhone UA главная: **200**, form + tel + viewport + Metrika `111500128`
+- Health: **P0=0 · P1=0 · P2=3** · emergency нет
 - Светофор: открыть ✓ · товар ✓ · заявка ✓ · выдача техника ✓
 - Маршруты **7/7** · поиск B-51 / В51 ✓
-- Карточки: **10/10** (страница + hero + GLB)
-- Sitemap: **0/20** ошибок · 216 URL
-- PageSpeed: не запускался (не понедельник)
-- Логи: `real-besedki-seo-agent/logs/2026-08-25_{health,check}.md`
+- Карточки: **10/10** (страница + hero) · GLB **9/9**
+- Sitemap: **0/20** ошибок · **458** URL (**180** товаров, без изменений к 25.09)
+- http и www → **301** https://real-besedki.ru/ (first hop в health; curl -I совпадает)
+- PageSpeed mobile: **429** на `/` и `/katalog` — недостаточно данных (нет `PAGESPEED_API_KEY`)
+- Деплой: нет — `besedki-seo/` и `~/.ssh/besedki_deploy` отсутствуют
+- Логи: `real-besedki-seo-agent/logs/2026-09-28_{health,check,seo,backlog}.*`
 
 ---
 
@@ -84,15 +97,17 @@
 
 ### Владелец (без кабинета агент не сделает)
 
-1. Cloudflare → DNS → A `@` и `www` → **Proxied** (оранжевое облако). SSL/TLS: Full (strict). Origin уже с валидным LE.
-2. Положить код сайта `besedki-seo/` в репозиторий/среду и ключ `~/.ssh/besedki_deploy`.
-3. Выгрузки Вебмастер + GSC + Метрика (цели форма / телефон).
+1. Положить код сайта `besedki-seo/` в репозиторий/среду и ключ `~/.ssh/besedki_deploy`.
+2. Выгрузки Вебмастер + GSC + Метрика (цели форма / телефон).
+3. `PAGESPEED_API_KEY` для понедельничного PSI (без ключа — 429).
+4. Яндекс Бизнес / Google Business Profile.
 
 ### On-page, когда появится код сайта
 
-4. Товарный OG: `og:type=product`, `og:image` = hero, уникальные og:title.
-5. ContactPage на `/kontakty`, BreadcrumbList на хабе `/katalog`.
-6. Человекочитаемые title категорий блога (не slug).
+5. `og:type=product` на карточках (фото модели уже есть).
+6. 301 или noindex для сироты `/blog/category/sovety`.
+7. Убрать или закрыть от индекса оставшиеся теги блога (~63 URL).
+8. Поле `seoDescription` в админке каталога.
 
 ---
 
@@ -104,6 +119,8 @@
 | 2026-08-25 | агент `scan_repo` / catalog / viewport | ложные critical с create-next-app; 0 карточек; ложный P1 меню | sitemap-каталог, мобильный CTA, без скана стартера | weekday врал без `besedki-seo/` | 🟢 |
 | 2026-08-25 | журнал | P1 /proekty, title, ДПК как 🔴 | сверено с продом | факты, не догадки | 🟢 |
 | 2026-08-25 | health CF / onpage | CF без прокси = P0 emergency | P1 owner_action + живой OG/ContactPage/H1 | ложная авария и слепой backlog | 🟢 |
+| 2026-08-26…09-25 | агент honesty (PR 3–16, не влиты) | ложный P1 OG / slug H1 / повторный collect | P1 только без og:image; backlog по живым сигналам; один collect | weekday стартует с main 25.08 | 🟡 |
+| 2026-09-28 | weekday (пн) | main 25.08 без honesty | снова наложены правки PR 3–16; first hop 301 в health; прод P0=0 P1=0 P2=3; PSI 429 | будничный прогон | 🟢 |
 
 ---
 
