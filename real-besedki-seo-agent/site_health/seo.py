@@ -60,6 +60,96 @@ def check_robots() -> dict[str, Any]:
     }
 
 
+def sitemap_path(loc: str) -> str:
+    return re.sub(r"^https?://[^/]+", "", (loc or "").strip()).split("?", 1)[0].rstrip("/") or "/"
+
+
+def sitemap_composition(locs: list[str]) -> dict[str, Any]:
+    products = 0
+    posts = 0
+    tags = 0
+    blog_cats = 0
+    size_hubs = 0
+    poisk: list[str] = []
+    for loc in locs:
+        path = sitemap_path(loc)
+        if path == "/katalog/poisk" or path.startswith("/katalog/poisk/"):
+            poisk.append(loc)
+        elif path == "/katalog/razmer" or path.startswith("/katalog/razmer/"):
+            size_hubs += 1
+        elif re.fullmatch(r"/katalog/[^/]+/[^/]+", path):
+            products += 1
+        elif path.startswith("/blog/tag/"):
+            tags += 1
+        elif path.startswith("/blog/category/"):
+            blog_cats += 1
+        elif path.startswith("/blog/") and path != "/blog":
+            posts += 1
+    return {
+        "products": products,
+        "posts": posts,
+        "tags": tags,
+        "blog_cats": blog_cats,
+        "size_hubs": size_hubs,
+        "poisk": poisk,
+        "url_count": len(locs),
+    }
+
+
+def leftover_poisk_issue(*, in_sitemap: bool, noindex: bool | None) -> dict[str, Any] | None:
+    """Empty /katalog/poisk without noindex, even if already dropped from sitemap."""
+    if in_sitemap or noindex is not False:
+        return None
+    return {
+        "priority": "P2",
+        "category": "sitemap",
+        "problem": "Пустой /katalog/poisk без noindex (нет в sitemap)",
+        "url": f"{CANONICAL_BASE}/katalog/poisk",
+        "cause": "поисковый хаб без запроса открыт, robots без noindex",
+        "impact": "Индексация пустой выдачи поиска",
+        "fact_kind": "verified",
+    }
+
+
+def sitemap_growth_issues(locs: list[str], *, poisk_noindex: bool | None = None) -> list[dict[str, Any]]:
+    """P2: empty /katalog/poisk without noindex; ≥50 blog tag URLs."""
+    comp = sitemap_composition(locs)
+    issues: list[dict[str, Any]] = []
+    if comp["poisk"] and poisk_noindex is False:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "sitemap",
+                "problem": "Пустой /katalog/poisk в sitemap без noindex",
+                "url": comp["poisk"][0],
+                "cause": "поисковый хаб без запроса в карте сайта, robots без noindex",
+                "impact": "Индексация пустой выдачи поиска",
+                "fact_kind": "verified",
+            }
+        )
+    if comp["tags"] >= 50:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "sitemap",
+                "problem": f"{comp['tags']} URL тегов блога в sitemap",
+                "url": f"{CANONICAL_BASE}/sitemap.xml",
+                "cause": "thin tag pages раздувают карту",
+                "impact": "Краулер тратит бюджет на теги вместо карточек и статей",
+                "fact_kind": "verified",
+            }
+        )
+    return issues
+
+
+def _poisk_is_noindex() -> bool:
+    resp = fetch(f"{CANONICAL_BASE}/katalog/poisk")
+    parsed = parse_page(resp.get("body") or "")
+    robots = (parsed.get("robots_meta") or "").lower()
+    x_robots = ((resp.get("headers") or {}).get("x-robots-tag") or "").lower()
+    return "noindex" in robots or "noindex" in x_robots
+
+
 def check_sitemap(sample_size: int = 15) -> dict[str, Any]:
     import random
 
@@ -67,6 +157,7 @@ def check_sitemap(sample_size: int = 15) -> dict[str, Any]:
     body = resp.get("body") or ""
     issues: list[dict[str, Any]] = []
     locs = re.findall(r"<loc>([^<]+)</loc>", body)
+    composition = sitemap_composition(locs)
     bad_patterns = ("localhost", "127.0.0.1", "beget.app", "://www.")
     bad_locs = [loc for loc in locs if any(p in loc for p in bad_patterns)]
     if resp.get("status") != 200:
@@ -115,9 +206,16 @@ def check_sitemap(sample_size: int = 15) -> dict[str, Any]:
                 "evidence": {"failures": failures, "sample": len(sample)},
             }
         )
+    poisk_noindex = _poisk_is_noindex()
+    issues.extend(sitemap_growth_issues(locs, poisk_noindex=poisk_noindex))
+    leftover = leftover_poisk_issue(in_sitemap=bool(composition["poisk"]), noindex=poisk_noindex)
+    if leftover:
+        issues.append(leftover)
     return {
         "status": resp.get("status"),
         "url_count": len(locs),
+        "composition": composition,
+        "poisk_noindex": poisk_noindex,
         "bad_locs": bad_locs[:10],
         "sample": sample_results,
         "sample_failures": failures,
