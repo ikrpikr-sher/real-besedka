@@ -56,11 +56,12 @@ def render_health_report(health: dict[str, Any]) -> str:
     if domains:
         lines.append("### Редиректы домена")
         lines.append("")
-        lines.append("| URL | Status | Final |")
-        lines.append("|-----|--------|-------|")
+        lines.append("| URL | First hop | Final status | Final |")
+        lines.append("|-----|-----------|--------------|-------|")
         for row in domains:
+            first = row.get("first_status") if row.get("first_status") is not None else row.get("status")
             lines.append(
-                f"| {row.get('start_url')} | {row.get('status')} | {row.get('final_url')} |"
+                f"| {row.get('start_url')} | {first} | {row.get('status')} | {row.get('final_url')} |"
             )
         lines.append("")
 
