@@ -28,17 +28,44 @@ def build_findings(snapshot: dict[str, Any]) -> list[str]:
 
 
 def build_proposals(snapshot: dict[str, Any]) -> list[str]:
+    from optimizer.backlog import live_onpage_signals
+
     live = snapshot.get("live") or {}
     content = snapshot.get("content") or {}
     live_ok = bool(live.get("reachable"))
     sitemap_urls = ((live.get("sitemap") or {}).get("url_count") or 0)
     catalog_count = len(snapshot.get("catalog") or [])
+    closed = live_onpage_signals(snapshot)
     proposals = [
         "**Этап 2** — автономные правки. P0/P1 чинить и деплоить. Не трогать priceFrom и целый katalog.json на проде.",
         "**Off-page P1:** Яндекс Бизнес, Google Business, отзывы, Вебмастер, Search Console, цели Метрики.",
-        "**On-page P1:** title/description 128 карточек (`templates/onpage-product.md`), Open Graph, meta блога, `/proekty` → `/katalog`.",
-        "**On-page P2:** BreadcrumbList, ContactPage, поле seoDescription в каталоге.",
     ]
+    onpage_p1: list[str] = []
+    if not closed["unique_titles"]:
+        onpage_p1.append("уникальные title/description карточек (`templates/onpage-product.md`)")
+    if not closed["og_image"]:
+        onpage_p1.append("og:image на карточках")
+    if not closed["human_blog_h1"]:
+        onpage_p1.append("человекочитаемые H1 категорий блога")
+    if int(content.get("proekty_links") or 0):
+        onpage_p1.append("`/proekty` → `/katalog`")
+    if onpage_p1:
+        proposals.append("**On-page P1:** " + ", ".join(onpage_p1) + ".")
+    else:
+        proposals.append("**On-page P1:** живые сигналы закрыты (уникальные title, og:image, H1 блога, /proekty).")
+
+    onpage_p2: list[str] = ["поле seoDescription в каталоге"]
+    if not closed["breadcrumbs"]:
+        onpage_p2.append("BreadcrumbList")
+    if not closed["contactpage"]:
+        onpage_p2.append("ContactPage")
+    health_p2 = [
+        i.get("problem")
+        for i in ((snapshot.get("site_health") or {}).get("issues") or [])
+        if i.get("priority") == "P2" and i.get("problem")
+    ]
+    onpage_p2.extend(health_p2)
+    proposals.append("**On-page P2:** " + ", ".join(onpage_p2) + ".")
     if live_ok and sitemap_urls:
         proposals.append(
             f"Прод: robots 200, sitemap ~{sitemap_urls} URL, каталог /katalog/{{category}}/{{slug}}."
