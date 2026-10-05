@@ -3,24 +3,26 @@
 **Сайт:** https://real-besedki.ru/  
 **Бренд:** REAL БЕСЕДКИ · ООО «Пулман»  
 **Полное ТЗ:** `real-besedki-seo-agent/TZ-FULL.md`  
-**Последнее обновление:** 2026-08-25 12:52 UTC  
+**Последнее обновление:** 2026-10-05 06:12 UTC  
 **Режим:** этап 2 — **автономные правки**
 
 ---
 
-## Сводка прогона 2026-08-25
+## Сводка прогона 2026-10-05
 
 | Метрика | Значение |
 |---------|----------|
 | Ключевые маршруты | 7/7 OK |
 | Карточки (выборка) | 10/10 OK · hero 10/10 · GLB 10/10 |
-| Sitemap (выборка) | 0/20 ошибок · 216 URL на проде |
+| Sitemap (выборка) | 0/20 ошибок · 2179 URL на проде |
+| Состав карты | SKU **146** · статьи 1943 · теги 0 · хабы размера 0 · коммерческие 55 |
 | Светофор клиента | открыть ✓ · товар ✓ · заявка ✓ · выдача техника ✓ |
-| P0 | 0 (CF proxy при живом origin больше не авария) |
-| P1 health | CF proxy (owner) + товарный OG |
-| P2 health | ContactPage + H1 «Категория: sravneniya» |
+| P0 | 0 |
+| P1 health | 1 — старый URL B-51 404 без 301 |
+| P2 health | 5 — og:type=website; сирота `/blog/category/sovety`; пустой `/katalog/poisk` в карте; 1943 статьи; SKU 146 < 160 |
 | Критических в коде сайта | н/д — `besedki-seo/` нет в этом репо |
 | Органика / индекс / заявки | Недостаточно данных (нет Вебмастера / GSC / Метрики) |
+| PageSpeed mobile | 429 без `PAGESPEED_API_KEY` |
 
 ---
 
@@ -28,71 +30,80 @@
 
 | Приоритет | Проблема | URL / объект | Что исправлено | Статус |
 |-----------|----------|--------------|----------------|--------|
-| P1 | Мобильные LTE МО — риск ERR_CONNECTION_RESET до VPS | инфра | NS Cloudflare; origin 200 со всех UA — не блокируем SEO | 🟡 |
-| P1 | Cloudflare — NS есть, прокси не активен (нет cf-* headers) | DNS/CDN | health: P1 owner_action, если origin живой | 🟡 |
-| P0 | Нет `besedki-seo/` и `~/.ssh/besedki_deploy` в среде агента | репо / SSH | on-page деплой из этого прогона невозможен | 🔴 |
-| P1 | Нет товарного Open Graph (og:image, og:type=product) | карточки | на проде только сайтный OG `website`, без og:image | 🔴 |
-| P1 | 54 ссылки на `/proekty` в блоге | блог | на проде 59 URL блога: href `/proekty` = 0; `/proekty` → 301 `/katalog` | 🟢 |
+| P1 | Старый URL B-51 `/katalog/besedki-s-ostekleniem/b-51` — 404 без Location | карточка | Живая модель: `/katalog/otkrytye-besedki/b-51` («Графит · Лофт»), поиск B-51/В51 находит. 301 нельзя выкатить — нет `besedki-seo/` и SSH | 🔴 |
+| P2 | SKU в sitemap 146 (02.10 было 172) | sitemap | Агент: порог 160. Часть старых slug 404 (b-1 и др.) | 🔴 |
+| P1 | Нет `besedki-seo/` и `~/.ssh/besedki_deploy` в среде агента | репо / SSH | on-page деплой из этого прогона невозможен | 🔴 |
+| P2 | og:type=website при живом фото модели | карточки | og:image = фото модели; Product + Offer + BreadcrumbList JSON-LD есть | 🟡 |
+| P2 | Сирота `/blog/category/sovety`: 200, H1 «sovety», нет noindex | блог | не в sitemap; живые категории с человекочитаемым H1 | 🔴 |
+| P2 | Пустой `/katalog/poisk` в sitemap без noindex | поиск | `?q=` остаётся `noindex, follow` | 🔴 |
+| P2 | 1943 URL статей блога в sitemap | блог | порог агента 400; SKU 146 | 🔴 |
+| P1 | Мобильные LTE МО — риск ERR_CONNECTION_RESET до VPS | инфра | NS **Beget** (не Cloudflare). Origin 200 со всех UA — не блокируем SEO | 🟢 |
+| P1 | Cloudflare — прокси не активен | DNS/CDN | NS не CF; не открывать как P1, пока origin 200 | 🟢 |
+| P1 | 54 ссылки на `/proekty` в блоге | блог | `/proekty` → 301 `/katalog` | 🟢 |
 | P1 | Title карточек не уникальны | каталог | на проде title уникальны: модель + размер + цена «от» | 🟢 |
-| P1 | `seo.json` / сниппет про ДПК vs фанера | главная | живой текст: фанера в базе, ДПК как опция — бриф соблюдён | 🟢 |
+| P1 | `seo.json` / сниппет про ДПК vs фанера | главная | живой текст: фанера в базе, ДПК как опция | 🟢 |
 | P1 | Нет данных Вебмастера / GSC / Метрики | кабинеты | — | ⚪ |
 | P1 | Яндекс Бизнес / Google Business — не подтверждено | off-page | — | ⚪ |
-| P1 | Метрика: цели «форма» + «телефон» не проверены | metrika.yandex.ru | счётчик на проде есть (`mc.yandex.ru/watch/111500128`); целей нет в выгрузке | ⚪ |
-| P2 | Meta категорий блога — slug вместо H1 | `/blog/category/sravneniya` | H1 «Категория: sravneniya» (проверено 25.08 12:52) | 🔴 |
-| P2 | BreadcrumbList JSON-LD | `/katalog` vs карточки | на карточках есть; на хабе `/katalog` нет | 🟡 |
-| P2 | Нет ContactPage schema на контактах | `/kontakty` | проверено на проде | 🔴 |
+| P1 | Метрика: цели «форма» + «телефон» не проверены | metrika.yandex.ru | счётчик `111500128` в layout-chunk | ⚪ |
+| P2 | Meta категорий блога — slug вместо H1 | `/blog/category/*` | в sitemap H1 человекочитаемые; сирота sovety отдельно | 🟢 |
+| P2 | BreadcrumbList JSON-LD | `/katalog` | на хабе и карточках есть | 🟢 |
+| P2 | Нет ContactPage schema на контактах | `/kontakty` | есть | 🟢 |
 | P2 | Поле `seoDescription` в админке каталога | админка | нет кода сайта в репо | 🔴 |
 | P2 | www/http/слеш — редиректы | домен | 301/канон на https://real-besedki.ru/ | 🟢 |
-| P2 | Мобильное меню «не найдено» | главная | ложный сигнал: на 375 есть CTA «Каталог» + поиск (`lg:hidden`) | 🟢 |
 | P3 | ТОП-20 карточек без уникального текста 800–1500 зн. | карточки | — | 🔴 |
 | P3 | Нет раздела «Наши работы» с кейсами | новый раздел | — | 🔴 |
 | P3 | Нет полноценного раздела отзывов | новый раздел | — | 🔴 |
-| P3 | Коммерческие посадочные / гео | §10–11 ТЗ | — | 🔴 |
+| P3 | Коммерческие посадочные / гео | §10–11 ТЗ | 55 корневых посадочных в карте | 🟡 |
 
 **Легенда:** 🔴 Не исправлено · 🟡 В работе · 🟢 Исправлено / снято · ⚪ Требуется решение владельца
 
 ---
 
-## Что уже OK (2026-08-25)
+## Что уже OK (2026-10-05)
 
 | Проверка | Статус |
 |----------|--------|
 | Главная, каталог, блог, контакты, услуги, о компании | 🟢 |
-| Поиск B-51 / В51 | 🟢 |
+| Поиск B-51 / В51 → живая карточка `/katalog/otkrytye-besedki/b-51` | 🟢 |
 | Hero-фото и GLB (выборка 10 карточек с sitemap) | 🟢 |
 | Форма заявки + `tel:+74952555477` | 🟢 |
-| robots.txt, sitemap 216 URL | 🟢 |
+| robots.txt, sitemap 2179 URL | 🟢 |
 | SSL до 2026-11-22, TLS 1.3, Let's Encrypt YR1 | 🟢 |
-| Title карточек уникальны (выборка 15) | 🟢 |
+| Title карточек уникальны | 🟢 |
 | Живой description: пол фанера, каркас 80×80, Москва и МО | 🟢 |
-| `/proekty` → `/katalog` (301), в статьях блога битых href нет | 🟢 |
+| `/proekty` → `/katalog` (301) | 🟢 |
+| ContactPage, BreadcrumbList на `/katalog`, человекочитаемые H1 категорий в sitemap | 🟢 |
+| Хабы `/katalog/razmer/3x3` — 200, `noindex, follow`, не в карте | 🟢 |
 
-## Последний прогон (2026-08-25 12:52 UTC)
+## Последний прогон (2026-10-05 06:12 UTC)
 
-- iPhone UA главная: **200**, form + tel + viewport
-- Health: **P0=0 · P1=2** (CF proxy owner_action, товарный OG) **· P2=2** (ContactPage, H1 «Категория: sravneniya») · emergency нет
+- iPhone UA главная: **200**, form + tel:+74952555477 + viewport
+- Health повторно: **P0=0 · P1=1 · P2=5** · emergency нет
 - Светофор: открыть ✓ · товар ✓ · заявка ✓ · выдача техника ✓
-- Маршруты **7/7** · поиск B-51 / В51 ✓
+- Маршруты **7/7** · поиск B-51 / В51 находит открытую B-51
 - Карточки: **10/10** (страница + hero + GLB)
-- Sitemap: **0/20** ошибок · 216 URL
-- PageSpeed: не запускался (не понедельник)
-- Логи: `real-besedki-seo-agent/logs/2026-08-25_{health,check}.md`
+- Sitemap: **0/20** ошибок · 2179 URL (SKU 146, было 172 на 02.10)
+- Метрика `111500128` в `/_next/static/chunks/app/page-*.js`; yandex-verification `36f8ff18a456a0f6`
+- PageSpeed: **429** без ключа
+- Логи: `real-besedki-seo-agent/logs/2026-10-05_{health,check,seo,backlog}.md`
 
 ---
 
 ## Очередь
 
-### Владелец (без кабинета агент не сделает)
+### Владелец (без кабинета / кода агент не сделает)
 
-1. Cloudflare → DNS → A `@` и `www` → **Proxied** (оранжевое облако). SSL/TLS: Full (strict). Origin уже с валидным LE.
-2. Положить код сайта `besedki-seo/` в репозиторий/среду и ключ `~/.ssh/besedki_deploy`.
+1. Положить код сайта `besedki-seo/` и ключ `~/.ssh/besedki_deploy`.
+2. **P1:** 301 `/katalog/besedki-s-ostekleniem/b-51` → `/katalog/otkrytye-besedki/b-51`. Проверить остальные снятые slug.
 3. Выгрузки Вебмастер + GSC + Метрика (цели форма / телефон).
+4. `PAGESPEED_API_KEY` для понедельничного PSI.
+5. Убрать пустой `/katalog/poisk` из sitemap и вернуть noindex; noindex или 301 для `/blog/category/sovety`; сжать 1943 статьи в карте.
+6. Не открывать Cloudflare orange-cloud как аварию: NS Beget, origin 200.
 
 ### On-page, когда появится код сайта
 
-4. Товарный OG: `og:type=product`, `og:image` = hero, уникальные og:title.
-5. ContactPage на `/kontakty`, BreadcrumbList на хабе `/katalog`.
-6. Человекочитаемые title категорий блога (не slug).
+7. `og:type=product` на карточках (фото модели уже есть).
+8. Поле `seoDescription` в админке каталога.
 
 ---
 
@@ -101,9 +112,8 @@
 | Дата | Объект | Было | Стало | Причина | Статус |
 |------|--------|------|-------|---------|--------|
 | 2026-08-24 | ТЗ | краткий TZ.md | TZ-FULL.md + этот журнал | внедрение полного ТЗ | 🟢 |
-| 2026-08-25 | агент `scan_repo` / catalog / viewport | ложные critical с create-next-app; 0 карточек; ложный P1 меню | sitemap-каталог, мобильный CTA, без скана стартера | weekday врал без `besedki-seo/` | 🟢 |
-| 2026-08-25 | журнал | P1 /proekty, title, ДПК как 🔴 | сверено с продом | факты, не догадки | 🟢 |
-| 2026-08-25 | health CF / onpage | CF без прокси = P0 emergency | P1 owner_action + живой OG/ContactPage/H1 | ложная авария и слепой backlog | 🟢 |
+| 2026-08-25 | агент `scan_repo` / catalog / viewport | ложные critical | sitemap-каталог, мобильный CTA | weekday врал без `besedki-seo/` | 🟢 |
+| 2026-10-05 | weekday + health | PRs 3–21 не влиты; B-51 alias не проверялся | honesty с PR 21 + P1 старый B-51 + порог SKU 160 | 172→146 SKU, старый путь 404 | 🟢 |
 
 ---
 
