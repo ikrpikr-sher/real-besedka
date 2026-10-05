@@ -2,7 +2,7 @@ export default function SeoToday() {
   return (
     <article className="mx-auto max-w-3xl space-y-6 p-6 font-sans text-zinc-900">
       <header className="space-y-2">
-        <p className="text-sm text-zinc-500">real-besedki.ru · 25.08.2026 · будничный прогон</p>
+        <p className="text-sm text-zinc-500">real-besedki.ru · 05.10.2026 · будничный прогон (понедельник)</p>
         <h1 className="text-2xl font-semibold tracking-tight">SEO — сегодня</h1>
         <p className="text-zinc-600">
           Клиент может открыть сайт, посмотреть товар и оставить заявку. Органика и индекс —
@@ -14,16 +14,19 @@ export default function SeoToday() {
         <h2 className="text-lg font-semibold">Что сломано</h2>
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            <strong>P1, владелец.</strong> Cloudflare NS уже lola+moura, но прокси выключен:
-            A=31.128.44.47, нет cf-* headers. Origin отвечает 200 — это не авария сайта, нужен
-            оранжевый cloud в кабинете CF.
+            <strong>P1.</strong> Старый URL B-51{" "}
+            <code>/katalog/besedki-s-ostekleniem/b-51</code> отдаёт 404 без Location. Живая карточка —{" "}
+            <code>/katalog/otkrytye-besedki/b-51</code> («Графит · Лофт»). Нужен 301; без{" "}
+            <code>besedki-seo/</code> и SSH не выкатить.
           </li>
           <li>
-            <strong>Блокер деплоя.</strong> В репозитории нет <code>besedki-seo/</code> и нет ключа{" "}
-            <code>~/.ssh/besedki_deploy</code> — товарный OG и ContactPage на прод не выкатить.
+            <strong>P2.</strong> SKU в sitemap 146 (02.10 было 172). Пустой{" "}
+            <code>/katalog/poisk</code> в карте без noindex. Сирота{" "}
+            <code>/blog/category/sovety</code>. 1943 статьи в sitemap. og:type=website при живом фото.
           </li>
           <li>
-            Карточки: og:type=website, нет og:image. Категория блога «proekty-i-idei» в title как slug.
+            <strong>Блокер деплоя.</strong> Нет <code>besedki-seo/</code> и{" "}
+            <code>~/.ssh/besedki_deploy</code>. PageSpeed 429 без ключа.
           </li>
         </ul>
       </section>
@@ -31,36 +34,38 @@ export default function SeoToday() {
       <section className="space-y-2">
         <h2 className="text-lg font-semibold">Что починено / снято сегодня</h2>
         <ul className="list-disc space-y-1 pl-5">
-          <li>Агент больше не принимает create-next-app за сайт и не рисует ложные critical.</li>
-          <li>Выборка карточек с sitemap прода: 10/10 страниц, hero и GLB.</li>
-          <li>Ложный P1 «нет мобильного меню» снят: на телефоне CTA «Каталог» + поиск.</li>
           <li>
-            Health больше не ставит emergency из‑за CF, если origin, форма и телефон живые. В health
-            добавлен живой on-page: товарный OG, ContactPage, H1 категорий блога.
+            С main 25.08 снова накатили honesty из PR 21: one collect, SKU≠razmer/poisk, live
+            backlog, порог 400 статей, first-hop 301.
           </li>
-          <li>Прод: /proekty → 301 /katalog; в 59 URL блога нет href /proekty.</li>
-          <li>Title карточек уникальны. Пол в сниппете — фанера, ДПК как опция.</li>
+          <li>
+            Агент больше не считает поиск «OK» из-за «B-51» в title: нужна ссылка на карточку.
+          </li>
+          <li>
+            Health видит P1 на старый B-51 и P2 при SKU &lt; 160. Повторный health: P0=0 · P1=1 ·
+            P2=5.
+          </li>
         </ul>
       </section>
 
       <section className="space-y-2">
         <h2 className="text-lg font-semibold">Проверка прода</h2>
         <ul className="list-disc space-y-1 pl-5">
-          <li>Маршруты 7/7 · поиск B-51 / В51 · sitemap 216 URL · 0/20 ошибок</li>
+          <li>Маршруты 7/7 · поиск B-51 / В51 → открытая B-51 · sitemap 2179 URL · 0/20 ошибок</li>
           <li>Карточки 10/10 · hero 10/10 · GLB 10/10 · светофор «клиент может пользоваться»</li>
-          <li>Health повторно: P0=0 · P1=2 · P2=2 · emergency нет</li>
           <li>iPhone UA главная 200, форма и tel:+7 (495) 255-54-77</li>
-          <li>SSL до 2026-11-22 · PageSpeed не запускался (не понедельник)</li>
+          <li>SSL до 2026-11-22 · Beget NS · origin 31.128.44.47 · Метрика 111500128 в chunk</li>
+          <li>PageSpeed: HTTP 429 без PAGESPEED_API_KEY</li>
         </ul>
       </section>
 
       <section className="space-y-2">
         <h2 className="text-lg font-semibold">Что осталось</h2>
         <ol className="list-decimal space-y-1 pl-5">
-          <li>Владелец: оранжевое облако на A/www в Cloudflare, SSL Full (strict).</li>
-          <li>Положить код сайта и SSH-ключ в среду агента.</li>
-          <li>Выгрузки Вебмастер / GSC / цели Метрики.</li>
-          <li>После кода: товарный OG, ContactPage, H1 категорий блога.</li>
+          <li>Код сайта + SSH: 301 со старого B-51 и остальных снятых slug.</li>
+          <li>Вернуть noindex пустому поиску, убрать его из sitemap; закрыть sovety.</li>
+          <li>Сжать 1943 статьи в карте. og:type=product.</li>
+          <li>Выгрузки Вебмастер / GSC / цели Метрики. Ключ PageSpeed.</li>
         </ol>
       </section>
     </article>
