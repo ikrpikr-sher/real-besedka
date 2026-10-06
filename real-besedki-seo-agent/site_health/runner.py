@@ -9,6 +9,7 @@ from site_health.dns import check_dns
 from site_health.domains import check_domain_variants, check_path_redirect
 from site_health.onpage import check_live_onpage, origin_healthy
 from site_health.seo import check_canonical, check_robots, check_sitemap
+from site_health.sku_aliases import check_sku_aliases
 from site_health.server import check_server_logs
 from site_health.ssl_check import check_all_ssl
 from site_health.user_agents import check_search_params, check_user_agents
@@ -47,6 +48,7 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
     server = check_server_logs()
     viewport = check_viewport_signals()
     onpage = check_live_onpage()
+    sku_aliases = check_sku_aliases()
 
     dns_issues: list[dict[str, Any]] = []
     if dns.get("ipv6_declared") and dns.get("ipv6_reachable") is False:
@@ -125,6 +127,7 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
         server,
         viewport,
         onpage,
+        sku_aliases,
     )
 
     p0 = [i for i in all_issues if i.get("priority") == "P0"]
@@ -158,5 +161,6 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
             "server": server,
             "viewport": viewport,
             "onpage": onpage,
+            "sku_aliases": sku_aliases,
         },
     }
