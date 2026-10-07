@@ -2,7 +2,7 @@ export default function SeoToday() {
   return (
     <article className="mx-auto max-w-3xl space-y-6 p-6 font-sans text-zinc-900">
       <header className="space-y-2">
-        <p className="text-sm text-zinc-500">real-besedki.ru · 25.08.2026 · будничный прогон</p>
+        <p className="text-sm text-zinc-500">real-besedki.ru · 07.10.2026 · будничный прогон</p>
         <h1 className="text-2xl font-semibold tracking-tight">SEO — сегодня</h1>
         <p className="text-zinc-600">
           Клиент может открыть сайт, посмотреть товар и оставить заявку. Органика и индекс —
@@ -14,16 +14,18 @@ export default function SeoToday() {
         <h2 className="text-lg font-semibold">Что сломано</h2>
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            <strong>P1, владелец.</strong> Cloudflare NS уже lola+moura, но прокси выключен:
-            A=31.128.44.47, нет cf-* headers. Origin отвечает 200 — это не авария сайта, нужен
-            оранжевый cloud в кабинете CF.
+            <strong>P1.</strong> Старые URL B-51 отдают 404 без Location:{" "}
+            <code>/katalog/besedki-s-ostekleniem/b-51</code> и{" "}
+            <code>/katalog/besedki-s-mangalom/b-51</code>. Живая карточка —{" "}
+            <code>/katalog/otkrytye-besedki/b-51</code> («Графит · Лофт»). 301 не выкатить: нет{" "}
+            <code>besedki-seo/</code> и <code>~/.ssh/besedki_deploy</code>.
           </li>
           <li>
-            <strong>Блокер деплоя.</strong> В репозитории нет <code>besedki-seo/</code> и нет ключа{" "}
-            <code>~/.ssh/besedki_deploy</code> — товарный OG и ContactPage на прод не выкатить.
+            <strong>P2.</strong> Sitemap 2179: SKU 146 (было 172 на 02.10), 1943 статьи, пустой{" "}
+            <code>/katalog/poisk</code> без noindex, сирота <code>/blog/category/sovety</code>.
           </li>
           <li>
-            Карточки: og:type=website, нет og:image. Категория блога «proekty-i-idei» в title как slug.
+            Карточки: og:image есть, <code>og:type=website</code>. JSON-LD Product + Offer на месте.
           </li>
         </ul>
       </section>
@@ -31,36 +33,45 @@ export default function SeoToday() {
       <section className="space-y-2">
         <h2 className="text-lg font-semibold">Что починено / снято сегодня</h2>
         <ul className="list-disc space-y-1 pl-5">
-          <li>Агент больше не принимает create-next-app за сайт и не рисует ложные critical.</li>
-          <li>Выборка карточек с sitemap прода: 10/10 страниц, hero и GLB.</li>
-          <li>Ложный P1 «нет мобильного меню» снят: на телефоне CTA «Каталог» + поиск.</li>
           <li>
-            Health больше не ставит emergency из‑за CF, если origin, форма и телефон живые. В health
-            добавлен живой on-page: товарный OG, ContactPage, H1 категорий блога.
+            Агент снова честный на main: re-apply PR 24 (P0=0 не emergency из‑за Beget, backlog
+            держит health P1, поиск считает только href карточки).
           </li>
-          <li>Прод: /proekty → 301 /katalog; в 59 URL блога нет href /proekty.</li>
-          <li>Title карточек уникальны. Пол в сниппете — фанера, ДПК как опция.</li>
+          <li>
+            В <code>sku_aliases</code> добавлен мангал-путь B-51 — тот же артикул, одна живая
+            карточка в поиске и sitemap.
+          </li>
+          <li>
+            Прод без регресса против 06.10: маршруты 7/7, форма + tel, ContactPage, BreadcrumbList,
+            уникальные title, человекочитаемые H1 категорий из sitemap.
+          </li>
         </ul>
       </section>
 
       <section className="space-y-2">
         <h2 className="text-lg font-semibold">Проверка прода</h2>
         <ul className="list-disc space-y-1 pl-5">
-          <li>Маршруты 7/7 · поиск B-51 / В51 · sitemap 216 URL · 0/20 ошибок</li>
-          <li>Карточки 10/10 · hero 10/10 · GLB 10/10 · светофор «клиент может пользоваться»</li>
-          <li>Health повторно: P0=0 · P1=2 · P2=2 · emergency нет</li>
-          <li>iPhone UA главная 200, форма и tel:+7 (495) 255-54-77</li>
-          <li>SSL до 2026-11-22 · PageSpeed не запускался (не понедельник)</li>
+          <li>Маршруты 7/7 · поиск B-51 / В51 · sitemap 2179 URL · 0/20 ошибок</li>
+          <li>Карточки 10/10 · hero 10/10 · GLB 9/9 · светофор «клиент может пользоваться»</li>
+          <li>Health weekday: P0=0 · P1=1 · P2=5. После алиаса мангал B-51 живая проверка: P1=2</li>
+          <li>iPhone UA главная 200, форма и tel:+7 (495) 255-54-77; Metrika в layout-чанке</li>
+          <li>SSL до 2026-11-22 (46 дн.) · PageSpeed не запускался (не понедельник)</li>
         </ul>
       </section>
 
       <section className="space-y-2">
         <h2 className="text-lg font-semibold">Что осталось</h2>
         <ol className="list-decimal space-y-1 pl-5">
-          <li>Владелец: оранжевое облако на A/www в Cloudflare, SSL Full (strict).</li>
-          <li>Положить код сайта и SSH-ключ в среду агента.</li>
+          <li>Владелец: код сайта + SSH-ключ в среду агента.</li>
+          <li>
+            301 остекление/мангал B-51 → открытые B-51; аудит снятых slug (b-1 без текущей
+            карточки).
+          </li>
           <li>Выгрузки Вебмастер / GSC / цели Метрики.</li>
-          <li>После кода: товарный OG, ContactPage, H1 категорий блога.</li>
+          <li>
+            После кода: og:type=product; noindex пустого поиска и сироты sovety; ужать 1943 статьи
+            в sitemap.
+          </li>
         </ol>
       </section>
     </article>

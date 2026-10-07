@@ -9,5 +9,7 @@
 | 2026-08-25 | `site_health/viewport.py` | P1 «нет mobile-nav» | CTA «Каталог» `lg:hidden` = ок | ложный P1 | не блокировать SEO |
 | 2026-08-25 | `site_health/runner.py` | CF без прокси = P0 / emergency | P1 owner_action, если origin 200 + форма/tel | ложная авария блокировала SEO | weekday идёт дальше |
 | 2026-08-25 | `site_health/onpage.py` | health не видел OG/ContactPage/H1 блога | живой HTML прода в P1/P2 | журнал врал без `besedki-seo/` | честный backlog |
+| 2026-10-06 | `optimizer/backlog.py` | health P1 → backlog P2 | приоритет health сохраняется | очередь врала про B-51 | честный P1 |
+| 2026-10-07 | `site_health/sku_aliases.py` | только остекление/b-51 | + `/katalog/besedki-s-mangalom/b-51` | та же модель, 404 без 301 | не терять индекс старого URL |
 
 **Файл для агента:** дополнять `real-besedki-seo-agent/logs/YYYY-MM-DD_changes.md` после каждого деплоя с SEO-правками.
