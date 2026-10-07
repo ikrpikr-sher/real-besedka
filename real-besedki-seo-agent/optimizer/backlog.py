@@ -191,7 +191,9 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
 
     health = snapshot.get("site_health") or {}
     for issue in health.get("issues") or []:
-        if issue.get("priority") != "P2":
+        if issue.get("priority") not in ("P1", "P2"):
+            continue
+        if issue.get("status") == "owner_action":
             continue
         msg = issue.get("problem") or ""
         if not msg:
@@ -200,7 +202,7 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             continue
         items.append(
             {
-                "priority": "P2",
+                "priority": issue.get("priority") or "P2",
                 "area": issue.get("category") or "on-page",
                 "task": msg,
                 "target": issue.get("url") or "",

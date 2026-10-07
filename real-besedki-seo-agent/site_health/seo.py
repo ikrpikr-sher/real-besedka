@@ -81,6 +81,8 @@ SITEMAP_CHROME = frozenset(
 )
 SITEMAP_INFO_PREFIXES = ("/uslugi", "/materialy")
 BLOG_POSTS_P2_THRESHOLD = 400
+# 172 SKU in sitemap on 2026-10-02. Drop below this is a catalog/sitemap regression.
+SKU_FLOOR = 160
 
 
 def sitemap_composition(locs: list[str]) -> dict[str, Any]:
@@ -169,7 +171,7 @@ def missing_indexable_size_hubs_issue(
 
 
 def sitemap_growth_issues(locs: list[str], *, poisk_noindex: bool | None = None) -> list[dict[str, Any]]:
-    """P2: empty /katalog/poisk without noindex; ≥50 blog tags; ≥400 blog posts."""
+    """P2: empty /katalog/poisk without noindex; ≥50 blog tags; ≥400 blog posts; SKU drop."""
     comp = sitemap_composition(locs)
     issues: list[dict[str, Any]] = []
     if comp["poisk"] and poisk_noindex is False:
@@ -205,6 +207,18 @@ def sitemap_growth_issues(locs: list[str], *, poisk_noindex: bool | None = None)
                 "url": f"{CANONICAL_BASE}/sitemap.xml",
                 "cause": f"карта раздута шаблонными/гео-сериями (порог {BLOG_POSTS_P2_THRESHOLD}; SKU {comp['products']})",
                 "impact": "Краулер тратит бюджет на массовые статьи вместо карточек",
+                "fact_kind": "verified",
+            }
+        )
+    if comp["products"] and comp["products"] < SKU_FLOOR:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "sitemap",
+                "problem": f"SKU в sitemap: {comp['products']} (порог {SKU_FLOOR}, 02.10 было 172)",
+                "url": f"{CANONICAL_BASE}/sitemap.xml",
+                "cause": "карточки сняты или сменили категорию без 301 со старых URL",
+                "impact": "Меньше товарных URL в индексе, хуже покрытие каталога",
                 "fact_kind": "verified",
             }
         )

@@ -98,9 +98,43 @@ class BacklogLiveSkipTests(unittest.TestCase):
                 "url": "https://real-besedki.ru/katalog/poisk",
             },
         ]
-        tasks = [row["task"] for row in build_backlog(snap)]
-        self.assertIn("og:type=website при живом фото модели — лучше product", tasks)
-        self.assertIn("Пустой /katalog/poisk в sitemap без noindex", tasks)
+        rows = {row["task"]: row["priority"] for row in build_backlog(snap)}
+        self.assertEqual(rows.get("og:type=website при живом фото модели — лучше product"), "P2")
+        self.assertEqual(rows.get("Пустой /katalog/poisk в sitemap без noindex"), "P2")
+
+    def test_health_p1_land_in_backlog(self) -> None:
+        snap = _closed_snapshot()
+        snap["site_health"]["issues"] = [
+            {
+                "priority": "P1",
+                "category": "redirect",
+                "problem": (
+                    "Старый URL B-51 /katalog/besedki-s-ostekleniem/b-51 "
+                    "отдаёт 404 без 301 на /katalog/otkrytye-besedki/b-51"
+                ),
+                "url": "https://real-besedki.ru/katalog/besedki-s-ostekleniem/b-51",
+            },
+            {
+                "priority": "P1",
+                "category": "redirect",
+                "problem": (
+                    "Старый URL B-51 /katalog/besedki-s-mangalom/b-51 "
+                    "отдаёт 404 без 301 на /katalog/otkrytye-besedki/b-51"
+                ),
+                "url": "https://real-besedki.ru/katalog/besedki-s-mangalom/b-51",
+            },
+        ]
+        rows = {row["task"]: row["priority"] for row in build_backlog(snap)}
+        glazed = (
+            "Старый URL B-51 /katalog/besedki-s-ostekleniem/b-51 "
+            "отдаёт 404 без 301 на /katalog/otkrytye-besedki/b-51"
+        )
+        mangal = (
+            "Старый URL B-51 /katalog/besedki-s-mangalom/b-51 "
+            "отдаёт 404 без 301 на /katalog/otkrytye-besedki/b-51"
+        )
+        self.assertEqual(rows.get(glazed), "P1")
+        self.assertEqual(rows.get(mangal), "P1")
 
 
 if __name__ == "__main__":

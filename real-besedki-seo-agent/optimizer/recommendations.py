@@ -40,7 +40,11 @@ def build_proposals(snapshot: dict[str, Any]) -> list[str]:
         "**Этап 2** — автономные правки. P0/P1 чинить и деплоить. Не трогать priceFrom и целый katalog.json на проде.",
         "**Off-page P1:** Яндекс Бизнес, Google Business, отзывы, Вебмастер, Search Console, цели Метрики.",
     ]
-    onpage_p1: list[str] = []
+    onpage_p1: list[str] = [
+        i.get("problem") or ""
+        for i in ((snapshot.get("site_health") or {}).get("issues") or [])
+        if i.get("priority") == "P1" and i.get("status") != "owner_action" and i.get("problem")
+    ]
     if not closed["unique_titles"]:
         onpage_p1.append("уникальные title/description карточек (`templates/onpage-product.md`)")
     if not closed["og_image"]:

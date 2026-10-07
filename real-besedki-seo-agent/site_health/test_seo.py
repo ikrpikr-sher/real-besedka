@@ -65,6 +65,15 @@ class SitemapGrowthTests(unittest.TestCase):
         locs = [f"https://real-besedki.ru/blog/post-{i}" for i in range(153)]
         self.assertEqual(sitemap_growth_issues(locs), [])
 
+    def test_sku_drop_is_p2(self) -> None:
+        locs = [f"https://real-besedki.ru/katalog/besedki/b-{i}" for i in range(10)]
+        issues = sitemap_growth_issues(locs)
+        self.assertTrue(any("SKU в sitemap" in (i.get("problem") or "") for i in issues))
+
+    def test_sku_above_floor_ok(self) -> None:
+        locs = [f"https://real-besedki.ru/katalog/besedki/b-{i}" for i in range(160)]
+        self.assertFalse(any("SKU в sitemap" in (i.get("problem") or "") for i in sitemap_growth_issues(locs)))
+
     def test_leftover_poisk_without_noindex(self) -> None:
         issue = leftover_poisk_issue(in_sitemap=False, noindex=False)
         self.assertIsNotNone(issue)
