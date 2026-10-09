@@ -2,7 +2,14 @@ from __future__ import annotations
 
 import unittest
 
-from site_health.sku_aliases import CORE_SKUS, alias_needs_redirect
+from site_health.sku_aliases import (
+    CATEGORY_RELOCATIONS,
+    CORE_SKUS,
+    alias_needs_redirect,
+    relocation_new_path,
+    relocation_old_paths,
+    relocation_problem,
+)
 
 
 class SkuAliasTests(unittest.TestCase):
@@ -51,6 +58,29 @@ class SkuAliasTests(unittest.TestCase):
         self.assertEqual(sku["current"], "/katalog/otkrytye-besedki/b-51")
         self.assertIn("/katalog/besedki-s-ostekleniem/b-51", sku["aliases"])
         self.assertIn("/katalog/besedki-s-mangalom/b-51", sku["aliases"])
+
+    def test_loft_relocation_maps_hub_and_five_skus(self) -> None:
+        move = next(item for item in CATEGORY_RELOCATIONS if item["label"] == "лофт")
+        olds = relocation_old_paths(move)
+        self.assertIn("/katalog/loft", olds)
+        self.assertIn("/katalog/loft/b-53", olds)
+        self.assertEqual(len(olds), 6)
+        self.assertEqual(
+            relocation_new_path(move, "/katalog/loft/b-53"),
+            "/katalog/besedki-osteklennye-loft/b-53",
+        )
+        self.assertEqual(
+            relocation_new_path(move, "/katalog/loft"),
+            "/katalog/besedki-osteklennye-loft",
+        )
+        problem = relocation_problem(
+            "лофт",
+            ["/katalog/loft", "/katalog/loft/b-53"],
+            "/katalog/besedki-osteklennye-loft",
+        )
+        self.assertIn("/katalog/loft", problem)
+        self.assertIn("/katalog/loft/b-53", problem)
+        self.assertIn("besedki-osteklennye-loft", problem)
 
 
 if __name__ == "__main__":

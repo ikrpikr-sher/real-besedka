@@ -20,6 +20,38 @@ CORE_SKUS = (
     },
 )
 
+# 07.10 sitemap: 5 SKU under /katalog/loft/. Live cards are the long slug.
+CATEGORY_RELOCATIONS = (
+    {
+        "label": "лофт",
+        "old_prefix": "/katalog/loft",
+        "new_prefix": "/katalog/besedki-osteklennye-loft",
+        "slugs": ("b-53", "b-54", "b-55", "b-62", "b-63"),
+    },
+)
+
+
+def relocation_old_paths(move: dict[str, Any]) -> tuple[str, ...]:
+    old = str(move["old_prefix"]).rstrip("/")
+    slugs = tuple(f"{old}/{slug}" for slug in (move.get("slugs") or ()))
+    return (old,) + slugs
+
+
+def relocation_new_path(move: dict[str, Any], old_path: str) -> str:
+    old = str(move["old_prefix"]).rstrip("/")
+    new = str(move["new_prefix"]).rstrip("/")
+    path = old_path.rstrip("/") or "/"
+    if path == old:
+        return new
+    return f"{new}/{path.rsplit('/', 1)[-1]}"
+
+
+def relocation_problem(label: str, bad_old_paths: list[str], new_prefix: str) -> str:
+    return (
+        f"Категория {label} сменила slug: {', '.join(bad_old_paths)} "
+        f"отдают 404 без 301 на {new_prefix.rstrip('/')}"
+    )
+
 
 def _normalize_path(url: str) -> str:
     raw = url or ""
@@ -102,5 +134,64 @@ def check_sku_aliases() -> dict[str, Any]:
                     "fact_kind": "verified",
                 }
             )
+
+    for move in CATEGORY_RELOCATIONS:
+        new_hub = str(move["new_prefix"]).rstrip("/")
+        hub = fetch(f"{base}{new_hub}")
+        pages.append(
+            {
+                "path": new_hub,
+                "role": "current",
+                "label": move["label"],
+                "status": hub.get("status"),
+                "first_status": hub.get("first_status"),
+                "final_url": hub.get("final_url"),
+            }
+        )
+        if hub.get("status") != 200:
+            continue
+        bad: list[str] = []
+        for old_path in relocation_old_paths(move):
+            target = relocation_new_path(move, old_path)
+            if old_path != str(move["old_prefix"]).rstrip("/"):
+                current = fetch(f"{base}{target}")
+                pages.append(
+                    {
+                        "path": target,
+                        "role": "current",
+                        "label": move["label"],
+                        "status": current.get("status"),
+                        "first_status": current.get("first_status"),
+                        "final_url": current.get("final_url"),
+                    }
+                )
+                if current.get("status") != 200:
+                    continue
+            row = fetch(f"{base}{old_path}")
+            pages.append(
+                {
+                    "path": old_path,
+                    "role": "alias",
+                    "label": move["label"],
+                    "status": row.get("status"),
+                    "first_status": row.get("first_status"),
+                    "final_url": row.get("final_url"),
+                }
+            )
+            if alias_needs_redirect(row, target):
+                bad.append(old_path)
+        if not bad:
+            continue
+        issues.append(
+            {
+                "priority": "P1",
+                "category": "redirect",
+                "problem": relocation_problem(str(move["label"]), bad, new_hub),
+                "url": f"{base}{bad[0]}",
+                "cause": f"старый префикс {move['old_prefix']} снят без Location",
+                "impact": "Индексированные URL категории и карточек теряют сниппет",
+                "fact_kind": "verified",
+            }
+        )
 
     return {"pages": pages, "issues": issues}

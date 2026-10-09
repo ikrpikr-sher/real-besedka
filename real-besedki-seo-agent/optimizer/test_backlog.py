@@ -136,6 +136,23 @@ class BacklogLiveSkipTests(unittest.TestCase):
         self.assertEqual(rows.get(glazed), "P1")
         self.assertEqual(rows.get(mangal), "P1")
 
+    def test_health_p1_loft_relocation_stays_p1(self) -> None:
+        snap = _closed_snapshot()
+        problem = (
+            "Категория лофт сменила slug: /katalog/loft, /katalog/loft/b-53 "
+            "отдают 404 без 301 на /katalog/besedki-osteklennye-loft"
+        )
+        snap["site_health"]["issues"] = [
+            {
+                "priority": "P1",
+                "category": "redirect",
+                "problem": problem,
+                "url": "https://real-besedki.ru/katalog/loft",
+            }
+        ]
+        rows = {row["task"]: row["priority"] for row in build_backlog(snap)}
+        self.assertEqual(rows.get(problem), "P1")
+
 
 if __name__ == "__main__":
     unittest.main()
