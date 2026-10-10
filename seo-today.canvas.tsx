@@ -2,7 +2,7 @@ export default function SeoToday() {
   return (
     <article className="mx-auto max-w-3xl space-y-6 p-6 font-sans text-zinc-900">
       <header className="space-y-2">
-        <p className="text-sm text-zinc-500">real-besedki.ru · 09.10.2026 · будничный прогон</p>
+        <p className="text-sm text-zinc-500">real-besedki.ru · 10.10.2026 · прогон</p>
         <h1 className="text-2xl font-semibold tracking-tight">SEO — сегодня</h1>
         <p className="text-zinc-600">
           Клиент может открыть сайт, посмотреть товар и оставить заявку. Органика и индекс —
@@ -39,13 +39,11 @@ export default function SeoToday() {
         <h2 className="text-lg font-semibold">Что проверено сегодня</h2>
         <ul className="list-disc space-y-1 pl-5">
           <li>P0 = 0. Маршруты 7/7. Карточки выборки 10/10, hero и GLB 10/10.</li>
-          <li>
-            8 хабов категорий и 55 корневых посадочных — 200. Фанера и каркас 80×80 — 200.
-          </li>
+          <li>8 хабов категорий и 55 корневых посадочных — 200. Фанера и каркас 80×80 — 200.</li>
           <li>Sitemap 2200 URL, как вчера: SKU 167, статьи 1943, коммерческие 55.</li>
           <li>
-            IndexNow: 94 приоритетных URL, Яндекс HTTP 202, success true. Блог и 404 не
-            отправлялись.
+            IndexNow: 95 URL, Яндекс HTTP 200, success true. В список попал пустой{" "}
+            <code>/katalog/poisk</code>. Блог и 404 не отправлялись.
           </li>
           <li>
             <code>seoDescription</code>: 0. <code>priceFrom</code> и целый katalog.json не
@@ -61,6 +59,7 @@ export default function SeoToday() {
           <li>301 для двух старых B-51 и шести старых URL лофта.</li>
           <li>Ссылки с хаба мангала на b-76…b-94.</li>
           <li>Выгрузки Вебмастер / GSC / цели Метрики. Сейчас: недостаточно данных.</li>
+          <li>Следующий IndexNow — без /katalog/poisk.</li>
         </ol>
       </section>
     </article>
