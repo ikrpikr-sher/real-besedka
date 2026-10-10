@@ -2,7 +2,7 @@ export default function SeoToday() {
   return (
     <article className="mx-auto max-w-3xl space-y-6 p-6 font-sans text-zinc-900">
       <header className="space-y-2">
-        <p className="text-sm text-zinc-500">real-besedki.ru · 25.08.2026 · будничный прогон</p>
+        <p className="text-sm text-zinc-500">real-besedki.ru · 10.10.2026 · прогон</p>
         <h1 className="text-2xl font-semibold tracking-tight">SEO — сегодня</h1>
         <p className="text-zinc-600">
           Клиент может открыть сайт, посмотреть товар и оставить заявку. Органика и индекс —
@@ -14,53 +14,52 @@ export default function SeoToday() {
         <h2 className="text-lg font-semibold">Что сломано</h2>
         <ul className="list-disc space-y-1 pl-5">
           <li>
-            <strong>P1, владелец.</strong> Cloudflare NS уже lola+moura, но прокси выключен:
-            A=31.128.44.47, нет cf-* headers. Origin отвечает 200 — это не авария сайта, нужен
-            оранжевый cloud в кабинете CF.
+            <strong>P1.</strong> Старые карточки B-51 (
+            <code>/katalog/besedki-s-ostekleniem/b-51</code> и{" "}
+            <code>/katalog/besedki-s-mangalom/b-51</code>) отдают 404 без 301. Живая карточка —{" "}
+            <code>/katalog/otkrytye-besedki/b-51</code>.
+          </li>
+          <li>
+            <strong>P1.</strong> <code>/katalog/loft</code> и пять карточек b-53, b-54, b-55, b-62,
+            b-63 отдают 404 без Location. Канон — <code>/katalog/besedki-osteklennye-loft</code>,
+            все пять карточек 200 и в sitemap.
           </li>
           <li>
             <strong>Блокер деплоя.</strong> В репозитории нет <code>besedki-seo/</code> и нет ключа{" "}
-            <code>~/.ssh/besedki_deploy</code> — товарный OG и ContactPage на прод не выкатить.
+            <code>~/.ssh/besedki_deploy</code> — 301 и ссылки хаба на прод не выкатить.
           </li>
           <li>
-            Карточки: og:type=website, нет og:image. Категория блога «proekty-i-idei» в title как slug.
+            Хаб мангала: в sitemap 39 SKU, в сетке 10 ссылок (только bm-*). b-76…b-94 в HTML хаба
+            нет.
           </li>
         </ul>
       </section>
 
       <section className="space-y-2">
-        <h2 className="text-lg font-semibold">Что починено / снято сегодня</h2>
+        <h2 className="text-lg font-semibold">Что проверено сегодня</h2>
         <ul className="list-disc space-y-1 pl-5">
-          <li>Агент больше не принимает create-next-app за сайт и не рисует ложные critical.</li>
-          <li>Выборка карточек с sitemap прода: 10/10 страниц, hero и GLB.</li>
-          <li>Ложный P1 «нет мобильного меню» снят: на телефоне CTA «Каталог» + поиск.</li>
+          <li>P0 = 0. Маршруты 7/7. Карточки выборки 10/10, hero и GLB 10/10.</li>
+          <li>8 хабов категорий и 55 корневых посадочных — 200. Фанера и каркас 80×80 — 200.</li>
+          <li>Sitemap 2200 URL, как вчера: SKU 167, статьи 1943, коммерческие 55.</li>
           <li>
-            Health больше не ставит emergency из‑за CF, если origin, форма и телефон живые. В health
-            добавлен живой on-page: товарный OG, ContactPage, H1 категорий блога.
+            IndexNow: 95 URL, Яндекс HTTP 200, success true. В список попал пустой{" "}
+            <code>/katalog/poisk</code>. Блог и 404 не отправлялись.
           </li>
-          <li>Прод: /proekty → 301 /katalog; в 59 URL блога нет href /proekty.</li>
-          <li>Title карточек уникальны. Пол в сниппете — фанера, ДПК как опция.</li>
-        </ul>
-      </section>
-
-      <section className="space-y-2">
-        <h2 className="text-lg font-semibold">Проверка прода</h2>
-        <ul className="list-disc space-y-1 pl-5">
-          <li>Маршруты 7/7 · поиск B-51 / В51 · sitemap 216 URL · 0/20 ошибок</li>
-          <li>Карточки 10/10 · hero 10/10 · GLB 10/10 · светофор «клиент может пользоваться»</li>
-          <li>Health повторно: P0=0 · P1=2 · P2=2 · emergency нет</li>
-          <li>iPhone UA главная 200, форма и tel:+7 (495) 255-54-77</li>
-          <li>SSL до 2026-11-22 · PageSpeed не запускался (не понедельник)</li>
+          <li>
+            <code>seoDescription</code>: 0. <code>priceFrom</code> и целый katalog.json не
+            трогались. Деплой не запускался.
+          </li>
         </ul>
       </section>
 
       <section className="space-y-2">
         <h2 className="text-lg font-semibold">Что осталось</h2>
         <ol className="list-decimal space-y-1 pl-5">
-          <li>Владелец: оранжевое облако на A/www в Cloudflare, SSL Full (strict).</li>
           <li>Положить код сайта и SSH-ключ в среду агента.</li>
-          <li>Выгрузки Вебмастер / GSC / цели Метрики.</li>
-          <li>После кода: товарный OG, ContactPage, H1 категорий блога.</li>
+          <li>301 для двух старых B-51 и шести старых URL лофта.</li>
+          <li>Ссылки с хаба мангала на b-76…b-94.</li>
+          <li>Выгрузки Вебмастер / GSC / цели Метрики. Сейчас: недостаточно данных.</li>
+          <li>Следующий IndexNow — без /katalog/poisk.</li>
         </ol>
       </section>
     </article>
