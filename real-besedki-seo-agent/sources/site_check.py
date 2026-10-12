@@ -27,6 +27,26 @@ SEARCH_QUERIES = (
     ("B-51", "latin article"),
     ("В51", "cyrillic article"),
 )
+PRODUCT_CARD_HREF_RE = re.compile(r"""href=["'](/katalog/[^/"'?#]+/[^/"'?#]+)""", re.I)
+ARTICLE_RE = re.compile(r"[bв]\s*-?\s*(\d+)", re.I)
+
+
+def article_slug(query: str) -> str | None:
+    """B-51 / В51 / b51 → b-51. Title echo of the query is not a hit."""
+    match = ARTICLE_RE.search(query or "")
+    if not match:
+        return None
+    return f"b-{int(match.group(1))}"
+
+
+def search_found_product(body: str, query: str) -> bool:
+    """True only if the result list links a SKU card, not just repeats the query."""
+    hrefs = PRODUCT_CARD_HREF_RE.findall(body or "")
+    slug = article_slug(query)
+    if slug:
+        return any(href.rstrip("/").lower().endswith("/" + slug) for href in hrefs)
+    needle = (query or "").lower().replace("-", "")
+    return any(needle and needle in href.lower().replace("-", "") for href in hrefs)
 
 
 def _resolve_image_url(base: str, rel: str) -> tuple[str, int | None]:
@@ -67,16 +87,13 @@ def _check_search(base: str, query: str) -> dict[str, Any]:
     resp = _get(url)
     ok = resp.get("status") == 200
     body = resp.get("body") or ""
-    found = False
-    if ok and body:
-        lowered = body.lower()
-        q = query.lower().replace("-", "")
-        found = q in lowered or query.lower() in lowered or "b-51" in lowered or "b51" in lowered
+    found = ok and search_found_product(body, query)
     return {
         "path": path,
         "query": query,
         "status": resp.get("status"),
-        "ok": ok and found,
+        "ok": found,
+        "found_product": found,
         "error": resp.get("error"),
     }
 
