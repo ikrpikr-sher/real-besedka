@@ -46,10 +46,15 @@ export default function SeoToday() {
             HTTP 200. Список теперь собирает <code>sources/indexnow.py</code>.
           </li>
           <li>
-            Агент: хаб мангала — P2 в health; SSL предупредит за 30/21 день (сегодня 41, тихо).
+            Агент: хаб мангала — P2 в health; SSL предупредит за 30/21 день (08:12: 40 дней, тихо).
           </li>
           <li>
-            PageSpeed mobile: 429 на главной и каталоге. Нет <code>PAGESPEED_API_KEY</code>.
+            Повтор 08:12: P0=0, 8 хабов 200, sitemap 2200, IndexNow 94 (api.indexnow.org и Bing HTTP
+            200, прямой Яндекс не вызывали).
+          </li>
+          <li>
+            PageSpeed mobile 08:12: снова 429 на главной и каталоге. Нет{" "}
+            <code>PAGESPEED_API_KEY</code>.
           </li>
           <li>
             <code>seoDescription</code>: 0. <code>priceFrom</code> и целый katalog.json не
@@ -68,7 +73,7 @@ export default function SeoToday() {
           <li>
             <code>PAGESPEED_API_KEY</code> — иначе понедельничный PSI останется 429.
           </li>
-          <li>SSL до 2026-11-22, по check осталось 41 день.</li>
+          <li>SSL до 2026-11-22, health 08:12: 40 дней (утром check писал 41).</li>
         </ol>
       </section>
     </article>
