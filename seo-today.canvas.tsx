@@ -2,7 +2,7 @@ export default function SeoToday() {
   return (
     <article className="mx-auto max-w-3xl space-y-6 p-6 font-sans text-zinc-900">
       <header className="space-y-2">
-        <p className="text-sm text-zinc-500">real-besedki.ru · 13.10.2026 · вторник</p>
+        <p className="text-sm text-zinc-500">real-besedki.ru · 13.10.2026 · 08:02 UTC · вторник</p>
         <h1 className="text-2xl font-semibold tracking-tight">SEO — сегодня</h1>
         <p className="text-zinc-600">
           Клиент может открыть сайт, посмотреть товар и оставить заявку. Органика и индекс —
@@ -22,7 +22,7 @@ export default function SeoToday() {
           <li>
             <strong>P1.</strong> <code>/katalog/loft</code> и пять карточек b-53, b-54, b-55, b-62,
             b-63 отдают 404 без Location. Канон — <code>/katalog/besedki-osteklennye-loft</code>,
-            все пять карточек 200 и в sitemap.
+            карточка b-53 — 200.
           </li>
           <li>
             <strong>Блокер деплоя.</strong> В репозитории нет <code>besedki-seo/</code> и нет ключа{" "}
@@ -39,7 +39,7 @@ export default function SeoToday() {
         <h2 className="text-lg font-semibold">Что сделано сегодня</h2>
         <ul className="list-disc space-y-1 pl-5">
           <li>P0 = 0. Маршруты 7/7. Карточки выборки 10/10, hero и GLB 10/10.</li>
-          <li>iPhone UA: форма, tel:+74952555477, viewport. Живые B-51 и лофт b-53 — 200.</li>
+          <li>iPhone UA: форма, tel:+74952555477, viewport. 8/8 хабов категорий — 200.</li>
           <li>Sitemap 2200 URL без сдвига: SKU 167, статьи 1943, коммерческие 55.</li>
           <li>
             SKU по категориям без сдвига: остекление 20, открытые 29, мангал 39, павильоны 15,
@@ -47,12 +47,9 @@ export default function SeoToday() {
           </li>
           <li>
             IndexNow: 94 URL без <code>/katalog/poisk</code>, блога и 404. api.indexnow.org и Bing —
-            HTTP 200.
+            HTTP 200, тело пустое. Прямой Яндекс не вызывали.
           </li>
-          <li>
-            Агент: re-apply honesty PR 35; health печатает SKU по категориям (
-            <code>products_by_category</code>).
-          </li>
+          <li>Повтор 08:02 UTC после утреннего прогона. Состав прода тот же. SSL days_left 40 → 39.</li>
           <li>PageSpeed во вторник не запускался.</li>
           <li>
             <code>seoDescription</code>: 0. <code>priceFrom</code> и целый katalog.json не
@@ -71,7 +68,7 @@ export default function SeoToday() {
           <li>
             <code>PAGESPEED_API_KEY</code> — иначе следующий понедельничный PSI останется 429.
           </li>
-          <li>SSL до 2026-11-22, health 13.10: 40 дней.</li>
+          <li>SSL до 2026-11-22, health 13.10 08:02: 39 дней.</li>
         </ol>
       </section>
     </article>
