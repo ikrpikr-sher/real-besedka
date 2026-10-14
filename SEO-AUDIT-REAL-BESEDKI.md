@@ -3,7 +3,7 @@
 **Сайт:** https://real-besedki.ru/  
 **Бренд:** REAL БЕСЕДКИ · ООО «Пулман»  
 **Полное ТЗ:** `real-besedki-seo-agent/TZ-FULL.md`  
-**Последнее обновление:** 2026-10-14 06:04 UTC  
+**Последнее обновление:** 2026-10-14 08:02 UTC  
 **Режим:** этап 2 — **автономные правки**
 
 ---
@@ -25,7 +25,7 @@
 | P2 health | 5 (og:type=website; сирота sovety; пустой `/katalog/poisk` в карте; **1944** статьи; хаб мангала без 19 SKU). Порог SKU 160 снят |
 | IndexNow | **94** URL, без poisk / блога / 404. `api.indexnow.org` HTTP 200, `bing.com/indexnow` HTTP 200 (тело пустое). Прямой Яндекс не вызывали |
 | PageSpeed mobile | среда — не запускался |
-| SSL | до 2026-11-22, health `days_left` **39** |
+| SSL | до 2026-11-22, health `days_left` **38** (06:04 было 39) |
 | `seoDescription` / деплой | 0 карточек. `besedki-seo/` и `~/.ssh/besedki_deploy` нет — деплой не запускался |
 | Органика / индекс / заявки | Недостаточно данных (нет Вебмастера / GSC / Метрики) |
 
@@ -76,7 +76,7 @@
 | Hero-фото (выборка 10) и GLB там, где модель есть в HTML | 🟢 |
 | Форма заявки + `tel:+74952555477` + viewport | 🟢 |
 | robots.txt, canonical на https://real-besedki.ru | 🟢 |
-| SSL до 2026-11-22 (health `days_left` **39**), Let's Encrypt YR1. Порог: P2 если меньше 30 дней, P1 если меньше 21 | 🟢 |
+| SSL до 2026-11-22 (health `days_left` **38**), Let's Encrypt YR1. Порог: P2 если меньше 30 дней, P1 если меньше 21 | 🟢 |
 | Title карточек уникальны; og:image = фото модели | 🟢 |
 | Живой description: пол фанера, каркас 80×80, Москва и МО | 🟢 |
 | `/proekty` → `/katalog` (301) | 🟢 |
@@ -84,28 +84,26 @@
 | IndexNow-ключ на корне сайта отдаёт `text/plain` 200 | 🟢 |
 | Счётчик Метрики `111500128` в layout-чанке главной | 🟢 |
 
-## Последний прогон (2026-10-14 06:04 UTC)
+## Последний прогон (2026-10-14 08:02 UTC)
 
-Будничный cron среды (06:03 UTC). P0/P1 без сдвига. Карта **+1** статья блога.
+Повтор будничного cron среды (08:00 UTC) после утреннего 06:04. Состав карты и P0/P1 без сдвига. SSL `days_left` 39 → **38**.
 
 - iPhone UA: главная **200**, form + `tel:+74952555477` + viewport. 8 хабов категорий **200**: остекление, открытые, мангал, павильоны, навесы, качели, мангалы, лофт
-- Health weekday: **P0=0 · P1=3 · P2=5** · emergency нет. Два алиаса B-51 и шесть путей `/katalog/loft` — 404, Location нет. Живые `/katalog/otkrytye-besedki/b-51` и `/katalog/besedki-osteklennye-loft` — 200
+- Health weekday: **P0=0 · P1=3 · P2=5** · emergency нет. Два алиаса B-51 и `/katalog/loft` — 404, Location нет. Живые `/katalog/otkrytye-besedki/b-51` и `/katalog/besedki-osteklennye-loft/b-53` — 200
 - Светофор: открыть ✓ · товар ✓ · заявка ✓ · выдача техника ✓
 - Маршруты **7/7** · поиск B-51 / В51 ✓
 - Карточки: **10/10** · hero **10/10** · GLB **10/10**
-- Sitemap: **0/20** ошибок · **2201** URL: SKU **167**, статьи **1944**, теги 0, хабы размера 0, коммерческие **55**. По категориям без сдвига: остекление 20, открытые 29, мангал 39, павильоны 15, навесы 8, качели 36, мангалы 15, лофт 5
-- Новая статья в карте: `/blog/foto-dvora-ne-studiya` — 200, lastmod 2026-12-06 (дата в будущем относительно 14.10). В IndexNow не входила
+- Sitemap: **0/20** ошибок · **2201** URL без сдвига к 06:04: SKU **167**, статьи **1944**, теги 0, хабы размера 0, коммерческие **55**. По категориям: остекление 20, открытые 29, мангал 39, павильоны 15, навесы 8, качели 36, мангалы 15, лофт 5
+- Статья `/blog/foto-dvora-ne-studiya` по-прежнему в карте (lastmod 2026-12-06). В IndexNow не входила
 - Хаб мангала без сдвига: сетка 10, JSON-LD 20, карта 39. **b-76…b-94 нет ни в `<a href>`, ни в JSON-LD**. P2 `hub_links`
-- `/katalog/razmer/4x4` — 200, `noindex`. В IndexNow не входил
-- Leftover 404 без известного канона (не P1): `/katalog/besedki-s-ostekleniem/b-1`, `/katalog/otkrytye-besedki/b-1` — 404, Location нет
 - PageSpeed: среда, не запускался
-- IndexNow: **94** URL, `poisk=false`. `api.indexnow.org` HTTP 200, `www.bing.com/indexnow` HTTP 200, тело пустое. Прямой Яндекс не вызывали (`INDEXNOW_YANDEX` не задан)
-- SSL: LE YR1 до 2026-11-22, health `days_left` **39**. Порог P2 (<30) ещё не горит
+- IndexNow: снова **94** URL, `poisk=false`. `api.indexnow.org` HTTP 200, `www.bing.com/indexnow` HTTP 200, тело пустое. Прямой Яндекс не вызывали (`INDEXNOW_YANDEX` не задан)
+- SSL: LE YR1 до 2026-11-22, health `days_left` **38**. Порог P2 (<30) ещё не горит
 - `seoDescription`: 0. Деплой не запускался — нет `besedki-seo/` и `~/.ssh/besedki_deploy`. `priceFrom` и целый `katalog.json` не трогались
 - Метрика `111500128` в `layout-04b3a939437caf97.js`. В сыром HTML главной счётчика нет
-- Выборка OG: `/katalog/besedki-osteklennye-loft/b-55`, `/katalog/kacheli/k-35`, `/katalog/mangaly/m-04` — og:image есть, `og:type` ≠ product
+- Выборка OG: `/katalog/pavilony/p-08`, `/katalog/otkrytye-besedki/b-51`, `/katalog/besedki-s-ostekleniem/b-38` — og:image есть, `og:type` ≠ product
 - Органика / индекс / заявки: Недостаточно данных
-- Логи: `real-besedki-seo-agent/logs/2026-10-14_{health,check,seo,backlog,indexnow}.*`
+- Логи: `real-besedki-seo-agent/logs/2026-10-14_{health,check,seo,backlog,indexnow}.*` (прогон 08:02 перезаписал файлы утра)
 
 ---
 
@@ -119,7 +117,7 @@
 4. Выгрузки Вебмастер + GSC + Метрика (цели форма / телефон).
 5. `PAGESPEED_API_KEY` — без него понедельничный PSI 12.10 упирался в 429.
 6. Не включать Cloudflare orange-cloud как задачу, пока NS Beget и origin 200.
-7. Продлить SSL до истечения 2026-11-22 (health 14.10: 39 дней; агент зажжёт P2 при менее 30 днях, P1 при менее 21).
+7. Продлить SSL до истечения 2026-11-22 (health 14.10 08:02: 38 дней; агент зажжёт P2 при менее 30 днях, P1 при менее 21).
 
 ### On-page, когда появится код сайта
 
@@ -189,6 +187,9 @@
 | 2026-10-14 | IndexNow | накануне 94 URL без poisk | снова 94; api.indexnow.org и Bing HTTP 200, тело пустое | коммерческие хабы и карточки, не блог и не 404 | 🟢 |
 | 2026-10-14 | деплой / seoDescription | — | 0 карточек, deploy.sh не запускался | нет `besedki-seo/` и SSH-ключа; P1-редиректы без кода не выкатить | 🔴 |
 | 2026-10-14 | агент honesty (PR 37 не влит) | main 25.08 | re-apply one collect, SKU aliases, loft 301, hub_links, IndexNow без poisk, SSL 30/21, `products_by_category` | PRs 3–37 не влиты | 🟢 |
+| 2026-10-14 08:02 | sitemap / хабы / P1 | 06:04: 2201 URL, SKU 167, мангал 39/10/20, B-51 и лофт 404, SSL 39 | без сдвига состава. 8/8 хабов 200. SSL `days_left` **38** | повтор weekday 08:00 UTC; редиректы без кода сайта не выкатить | 🟡 |
+| 2026-10-14 08:02 | IndexNow | утром те же 94 URL | снова 94; api.indexnow.org и Bing HTTP 200, тело пустое | прямой Яндекс не вызывали | 🟢 |
+| 2026-10-14 08:02 | деплой / seoDescription | — | 0 карточек, deploy.sh не запускался | нет `besedki-seo/` и SSH-ключа; P1-редиректы без кода сайта не выкатить | 🔴 |
 
 ---
 
