@@ -2,12 +2,63 @@ from __future__ import annotations
 
 from typing import Any
 
+from site_health.onpage import is_slug_h1
+from sources.catalog import is_product_catalog_path
+
+
+def live_onpage_signals(snapshot: dict[str, Any]) -> dict[str, bool]:
+    """Closed live items must not re-open as backlog P1/P2."""
+    health = snapshot.get("site_health") or {}
+    onpage = (health.get("checks") or {}).get("onpage") or {}
+    pages = onpage.get("pages") or []
+    content = snapshot.get("content") or {}
+    live_og = content.get("product_og_live") or {}
+
+    products = [
+        p
+        for p in pages
+        if is_product_catalog_path(str(p.get("path") or ""))
+    ]
+    titles = [p.get("og_title") for p in products if p.get("og_title")]
+    unique_titles = len(titles) >= 2 and len(titles) == len(set(titles))
+
+    contact = next((p for p in pages if p.get("path") == "/kontakty"), None)
+    has_contactpage = bool(contact and "ContactPage" in (contact.get("jsonld") or []))
+
+    hub = next((p for p in pages if p.get("path") == "/katalog"), None)
+    has_breadcrumbs = bool(
+        (hub and "BreadcrumbList" in (hub.get("jsonld") or []))
+        or any("BreadcrumbList" in (p.get("jsonld") or []) for p in products)
+    )
+
+    blog_cats = [
+        p
+        for p in pages
+        if "/blog/category/" in str(p.get("path") or "") and not p.get("leftover")
+    ]
+    human_blog_h1 = bool(blog_cats) and not any(
+        is_slug_h1(h or "", p.get("path") or "") for p in blog_cats for h in (p.get("h1") or [])
+    )
+
+    has_og_image = bool(content.get("product_open_graph") or live_og.get("product_og_image"))
+    if products:
+        has_og_image = has_og_image or all(p.get("og_image") for p in products)
+
+    return {
+        "unique_titles": unique_titles,
+        "contactpage": has_contactpage,
+        "breadcrumbs": has_breadcrumbs,
+        "human_blog_h1": human_blog_h1,
+        "og_image": has_og_image,
+    }
+
 
 def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
     content = snapshot.get("content") or {}
     catalog_count = len(snapshot.get("catalog") or [])
     live = snapshot.get("live") or {}
     sitemap_urls = (live.get("sitemap") or {}).get("url_count") or 0
+    closed = live_onpage_signals(snapshot)
     items: list[dict[str, str]] = []
 
     def add(priority: str, area: str, task: str, target: str, effort: str = "средний") -> None:
@@ -70,7 +121,7 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "средний",
         )
 
-    if not content.get("product_open_graph"):
+    if not content.get("product_open_graph") and not closed["og_image"]:
         add(
             "P1",
             "on-page",
@@ -79,7 +130,7 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    if catalog_count:
+    if catalog_count and not closed["unique_titles"]:
         add(
             "P1",
             "on-page",
@@ -87,13 +138,14 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "templates/onpage-product.md",
             "высокий",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
-    )
+    if not closed["human_blog_h1"]:
+        add(
+            "P1",
+            "on-page",
+            "Meta категорий и тегов блога — человекочитаемые H1/title",
+            "besedki-seo/app/blog/",
+            "средний",
+        )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -104,20 +156,22 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    add(
-        "P2",
-        "on-page",
-        "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
-        "besedki-seo/app/katalog/",
-        "средний",
-    )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
+    if not closed["breadcrumbs"]:
+        add(
+            "P2",
+            "on-page",
+            "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
+            "besedki-seo/app/katalog/",
+            "средний",
+        )
+    if not closed["contactpage"]:
+        add(
+            "P2",
+            "on-page",
+            "ContactPage schema на /kontakty",
+            "besedki-seo/app/kontakty/page.tsx",
+            "низкий",
+        )
     add(
         "P2",
         "on-page",
@@ -135,6 +189,27 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "—",
         )
 
+    health = snapshot.get("site_health") or {}
+    for issue in health.get("issues") or []:
+        if issue.get("priority") not in ("P1", "P2"):
+            continue
+        if issue.get("status") == "owner_action":
+            continue
+        msg = issue.get("problem") or ""
+        if not msg:
+            continue
+        if any(x["task"] == msg for x in items):
+            continue
+        items.append(
+            {
+                "priority": issue.get("priority") or "P2",
+                "area": issue.get("category") or "on-page",
+                "task": msg,
+                "target": issue.get("url") or "",
+                "effort": "средний",
+            }
+        )
+
     for item in snapshot.get("audit_findings") or []:
         if item.get("severity") != "warning":
             continue
@@ -143,6 +218,8 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         if any(x["task"] == msg for x in items):
             continue
         if "proekty" in msg or "openGraph" in msg or "Open Graph" in msg or "ДПК" in msg or "seo.json" in msg:
+            continue
+        if "og:image" in msg or "og:type" in msg:
             continue
         if "besedki-seo/" in (target or "") and "отсутствует" in msg:
             continue
