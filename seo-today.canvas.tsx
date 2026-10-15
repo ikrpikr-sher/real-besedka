@@ -2,7 +2,7 @@ export default function SeoToday() {
   return (
     <article className="mx-auto max-w-3xl space-y-6 p-6 font-sans text-zinc-900">
       <header className="space-y-2">
-        <p className="text-sm text-zinc-500">real-besedki.ru · 15.10.2026 · 06:05 UTC · четверг</p>
+        <p className="text-sm text-zinc-500">real-besedki.ru · 15.10.2026 · 08:02 UTC · четверг</p>
         <h1 className="text-2xl font-semibold tracking-tight">SEO — сегодня</h1>
         <p className="text-zinc-600">
           Клиент может открыть сайт, посмотреть товар и оставить заявку. Органика и индекс —
@@ -51,7 +51,7 @@ export default function SeoToday() {
             IndexNow: 94 URL без <code>/katalog/poisk</code>, блога и 404. api.indexnow.org и Bing —
             HTTP 200, тело пустое. Прямой Яндекс не вызывали.
           </li>
-          <li>SSL days_left 38, до 2026-11-22. Порог P2 (&lt;30) ещё не горит.</li>
+          <li>SSL days_left 37 (утром 38), до 2026-11-22. Порог P2 (&lt;30) ещё не горит.</li>
           <li>PageSpeed в четверг не запускался.</li>
           <li>
             <code>seoDescription</code>: 0. <code>priceFrom</code> и целый katalog.json не
@@ -70,7 +70,7 @@ export default function SeoToday() {
           <li>
             <code>PAGESPEED_API_KEY</code> — иначе следующий понедельничный PSI останется 429.
           </li>
-          <li>SSL до 2026-11-22, health 15.10: 38 дней.</li>
+          <li>SSL до 2026-11-22, health 15.10 08:02: 37 дней.</li>
         </ol>
       </section>
     </article>
