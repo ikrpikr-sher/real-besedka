@@ -49,7 +49,6 @@
 | 2026-10-15 | агент honesty (PR 39 не влит) | main 25.08 | re-apply one collect, SKU aliases, loft 301, hub_links, IndexNow без poisk, SSL 30/21, `products_by_category` | PRs 3–39 не влиты | weekday не врёт |
 | 2026-10-15 | IndexNow, 94 URL | накануне 94 без poisk | api.indexnow.org и Bing HTTP 200, тело пустое; прямой Яндекс не вызывали | хабы, 55 посадочных, фанера, каркас, b-74…b-94 и 5 живых лофт | переобход канонических коммерческих URL |
 | 2026-10-15 | прод `besedki-seo/` | P1 301 B-51 и лофта открыты, карта 2201 | 0 карточек `seoDescription`, deploy.sh не запускался, SSL `days_left` 38 | нет кода сайта и SSH; `priceFrom` и целый katalog.json не трогались | редиректы ждут код и ключ |
-
 | 2026-10-15 08:02 | IndexNow, 94 URL | утренний набор тот же | api.indexnow.org и Bing HTTP 200, тело пустое; прямой Яндекс не вызывали | повтор cron 08:00 UTC; не блог, не poisk, не 404 | переобход канонических коммерческих URL |
 | 2026-10-15 08:02 | прод `besedki-seo/` | P1 301 открыты, SSL 38 дней утром | 0 карточек, deploy не запускался, health `days_left` 37 | нет кода сайта и SSH; карта 2201 и хаб мангала без сдвига | редиректы ждут код и ключ |
 
