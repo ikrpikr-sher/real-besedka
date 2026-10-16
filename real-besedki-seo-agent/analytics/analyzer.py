@@ -195,17 +195,24 @@ def analyze(
         )
     if not content.get("product_open_graph"):
         live_og = content.get("product_og_live") or {}
-        extra = ""
-        if live_og.get("checked"):
-            extra = (
-                f" Прод {live_og.get('url')}: og:type={live_og.get('product_og_type') or 'нет'}, "
-                f"og:image={'есть' if live_og.get('product_og_image') else 'нет'}."
+        if live_og.get("checked") and live_og.get("product_og_image"):
+            message = (
+                f"На карточках og:type={live_og.get('product_og_type') or 'нет'} при живом og:image. "
+                f"Прод {live_og.get('url')}."
             )
+        else:
+            extra = ""
+            if live_og.get("checked"):
+                extra = (
+                    f" Прод {live_og.get('url')}: og:type={live_og.get('product_og_type') or 'нет'}, "
+                    f"og:image={'есть' if live_og.get('product_og_image') else 'нет'}."
+                )
+            message = "На карточках нет og:image." + extra
         findings.append(
             _finding(
                 "warning",
                 "on-page",
-                "На карточках нет товарного Open Graph (og:image + og:type=product)." + extra,
+                message,
                 "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
             )
         )

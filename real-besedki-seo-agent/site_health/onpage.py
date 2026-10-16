@@ -76,38 +76,78 @@ def _blog_category_paths() -> list[str]:
     return ["/blog/category/sovety"]
 
 
+def classify_product_og(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """Отделяет отсутствие og:image от случая «фото есть, тип всё ещё website»."""
+    missing_image: list[str] = []
+    wrong_type: list[str] = []
+    for row in rows:
+        path = str(row.get("path") or "")
+        if not path.startswith("/katalog/") or row.get("status") != 200:
+            continue
+        if not row.get("og_image"):
+            missing_image.append(path)
+        elif (row.get("og_type") or "") != "product":
+            wrong_type.append(path)
+    if missing_image:
+        return {
+            "priority": "P1",
+            "category": "on-page",
+            "problem": "На карточках нет og:image",
+            "url": f"{SITE_URL}{missing_image[0]}",
+            "cause": f"выборка {', '.join(missing_image)}: og:image пустой",
+            "impact": "Превью в Telegram/VK/соцсетях без фото товара — слабее CTR шаринга",
+            "fact_kind": "verified",
+        }
+    if wrong_type:
+        return {
+            "priority": "P1",
+            "category": "on-page",
+            "problem": "На карточках og:type=website при живом og:image",
+            "url": f"{SITE_URL}{wrong_type[0]}",
+            "cause": f"выборка {', '.join(wrong_type)}: og:image есть, og:type≠product",
+            "impact": "Фото в превью уже есть. Тип website слабее помечает карточку как товар в соцсетях. В поиске уже есть JSON-LD Product.",
+            "fact_kind": "verified",
+        }
+    return None
+
+
 def check_live_onpage() -> dict[str, Any]:
     """SEO-сигналы с прода: товарный OG, ContactPage, H1 категорий блога."""
     issues: list[dict[str, Any]] = []
     pages: list[dict[str, Any]] = []
 
-    og_bad: list[str] = []
     for path in _product_paths(3):
         resp = fetch(f"{SITE_URL.rstrip('/')}{path}")
         body = resp.get("body") or ""
         og = parse_og(body)
         types = parse_jsonld_types(body)
-        row = {
-            "path": path,
-            "status": resp.get("status"),
-            "og_type": og.get("type"),
-            "og_image": bool(og.get("image")),
-            "og_title": og.get("title"),
-            "jsonld": types,
-        }
-        pages.append(row)
-        if resp.get("status") == 200 and (og.get("type") != "product" or not og.get("image")):
-            og_bad.append(path)
+        pages.append(
+            {
+                "path": path,
+                "status": resp.get("status"),
+                "og_type": og.get("type"),
+                "og_image": bool(og.get("image")),
+                "og_title": og.get("title"),
+                "jsonld": types,
+            }
+        )
 
-    if og_bad:
+    og_issue = classify_product_og(pages)
+    if og_issue:
+        issues.append(og_issue)
+
+    katalog = fetch(f"{SITE_URL.rstrip('/')}/katalog")
+    kat_types = parse_jsonld_types(katalog.get("body") or "")
+    pages.append({"path": "/katalog", "status": katalog.get("status"), "jsonld": kat_types})
+    if katalog.get("status") == 200 and "BreadcrumbList" not in kat_types:
         issues.append(
             {
-                "priority": "P1",
-                "category": "on-page",
-                "problem": "На карточках нет товарного Open Graph (og:image + og:type=product)",
-                "url": f"{SITE_URL}{og_bad[0]}",
-                "cause": f"выборка {', '.join(og_bad)}: og:type≠product или нет og:image",
-                "impact": "Превью в Telegram/VK/соцсетях без фото товара — слабее CTR шаринга",
+                "priority": "P2",
+                "category": "schema",
+                "problem": "На /katalog нет JSON-LD BreadcrumbList",
+                "url": f"{SITE_URL}/katalog",
+                "cause": f"типы: {', '.join(kat_types) or 'нет'}",
+                "impact": "Хлебные крошки хаба каталога не размечены для поиска",
                 "fact_kind": "verified",
             }
         )
