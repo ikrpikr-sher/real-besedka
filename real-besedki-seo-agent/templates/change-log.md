@@ -9,5 +9,6 @@
 | 2026-08-25 | `site_health/viewport.py` | P1 «нет mobile-nav» | CTA «Каталог» `lg:hidden` = ок | ложный P1 | не блокировать SEO |
 | 2026-08-25 | `site_health/runner.py` | CF без прокси = P0 / emergency | P1 owner_action, если origin 200 + форма/tel | ложная авария блокировала SEO | weekday идёт дальше |
 | 2026-08-25 | `site_health/onpage.py` | health не видел OG/ContactPage/H1 блога | живой HTML прода в P1/P2 | журнал врал без `besedki-seo/` | честный backlog |
+| 2026-10-18 | `onpage.py`, `seo.py`, `backlog.py`, `analyzer.py`, `seo-daily-ship.sh` | P1 «нет og:image+product»; backlog снова просил ContactPage, H1 блога, BreadcrumbList, 128 title | og:image есть = не P1; og:type=website = P2; 800 городов / IndexNow 404 / SSL 35 дн. = P2; закрытые пункты не возвращаются; ship без кода — честный skip | факты прода 18.10 | следующий прогон не чинит уже живое |
 
 **Файл для агента:** дополнять `real-besedki-seo-agent/logs/YYYY-MM-DD_changes.md` после каждого деплоя с SEO-правками.
