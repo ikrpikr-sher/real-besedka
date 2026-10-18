@@ -76,6 +76,7 @@ def render_health_report(health: dict[str, Any]) -> str:
 
     lines.append("---")
     lines.append("Порядок работы агента: **P0 → P1 → P2**. При P0 (сайт лежит) SEO приостановлены.")
-    lines.append("Cloudflare без прокси при живом origin — P1, действие владельца, SEO не блокирует.")
+    if dns.get("cloudflare_ns") and not (checks.get("cdn") or {}).get("cloudflare_headers"):
+        lines.append("Cloudflare NS есть, прокси не активен — действие владельца, SEO не блокирует при живом origin.")
     lines.append("")
     return "\n".join(lines)

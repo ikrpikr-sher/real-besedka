@@ -76,41 +76,68 @@ def _blog_category_paths() -> list[str]:
     return ["/blog/category/sovety"]
 
 
+def classify_product_og(pages: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Отделяет отсутствие фото от og:type=website при живой картинке и Product."""
+    missing_image: list[str] = []
+    type_only: list[str] = []
+    for row in pages:
+        if row.get("status") != 200:
+            continue
+        path = str(row.get("path") or "")
+        if not row.get("og_image"):
+            missing_image.append(path)
+        elif (row.get("og_type") or "") != "product":
+            type_only.append(path)
+    issues: list[dict[str, Any]] = []
+    if missing_image:
+        issues.append(
+            {
+                "priority": "P1",
+                "category": "on-page",
+                "problem": "На карточках нет og:image",
+                "url": f"{SITE_URL}{missing_image[0]}",
+                "cause": f"выборка без og:image: {', '.join(missing_image)}",
+                "impact": "Превью в Telegram/VK без фото товара",
+                "fact_kind": "verified",
+            }
+        )
+    if type_only:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "on-page",
+                "problem": "На карточках og:type=website при живом og:image",
+                "url": f"{SITE_URL}{type_only[0]}",
+                "cause": f"og:image есть, og:type≠product: {', '.join(type_only)}",
+                "impact": "Фото в превью есть. Тип website слабее для соцсетей; карточку в поиске описывает JSON-LD Product",
+                "fact_kind": "verified",
+                "status": "blocked_no_site_code",
+            }
+        )
+    return issues
+
+
 def check_live_onpage() -> dict[str, Any]:
     """SEO-сигналы с прода: товарный OG, ContactPage, H1 категорий блога."""
     issues: list[dict[str, Any]] = []
     pages: list[dict[str, Any]] = []
 
-    og_bad: list[str] = []
     for path in _product_paths(3):
         resp = fetch(f"{SITE_URL.rstrip('/')}{path}")
         body = resp.get("body") or ""
         og = parse_og(body)
         types = parse_jsonld_types(body)
-        row = {
-            "path": path,
-            "status": resp.get("status"),
-            "og_type": og.get("type"),
-            "og_image": bool(og.get("image")),
-            "og_title": og.get("title"),
-            "jsonld": types,
-        }
-        pages.append(row)
-        if resp.get("status") == 200 and (og.get("type") != "product" or not og.get("image")):
-            og_bad.append(path)
-
-    if og_bad:
-        issues.append(
+        pages.append(
             {
-                "priority": "P1",
-                "category": "on-page",
-                "problem": "На карточках нет товарного Open Graph (og:image + og:type=product)",
-                "url": f"{SITE_URL}{og_bad[0]}",
-                "cause": f"выборка {', '.join(og_bad)}: og:type≠product или нет og:image",
-                "impact": "Превью в Telegram/VK/соцсетях без фото товара — слабее CTR шаринга",
-                "fact_kind": "verified",
+                "path": path,
+                "status": resp.get("status"),
+                "og_type": og.get("type"),
+                "og_image": bool(og.get("image")),
+                "og_title": og.get("title"),
+                "jsonld": types,
             }
         )
+    issues.extend(classify_product_og(pages))
 
     kontakty = fetch(f"{SITE_URL.rstrip('/')}/kontakty")
     k_body = kontakty.get("body") or ""
