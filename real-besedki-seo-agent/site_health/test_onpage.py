@@ -2,7 +2,13 @@ from __future__ import annotations
 
 import unittest
 
-from site_health.onpage import origin_healthy, parse_h1, parse_jsonld_types, parse_og
+from site_health.onpage import (
+    classify_product_og,
+    origin_healthy,
+    parse_h1,
+    parse_jsonld_types,
+    parse_og,
+)
 from sources.content_audit import _dpk_as_default_floor
 
 
@@ -26,6 +32,35 @@ class OnpageParseTests(unittest.TestCase):
         text = "В базовой комплектации — фанера. ДПК доступен как опция."
         self.assertFalse(_dpk_as_default_floor(text))
         self.assertTrue(_dpk_as_default_floor("Полы из ДПК под ключ"))
+
+    def test_product_og_image_present_is_p2(self) -> None:
+        issues = classify_product_og(
+            [
+                {
+                    "path": "/katalog/besedki-s-mangalom/b-79",
+                    "status": 200,
+                    "og_type": "website",
+                    "og_image": True,
+                }
+            ]
+        )
+        self.assertEqual(len(issues), 1)
+        self.assertEqual(issues[0]["priority"], "P2")
+        self.assertNotIn("нет og:image", issues[0]["problem"])
+
+    def test_product_og_missing_image_is_p1(self) -> None:
+        issues = classify_product_og(
+            [
+                {
+                    "path": "/katalog/besedki-s-ostekleniem/b-24",
+                    "status": 200,
+                    "og_type": "website",
+                    "og_image": False,
+                }
+            ]
+        )
+        self.assertEqual(issues[0]["priority"], "P1")
+        self.assertIn("og:image", issues[0]["problem"])
 
     def test_origin_healthy(self) -> None:
         internal = {"paths": [{"ok": True}, {"ok": True}]}

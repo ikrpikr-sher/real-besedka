@@ -70,30 +70,55 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "средний",
         )
 
+    live_og = content.get("product_og_live") or {}
     if not content.get("product_open_graph"):
-        add(
-            "P1",
-            "on-page",
-            "Open Graph на карточках товаров (og:title, og:description, og:image)",
-            "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
-            "низкий",
-        )
+        if live_og.get("checked") and live_og.get("product_og_image"):
+            add(
+                "P2",
+                "on-page",
+                "На карточках og:type=website при живом og:image — сменить тип на product, когда появится код сайта",
+                "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
+                "низкий",
+            )
+        else:
+            add(
+                "P1",
+                "on-page",
+                "Open Graph на карточках товаров (og:title, og:description, og:image)",
+                "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
+                "низкий",
+            )
 
-    if catalog_count:
+    if catalog_count and local.get("site_code_missing"):
+        add(
+            "P2",
+            "on-page",
+            f"seoDescription: не больше 1–3 slug за прогон, когда появятся besedki-seo и SSH. В выборке title уже с моделью и ценой — {catalog_count} карточек пачкой не трогать",
+            "push:katalog --slugs",
+            "высокий",
+        )
+    elif catalog_count:
         add(
             "P1",
             "on-page",
-            f"Уникальные title/description {catalog_count} карточек по шаблону (пилот 1–3 за прогон)",
+            f"Уникальные description {catalog_count} карточек: пилот 1–3 slug за прогон, title пачкой не менять",
             "templates/onpage-product.md",
             "высокий",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
-    )
+
+    onpage_pages = (
+        ((snapshot.get("site_health") or {}).get("checks") or {}).get("onpage") or {}
+    ).get("pages") or []
+    health_issues = (snapshot.get("site_health") or {}).get("issues") or []
+    slug_h1_live = any("H1 категории блога" in str(i.get("problem") or "") for i in health_issues)
+    if content.get("blog_category_slug_h1") or slug_h1_live:
+        add(
+            "P1",
+            "on-page",
+            "Meta категорий и тегов блога — человекочитаемые H1/title",
+            "besedki-seo/app/blog/",
+            "средний",
+        )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -104,20 +129,34 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    add(
-        "P2",
-        "on-page",
-        "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
-        "besedki-seo/app/katalog/",
-        "средний",
-    )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
+    product_pages = [p for p in onpage_pages if str(p.get("path") or "").count("/") >= 3]
+    cards_have_crumbs = any("BreadcrumbList" in (p.get("jsonld") or []) for p in product_pages)
+    if cards_have_crumbs:
+        add(
+            "P2",
+            "on-page",
+            "BreadcrumbList на /materialy/* — на карточках выборки уже есть",
+            "besedki-seo/app/materialy/",
+            "низкий",
+        )
+    else:
+        add(
+            "P2",
+            "on-page",
+            "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
+            "besedki-seo/app/katalog/",
+            "средний",
+        )
+
+    kontakty = next((p for p in onpage_pages if p.get("path") == "/kontakty"), None)
+    if kontakty is None or "ContactPage" not in (kontakty.get("jsonld") or []):
+        add(
+            "P2",
+            "on-page",
+            "ContactPage schema на /kontakty",
+            "besedki-seo/app/kontakty/page.tsx",
+            "низкий",
+        )
     add(
         "P2",
         "on-page",
