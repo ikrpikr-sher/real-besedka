@@ -72,7 +72,8 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
         seo_home_dpk = _dpk_as_default_floor(seo_path.read_text(encoding="utf-8"))
 
     live_og = _live_product_og()
-    if live_og.get("checked") and live_og.get("product_og_image") and (live_og.get("product_og_type") or "") == "product":
+    # Картинка в OG закрывает P1 шаринга. Тип website при живом og:image — P2, не «нет OG».
+    if live_og.get("checked") and live_og.get("product_og_image"):
         has_og_products = True
 
     return {
