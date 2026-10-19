@@ -55,6 +55,15 @@ def origin_healthy(internal: dict[str, Any], client: dict[str, Any], ua: dict[st
     return True
 
 
+def classify_product_og(og: dict[str, str]) -> str | None:
+    """missing-image — P1; type-not-product — P2, если фото уже есть."""
+    if not og.get("image"):
+        return "missing-image"
+    if (og.get("type") or "") != "product":
+        return "type-not-product"
+    return None
+
+
 def _product_paths(n: int = 3) -> list[str]:
     from sources.catalog import parse_catalog
 
@@ -82,6 +91,7 @@ def check_live_onpage() -> dict[str, Any]:
     pages: list[dict[str, Any]] = []
 
     og_bad: list[str] = []
+    og_type_only: list[str] = []
     for path in _product_paths(3):
         resp = fetch(f"{SITE_URL.rstrip('/')}{path}")
         body = resp.get("body") or ""
@@ -96,18 +106,45 @@ def check_live_onpage() -> dict[str, Any]:
             "jsonld": types,
         }
         pages.append(row)
-        if resp.get("status") == 200 and (og.get("type") != "product" or not og.get("image")):
+        if resp.get("status") != 200:
+            continue
+        kind = classify_product_og(og)
+        if kind == "missing-image":
             og_bad.append(path)
+        elif kind == "type-not-product":
+            og_type_only.append(path)
 
     if og_bad:
         issues.append(
             {
                 "priority": "P1",
                 "category": "on-page",
-                "problem": "На карточках нет товарного Open Graph (og:image + og:type=product)",
+                "problem": "На карточках нет og:image",
                 "url": f"{SITE_URL}{og_bad[0]}",
-                "cause": f"выборка {', '.join(og_bad)}: og:type≠product или нет og:image",
+                "cause": f"выборка {', '.join(og_bad)}: нет og:image",
                 "impact": "Превью в Telegram/VK/соцсетях без фото товара — слабее CTR шаринга",
+                "fact_kind": "verified",
+            }
+        )
+    if og_type_only:
+        sampled = [p for p in pages if p.get("path") in og_type_only]
+        has_product = bool(sampled) and all("Product" in (p.get("jsonld") or []) for p in sampled)
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "on-page",
+                "problem": (
+                    "На карточках og:type не product при живом og:image и JSON-LD Product"
+                    if has_product
+                    else "На карточках og:type не product при живом og:image"
+                ),
+                "url": f"{SITE_URL}{og_type_only[0]}",
+                "cause": f"выборка {', '.join(og_type_only)}: og:type≠product, og:image есть",
+                "impact": (
+                    "Поиск уже видит Product. В мессенджерах ссылка может открыться как страница сайта, не как товар"
+                    if has_product
+                    else "В мессенджерах ссылка может открыться как страница сайта, не как товар"
+                ),
                 "fact_kind": "verified",
             }
         )
@@ -148,5 +185,27 @@ def check_live_onpage() -> dict[str, Any]:
                 }
             )
             break
+
+    for path, needed in (
+        ("/katalog", "BreadcrumbList"),
+        ("/materialy/fanera-pol", "BreadcrumbList"),
+        ("/materialy/metall-karkas", "BreadcrumbList"),
+    ):
+        resp = fetch(f"{SITE_URL.rstrip('/')}{path}")
+        body = resp.get("body") or ""
+        types = parse_jsonld_types(body)
+        pages.append({"path": path, "status": resp.get("status"), "jsonld": types})
+        if resp.get("status") == 200 and needed not in types:
+            issues.append(
+                {
+                    "priority": "P2",
+                    "category": "schema",
+                    "problem": f"На {path} нет JSON-LD {needed}",
+                    "url": f"{SITE_URL}{path}",
+                    "cause": f"типы: {', '.join(types) or 'нет'}",
+                    "impact": "Хлебные крошки в выдаче не подтверждены разметкой",
+                    "fact_kind": "verified",
+                }
+            )
 
     return {"pages": pages, "issues": issues}

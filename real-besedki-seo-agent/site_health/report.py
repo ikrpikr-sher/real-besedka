@@ -56,11 +56,13 @@ def render_health_report(health: dict[str, Any]) -> str:
     if domains:
         lines.append("### Редиректы домена")
         lines.append("")
-        lines.append("| URL | Status | Final |")
-        lines.append("|-----|--------|-------|")
+        lines.append("| URL | Первый → итог | Final |")
+        lines.append("|-----|----------------|-------|")
         for row in domains:
+            chain = row.get("redirect_chain") or []
+            first = chain[0].get("status") if chain else row.get("status")
             lines.append(
-                f"| {row.get('start_url')} | {row.get('status')} | {row.get('final_url')} |"
+                f"| {row.get('start_url')} | {first} → {row.get('status')} | {row.get('final_url')} |"
             )
         lines.append("")
 
