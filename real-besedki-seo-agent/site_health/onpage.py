@@ -81,7 +81,8 @@ def check_live_onpage() -> dict[str, Any]:
     issues: list[dict[str, Any]] = []
     pages: list[dict[str, Any]] = []
 
-    og_bad: list[str] = []
+    og_missing_image: list[str] = []
+    og_wrong_type: list[str] = []
     for path in _product_paths(3):
         resp = fetch(f"{SITE_URL.rstrip('/')}{path}")
         body = resp.get("body") or ""
@@ -96,18 +97,51 @@ def check_live_onpage() -> dict[str, Any]:
             "jsonld": types,
         }
         pages.append(row)
-        if resp.get("status") == 200 and (og.get("type") != "product" or not og.get("image")):
-            og_bad.append(path)
+        if resp.get("status") != 200:
+            continue
+        if not og.get("image"):
+            og_missing_image.append(path)
+        elif og.get("type") != "product":
+            og_wrong_type.append(path)
 
-    if og_bad:
+    if og_missing_image:
         issues.append(
             {
                 "priority": "P1",
                 "category": "on-page",
-                "problem": "На карточках нет товарного Open Graph (og:image + og:type=product)",
-                "url": f"{SITE_URL}{og_bad[0]}",
-                "cause": f"выборка {', '.join(og_bad)}: og:type≠product или нет og:image",
-                "impact": "Превью в Telegram/VK/соцсетях без фото товара — слабее CTR шаринга",
+                "problem": "На карточках нет og:image",
+                "url": f"{SITE_URL}{og_missing_image[0]}",
+                "cause": f"выборка {', '.join(og_missing_image)}: meta og:image пустой",
+                "impact": "Превью в Telegram/VK/соцсетях без фото товара",
+                "fact_kind": "verified",
+            }
+        )
+    if og_wrong_type:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "on-page",
+                "problem": "На карточках og:type=website, не product",
+                "url": f"{SITE_URL}{og_wrong_type[0]}",
+                "cause": f"выборка {', '.join(og_wrong_type)}: og:image есть, og:type≠product",
+                "impact": "Соцсети не помечают карточку как товар. В поиске уже есть JSON-LD Product",
+                "fact_kind": "verified",
+            }
+        )
+
+    katalog = fetch(f"{SITE_URL.rstrip('/')}/katalog")
+    k_hub_body = katalog.get("body") or ""
+    k_hub_types = parse_jsonld_types(k_hub_body)
+    pages.append({"path": "/katalog", "status": katalog.get("status"), "jsonld": k_hub_types})
+    if katalog.get("status") == 200 and "BreadcrumbList" not in k_hub_types:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "schema",
+                "problem": "На хабе /katalog нет JSON-LD BreadcrumbList",
+                "url": f"{SITE_URL}/katalog",
+                "cause": f"типы: {', '.join(k_hub_types) or 'нет'}",
+                "impact": "Хабу каталога хуже хлебные крошки в выдаче",
                 "fact_kind": "verified",
             }
         )

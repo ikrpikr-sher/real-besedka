@@ -68,6 +68,9 @@ skills-lock.json
 
 /app/generated/prisma
 
+# Live site checkout — деплой на VPS, каталог и секреты не в git
+/besedki-seo/
+
 # SEO agent secrets
 real-besedki-seo-agent/.env.*
 !real-besedki-seo-agent/.env.example
