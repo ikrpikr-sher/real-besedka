@@ -193,8 +193,18 @@ def analyze(
                 "besedki-seo/data/seo.json",
             )
         )
-    if not content.get("product_open_graph"):
-        live_og = content.get("product_og_live") or {}
+    live_og = content.get("product_og_live") or {}
+    if live_og.get("checked") and live_og.get("product_og_image") and (live_og.get("product_og_type") or "") != "product":
+        findings.append(
+            _finding(
+                "info",
+                "on-page",
+                f"Прод {live_og.get('url')}: og:image есть, og:type={live_og.get('product_og_type')} "
+                "(не product). JSON-LD Product на карточках живой — тип OG не блокирует шаринг.",
+                "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
+            )
+        )
+    elif not content.get("product_open_graph"):
         extra = ""
         if live_og.get("checked"):
             extra = (
@@ -205,7 +215,7 @@ def analyze(
             _finding(
                 "warning",
                 "on-page",
-                "На карточках нет товарного Open Graph (og:image + og:type=product)." + extra,
+                "На карточках нет og:image." + extra,
                 "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
             )
         )
@@ -245,7 +255,12 @@ def analyze(
                     "/",
                 )
             )
-        if live_home.get("title") and _is_weak_title(home_title) and not _is_weak_title(live_home.get("title")):
+        if (
+            not site_code_missing
+            and live_home.get("title")
+            and _is_weak_title(home_title)
+            and not _is_weak_title(live_home.get("title"))
+        ):
             findings.append(
                 _finding(
                     "warning",
