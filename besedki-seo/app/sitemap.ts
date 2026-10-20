@@ -1,8 +1,21 @@
 import type { MetadataRoute } from 'next';
 import { CATALOG_CATEGORIES } from '@/lib/catalogCategories';
 import { getKatalog, getMaterialy, getSite, getUslugi } from '@/lib/content';
-import { getAllPosts, getAllCategories } from '@/lib/blog';
+import { getIndexablePosts, getAllCategories } from '@/lib/blog';
 import { absoluteUrl, blogCategoryPath } from '@/lib/urlPath';
+
+const REGIONY_CITIES = [
+  'himki',
+  'odincovo',
+  'krasnogorsk',
+  'mytishchi',
+  'podolsk',
+  'balashiha',
+  'istra',
+  'korolev',
+  'lyubertsy',
+  'dolgoprudny',
+] as const;
 
 export const dynamic = 'force-dynamic';
 
@@ -75,6 +88,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/besedka-naves',
     '/faq',
     '/regiony',
+    ...REGIONY_CITIES.map((c) => `/regiony/${c}`),
+    '/proekty',
+    '/otzyvy',
     '/uslugi',
     '/materialy',
     '/o-kompanii',
@@ -102,7 +118,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
   uslugi.forEach((u) => entries.push({ url: `${base}/uslugi/${u.slug}`, changeFrequency: 'monthly', priority: 0.5 }));
   materialy.forEach((m) => entries.push({ url: `${base}/materialy/${m.slug}`, changeFrequency: 'monthly', priority: 0.5 }));
-  getAllPosts().forEach((post) =>
+  getIndexablePosts().forEach((post) =>
     entries.push({
       url: `${base}/blog/${post.slug}`,
       lastModified: post.updated || post.date,

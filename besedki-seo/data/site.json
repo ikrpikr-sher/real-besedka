@@ -30,10 +30,10 @@
   "nav": [
     { "label": "Каталог", "href": "/katalog" },
     { "label": "Конфигуратор", "href": "/konfigurator" },
-    { "label": "Услуги", "href": "/uslugi" },
-    { "label": "Материалы", "href": "/materialy" },
+    { "label": "Москва и МО", "href": "/regiony" },
+    { "label": "Портфолио", "href": "/proekty" },
     { "label": "Блог", "href": "/blog" },
-    { "label": "О компании", "href": "/o-kompanii" },
+    { "label": "Отзывы", "href": "/otzyvy" },
     { "label": "Контакты", "href": "/kontakty" }
   ]
 }

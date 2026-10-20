@@ -85,13 +85,22 @@ export default function KatalogItemPage({ params }: Props) {
     '@type': 'Product',
     name: item.title,
     description: descriptionText,
-    image: item.images.map((img) => `${site.siteUrl}${img}`),
+    sku: article,
+    mpn: article,
+    brand: { '@type': 'Brand', name: BRAND_NAME },
+    image: item.images.map((img) => (img.startsWith('http') ? img : `${site.siteUrl}${img}`)),
     offers: {
       '@type': 'Offer',
       priceCurrency: 'RUB',
       price: item.priceFrom,
+      priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
       availability: 'https://schema.org/InStock',
       url: `${site.siteUrl}${itemUrl}`,
+      seller: {
+        '@type': 'Organization',
+        name: site.legalName,
+        url: site.siteUrl,
+      },
     },
   };
   const breadcrumbLd = {
@@ -168,8 +177,24 @@ export default function KatalogItemPage({ params }: Props) {
             {configProfile.baseNote ??
               'Базовая комплектация: без стен, пол — фанера. Дополнительные опции — в блоке справа.'}
           </p>
+          <p className="mt-3 text-sm text-text-muted">
+            Цена «от» — старт комплектации. Точную сумму соберите в калькуляторе справа или в{' '}
+            <a className="text-accent underline-offset-2 hover:underline" href="/konfigurator">
+              конфигураторе
+            </a>
+            . Фото и объекты — в{' '}
+            <a className="text-accent underline-offset-2 hover:underline" href="/proekty">
+              портфолио
+            </a>
+            , отзывы — на{' '}
+            <a className="text-accent underline-offset-2 hover:underline" href="/otzyvy">
+              странице отзывов
+            </a>
+            .
+          </p>
         </div>
         <div className="md:col-span-1 lg:sticky lg:top-20 lg:self-start">
+          <p className="mb-2 text-sm font-medium text-text">Калькулятор комплектации</p>
           <ProjectConfigurator
             projectTitle={item.title}
             basePrice={item.priceFrom}

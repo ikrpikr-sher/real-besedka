@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ArticleCard from '@/components/ArticleCard';
-import { getAllPosts } from '@/lib/blog';
+import { getIndexablePosts } from '@/lib/blog';
 import { getSeo } from '@/lib/seo';
 import Link from 'next/link';
 
@@ -22,7 +22,7 @@ export function generateMetadata(): Metadata {
 type Props = { searchParams?: { page?: string } };
 
 export default function BlogIndexPage({ searchParams }: Props) {
-  const posts = getAllPosts();
+  const posts = getIndexablePosts();
   const totalPages = Math.max(1, Math.ceil(posts.length / PER_PAGE));
   const page = Math.min(totalPages, Math.max(1, Number(searchParams?.page || 1) || 1));
   const slice = posts.slice((page - 1) * PER_PAGE, page * PER_PAGE);
@@ -32,7 +32,7 @@ export default function BlogIndexPage({ searchParams }: Props) {
       <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Блог', href: '/blog' }]} />
       <h1 className="page-title mb-6">Блог</h1>
       <p className="mb-6 text-sm text-text-muted">
-        Те же разборы завода — в канале{' '}
+        Гайды по выбору, монтажу и МО. Массовые заметки про города вне рынка в ленту не отдаём.{' '}
         <a
           href="https://dzen.ru/realbesedki"
           className="text-accent underline-offset-2 hover:underline"
@@ -40,7 +40,7 @@ export default function BlogIndexPage({ searchParams }: Props) {
         >
           Дзен · Real Besedki
         </a>
-        . Всего материалов: {posts.length}.
+        . В ленте: {posts.length}.
       </p>
       {slice.length === 0 ? (
         <p className="text-text-muted">Скоро здесь появятся статьи.</p>

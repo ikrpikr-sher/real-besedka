@@ -1,0 +1,2415 @@
+[
+  {
+    "slug": "b-10",
+    "title": "Беседка «Графит · Старт»",
+    "tagline": "Соберите беседку под себя — каркас 2×2 м",
+    "configuratorId": "grafit-start",
+    "material": "Металл",
+    "size": "2×2×2,4 м",
+    "roof": "Металлочерепица, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 95000,
+    "description": "Входная модель серии «Графит · Старт» — металлический каркас 2×2 м без стен и пола. Соберите комплектацию в конфигураторе: резные панели, стены из фанеры, пол ДПК или влагостойкая фанера, обвязка для усиления. Каркас на болтовых соединениях, кровля — металлочерепица, порошковое окрашивание. Монтаж на фундамент или сваи. Артикул B-10.",
+    "images": [
+      "/images/proekty/b-10-8.png",
+      "/images/proekty/b-10-9.png",
+      "/images/proekty/b-10-6.png",
+      "/images/proekty/b-10-7.png",
+      "/images/proekty/b-10-2.png",
+      "/images/proekty/b-10-5.png"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-10.glb"
+  },
+  {
+    "slug": "b-18",
+    "title": "Беседка «Графит · Лофт» 2,5×2,5 м",
+    "tagline": "2,5×2,5 м — открытый фасад, панели лофт 1 м",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "2,5×2,5×2,5 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 185000,
+    "description": "Открытая беседка «Графит · Лофт», 2,5×2,5×2,5 м, артикул B-18. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые соединения. Фасад открыт. Панели лофт-паутина 1,0 м — сталь 3 мм ЧПУ, по 2 ячейки на задней, левой и правой стенах. Кровля — металлочерепица S-волна, вальма 22°. Пол ДПК. Монтаж на фундамент или винтовые сваи.",
+    "images": [
+      "/images/otkrytye-besedki/b-18/01_hero.jpg?v=20260817f",
+      "/images/otkrytye-besedki/b-18/05_hero_left.jpg?v=20260817f",
+      "/images/otkrytye-besedki/b-18/02_front.jpg?v=20260817f",
+      "/images/otkrytye-besedki/b-18/03_left.jpg?v=20260817f",
+      "/images/otkrytye-besedki/b-18/04_right.jpg?v=20260817f",
+      "/images/otkrytye-besedki/b-18/06_back.jpg?v=20260817f"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-18.glb"
+  },
+  {
+    "slug": "b-19",
+    "title": "Беседка «Графит · Лофт» 2×3 м",
+    "tagline": "2×3 м — открытый фасад, панели лофт 1 м",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "2×3×2,5 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 175000,
+    "description": "Открытая беседка «Графит · Лофт», 2×3×2,5 м, артикул B-19. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые соединения. Фасад 2 м открыт, глубина 3 м. Панели лофт-паутина 1,0 м — сталь 3 мм ЧПУ: зад 2 ячейки, бока по 3. Кровля — металлочерепица S-волна, вальма 22°. Пол ДПК. Монтаж на фундамент или винтовые сваи.",
+    "images": [
+      "/images/otkrytye-besedki/b-19/01_hero.jpg?v=20260817f",
+      "/images/otkrytye-besedki/b-19/05_hero_left.jpg?v=20260817f",
+      "/images/otkrytye-besedki/b-19/02_front.jpg?v=20260817f",
+      "/images/otkrytye-besedki/b-19/03_left.jpg?v=20260817f",
+      "/images/otkrytye-besedki/b-19/04_right.jpg?v=20260817f",
+      "/images/otkrytye-besedki/b-19/06_back.jpg?v=20260817f"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-19.glb"
+  },
+  {
+    "slug": "b-51",
+    "title": "Беседка «Графит · Лофт» шестигранная 2,5 м",
+    "tagline": "Шестигранник 2,5 м — открытый вход, панели лофт 1 м",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "Ø2,5 м (грань–грань) × 2,5 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 185000,
+    "description": "Открытая шестигранная беседка «Графит · Лофт», 2,5 м между гранями, конёк 2,5 м, артикул B-51. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые соединения. Одна грань открыта как вход, на пяти остальных — панели лофт-паутина 1,0 м, сталь 3 мм ЧПУ. Кровля — металлочерепица S-волна, вальма 22°. Пол ДПК, подиум 15 см. Монтаж на фундамент или винтовые сваи.",
+    "images": [
+      "/images/otkrytye-besedki/b-51/01_hero.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-51/05_hero_left.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-51/02_front.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-51/03_left.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-51/04_right.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-51/06_back.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-51/07_interior_ceiling.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-51/08_panels.jpg?v=20260817hex2"
+    ],
+    "category": "otkrytye-besedki",
+    "specs": [
+      {
+        "label": "Форма",
+        "value": "Правильный шестигранник"
+      },
+      {
+        "label": "Диаметр (грань–грань)",
+        "value": "2,5 м"
+      },
+      {
+        "label": "Диаметр (вершина–вершина)",
+        "value": "2,9 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,5 м"
+      },
+      {
+        "label": "Уклон крыши",
+        "value": "22°"
+      },
+      {
+        "label": "Свес",
+        "value": "16 см"
+      },
+      {
+        "label": "Подиум / пол",
+        "value": "15 см"
+      },
+      {
+        "label": "Панели",
+        "value": "Лофт-паутина на 5 гранях — высота 1,0 м. Фасад открыт"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "model3d": "/models/b-51.glb"
+  },
+  {
+    "slug": "b-52",
+    "title": "Беседка «Графит · Лофт» шестигранная Ø3 м",
+    "tagline": "Шестигранник Ø3 м — открытый вход, панели лофт 1 м",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "Ø3×2,5 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 195000,
+    "description": "Открытая шестигранная беседка «Графит · Лофт», диаметр 3 м (вершина–вершина), конёк 2,5 м, артикул B-52. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые соединения. Одна грань открыта как вход, на пяти остальных — панели лофт-паутина 1,0 м, сталь 3 мм ЧПУ. Подшивка кровли графитовой фанерой, металлочерепица S-волна, вальма 22°. Пол ДПК, подиум 15 см. Монтаж на фундамент или винтовые сваи.",
+    "images": [
+      "/images/otkrytye-besedki/b-52/01_hero.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-52/05_hero_left.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-52/02_front.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-52/03_left.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-52/04_right.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-52/06_back.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-52/07_interior_ceiling.jpg?v=20260817hex2",
+      "/images/otkrytye-besedki/b-52/08_panels.jpg?v=20260817hex2"
+    ],
+    "category": "otkrytye-besedki",
+    "specs": [
+      {
+        "label": "Форма",
+        "value": "Правильный шестигранник"
+      },
+      {
+        "label": "Диаметр (вершина–вершина)",
+        "value": "3,0 м"
+      },
+      {
+        "label": "Диаметр (грань–грань)",
+        "value": "2,6 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,5 м"
+      },
+      {
+        "label": "Уклон крыши",
+        "value": "22°"
+      },
+      {
+        "label": "Свес",
+        "value": "16 см"
+      },
+      {
+        "label": "Подиум / пол",
+        "value": "15 см"
+      },
+      {
+        "label": "Панели",
+        "value": "Лофт-паутина на 5 гранях — высота 1,0 м. Фасад открыт"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "model3d": "/models/b-52.glb"
+  },
+  {
+    "slug": "b-17",
+    "title": "Беседка «Графит · Лофт» 3×4 м",
+    "tagline": "Хит размера 3×4 м — классика, панели 1 м, орнамент лофт",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "3×4×3 м",
+    "roof": "Металлочерепица, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 185000,
+    "description": "Открытая металлическая беседка 3×4×3 м, артикул B-17 — хит размера рынка в классической серии с панелями 1 м (не путать с B-42, там лазер 2 м и чек от 450 000 ₽). Фасад 3 м открыт, глубина 4 м. Каркас 80×80×3 мм на болтах, пол ДПК, металлочерепица, панели лофт/орнамент сталь 3 мм ЧПУ, порошок RAL 7016. Мангал в каркас не встроен: к беседке берут M-03 с дымоходом. Производство под заказ, Москва и МО.",
+    "images": [
+      "/images/proekty/b-17-1.jpg?v=20260817b17",
+      "/images/proekty/b-17-2.jpg?v=20260817b17",
+      "/images/proekty/b-17-3.jpg?v=20260817b17",
+      "/images/proekty/b-17-4.jpg?v=20260817b17",
+      "/images/proekty/b-17-5.jpg?v=20260817b17",
+      "/images/proekty/b-17-6.jpg?v=20260817b17"
+    ],
+    "category": "otkrytye-besedki",
+    "specs": [
+      {
+        "label": "Длина (фасад, открытый вход)",
+        "value": "3,0 м"
+      },
+      {
+        "label": "Глубина",
+        "value": "4,0 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "3,0 м"
+      },
+      {
+        "label": "Уклон крыши",
+        "value": "22°"
+      },
+      {
+        "label": "Панели",
+        "value": "Лофт / орнамент — высота 1,0 м"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "model3d": "/models/b-17.glb"
+  },
+  {
+    "slug": "b-12",
+    "title": "Беседка «Графит · Медведи»",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "3×3×2,7 м",
+    "roof": "Металлочерепица, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 240000,
+    "description": "Открытая беседка «Графит · Медведи», 3×3×2,7 м, артикул B-12. Декоративные панели с медведями — сталь 3 мм, ЧПУ-резка. Каркас на болтовых соединениях, кровля — металлочерепица, пол из ДПК, порошковое окрашивание RAL 7016. Монтаж на фундамент или винтовые сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/proekty/b-12-1.png",
+      "/images/proekty/b-12-2.png",
+      "/images/proekty/b-12-3.png",
+      "/images/proekty/b-12-4.png",
+      "/images/proekty/b-12-5.png",
+      "/images/proekty/b-12-6.png"
+    ],
+    "category": "otkrytye-besedki",
+    "tagline": "Медведи в лесу — уютная беседка 3×3 м",
+    "model3d": "/models/b-12.glb"
+  },
+  {
+    "slug": "b-13",
+    "title": "Беседка «Графит · Лоси»",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "4×3×3 м",
+    "roof": "Металлочерепица, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 270000,
+    "description": "Открытая беседка «Графит · Лоси», 4×3×3 м, артикул B-13. Декоративные панели с лосями в лесу — сталь 3 мм, ЧПУ-резка. Каркас на болтовых соединениях, кровля — металлочерепица, пол из ДПК, порошковое окрашивание. Монтаж на фундамент или сваи.",
+    "images": [
+      "/images/proekty/b-13-1.png",
+      "/images/proekty/b-13-2.png",
+      "/images/proekty/b-13-3.png",
+      "/images/proekty/b-13-4.png",
+      "/images/proekty/b-13-5.png"
+    ],
+    "category": "otkrytye-besedki",
+    "tagline": "Панели с лосями — беседка 4×3 м на участке",
+    "model3d": "/models/b-13.glb"
+  },
+  {
+    "slug": "b-15",
+    "title": "Беседка «Графит · Олени»",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "4×3×3 м",
+    "roof": "Металлочерепица, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 320000,
+    "description": "Открытая беседка «Графит · Олени», 4×3×3 м, артикул B-15. Декоративные панели с оленями — сталь 3 мм, ЧПУ-резка. Вытянутая форма вдоль дома или дорожки. Каркас на болтовых соединениях, кровля — металлочерепица, пол из ДПК, порошковое окрашивание. Монтаж на фундамент или сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/proekty/b-15-1.png",
+      "/images/proekty/b-15-2.png",
+      "/images/proekty/b-15-3.png",
+      "/images/proekty/b-15-4.png",
+      "/images/proekty/b-15-5.png",
+      "/images/proekty/b-15-6.png"
+    ],
+    "category": "otkrytye-besedki",
+    "tagline": "Олени в переплетении — беседка 4×3 м",
+    "model3d": "/models/b-15.glb"
+  },
+  {
+    "slug": "b-11",
+    "title": "Беседка «Графит · Богатыри»",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "4×4×3 м",
+    "roof": "Металлочерепица, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 230000,
+    "description": "Открытая беседка «Графит · Богатыри», 4×4×3 м, артикул B-11. Панели с богатырями, древнерусской архитектурой и орнаментом — сталь 3 мм, ЧПУ-резка. Каркас на болтовых соединениях, кровля — металлочерепица, пол из ДПК, порошковое окрашивание. Монтаж на фундамент или сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/proekty/b-11-1.png",
+      "/images/proekty/b-11-2.png",
+      "/images/proekty/b-11-3.png",
+      "/images/proekty/b-11-4.png",
+      "/images/proekty/b-11-5.png"
+    ],
+    "category": "otkrytye-besedki",
+    "tagline": "Богатыри на конях — просторная зона 4×4 м",
+    "model3d": "/models/b-11.glb"
+  },
+  {
+    "slug": "b-14",
+    "title": "Беседка «Графит · Рыцари»",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "6×3×3 м",
+    "roof": "Металлочерепица, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 330000,
+    "description": "Открытая беседка «Графит · Рыцари», 6×3×3 м, артикул B-14. Панели с рыцарями — отъезд, путь, битва, победа. Сталь 3 мм, ЧПУ-резка. Простор для большой компании: стол, барbecue, отдых на даче. Каркас на болтовых соединениях, кровля — металлочерепица, пол из ДПК, порошковое окрашивание. Монтаж на фундамент или сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/proekty/b-14-1.png",
+      "/images/proekty/b-14-2.png",
+      "/images/proekty/b-14-3.png",
+      "/images/proekty/b-14-4.png",
+      "/images/proekty/b-14-5.png",
+      "/images/proekty/b-14-6.png",
+      "/images/proekty/b-14-7.png",
+      "/images/proekty/b-14-8.png",
+      "/images/proekty/b-14-9.png"
+    ],
+    "category": "otkrytye-besedki",
+    "tagline": "6×3 м — рыцарские панели и стол на компанию",
+    "model3d": "/models/b-14.glb"
+  },
+  {
+    "slug": "b-16",
+    "title": "Беседка «Графит · Лесная жизнь»",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "5×4×3 м",
+    "roof": "Металлочерепица, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 450000,
+    "description": "Открытая беседка «Графит · Лесная жизнь», 5×4×3 м, артикул B-16. Панели с орлом, лесом, птицами, горами, кабанами и козами — сталь 3 мм, ЧПУ-резка. Самый просторный формат открытой линейки «Графит». Каркас на болтовых соединениях, кровля — металлочерепица, пол из ДПК, порошковое окрашивание. Монтаж на фундамент или сваи.",
+    "images": [
+      "/images/proekty/b-16-1.png",
+      "/images/proekty/b-16-2.png",
+      "/images/proekty/b-16-3.png",
+      "/images/proekty/b-16-4.png",
+      "/images/proekty/b-16-5.png"
+    ],
+    "category": "otkrytye-besedki",
+    "tagline": "Флагман 5×4 м — орёл, лес и звери на панелях",
+    "model3d": "/models/b-16.glb"
+  },
+  {
+    "slug": "b-41",
+    "title": "Беседка «Графит · Дамаск»",
+    "tagline": "3×3 м — открытый фасад, лазер 2 м: купол, фонтан, павлин",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "3×3×2,5 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 380000,
+    "description": "Открытая беседка с лазерными панелями 2 м, артикул B-41. Каркас сталь 80×80×3 мм, RAL 7016 графит. План 3×3 м, конёк 2,5 м. Фасад открыт. Лазерные листы 2,0×1,0 м на задней, левой и правой стенах, сюжет «Дамаск». Без остекления. Кровля — металлочерепица над графитовой фанерой. Пол ДПК. Монтаж на фундамент или сваи.",
+    "images": [
+      "/images/otkrytye-paneli/b-41/dvor.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-41/levo.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-41/fasad.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-41/02-hero.png",
+      "/images/otkrytye-paneli/b-41/01-front.png",
+      "/images/otkrytye-paneli/b-41/06-hero-left.png",
+      "/images/otkrytye-paneli/b-41/03-left.png",
+      "/images/otkrytye-paneli/b-41/04-right.png",
+      "/images/otkrytye-paneli/b-41/05-back.png"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-41.glb"
+  },
+  {
+    "slug": "b-42",
+    "title": "Беседка «Графит · Александрия»",
+    "tagline": "3×4 м — открытый фасад, Фарос, библиотека, Нил",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "3×4×2,5 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 450000,
+    "description": "Открытая беседка с лазерными панелями 2 м, артикул B-42. Каркас 80×80×3 мм графит. План 3×4 м, конёк 2,5 м. Фасад открыт. Лазер 2 м на задней, левой и правой стенах, сюжет «Александрия». Без остекления. Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/otkrytye-paneli/b-42/dvor.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-42/levo.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-42/fasad.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-42/02-hero.png",
+      "/images/otkrytye-paneli/b-42/01-front.png",
+      "/images/otkrytye-paneli/b-42/06-hero-left.png",
+      "/images/otkrytye-paneli/b-42/03-left.png",
+      "/images/otkrytye-paneli/b-42/04-right.png",
+      "/images/otkrytye-paneli/b-42/05-back.png"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-42.glb"
+  },
+  {
+    "slug": "b-43",
+    "title": "Беседка «Графит · Вавилон»",
+    "tagline": "4×4 м — открытый фасад, зиккурат, Иштар, висячие сады",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "4×4×2,7 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 520000,
+    "description": "Открытая беседка с лазерными панелями 2 м, артикул B-43. Каркас 80×80×3 мм графит. План 4×4 м, конёк 2,7 м. Фасад открыт. Лазер 2 м на задней, левой и правой стенах, сюжет «Вавилон». Без остекления. Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/otkrytye-paneli/b-43/dvor.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-43/levo.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-43/fasad.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-43/02-hero.png",
+      "/images/otkrytye-paneli/b-43/01-front.png",
+      "/images/otkrytye-paneli/b-43/06-hero-left.png",
+      "/images/otkrytye-paneli/b-43/03-left.png",
+      "/images/otkrytye-paneli/b-43/04-right.png",
+      "/images/otkrytye-paneli/b-43/05-back.png"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-43.glb"
+  },
+  {
+    "slug": "b-44",
+    "title": "Беседка «Графит · Средняя Азия»",
+    "tagline": "5×4 м — открытый фасад, орнамент Средней Азии",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "5×4×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 580000,
+    "description": "Открытая беседка с лазерными панелями 2 м, артикул B-44. Каркас 80×80×3 мм графит. План 5×4 м, конёк 3 м. Фасад открыт. Лазер 2 м на задней, левой и правой стенах, сюжет «Средняя Азия». Без остекления. Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/otkrytye-paneli/b-44/dvor.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-44/levo.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-44/fasad.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-44/02-hero.png",
+      "/images/otkrytye-paneli/b-44/01-front.png",
+      "/images/otkrytye-paneli/b-44/06-hero-left.png",
+      "/images/otkrytye-paneli/b-44/03-left.png",
+      "/images/otkrytye-paneli/b-44/04-right.png",
+      "/images/otkrytye-paneli/b-44/05-back.png"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-44.glb"
+  },
+  {
+    "slug": "b-45",
+    "title": "Беседка «Графит · Древняя Русь»",
+    "tagline": "5×5 м — открытый фасад, сюжет Древней Руси",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "5×5×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 680000,
+    "description": "Открытая беседка с лазерными панелями 2 м, артикул B-45. Каркас 80×80×3 мм графит. План 5×5 м, конёк 3 м. Фасад открыт. Лазер 2 м на задней, левой и правой стенах, сюжет «Древняя Русь». Без остекления. Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/otkrytye-paneli/b-45/dvor.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-45/levo.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-45/fasad.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-45/02-hero.png",
+      "/images/otkrytye-paneli/b-45/01-front.png",
+      "/images/otkrytye-paneli/b-45/06-hero-left.png",
+      "/images/otkrytye-paneli/b-45/03-left.png",
+      "/images/otkrytye-paneli/b-45/04-right.png",
+      "/images/otkrytye-paneli/b-45/05-back.png"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-45.glb"
+  },
+  {
+    "slug": "b-46",
+    "title": "Беседка «Графит · Кавказ»",
+    "tagline": "6×3 м — открытый фасад, кавказский орнамент",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "6×3×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 560000,
+    "description": "Открытая беседка с лазерными панелями 2 м, артикул B-46. Каркас 80×80×3 мм графит. План 6×3 м, конёк 3 м. Фасад открыт. Лазер 2 м на задней, левой и правой стенах, сюжет «Кавказ». Без остекления. Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/otkrytye-paneli/b-46/dvor.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-46/levo.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-46/fasad.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-46/02-hero.png",
+      "/images/otkrytye-paneli/b-46/01-front.png",
+      "/images/otkrytye-paneli/b-46/06-hero-left.png",
+      "/images/otkrytye-paneli/b-46/03-left.png",
+      "/images/otkrytye-paneli/b-46/04-right.png",
+      "/images/otkrytye-paneli/b-46/05-back.png"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-46.glb"
+  },
+  {
+    "slug": "b-47",
+    "title": "Беседка «Графит · Дамаск+»",
+    "tagline": "6×4 м — открытый фасад, дамасский узор 2 м",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "6×4×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 680000,
+    "description": "Открытая беседка с лазерными панелями 2 м, артикул B-47. Каркас 80×80×3 мм графит. План 6×4 м, конёк 3 м. Фасад открыт. Лазер 2 м на задней, левой и правой стенах, сюжет «Дамаск». Без остекления. Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/otkrytye-paneli/b-47/dvor.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-47/levo.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-47/fasad.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-47/02-hero.png",
+      "/images/otkrytye-paneli/b-47/01-front.png",
+      "/images/otkrytye-paneli/b-47/06-hero-left.png",
+      "/images/otkrytye-paneli/b-47/03-left.png",
+      "/images/otkrytye-paneli/b-47/04-right.png",
+      "/images/otkrytye-paneli/b-47/05-back.png"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-47.glb"
+  },
+  {
+    "slug": "b-48",
+    "title": "Беседка «Графит · Александрия+»",
+    "tagline": "6×5 м — открытый фасад, Александрия 2 м",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "6×5×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 780000,
+    "description": "Открытая беседка с лазерными панелями 2 м, артикул B-48. Каркас 80×80×3 мм графит. План 6×5 м, конёк 3 м. Фасад открыт. Лазер 2 м на задней, левой и правой стенах, сюжет «Александрия». Без остекления. Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/otkrytye-paneli/b-48/dvor.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-48/levo.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-48/fasad.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-48/02-hero.png",
+      "/images/otkrytye-paneli/b-48/01-front.png",
+      "/images/otkrytye-paneli/b-48/06-hero-left.png",
+      "/images/otkrytye-paneli/b-48/03-left.png",
+      "/images/otkrytye-paneli/b-48/04-right.png",
+      "/images/otkrytye-paneli/b-48/05-back.png"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-48.glb"
+  },
+  {
+    "slug": "b-49",
+    "title": "Беседка «Графит · Вавилон XL»",
+    "tagline": "8×4 м — открытый фасад, Вавилон XL",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "8×4×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 880000,
+    "description": "Открытая беседка с лазерными панелями 2 м, артикул B-49. Каркас 80×80×3 мм графит. План 8×4 м, конёк 3 м. Фасад открыт. Лазер 2 м на задней, левой и правой стенах, сюжет «Вавилон». Без остекления. Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/otkrytye-paneli/b-49/dvor.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-49/levo.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-49/fasad.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-49/02-hero.png",
+      "/images/otkrytye-paneli/b-49/01-front.png",
+      "/images/otkrytye-paneli/b-49/06-hero-left.png",
+      "/images/otkrytye-paneli/b-49/03-left.png",
+      "/images/otkrytye-paneli/b-49/04-right.png",
+      "/images/otkrytye-paneli/b-49/05-back.png"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-49.glb"
+  },
+  {
+    "slug": "b-50",
+    "title": "Беседка «Графит · Древняя Русь XL»",
+    "tagline": "8×5 м — открытый фасад, Древняя Русь XL",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ",
+    "size": "8×5×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 980000,
+    "description": "Открытая беседка с лазерными панелями 2 м, артикул B-50. Каркас 80×80×3 мм графит. План 8×5 м, конёк 3 м. Фасад открыт. Лазер 2 м на задней, левой и правой стенах, сюжет «Древняя Русь». Без остекления. Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/otkrytye-paneli/b-50/dvor.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-50/levo.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-50/fasad.jpg?v=20260817b",
+      "/images/otkrytye-paneli/b-50/02-hero.png",
+      "/images/otkrytye-paneli/b-50/01-front.png",
+      "/images/otkrytye-paneli/b-50/06-hero-left.png",
+      "/images/otkrytye-paneli/b-50/03-left.png",
+      "/images/otkrytye-paneli/b-50/04-right.png",
+      "/images/otkrytye-paneli/b-50/05-back.png"
+    ],
+    "category": "otkrytye-besedki",
+    "model3d": "/models/b-50.glb"
+  },
+  {
+    "slug": "b-21",
+    "title": "Беседка «Панорама · Капсула»",
+    "tagline": "Компактная гостиная на участке — зима и лето",
+    "configuratorId": "panorama",
+    "material": "Металл, стеклопакеты, ДПК",
+    "size": "3×3×2,5 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 400000,
+    "description": "Закрытая беседка с раздвижным остеклением, серия «Панорама», артикул B-21. Каркас сталь 80×80×3 мм на болтовых соединениях, RAL 7016 графит. План 3×3 м, высота по коньку 2,5 м. Стены высотой 2 м — раздвижные двухслойные стеклопакеты: по 3 створки на каждой из 4 сторон (модули 1 м). Кровля — металлочерепица над графитовой фанерой (утепление и шумозащита). Пол — ДПК. Порошковое окрашивание. Монтаж на фундамент или винтовые сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/osteklenie/b-21/02-hero.png",
+      "/images/osteklenie/b-21/01-front.png",
+      "/images/osteklenie/b-21/06-hero-left.png",
+      "/images/osteklenie/b-21/03-left.png",
+      "/images/osteklenie/b-21/04-right.png",
+      "/images/osteklenie/b-21/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-21.glb"
+  },
+  {
+    "slug": "b-22",
+    "title": "Беседка «Панорама · Веранда+»",
+    "tagline": "Больше пространства — больше света",
+    "configuratorId": "panorama",
+    "material": "Металл, стеклопакеты, ДПК",
+    "size": "3×4×2,5 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 440000,
+    "description": "Закрытая беседка с раздвижным остеклением, серия «Панорама», артикул B-22. Каркас сталь 80×80×3 мм на болтовых соединениях, RAL 7016 графит. План 3×4 м, высота по коньку 2,5 м. Стены высотой 2 м — раздвижные двухслойные стеклопакеты: на сторонах 3 м — по 3 створки, на сторонах 4 м — по 4 створки (модули 1 м). Кровля — металлочерепица над графитовой фанерой (утепление и шумозащита). Пол — ДПК. Порошковое окрашивание. Монтаж на фундамент или винтовые сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/osteklenie/b-22/02-hero.png",
+      "/images/osteklenie/b-22/01-front.png",
+      "/images/osteklenie/b-22/06-hero-left.png",
+      "/images/osteklenie/b-22/03-left.png",
+      "/images/osteklenie/b-22/04-right.png",
+      "/images/osteklenie/b-22/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-22.glb"
+  },
+  {
+    "slug": "b-23",
+    "title": "Беседка «Панорама · Салон»",
+    "tagline": "Как комната в саду — 4×4 м под остеклением",
+    "configuratorId": "panorama",
+    "material": "Металл, стеклопакеты, ДПК",
+    "size": "4×4×2,7 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 490000,
+    "description": "Закрытая беседка с раздвижным остеклением, серия «Панорама», артикул B-23. Каркас сталь 80×80×3 мм на болтовых соединениях, RAL 7016 графит. План 4×4 м, высота по коньку 2,7 м. Стены высотой 2 м — раздвижные двухслойные стеклопакеты: по 4 створки на каждой из 4 сторон (модули 1 м). Кровля — металлочерепица над графитовой фанерой (утепление и шумозащита). Пол — ДПК. Порошковое окрашивание. Монтаж на фундамент или винтовые сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/osteklenie/b-23/02-hero.png",
+      "/images/osteklenie/b-23/01-front.png",
+      "/images/osteklenie/b-23/06-hero-left.png",
+      "/images/osteklenie/b-23/03-left.png",
+      "/images/osteklenie/b-23/04-right.png",
+      "/images/osteklenie/b-23/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-23.glb"
+  },
+  {
+    "slug": "b-24",
+    "title": "Беседка «Панорама · Простор»",
+    "tagline": "5×4 м — зона отдыха для семьи",
+    "configuratorId": "panorama",
+    "material": "Металл, стеклопакеты, ДПК",
+    "size": "5×4×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 720000,
+    "description": "Закрытая беседка с раздвижным остеклением, серия «Панорама», артикул B-24. Каркас сталь 80×80×3 мм на болтовых соединениях, RAL 7016 графит. План 5×4 м, высота по коньку 3 м. Стены высотой 2 м — раздвижные двухслойные стеклопакеты: на сторонах 5 м — по 5 створки, на сторонах 4 м — по 4 створки (модули 1 м). Кровля — металлочерепица над графитовой фанерой (утепление и шумозащита). Пол — ДПК. Порошковое окрашивание. Монтаж на фундамент или винтовые сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/osteklenie/b-24/02-hero.png",
+      "/images/osteklenie/b-24/01-front.png",
+      "/images/osteklenie/b-24/06-hero-left.png",
+      "/images/osteklenie/b-24/03-left.png",
+      "/images/osteklenie/b-24/04-right.png",
+      "/images/osteklenie/b-24/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-24.glb"
+  },
+  {
+    "slug": "b-25",
+    "title": "Беседка «Панорама · Квадро»",
+    "tagline": "Квадратный план 5×5 — стол на 10–12 человек",
+    "configuratorId": "panorama",
+    "material": "Металл, стеклопакеты, ДПК",
+    "size": "5×5×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 780000,
+    "description": "Закрытая беседка с раздвижным остеклением, серия «Панорама», артикул B-25. Каркас сталь 80×80×3 мм на болтовых соединениях, RAL 7016 графит. План 5×5 м, высота по коньку 3 м. Стены высотой 2 м — раздвижные двухслойные стеклопакеты: по 5 створки на каждой из 4 сторон (модули 1 м). Кровля — металлочерепица над графитовой фанерой (утепление и шумозащита). Пол — ДПК. Порошковое окрашивание. Монтаж на фундамент или винтовые сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/osteklenie/b-25/02-hero.png",
+      "/images/osteklenie/b-25/01-front.png",
+      "/images/osteklenie/b-25/06-hero-left.png",
+      "/images/osteklenie/b-25/03-left.png",
+      "/images/osteklenie/b-25/04-right.png",
+      "/images/osteklenie/b-25/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-25.glb"
+  },
+  {
+    "slug": "b-26",
+    "title": "Беседка «Панорама · Галерея»",
+    "tagline": "Вытянутая форма 6×3 — вдоль дома или дорожки",
+    "configuratorId": "panorama",
+    "material": "Металл, стеклопакеты, ДПК",
+    "size": "6×3×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 720000,
+    "description": "Закрытая беседка с раздвижным остеклением, серия «Панорама», артикул B-26. Каркас сталь 80×80×3 мм на болтовых соединениях, RAL 7016 графит. План 6×3 м, высота по коньку 3 м. Стены высотой 2 м — раздвижные двухслойные стеклопакеты: на сторонах 6 м — по 6 створки, на сторонах 3 м — по 3 створки (модули 1 м). Кровля — металлочерепица над графитовой фанерой (утепление и шумозащита). Пол — ДПК. Порошковое окрашивание. Монтаж на фундамент или винтовые сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/osteklenie/b-26/02-hero.png",
+      "/images/osteklenie/b-26/01-front.png",
+      "/images/osteklenie/b-26/06-hero-left.png",
+      "/images/osteklenie/b-26/03-left.png",
+      "/images/osteklenie/b-26/04-right.png",
+      "/images/osteklenie/b-26/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-26.glb"
+  },
+  {
+    "slug": "b-27",
+    "title": "Беседка «Панорама · Салон+»",
+    "tagline": "Простор 6×4 м с панорамным остеклением",
+    "configuratorId": "panorama",
+    "material": "Металл, стеклопакеты, ДПК",
+    "size": "6×4×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 820000,
+    "description": "Закрытая беседка с раздвижным остеклением, серия «Панорама», артикул B-27. Каркас сталь 80×80×3 мм на болтовых соединениях, RAL 7016 графит. План 6×4 м, высота по коньку 3 м. Стены высотой 2 м — раздвижные двухслойные стеклопакеты: на сторонах 6 м — по 6 створки, на сторонах 4 м — по 4 створки (модули 1 м). Кровля — металлочерепица над графитовой фанерой (утепление и шумозащита). Пол — ДПК. Порошковое окрашивание. Монтаж на фундамент или винтовые сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/osteklenie/b-27/02-hero.png",
+      "/images/osteklenie/b-27/01-front.png",
+      "/images/osteklenie/b-27/06-hero-left.png",
+      "/images/osteklenie/b-27/03-left.png",
+      "/images/osteklenie/b-27/04-right.png",
+      "/images/osteklenie/b-27/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-27.glb"
+  },
+  {
+    "slug": "b-28",
+    "title": "Беседка «Панорама · Резиденция»",
+    "tagline": "Круглогодичный отдых 6×5 м",
+    "configuratorId": "panorama",
+    "material": "Металл, стеклопакеты, ДПК",
+    "size": "6×5×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 920000,
+    "description": "Закрытая беседка с раздвижным остеклением, серия «Панорама», артикул B-28. Каркас сталь 80×80×3 мм на болтовых соединениях, RAL 7016 графит. План 6×5 м, высота по коньку 3 м. Стены высотой 2 м — раздвижные двухслойные стеклопакеты: на сторонах 6 м — по 6 створки, на сторонах 5 м — по 5 створки (модули 1 м). Кровля — металлочерепица над графитовой фанерой (утепление и шумозащита). Пол — ДПК. Порошковое окрашивание. Монтаж на фундамент или винтовые сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/osteklenie/b-28/02-hero.png",
+      "/images/osteklenie/b-28/01-front.png",
+      "/images/osteklenie/b-28/06-hero-left.png",
+      "/images/osteklenie/b-28/03-left.png",
+      "/images/osteklenie/b-28/04-right.png",
+      "/images/osteklenie/b-28/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-28.glb"
+  },
+  {
+    "slug": "b-29",
+    "title": "Беседка «Панорама · XL»",
+    "tagline": "8×4 м — для больших компаний и мероприятий",
+    "configuratorId": "panorama",
+    "material": "Металл, стеклопакеты, ДПК",
+    "size": "8×4×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 1050000,
+    "description": "Закрытая беседка с раздвижным остеклением, серия «Панорама», артикул B-29. Каркас сталь 80×80×3 мм на болтовых соединениях, RAL 7016 графит. План 8×4 м, высота по коньку 3 м. Стены высотой 2 м — раздвижные двухслойные стеклопакеты: на сторонах 8 м — по 8 створки, на сторонах 4 м — по 4 створки (модули 1 м). Кровля — металлочерепица над графитовой фанерой (утепление и шумозащита). Пол — ДПК. Порошковое окрашивание. Монтаж на фундамент или винтовые сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/osteklenie/b-29/02-hero.png",
+      "/images/osteklenie/b-29/01-front.png",
+      "/images/osteklenie/b-29/06-hero-left.png",
+      "/images/osteklenie/b-29/03-left.png",
+      "/images/osteklenie/b-29/04-right.png",
+      "/images/osteklenie/b-29/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-29.glb"
+  },
+  {
+    "slug": "b-30",
+    "title": "Беседка «Панорама · Флагман»",
+    "tagline": "Максимальный размер серии — 8×5 м",
+    "configuratorId": "panorama",
+    "material": "Металл, стеклопакеты, ДПК",
+    "size": "8×5×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 1180000,
+    "description": "Закрытая беседка с раздвижным остеклением, серия «Панорама», артикул B-30. Каркас сталь 80×80×3 мм на болтовых соединениях, RAL 7016 графит. Стены высотой 2 м — раздвижные двухслойные стеклопакеты по 1 м (8×5 створок по периметру). Кровля — металлочерепица над графитовой фанерой (утепление и шумозащита). Пол — ДПК. Порошковое окрашивание. Монтаж на фундамент или винтовые сваи. Срок службы более 10 лет.",
+    "images": [
+      "/images/osteklenie/b-30/02-hero.png",
+      "/images/osteklenie/b-30/01-front.png",
+      "/images/osteklenie/b-30/06-hero-left.png",
+      "/images/osteklenie/b-30/03-left.png",
+      "/images/osteklenie/b-30/04-right.png",
+      "/images/osteklenie/b-30/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-30.glb"
+  },
+  {
+    "slug": "b-31",
+    "title": "Беседка «Панорама · Дамаск»",
+    "tagline": "3×3 м — стекло и резьба: купол, фонтан, павлин",
+    "material": "Металл, стеклопакеты, лазер 3 мм, ДПК",
+    "size": "3×3×2,5 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 620000,
+    "description": "Закрытая беседка с остеклением и лазерными панелями, артикул B-31. Каркас сталь 80×80×3 мм, RAL 7016 графит. План 3×3 м, конёк 2,5 м. Раздвижные стеклопакеты на всех 4 сторонах (по 3 створки 1 м). Лазерные листы 2,0×1,0 м крепятся СНАРУЖИ стекла на задней и левой стенах, сюжет «Дамаск». Кровля — металлочерепица над графитовой фанерой. Пол ДПК. Монтаж на фундамент или сваи.",
+    "images": [
+      "/images/osteklenie-paneli/b-31/02-hero.png",
+      "/images/osteklenie-paneli/b-31/01-front.png",
+      "/images/osteklenie-paneli/b-31/06-hero-left.png",
+      "/images/osteklenie-paneli/b-31/03-left.png",
+      "/images/osteklenie-paneli/b-31/04-right.png",
+      "/images/osteklenie-paneli/b-31/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-31.glb"
+  },
+  {
+    "slug": "b-32",
+    "title": "Беседка «Панорама · Александрия»",
+    "tagline": "3×4 м — Фарос, библиотека, Нил",
+    "material": "Металл, стеклопакеты, лазер 3 мм, ДПК",
+    "size": "3×4×2,5 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 660000,
+    "description": "Закрытая беседка с остеклением и лазерными панелями, артикул B-32. Каркас 80×80×3 мм графит. План 3×4 м, конёк 2,5 м. Стеклопакеты: фасад 3 створки, глубина 4. Лазер 2 м снаружи стекла на задней и левой стенах, сюжет «Александрия». Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/osteklenie-paneli/b-32/02-hero.png",
+      "/images/osteklenie-paneli/b-32/01-front.png",
+      "/images/osteklenie-paneli/b-32/06-hero-left.png",
+      "/images/osteklenie-paneli/b-32/03-left.png",
+      "/images/osteklenie-paneli/b-32/04-right.png",
+      "/images/osteklenie-paneli/b-32/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-32.glb"
+  },
+  {
+    "slug": "b-33",
+    "title": "Беседка «Панорама · Вавилон»",
+    "tagline": "4×4 м — зиккурат, Иштар, висячие сады",
+    "material": "Металл, стеклопакеты, лазер 3 мм, ДПК",
+    "size": "4×4×2,7 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 740000,
+    "description": "Закрытая беседка с остеклением и лазерными панелями, артикул B-33. Каркас 80×80×3 мм графит. План 4×4 м, конёк 2,7 м. По 4 створки на стороне. Лазер 2 м снаружи стекла на задней и левой стенах, сюжет «Вавилон». Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/osteklenie-paneli/b-33/02-hero.png",
+      "/images/osteklenie-paneli/b-33/01-front.png",
+      "/images/osteklenie-paneli/b-33/06-hero-left.png",
+      "/images/osteklenie-paneli/b-33/03-left.png",
+      "/images/osteklenie-paneli/b-33/04-right.png",
+      "/images/osteklenie-paneli/b-33/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-33.glb"
+  },
+  {
+    "slug": "b-34",
+    "title": "Беседка «Панорама · Средняя Азия»",
+    "tagline": "5×4 м — верблюд, минарет, караван",
+    "material": "Металл, стеклопакеты, лазер 3 мм, ДПК",
+    "size": "5×4×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 820000,
+    "description": "Закрытая беседка с остеклением и лазерными панелями, артикул B-34. Каркас 80×80×3 мм графит. План 5×4 м, конёк 3 м. Фасад 5 створок, глубина 4. Лазер 2 м снаружи стекла на задней и левой стенах, сюжет «Средняя Азия». Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/osteklenie-paneli/b-34/02-hero.png",
+      "/images/osteklenie-paneli/b-34/01-front.png",
+      "/images/osteklenie-paneli/b-34/06-hero-left.png",
+      "/images/osteklenie-paneli/b-34/03-left.png",
+      "/images/osteklenie-paneli/b-34/04-right.png",
+      "/images/osteklenie-paneli/b-34/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-34.glb"
+  },
+  {
+    "slug": "b-35",
+    "title": "Беседка «Панорама · Древняя Русь»",
+    "tagline": "5×5 м — богатырь, Садко, Жар-птица",
+    "material": "Металл, стеклопакеты, лазер 3 мм, ДПК",
+    "size": "5×5×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 890000,
+    "description": "Закрытая беседка с остеклением и лазерными панелями, артикул B-35. Каркас 80×80×3 мм графит. План 5×5 м, конёк 3 м. По 5 створок на стороне. Лазер 2 м снаружи стекла на задней и левой стенах, сюжет «Древняя Русь». Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/osteklenie-paneli/b-35/02-hero.png",
+      "/images/osteklenie-paneli/b-35/01-front.png",
+      "/images/osteklenie-paneli/b-35/06-hero-left.png",
+      "/images/osteklenie-paneli/b-35/03-left.png",
+      "/images/osteklenie-paneli/b-35/04-right.png",
+      "/images/osteklenie-paneli/b-35/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-35.glb"
+  },
+  {
+    "slug": "b-36",
+    "title": "Беседка «Панорама · Кавказ»",
+    "tagline": "6×3 м — башни, всадник, виноград",
+    "material": "Металл, стеклопакеты, лазер 3 мм, ДПК",
+    "size": "6×3×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 820000,
+    "description": "Закрытая беседка с остеклением и лазерными панелями, артикул B-36. Каркас 80×80×3 мм графит. План 6×3 м, конёк 3 м. Фасад 6 створок, торец 3. Лазер 2 м снаружи стекла на задней и левой стенах, сюжет «Кавказ». Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/osteklenie-paneli/b-36/02-hero.png",
+      "/images/osteklenie-paneli/b-36/01-front.png",
+      "/images/osteklenie-paneli/b-36/06-hero-left.png",
+      "/images/osteklenie-paneli/b-36/03-left.png",
+      "/images/osteklenie-paneli/b-36/04-right.png",
+      "/images/osteklenie-paneli/b-36/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-36.glb"
+  },
+  {
+    "slug": "b-37",
+    "title": "Беседка «Панорама · Дамаск+»",
+    "tagline": "6×4 м — дамасский узор на стекле",
+    "material": "Металл, стеклопакеты, лазер 3 мм, ДПК",
+    "size": "6×4×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 930000,
+    "description": "Закрытая беседка с остеклением и лазерными панелями, артикул B-37. Каркас 80×80×3 мм графит. План 6×4 м, конёк 3 м. Фасад 6 створок, глубина 4. Лазер 2 м снаружи стекла на задней и левой стенах, сюжет «Дамаск». Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/osteklenie-paneli/b-37/02-hero.png",
+      "/images/osteklenie-paneli/b-37/01-front.png",
+      "/images/osteklenie-paneli/b-37/06-hero-left.png",
+      "/images/osteklenie-paneli/b-37/03-left.png",
+      "/images/osteklenie-paneli/b-37/04-right.png",
+      "/images/osteklenie-paneli/b-37/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-37.glb"
+  },
+  {
+    "slug": "b-38",
+    "title": "Беседка «Панорама · Александрия+»",
+    "tagline": "6×5 м — египетский сюжет во весь рост",
+    "material": "Металл, стеклопакеты, лазер 3 мм, ДПК",
+    "size": "6×5×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 1040000,
+    "description": "Закрытая беседка с остеклением и лазерными панелями, артикул B-38. Каркас 80×80×3 мм графит. План 6×5 м, конёк 3 м. Фасад 6 створок, глубина 5. Лазер 2 м снаружи стекла на задней и левой стенах, сюжет «Александрия». Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/osteklenie-paneli/b-38/02-hero.png",
+      "/images/osteklenie-paneli/b-38/01-front.png",
+      "/images/osteklenie-paneli/b-38/06-hero-left.png",
+      "/images/osteklenie-paneli/b-38/03-left.png",
+      "/images/osteklenie-paneli/b-38/04-right.png",
+      "/images/osteklenie-paneli/b-38/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-38.glb"
+  },
+  {
+    "slug": "b-39",
+    "title": "Беседка «Панорама · Вавилон XL»",
+    "tagline": "8×4 м — зиккурат и сады на задней стене",
+    "material": "Металл, стеклопакеты, лазер 3 мм, ДПК",
+    "size": "8×4×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 1180000,
+    "description": "Закрытая беседка с остеклением и лазерными панелями, артикул B-39. Каркас 80×80×3 мм графит. План 8×4 м, конёк 3 м. Фасад 8 створок, глубина 4. Лазер 2 м снаружи стекла на задней и левой стенах, сюжет «Вавилон». Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/osteklenie-paneli/b-39/02-hero.png",
+      "/images/osteklenie-paneli/b-39/01-front.png",
+      "/images/osteklenie-paneli/b-39/06-hero-left.png",
+      "/images/osteklenie-paneli/b-39/03-left.png",
+      "/images/osteklenie-paneli/b-39/04-right.png",
+      "/images/osteklenie-paneli/b-39/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-39.glb"
+  },
+  {
+    "slug": "b-40",
+    "title": "Беседка «Панорама · Древняя Русь XL»",
+    "tagline": "8×5 м — богатыри и сказка на стекле",
+    "material": "Металл, стеклопакеты, лазер 3 мм, ДПК",
+    "size": "8×5×3 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 1320000,
+    "description": "Закрытая беседка с остеклением и лазерными панелями, артикул B-40. Каркас 80×80×3 мм графит. План 8×5 м, конёк 3 м. Фасад 8 створок, глубина 5. Лазер 2 м снаружи стекла на задней и левой стенах, сюжет «Древняя Русь». Кровля — металлочерепица над графитовой фанерой. Пол ДПК.",
+    "images": [
+      "/images/osteklenie-paneli/b-40/02-hero.png",
+      "/images/osteklenie-paneli/b-40/01-front.png",
+      "/images/osteklenie-paneli/b-40/06-hero-left.png",
+      "/images/osteklenie-paneli/b-40/03-left.png",
+      "/images/osteklenie-paneli/b-40/04-right.png",
+      "/images/osteklenie-paneli/b-40/05-back.png"
+    ],
+    "category": "besedki-s-ostekleniem",
+    "model3d": "/models/b-40.glb"
+  },
+  {
+    "slug": "n-02",
+    "title": "Навес «Лофт · City 5×3»",
+    "material": "Металл, ДПК",
+    "size": "5×3×2,5 м",
+    "roof": "Профлист",
+    "foundation": "Фундамент, плитка или винтовые сваи",
+    "priceFrom": 150000,
+    "description": "Компактный навес для двора и кафе. Металлический навес в стиле лофт, серия «Лофт», артикул N-02. Каркас из стального профиля на болтовых соединениях с диагональными подкосами для жёсткости. Цвет — антрацит, матовое порошковое покрытие. Пескоструйная обработка и порошковое окрашивание. Монтаж на фундамент, плитку или сваи. Срок службы более 10 лет. Кровля — профлист. Пол — из ДПК.",
+    "images": [
+      "/images/navesy/n-02-1.png"
+    ],
+    "category": "navesy",
+    "tagline": "Компактный навес для двора и кафе",
+    "model3d": "/models/n-02.glb"
+  },
+  {
+    "slug": "n-01",
+    "title": "Навес «Лофт · Drive 6×3»",
+    "material": "Металл, ДПК",
+    "size": "6×3×2,5 м",
+    "roof": "Профлист",
+    "foundation": "Фундамент, плитка или винтовые сваи",
+    "priceFrom": 180000,
+    "description": "Машина под крышей + терраса с полом ДПК. Металлический навес в стиле лофт, серия «Лофт», артикул N-01. Каркас из стального профиля на болтовых соединениях с диагональными подкосами для жёсткости. Цвет — антрацит, матовое порошковое покрытие. Пескоструйная обработка и порошковое окрашивание. Монтаж на фундамент, плитку или сваи. Срок службы более 10 лет. Кровля — профлист. Пол — из ДПК.",
+    "images": [
+      "/images/navesy/n-01-1.png",
+      "/images/navesy/n-01-2.png"
+    ],
+    "category": "navesy",
+    "tagline": "Машина под крышей + терраса с полом ДПК",
+    "model3d": "/models/n-01.glb"
+  },
+  {
+    "slug": "n-03",
+    "title": "Навес «Лофт · Скат 5×4»",
+    "material": "Металл, ДПК",
+    "size": "5×4×2,5 м",
+    "roof": "Металлочерепица, уклон 22°",
+    "foundation": "Фундамент, плитка или винтовые сваи",
+    "priceFrom": 200000,
+    "description": "Односкатная кровля — стиль и практичность. Металлический навес в стиле лофт, серия «Лофт», артикул N-03. Каркас из стального профиля на болтовых соединениях с диагональными подкосами для жёсткости. Цвет — антрацит, матовое порошковое покрытие. Пескоструйная обработка и порошковое окрашивание. Монтаж на фундамент, плитку или сваи. Срок службы более 10 лет. Односкатная кровля — металлочерепица. Пол — из ДПК.",
+    "images": [
+      "/images/navesy/n-03-1.png"
+    ],
+    "category": "navesy",
+    "tagline": "Односкатная кровля — стиль и практичность",
+    "model3d": "/models/n-03.glb"
+  },
+  {
+    "slug": "k-01",
+    "title": "Качели «Графит · Богатыри»",
+    "tagline": "2 места — лазер богатыри, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Богатыри», артикул K-01. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-01/02-hero.png",
+      "/images/kacheli/k-01/01-front.png",
+      "/images/kacheli/k-01/06-hero-left.png",
+      "/images/kacheli/k-01/03-left.png",
+      "/images/kacheli/k-01/04-right.png",
+      "/images/kacheli/k-01/05-back.png",
+      "/images/kacheli/k-01/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-01.glb"
+  },
+  {
+    "slug": "k-02",
+    "title": "Качели «Графит · Богатыри»",
+    "tagline": "3 места — лазер богатыри, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Богатыри», артикул K-02. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-02/02-hero.png",
+      "/images/kacheli/k-02/01-front.png",
+      "/images/kacheli/k-02/06-hero-left.png",
+      "/images/kacheli/k-02/03-left.png",
+      "/images/kacheli/k-02/04-right.png",
+      "/images/kacheli/k-02/05-back.png",
+      "/images/kacheli/k-02/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-02.glb"
+  },
+  {
+    "slug": "k-03",
+    "title": "Качели «Графит · Медведи»",
+    "tagline": "2 места — лазер медведи, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Медведи», артикул K-03. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-03/02-hero.png",
+      "/images/kacheli/k-03/01-front.png",
+      "/images/kacheli/k-03/06-hero-left.png",
+      "/images/kacheli/k-03/03-left.png",
+      "/images/kacheli/k-03/04-right.png",
+      "/images/kacheli/k-03/05-back.png",
+      "/images/kacheli/k-03/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-03.glb"
+  },
+  {
+    "slug": "k-04",
+    "title": "Качели «Графит · Медведи»",
+    "tagline": "3 места — лазер медведи, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Медведи», артикул K-04. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-04/02-hero.png",
+      "/images/kacheli/k-04/01-front.png",
+      "/images/kacheli/k-04/06-hero-left.png",
+      "/images/kacheli/k-04/03-left.png",
+      "/images/kacheli/k-04/04-right.png",
+      "/images/kacheli/k-04/05-back.png",
+      "/images/kacheli/k-04/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-04.glb"
+  },
+  {
+    "slug": "k-05",
+    "title": "Качели «Графит · Лоси»",
+    "tagline": "2 места — лазер лоси, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Лоси», артикул K-05. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-05/02-hero.png",
+      "/images/kacheli/k-05/01-front.png",
+      "/images/kacheli/k-05/06-hero-left.png",
+      "/images/kacheli/k-05/03-left.png",
+      "/images/kacheli/k-05/04-right.png",
+      "/images/kacheli/k-05/05-back.png",
+      "/images/kacheli/k-05/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-05.glb"
+  },
+  {
+    "slug": "k-06",
+    "title": "Качели «Графит · Лоси»",
+    "tagline": "3 места — лазер лоси, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Лоси», артикул K-06. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-06/02-hero.png",
+      "/images/kacheli/k-06/01-front.png",
+      "/images/kacheli/k-06/06-hero-left.png",
+      "/images/kacheli/k-06/03-left.png",
+      "/images/kacheli/k-06/04-right.png",
+      "/images/kacheli/k-06/05-back.png",
+      "/images/kacheli/k-06/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-06.glb"
+  },
+  {
+    "slug": "k-07",
+    "title": "Качели «Графит · Рыцари»",
+    "tagline": "2 места — лазер рыцари, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Рыцари», артикул K-07. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-07/02-hero.png",
+      "/images/kacheli/k-07/01-front.png",
+      "/images/kacheli/k-07/06-hero-left.png",
+      "/images/kacheli/k-07/03-left.png",
+      "/images/kacheli/k-07/04-right.png",
+      "/images/kacheli/k-07/05-back.png",
+      "/images/kacheli/k-07/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-07.glb"
+  },
+  {
+    "slug": "k-08",
+    "title": "Качели «Графит · Рыцари»",
+    "tagline": "3 места — лазер рыцари, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Рыцари», артикул K-08. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-08/02-hero.png",
+      "/images/kacheli/k-08/01-front.png",
+      "/images/kacheli/k-08/06-hero-left.png",
+      "/images/kacheli/k-08/03-left.png",
+      "/images/kacheli/k-08/04-right.png",
+      "/images/kacheli/k-08/05-back.png",
+      "/images/kacheli/k-08/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-08.glb"
+  },
+  {
+    "slug": "k-09",
+    "title": "Качели «Графит · Олени»",
+    "tagline": "2 места — лазер олени, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Олени», артикул K-09. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-09/02-hero.png",
+      "/images/kacheli/k-09/01-front.png",
+      "/images/kacheli/k-09/06-hero-left.png",
+      "/images/kacheli/k-09/03-left.png",
+      "/images/kacheli/k-09/04-right.png",
+      "/images/kacheli/k-09/05-back.png",
+      "/images/kacheli/k-09/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-09.glb"
+  },
+  {
+    "slug": "k-10",
+    "title": "Качели «Графит · Олени»",
+    "tagline": "3 места — лазер олени, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Олени», артикул K-10. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-10/02-hero.png",
+      "/images/kacheli/k-10/01-front.png",
+      "/images/kacheli/k-10/06-hero-left.png",
+      "/images/kacheli/k-10/03-left.png",
+      "/images/kacheli/k-10/04-right.png",
+      "/images/kacheli/k-10/05-back.png",
+      "/images/kacheli/k-10/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-10.glb"
+  },
+  {
+    "slug": "k-11",
+    "title": "Качели «Графит · Лесная жизнь»",
+    "tagline": "2 места — лазер лесная жизнь, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Лесная жизнь», артикул K-11. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-11/02-hero.png",
+      "/images/kacheli/k-11/01-front.png",
+      "/images/kacheli/k-11/06-hero-left.png",
+      "/images/kacheli/k-11/03-left.png",
+      "/images/kacheli/k-11/04-right.png",
+      "/images/kacheli/k-11/05-back.png",
+      "/images/kacheli/k-11/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-11.glb"
+  },
+  {
+    "slug": "k-12",
+    "title": "Качели «Графит · Лесная жизнь»",
+    "tagline": "3 места — лазер лесная жизнь, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Лесная жизнь», артикул K-12. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-12/02-hero.png",
+      "/images/kacheli/k-12/01-front.png",
+      "/images/kacheli/k-12/06-hero-left.png",
+      "/images/kacheli/k-12/03-left.png",
+      "/images/kacheli/k-12/04-right.png",
+      "/images/kacheli/k-12/05-back.png",
+      "/images/kacheli/k-12/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-12.glb"
+  },
+  {
+    "slug": "k-13",
+    "title": "Качели «Графит · Дамаск»",
+    "tagline": "2 места — лазер дамаск, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Дамаск», артикул K-13. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-13/02-hero.png",
+      "/images/kacheli/k-13/01-front.png",
+      "/images/kacheli/k-13/06-hero-left.png",
+      "/images/kacheli/k-13/03-left.png",
+      "/images/kacheli/k-13/04-right.png",
+      "/images/kacheli/k-13/05-back.png",
+      "/images/kacheli/k-13/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-13.glb"
+  },
+  {
+    "slug": "k-14",
+    "title": "Качели «Графит · Дамаск»",
+    "tagline": "3 места — лазер дамаск, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Дамаск», артикул K-14. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-14/02-hero.png",
+      "/images/kacheli/k-14/01-front.png",
+      "/images/kacheli/k-14/06-hero-left.png",
+      "/images/kacheli/k-14/03-left.png",
+      "/images/kacheli/k-14/04-right.png",
+      "/images/kacheli/k-14/05-back.png",
+      "/images/kacheli/k-14/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-14.glb"
+  },
+  {
+    "slug": "k-15",
+    "title": "Качели «Графит · Александрия»",
+    "tagline": "2 места — лазер александрия, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Александрия», артикул K-15. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-15/02-hero.png",
+      "/images/kacheli/k-15/01-front.png",
+      "/images/kacheli/k-15/06-hero-left.png",
+      "/images/kacheli/k-15/03-left.png",
+      "/images/kacheli/k-15/04-right.png",
+      "/images/kacheli/k-15/05-back.png",
+      "/images/kacheli/k-15/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-15.glb"
+  },
+  {
+    "slug": "k-16",
+    "title": "Качели «Графит · Александрия»",
+    "tagline": "3 места — лазер александрия, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Александрия», артикул K-16. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-16/02-hero.png",
+      "/images/kacheli/k-16/01-front.png",
+      "/images/kacheli/k-16/06-hero-left.png",
+      "/images/kacheli/k-16/03-left.png",
+      "/images/kacheli/k-16/04-right.png",
+      "/images/kacheli/k-16/05-back.png",
+      "/images/kacheli/k-16/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-16.glb"
+  },
+  {
+    "slug": "k-17",
+    "title": "Качели «Графит · Вавилон»",
+    "tagline": "2 места — лазер вавилон, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Вавилон», артикул K-17. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-17/02-hero.png",
+      "/images/kacheli/k-17/01-front.png",
+      "/images/kacheli/k-17/06-hero-left.png",
+      "/images/kacheli/k-17/03-left.png",
+      "/images/kacheli/k-17/04-right.png",
+      "/images/kacheli/k-17/05-back.png",
+      "/images/kacheli/k-17/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-17.glb"
+  },
+  {
+    "slug": "k-18",
+    "title": "Качели «Графит · Вавилон»",
+    "tagline": "3 места — лазер вавилон, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Вавилон», артикул K-18. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-18/02-hero.png",
+      "/images/kacheli/k-18/01-front.png",
+      "/images/kacheli/k-18/06-hero-left.png",
+      "/images/kacheli/k-18/03-left.png",
+      "/images/kacheli/k-18/04-right.png",
+      "/images/kacheli/k-18/05-back.png",
+      "/images/kacheli/k-18/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-18.glb"
+  },
+  {
+    "slug": "k-19",
+    "title": "Качели «Графит · Средняя Азия»",
+    "tagline": "2 места — лазер средняя азия, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Средняя Азия», артикул K-19. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-19/02-hero.png",
+      "/images/kacheli/k-19/01-front.png",
+      "/images/kacheli/k-19/06-hero-left.png",
+      "/images/kacheli/k-19/03-left.png",
+      "/images/kacheli/k-19/04-right.png",
+      "/images/kacheli/k-19/05-back.png",
+      "/images/kacheli/k-19/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-19.glb"
+  },
+  {
+    "slug": "k-20",
+    "title": "Качели «Графит · Средняя Азия»",
+    "tagline": "3 места — лазер средняя азия, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Средняя Азия», артикул K-20. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-20/02-hero.png",
+      "/images/kacheli/k-20/01-front.png",
+      "/images/kacheli/k-20/06-hero-left.png",
+      "/images/kacheli/k-20/03-left.png",
+      "/images/kacheli/k-20/04-right.png",
+      "/images/kacheli/k-20/05-back.png",
+      "/images/kacheli/k-20/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-20.glb"
+  },
+  {
+    "slug": "k-21",
+    "title": "Качели «Графит · Древняя Русь»",
+    "tagline": "2 места — лазер древняя русь, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Древняя Русь», артикул K-21. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-21/02-hero.png",
+      "/images/kacheli/k-21/01-front.png",
+      "/images/kacheli/k-21/06-hero-left.png",
+      "/images/kacheli/k-21/03-left.png",
+      "/images/kacheli/k-21/04-right.png",
+      "/images/kacheli/k-21/05-back.png",
+      "/images/kacheli/k-21/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-21.glb"
+  },
+  {
+    "slug": "k-22",
+    "title": "Качели «Графит · Древняя Русь»",
+    "tagline": "3 места — лазер древняя русь, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Древняя Русь», артикул K-22. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-22/02-hero.png",
+      "/images/kacheli/k-22/01-front.png",
+      "/images/kacheli/k-22/06-hero-left.png",
+      "/images/kacheli/k-22/03-left.png",
+      "/images/kacheli/k-22/04-right.png",
+      "/images/kacheli/k-22/05-back.png",
+      "/images/kacheli/k-22/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-22.glb"
+  },
+  {
+    "slug": "k-23",
+    "title": "Качели «Графит · Кавказ»",
+    "tagline": "2 места — лазер кавказ, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "1,6×1,2×2,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 140000,
+    "description": "Садовые качели-беседка «Графит · Кавказ», артикул K-23. 2 места, габарит 1,6×1,2×2,0 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-23/02-hero.png",
+      "/images/kacheli/k-23/01-front.png",
+      "/images/kacheli/k-23/06-hero-left.png",
+      "/images/kacheli/k-23/03-left.png",
+      "/images/kacheli/k-23/04-right.png",
+      "/images/kacheli/k-23/05-back.png",
+      "/images/kacheli/k-23/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-23.glb"
+  },
+  {
+    "slug": "k-24",
+    "title": "Качели «Графит · Кавказ»",
+    "tagline": "3 места — лазер кавказ, каркас 80×80",
+    "material": "Металл, сталь 3 мм ЧПУ, текстиль",
+    "size": "2,0×1,5×2,2 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Площадка, плитка или винтовые сваи",
+    "priceFrom": 170000,
+    "description": "Садовые качели-беседка «Графит · Кавказ», артикул K-24. 3 места, габарит 2,0×1,5×2,2 м. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. Крыша двускатная — металлочерепица над графитовой фанерой. Лазерные панели 3 мм на левой и правой боковинах, узор заполняет 70% листа. Фасад и зад открыты. Сиденье на четырёх цепях, подушки в комплекте. Без остекления. Порошковое окрашивание. Монтаж на площадку, плитку или сваи.",
+    "images": [
+      "/images/kacheli/k-24/02-hero.png",
+      "/images/kacheli/k-24/01-front.png",
+      "/images/kacheli/k-24/06-hero-left.png",
+      "/images/kacheli/k-24/03-left.png",
+      "/images/kacheli/k-24/04-right.png",
+      "/images/kacheli/k-24/05-back.png",
+      "/images/kacheli/k-24/11-seat.png"
+    ],
+    "category": "kacheli",
+    "model3d": "/models/k-24.glb"
+  },
+  {
+    "slug": "bm-42",
+    "title": "Беседка с мангалом «Огонь · 3×4»",
+    "tagline": "3×4 м — Александрия, мангал внутри слева",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ, мангал",
+    "size": "3×4×2,5 м",
+    "roof": "Металлочерепица S-волна, вальма, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 650000,
+    "description": "Беседка с мангалом «Огонь · 3×4», артикул BM-42. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. План 3×4 м, конёк 2,5 м. Фасад открыт. Лазерные панели на задней, левой и правой стенах, сюжет «Александрия». Кровля — металлочерепица, вальма. Пол ДПК. Мангал внутри слева у стены: жаровня 800×350 мм, печь под казан 420×420 мм, зонт и дымоход. Без остекления.",
+    "images": [
+      "/images/besedki-s-mangalom/bm-42/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-42/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-42/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-42/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-42/paneli.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-42/01_hero.jpg",
+      "/images/besedki-s-mangalom/bm-42/05_hero_left.jpg",
+      "/images/besedki-s-mangalom/bm-42/02_front.jpg",
+      "/images/besedki-s-mangalom/bm-42/03_left.jpg",
+      "/images/besedki-s-mangalom/bm-42/04_right.jpg",
+      "/images/besedki-s-mangalom/bm-42/06_cooking.jpg",
+      "/images/besedki-s-mangalom/bm-42/07_lifestyle.jpg"
+    ],
+    "category": "besedki-s-mangalom",
+    "model3d": "/models/bm-42.glb"
+  },
+  {
+    "slug": "bm-32",
+    "title": "Беседка с мангалом «Огонь · Компакт 3×2»",
+    "tagline": "3×2 м — открытый каркас, мангал внутри слева",
+    "material": "Металл, ДПК, мангал",
+    "size": "3×2×2,7 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 420000,
+    "description": "Беседка с мангалом «Огонь · Компакт 3×2», артикул BM-32. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. План 3×2 м, конёк 2,7 м. Открытый каркас, без лазерных панелей. Кровля — металлочерепица, двускатная. Пол ДПК. Мангал внутри слева у стены: жаровня 800×350 мм, печь под казан 420×420 мм, зонт и дымоход. Без остекления.",
+    "images": [
+      "/images/besedki-s-mangalom/bm-32/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-32/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-32/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-32/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-32/01_hero.jpg",
+      "/images/besedki-s-mangalom/bm-32/05_hero_left.jpg",
+      "/images/besedki-s-mangalom/bm-32/02_front.jpg",
+      "/images/besedki-s-mangalom/bm-32/03_left.jpg",
+      "/images/besedki-s-mangalom/bm-32/04_right.jpg",
+      "/images/besedki-s-mangalom/bm-32/06_cooking.jpg",
+      "/images/besedki-s-mangalom/bm-32/07_lifestyle.jpg"
+    ],
+    "category": "besedki-s-mangalom",
+    "model3d": "/models/bm-32.glb"
+  },
+  {
+    "slug": "bm-12",
+    "title": "Беседка с мангалом «Огонь · 3×3»",
+    "tagline": "3×3 м — орнамент, мангал внутри слева",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ, мангал",
+    "size": "3×3×2,7 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 420000,
+    "description": "Беседка с мангалом «Огонь · 3×3», артикул BM-12. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. План 3×3 м, конёк 2,7 м. Фасад открыт. Лазерные панели на задней, левой и правой стенах, узор «орнамент». Кровля — металлочерепица, двускатная. Пол ДПК. Мангал внутри слева у стены: жаровня 800×350 мм, печь под казан 420×420 мм, зонт и дымоход. Без остекления.",
+    "images": [
+      "/images/besedki-s-mangalom/bm-12/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-12/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-12/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-12/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-12/paneli.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-12/01_hero.jpg",
+      "/images/besedki-s-mangalom/bm-12/05_hero_left.jpg",
+      "/images/besedki-s-mangalom/bm-12/02_front.jpg",
+      "/images/besedki-s-mangalom/bm-12/03_left.jpg",
+      "/images/besedki-s-mangalom/bm-12/04_right.jpg",
+      "/images/besedki-s-mangalom/bm-12/06_cooking.jpg",
+      "/images/besedki-s-mangalom/bm-12/07_lifestyle.jpg"
+    ],
+    "category": "besedki-s-mangalom",
+    "model3d": "/models/bm-12.glb"
+  },
+  {
+    "slug": "bm-11",
+    "title": "Беседка с мангалом «Огонь · 4×4»",
+    "tagline": "4×4 м — орнамент, мангал внутри слева",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ, мангал",
+    "size": "4×4×3,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 430000,
+    "description": "Беседка с мангалом «Огонь · 4×4», артикул BM-11. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. План 4×4 м, конёк 3,0 м. Фасад открыт. Лазерные панели на задней, левой и правой стенах, узор «орнамент». Кровля — металлочерепица, двускатная. Пол ДПК. Мангал внутри слева у стены: жаровня 800×350 мм, печь под казан 420×420 мм, зонт и дымоход. Без остекления.",
+    "images": [
+      "/images/besedki-s-mangalom/bm-11/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-11/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-11/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-11/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-11/paneli.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-11/01_hero.jpg",
+      "/images/besedki-s-mangalom/bm-11/05_hero_left.jpg",
+      "/images/besedki-s-mangalom/bm-11/02_front.jpg",
+      "/images/besedki-s-mangalom/bm-11/03_left.jpg",
+      "/images/besedki-s-mangalom/bm-11/04_right.jpg",
+      "/images/besedki-s-mangalom/bm-11/06_cooking.jpg",
+      "/images/besedki-s-mangalom/bm-11/07_lifestyle.jpg"
+    ],
+    "category": "besedki-s-mangalom",
+    "model3d": "/models/bm-11.glb"
+  },
+  {
+    "slug": "bm-13",
+    "title": "Беседка с мангалом «Огонь · 4×3»",
+    "tagline": "4×3 м — орнамент, мангал внутри слева",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ, мангал",
+    "size": "4×3×3,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 470000,
+    "description": "Беседка с мангалом «Огонь · 4×3», артикул BM-13. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. План 4×3 м, конёк 3,0 м. Фасад открыт. Лазерные панели на задней, левой и правой стенах, узор «орнамент». Кровля — металлочерепица, двускатная. Пол ДПК. Мангал внутри слева у стены: жаровня 800×350 мм, печь под казан 420×420 мм, зонт и дымоход. Без остекления.",
+    "images": [
+      "/images/besedki-s-mangalom/bm-13/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-13/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-13/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-13/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-13/paneli.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-13/01_hero.jpg",
+      "/images/besedki-s-mangalom/bm-13/05_hero_left.jpg",
+      "/images/besedki-s-mangalom/bm-13/02_front.jpg",
+      "/images/besedki-s-mangalom/bm-13/03_left.jpg",
+      "/images/besedki-s-mangalom/bm-13/04_right.jpg",
+      "/images/besedki-s-mangalom/bm-13/06_cooking.jpg",
+      "/images/besedki-s-mangalom/bm-13/07_lifestyle.jpg"
+    ],
+    "category": "besedki-s-mangalom",
+    "model3d": "/models/bm-13.glb"
+  },
+  {
+    "slug": "bm-16",
+    "title": "Беседка с мангалом «Огонь · 5×4»",
+    "tagline": "5×4 м — орнамент, мангал внутри слева",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ, мангал",
+    "size": "5×4×3,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 650000,
+    "description": "Беседка с мангалом «Огонь · 5×4», артикул BM-16. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. План 5×4 м, конёк 3,0 м. Фасад открыт. Лазерные панели на задней, левой и правой стенах, узор «орнамент». Кровля — металлочерепица, двускатная. Пол ДПК. Мангал внутри слева у стены: жаровня 800×350 мм, печь под казан 420×420 мм, зонт и дымоход. Без остекления.",
+    "images": [
+      "/images/besedki-s-mangalom/bm-16/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-16/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-16/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-16/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-16/paneli.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-16/01_hero.jpg",
+      "/images/besedki-s-mangalom/bm-16/05_hero_left.jpg",
+      "/images/besedki-s-mangalom/bm-16/02_front.jpg",
+      "/images/besedki-s-mangalom/bm-16/03_left.jpg",
+      "/images/besedki-s-mangalom/bm-16/04_right.jpg",
+      "/images/besedki-s-mangalom/bm-16/06_cooking.jpg",
+      "/images/besedki-s-mangalom/bm-16/07_lifestyle.jpg"
+    ],
+    "category": "besedki-s-mangalom",
+    "model3d": "/models/bm-16.glb"
+  },
+  {
+    "slug": "bm-43",
+    "title": "Беседка с мангалом «Огонь · 4×4 Вавилон»",
+    "tagline": "4×4 м — Вавилон, мангал внутри слева",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ, мангал",
+    "size": "4×4×2,7 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 680000,
+    "description": "Беседка с мангалом «Огонь · 4×4 Вавилон», артикул BM-43. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. План 4×4 м, конёк 2,7 м. Фасад открыт. Лазерные панели на задней, левой и правой стенах, сюжет «Вавилон». Кровля — металлочерепица, двускатная. Пол ДПК. Мангал внутри слева у стены: жаровня 800×350 мм, печь под казан 420×420 мм, зонт и дымоход. Без остекления.",
+    "images": [
+      "/images/besedki-s-mangalom/bm-43/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-43/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-43/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-43/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-43/paneli.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-43/01_hero.jpg",
+      "/images/besedki-s-mangalom/bm-43/05_hero_left.jpg",
+      "/images/besedki-s-mangalom/bm-43/02_front.jpg",
+      "/images/besedki-s-mangalom/bm-43/03_left.jpg",
+      "/images/besedki-s-mangalom/bm-43/04_right.jpg",
+      "/images/besedki-s-mangalom/bm-43/06_cooking.jpg",
+      "/images/besedki-s-mangalom/bm-43/07_lifestyle.jpg"
+    ],
+    "category": "besedki-s-mangalom",
+    "model3d": "/models/bm-43.glb"
+  },
+  {
+    "slug": "bm-14",
+    "title": "Беседка с мангалом «Огонь · 6×3»",
+    "tagline": "6×3 м — орнамент, мангал внутри слева",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ, мангал",
+    "size": "6×3×3,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 530000,
+    "description": "Беседка с мангалом «Огонь · 6×3», артикул BM-14. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. План 6×3 м, конёк 3,0 м. Фасад открыт. Лазерные панели на задней, левой и правой стенах, узор «орнамент». Кровля — металлочерепица, двускатная. Пол ДПК. Мангал внутри слева у стены: жаровня 800×350 мм, печь под казан 420×420 мм, зонт и дымоход. Без остекления.",
+    "images": [
+      "/images/besedki-s-mangalom/bm-14/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-14/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-14/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-14/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-14/paneli.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-14/01_hero.jpg",
+      "/images/besedki-s-mangalom/bm-14/05_hero_left.jpg",
+      "/images/besedki-s-mangalom/bm-14/02_front.jpg",
+      "/images/besedki-s-mangalom/bm-14/03_left.jpg",
+      "/images/besedki-s-mangalom/bm-14/04_right.jpg",
+      "/images/besedki-s-mangalom/bm-14/06_cooking.jpg",
+      "/images/besedki-s-mangalom/bm-14/07_lifestyle.jpg"
+    ],
+    "category": "besedki-s-mangalom",
+    "model3d": "/models/bm-14.glb"
+  },
+  {
+    "slug": "bm-52",
+    "title": "Беседка с мангалом «Огонь · Шеф 4×3»",
+    "tagline": "4×3 м — мангал и мойка внутри слева",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ, мангал",
+    "size": "4×3×3,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 820000,
+    "description": "Беседка с мангалом «Огонь · Шеф 4×3», артикул BM-52. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. План 4×3 м, конёк 3,0 м. Фасад открыт. Лазерные панели на задней, левой и правой стенах, узор «орнамент». Кровля — металлочерепица, двускатная. Пол ДПК. Мангал внутри слева у стены: жаровня 800×350 мм, печь под казан 420×420 мм, мойка, зонт и дымоход. Без остекления.",
+    "images": [
+      "/images/besedki-s-mangalom/bm-52/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-52/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-52/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-52/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-52/paneli.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-52/01_hero.jpg",
+      "/images/besedki-s-mangalom/bm-52/05_hero_left.jpg",
+      "/images/besedki-s-mangalom/bm-52/02_front.jpg",
+      "/images/besedki-s-mangalom/bm-52/03_left.jpg",
+      "/images/besedki-s-mangalom/bm-52/04_right.jpg",
+      "/images/besedki-s-mangalom/bm-52/06_cooking.jpg",
+      "/images/besedki-s-mangalom/bm-52/07_lifestyle.jpg"
+    ],
+    "category": "besedki-s-mangalom",
+    "model3d": "/models/bm-52.glb"
+  },
+  {
+    "slug": "bm-48",
+    "title": "Беседка с мангалом «Огонь · Шеф 6×5»",
+    "tagline": "6×5 м — мангал и мойка внутри слева",
+    "material": "Металл, ДПК, сталь 3 мм ЧПУ, мангал",
+    "size": "6×5×3,0 м",
+    "roof": "Металлочерепица S-волна, двускатная, графит RAL 7016",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 880000,
+    "description": "Беседка с мангалом «Огонь · Шеф 6×5», артикул BM-48. Каркас сталь 80×80×3 мм, RAL 7016 графит, болтовые базы. План 6×5 м, конёк 3,0 м. Фасад открыт. Лазерные панели на задней, левой и правой стенах, узор «орнамент». Кровля — металлочерепица, двускатная. Пол ДПК. Мангал внутри слева у стены: жаровня 800×350 мм, печь под казан 420×420 мм, мойка, зонт и дымоход. Без остекления.",
+    "images": [
+      "/images/besedki-s-mangalom/bm-48/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-48/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-48/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-48/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-48/paneli.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/bm-48/01_hero.jpg",
+      "/images/besedki-s-mangalom/bm-48/05_hero_left.jpg",
+      "/images/besedki-s-mangalom/bm-48/02_front.jpg",
+      "/images/besedki-s-mangalom/bm-48/03_left.jpg",
+      "/images/besedki-s-mangalom/bm-48/04_right.jpg",
+      "/images/besedki-s-mangalom/bm-48/06_cooking.jpg",
+      "/images/besedki-s-mangalom/bm-48/07_lifestyle.jpg"
+    ],
+    "category": "besedki-s-mangalom",
+    "model3d": "/models/bm-48.glb"
+  },
+  {
+    "slug": "m-01",
+    "title": "Костровая чаша «Графит · Искра»",
+    "tagline": "Лазерная чаша Ø800 мм, сталь ~5 мм, порошок графит",
+    "material": "Сталь ~5 мм, порошок RAL 7016",
+    "size": "Ø800 × 450 мм",
+    "roof": "Без кровли — открытая чаша",
+    "foundation": "Плитка, бетон или негорючая площадка",
+    "priceFrom": 48000,
+    "description": "Костровая чаша под заказ: диаметр 800 мм, лист около 5 мм, лазерный орнамент, порошок RAL 7016, три опоры. Не маркетплейс 1,2 мм. Ставить только на открытой площадке — не под кровлю беседки. Производство ООО «Пулман», Москва и МО. Фото — визуализация.",
+    "images": [
+      "/images/mangaly/kostrovaya-chasha-stalnaya-grafit.jpg"
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-01.glb"
+  },
+  {
+    "slug": "m-02",
+    "title": "Мангал «Графит · Лофт»",
+    "tagline": "Стационарный мангал ~1200 мм с дровницей, без навеса",
+    "material": "Сталь 4–5 мм, порошок RAL 7016",
+    "size": "1200 × 450 × 900 мм",
+    "roof": "Без навеса — к беседке отдельно",
+    "foundation": "Негорючее основание",
+    "priceFrom": 95000,
+    "description": "Лофт-мангал с дровницей, жаровня около 1200 мм, сталь 4–5 мм, порошок графит. Это не «Лофт-80» за 23 тысячи: тот же класс металла, что у беседок Пулман. Навеса нет — зону делают рядом с открытой беседкой или на площадке. Под кровлю без дымохода не ставим (для встройки — M-03). Под заказ, Москва и МО. Фото — визуализация.",
+    "images": [
+      "/images/mangaly/mangal-loft-s-drovnicey.jpg"
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-02.glb"
+  },
+  {
+    "slug": "m-03",
+    "title": "Мангал в беседку «Графит · Дымоход»",
+    "tagline": "Жаровня с вытяжным зонтом и трубой для открытой беседки",
+    "material": "Сталь 3–5 мм, каркас 80×80, порошок RAL 7016",
+    "size": "1400 × 700 × 2200 мм",
+    "roof": "Вытяжной зонт и дымоход",
+    "foundation": "В открытой беседке на негорючей подставке",
+    "priceFrom": 165000,
+    "description": "Мангал для открытой беседки: жаровня, вытяжной зонт и дымоход. Без отвода дыма под металлочерепицу не ставим. Совместим с беседкой 3×4 «Графит · Лофт» (B-17) и другими открытыми моделями. Каркас 80×80, лазер 3 мм, порошок RAL 7016. Под заказ. Фото — визуализация.",
+    "images": [
+      "/images/mangaly/mangal-v-besedku-s-dymohodom.jpg"
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-03.glb"
+  },
+  {
+    "slug": "m-04",
+    "title": "Барбекю-зона «Графит · Очаг»",
+    "tagline": "Зона ~2,4 м: жаровня, место под казан, столешница",
+    "material": "Сталь 3–5 мм, лазер, порошок RAL 7016",
+    "size": "2400 × 700 × 900 мм",
+    "roof": "Без навеса — зона к беседке или на площадке",
+    "foundation": "Негорючее основание",
+    "priceFrom": 245000,
+    "description": "Барбекю-зона длиной около 2,4 м: жаровня, место под казан, рабочая столешница, лазерные панели лофт. Без собственного навеса — ставят к открытой беседке или на площадке. Чек как у mid-хитов рынка (лофт-комплекс с казаном), металл как у беседок Пулман. Под заказ, Москва и МО. Фото — визуализация.",
+    "images": [
+      "/images/mangaly/barbekyu-zona-loft.jpg"
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-04.glb"
+  },
+  {
+    "slug": "m-05",
+    "title": "Мангальная зона «Огонь · Эстейт»",
+    "tagline": "Компакт 3×2 м — мангал, казан и скамья под навесом",
+    "material": "Металл 80×80×3, фанера, мангал 6 мм",
+    "size": "3×2×2,7 м",
+    "roof": "Металлочерепица, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 420000,
+    "description": "Мангальная зона 3×2×2,7 м, артикул M-05, серия «Огонь · Эстейт». Открытый навес без панелей: жаровня 800×350 мм на 12 шампуров, печь под казан 420×420 мм, зонт и дымоход по центру, скамья 1,8 м сзади. Каркас 80×80×3 мм на болтах, пол — влагостойкая фанера, металлочерепица, порошок RAL 7016. Производство под заказ, ООО «Пулман», Москва и МО.",
+    "images": [
+      "/images/mangaly/m-05-1.jpg?v=20260817r",
+      "/images/mangaly/m-05-2.jpg?v=20260817r",
+      "/images/mangaly/m-05-3.jpg?v=20260817r",
+      "/images/mangaly/m-05-4.jpg?v=20260817r",
+      "/images/mangaly/m-05-5.jpg?v=20260817r",
+      "/images/mangaly/m-05-6.jpg?v=20260817r"
+    ],
+    "category": "mangaly",
+    "specs": [
+      {
+        "label": "Длина (фасад к мангалу)",
+        "value": "3,0 м"
+      },
+      {
+        "label": "Глубина",
+        "value": "2,0 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,7 м"
+      },
+      {
+        "label": "Уклон крыши",
+        "value": "22°"
+      },
+      {
+        "label": "Комплектация",
+        "value": "Жаровня, казан, зонт, дымоход, скамья 1,8 м"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "model3d": "/models/m-05.glb"
+  },
+  {
+    "slug": "m-10",
+    "title": "Беседка с мангалом «Огонь»",
+    "tagline": "Семейная 3×4 м — мангал, казан и резной орнамент",
+    "material": "Металл 80×80×3, ДПК, сталь 3 мм ЧПУ, мангал 6 мм",
+    "size": "3×4×2,7 м",
+    "roof": "Металлочерепица, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 650000,
+    "description": "Беседка с мангалом 3×4×2,7 м, артикул M-10, серия «Огонь». Фасад 3 м открыт к жаровне, глубина 4 м. Каркас 80×80×3 мм на болтах, пол ДПК, металлочерепица, лазерные панели с орнаментом 1 м на трёх сторонах (сталь 3 мм ЧПУ), порошок RAL 7016. Встроенный модуль: жаровня 800×350 мм на 12 шампуров, печь под казан 420×420 мм, зонт и дымоход. Производство под заказ, ООО «Пулман», Москва и МО.",
+    "images": [
+      "/images/mangaly/m-10-1.jpg?v=20260817r",
+      "/images/mangaly/m-10-2.jpg?v=20260817r",
+      "/images/mangaly/m-10-3.jpg?v=20260817r",
+      "/images/mangaly/m-10-4.jpg?v=20260817r",
+      "/images/mangaly/m-10-5.jpg?v=20260817r",
+      "/images/mangaly/m-10-6.jpg?v=20260817r"
+    ],
+    "category": "mangaly",
+    "specs": [
+      {
+        "label": "Длина (фасад, открытый вход)",
+        "value": "3,0 м"
+      },
+      {
+        "label": "Глубина",
+        "value": "4,0 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,7 м"
+      },
+      {
+        "label": "Уклон крыши",
+        "value": "22°"
+      },
+      {
+        "label": "Панели",
+        "value": "Орнамент — высота 1,0 м, зад и бока"
+      },
+      {
+        "label": "Мангал",
+        "value": "Жаровня 800×350 мм, казан 420×420 мм, зонт, дымоход"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "model3d": "/models/m-10.glb"
+  },
+  {
+    "slug": "m-06",
+    "title": "Мангальная зона «Огонь · Эстейт L»",
+    "tagline": "Навес 3,5×2,5 — мангал, казан и скамья",
+    "material": "Металл 80×80×3, фанера, мангал 6 мм",
+    "size": "3,5×2,5×2,7 м",
+    "roof": "Металлочерепица, двускат, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 480000,
+    "description": "Мангальная зона 3,5×2,5×2,7 м, артикул M-06, серия «Огонь · Эстейт L». Открытый навес без панелей: жаровня 800×350 мм, казан 420×420 мм, зонт и дымоход по центру, скамья сзади. Каркас 80×80×3 мм на болтах, пол — влагостойкая фанера, металлочерепица, порошок RAL 7016. Производство под заказ, ООО «Пулман», Москва и МО.",
+    "specs": [
+      {
+        "label": "Длина",
+        "value": "3,5 м"
+      },
+      {
+        "label": "Глубина",
+        "value": "2,5 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,7 м"
+      },
+      {
+        "label": "Комплектация",
+        "value": "Жаровня, казан, зонт, дымоход, скамья"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-06.glb",
+    "images": [
+      "/images/besedki-s-mangalom/m-06/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-06/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-06/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-06/levo.jpg?v=20260817r"
+    ]
+  },
+  {
+    "slug": "m-07",
+    "title": "Мангальная зона «Огонь · Лофт»",
+    "tagline": "Узкий навес 2,8×1,2 — мангал-бар",
+    "material": "Металл 80×80×3, фанера, мангал 6 мм",
+    "size": "2,8×1,2×2,5 м",
+    "roof": "Металлочерепица, двускат, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 400000,
+    "description": "Мангальная зона 2,8×1,2×2,5 м, артикул M-07, серия «Огонь · Лофт». Узкий открытый навес: жаровня, казан, зонт и дымоход. Каркас 80×80×3 мм на болтах, пол — влагостойкая фанера, металлочерепица, порошок RAL 7016. Производство под заказ, ООО «Пулман», Москва и МО.",
+    "specs": [
+      {
+        "label": "Длина",
+        "value": "2,8 м"
+      },
+      {
+        "label": "Глубина",
+        "value": "1,2 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,5 м"
+      },
+      {
+        "label": "Комплектация",
+        "value": "Жаровня, казан, зонт, дымоход"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-07.glb",
+    "images": [
+      "/images/besedki-s-mangalom/m-07/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-07/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-07/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-07/levo.jpg?v=20260817r"
+    ]
+  },
+  {
+    "slug": "m-08",
+    "title": "Мангальная зона «Огонь · Шеф»",
+    "tagline": "Компакт 2×1,7 — мангал, казан и мойка",
+    "material": "Металл 80×80×3, фанера, мангал 6 мм",
+    "size": "2×1,7×2,5 м",
+    "roof": "Металлочерепица, двускат, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 450000,
+    "description": "Мангальная зона 2×1,7×2,5 м, артикул M-08, серия «Огонь · Шеф». Открытый навес: жаровня, казан, мойка, зонт и дымоход. Каркас 80×80×3 мм на болтах, пол — влагостойкая фанера, металлочерепица, порошок RAL 7016. Производство под заказ, ООО «Пулман», Москва и МО.",
+    "specs": [
+      {
+        "label": "Длина",
+        "value": "2,0 м"
+      },
+      {
+        "label": "Глубина",
+        "value": "1,7 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,5 м"
+      },
+      {
+        "label": "Комплектация",
+        "value": "Жаровня, казан, мойка, зонт, дымоход"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-08.glb",
+    "images": [
+      "/images/besedki-s-mangalom/m-08/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-08/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-08/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-08/levo.jpg?v=20260817r"
+    ]
+  },
+  {
+    "slug": "m-09",
+    "title": "Мангальная зона «Огонь» 3×3",
+    "tagline": "Беседка 3×3 — орнамент и мангал в углу",
+    "material": "Металл 80×80×3, ДПК, сталь 3 мм ЧПУ, мангал 6 мм",
+    "size": "3×3×2,7 м",
+    "roof": "Металлочерепица, двускат, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 420000,
+    "description": "Мангальная зона 3×3×2,7 м, артикул M-09, серия «Огонь». Панели «Орнамент» 1,0 м на задней и боковых сторонах. Жаровня, казан, зонт и дымоход. Каркас 80×80×3 мм на болтах, пол ДПК, металлочерепица, порошок RAL 7016. Производство под заказ, ООО «Пулман», Москва и МО.",
+    "specs": [
+      {
+        "label": "Размер",
+        "value": "3,0 × 3,0 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,7 м"
+      },
+      {
+        "label": "Панели",
+        "value": "Орнамент — высота 1,0 м, зад и бока"
+      },
+      {
+        "label": "Мангал",
+        "value": "Жаровня, казан, зонт, дымоход"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-09.glb",
+    "images": [
+      "/images/besedki-s-mangalom/m-09/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-09/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-09/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-09/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-09/paneli.jpg?v=20260817r"
+    ]
+  },
+  {
+    "slug": "m-11",
+    "title": "Мангальная зона «Огонь» 4×4",
+    "tagline": "Беседка 4×4 — орнамент и мангал",
+    "material": "Металл 80×80×3, ДПК, сталь 3 мм ЧПУ, мангал 6 мм",
+    "size": "4×4×2,7 м",
+    "roof": "Металлочерепица, двускат, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 430000,
+    "description": "Мангальная зона 4×4×2,7 м, артикул M-11, серия «Огонь». Панели «Орнамент» 1,0 м. Жаровня, казан, зонт и дымоход. Каркас 80×80×3 мм на болтах, пол ДПК, металлочерепица, порошок RAL 7016. Производство под заказ, ООО «Пулман», Москва и МО.",
+    "specs": [
+      {
+        "label": "Размер",
+        "value": "4,0 × 4,0 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,7 м"
+      },
+      {
+        "label": "Панели",
+        "value": "Орнамент — высота 1,0 м, зад и бока"
+      },
+      {
+        "label": "Мангал",
+        "value": "Жаровня, казан, зонт, дымоход"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-11.glb",
+    "images": [
+      "/images/besedki-s-mangalom/m-11/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-11/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-11/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-11/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-11/paneli.jpg?v=20260817r"
+    ]
+  },
+  {
+    "slug": "m-12",
+    "title": "Мангальная зона «Огонь · Бар»",
+    "tagline": "Барная стойка 3,0×0,8 — мангал под навесом",
+    "material": "Металл 80×80×3, фанера, мангал 6 мм",
+    "size": "3,0×0,8×2,5 м",
+    "roof": "Металлочерепица, двускат, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 400000,
+    "description": "Мангальная зона 3,0×0,8×2,5 м, артикул M-12, серия «Огонь · Бар». Узкий бар под навесом: жаровня, казан, зонт и дымоход. Каркас 80×80×3 мм на болтах, пол — влагостойкая фанера, металлочерепица, порошок RAL 7016. Производство под заказ, ООО «Пулман», Москва и МО.",
+    "specs": [
+      {
+        "label": "Длина",
+        "value": "3,0 м"
+      },
+      {
+        "label": "Глубина",
+        "value": "0,8 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,5 м"
+      },
+      {
+        "label": "Комплектация",
+        "value": "Жаровня, казан, зонт, дымоход"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-12.glb",
+    "images": [
+      "/images/besedki-s-mangalom/m-12/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-12/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-12/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-12/levo.jpg?v=20260817r"
+    ]
+  },
+  {
+    "slug": "m-13",
+    "title": "Мангальная зона «Огонь · Тандыр»",
+    "tagline": "Навес 3×2 — мангал, казан и тандыр",
+    "material": "Металл 80×80×3, фанера, мангал 6 мм",
+    "size": "3×2×2,7 м",
+    "roof": "Металлочерепица, двускат, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 450000,
+    "description": "Мангальная зона 3×2×2,7 м, артикул M-13, серия «Огонь · Тандыр». Открытый навес: жаровня, казан, тандыр, зонт и дымоход. Каркас 80×80×3 мм на болтах, пол — влагостойкая фанера, металлочерепица, порошок RAL 7016. Производство под заказ, ООО «Пулман», Москва и МО.",
+    "specs": [
+      {
+        "label": "Длина",
+        "value": "3,0 м"
+      },
+      {
+        "label": "Глубина",
+        "value": "2,0 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,7 м"
+      },
+      {
+        "label": "Комплектация",
+        "value": "Жаровня, казан, тандыр, зонт, дымоход"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-13.glb",
+    "images": [
+      "/images/besedki-s-mangalom/m-13/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-13/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-13/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-13/levo.jpg?v=20260817r"
+    ]
+  },
+  {
+    "slug": "m-14",
+    "title": "Мангальная зона «Огонь · Премиум»",
+    "tagline": "Узкий навес 2,5×0,8 — мангал-бар",
+    "material": "Металл 80×80×3, фанера, мангал 6 мм",
+    "size": "2,5×0,8×2,5 м",
+    "roof": "Металлочерепица, двускат, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 400000,
+    "description": "Мангальная зона 2,5×0,8×2,5 м, артикул M-14, серия «Огонь · Премиум». Узкий бар под навесом: жаровня, казан, зонт и дымоход. Каркас 80×80×3 мм на болтах, пол — влагостойкая фанера, металлочерепица, порошок RAL 7016. Производство под заказ, ООО «Пулман», Москва и МО.",
+    "specs": [
+      {
+        "label": "Длина",
+        "value": "2,5 м"
+      },
+      {
+        "label": "Глубина",
+        "value": "0,8 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "2,5 м"
+      },
+      {
+        "label": "Комплектация",
+        "value": "Жаровня, казан, зонт, дымоход"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-14.glb",
+    "images": [
+      "/images/besedki-s-mangalom/m-14/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-14/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-14/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-14/levo.jpg?v=20260817r"
+    ]
+  },
+  {
+    "slug": "m-15",
+    "title": "Мангальная зона «Огонь Grand» 4×3",
+    "tagline": "Семейная 4×3 — орнамент и мангал",
+    "material": "Металл 80×80×3, ДПК, сталь 3 мм ЧПУ, мангал 6 мм",
+    "size": "4×3×3,0 м",
+    "roof": "Металлочерепица, двускат, уклон 22°",
+    "foundation": "Фундамент или винтовые сваи",
+    "priceFrom": 470000,
+    "description": "Мангальная зона 4×3×3,0 м, артикул M-15, серия «Огонь Grand». Панели «Орнамент» 1,0 м. Жаровня, казан, зонт и дымоход. Каркас 80×80×3 мм на болтах, пол ДПК, металлочerепица, порошок RAL 7016. Производство под заказ, ООО «Пулман», Москва и МО.",
+    "specs": [
+      {
+        "label": "Длина (фасад)",
+        "value": "4,0 м"
+      },
+      {
+        "label": "Глубина",
+        "value": "3,0 м"
+      },
+      {
+        "label": "Высота по коньку",
+        "value": "3,0 м"
+      },
+      {
+        "label": "Панели",
+        "value": "Орнамент — высота 1,0 м, зад и бока"
+      },
+      {
+        "label": "Мангал",
+        "value": "Жаровня, казан, зонт, дымоход"
+      },
+      {
+        "label": "Профиль стоек",
+        "value": "80×80×3 мм"
+      }
+    ],
+    "category": "mangaly",
+    "model3d": "/models/m-15.glb",
+    "images": [
+      "/images/besedki-s-mangalom/m-15/dvor.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-15/mangal.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-15/fasad.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-15/levo.jpg?v=20260817r",
+      "/images/besedki-s-mangalom/m-15/paneli.jpg?v=20260817r"
+    ]
+  }
+]

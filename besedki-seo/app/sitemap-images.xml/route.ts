@@ -1,4 +1,4 @@
-import { getAllPosts } from '@/lib/blog';
+import { getIndexablePosts } from '@/lib/blog';
 import { publicImagePathIfExists } from '@/lib/catalogImages';
 import { getCatalogItemUrl, getKatalog, getSite } from '@/lib/content';
 import { catalogImageCaption, catalogImageAlt } from '@/lib/imageSeo';
@@ -67,7 +67,7 @@ export function GET() {
     );
   }
 
-  for (const post of getAllPosts()) {
+  for (const post of getIndexablePosts()) {
     if (!post.coverImage) continue;
     const path = publicImagePathIfExists(post.coverImage);
     if (!path) continue;

@@ -1,9 +1,11 @@
 import NavLink from './NavLink';
 import Container from './Container';
 import { getSite, TWOGIS_FIRM_URL } from '@/lib/content';
+import { mergeSiteNav } from '@/lib/siteNav';
 
 export default function Footer() {
   const site = getSite();
+  const nav = mergeSiteNav(site.nav);
 
   return (
     <footer className="mt-12 border-t border-border bg-text text-bg sm:mt-16">
@@ -15,7 +17,7 @@ export default function Footer() {
         <div>
           <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-bg/60">Разделы</p>
           <ul className="space-y-1 text-sm">
-            {site.nav.map((item) => (
+            {nav.map((item) => (
               <li key={item.href}>
                 <NavLink href={item.href} className="hover:underline">
                   {item.label}

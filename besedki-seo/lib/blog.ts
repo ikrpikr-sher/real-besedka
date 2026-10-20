@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import { shouldNoindexBlogPost } from '@/lib/blogSeoPolicy';
 
 const BLOG_DIR = path.join(process.cwd(), 'content', 'blog');
 
@@ -122,18 +123,23 @@ export function getAllPosts(): Post[] {
     });
 }
 
+/** Для sitemap и листинга: без doorways вне Москва+МО. */
+export function getIndexablePosts(): Post[] {
+  return getAllPosts().filter((p) => !shouldNoindexBlogPost(p.slug, p.tags || []));
+}
+
 export function getPostsByCategory(category: string): Post[] {
-  return getAllPosts().filter((p) => p.category === category);
+  return getIndexablePosts().filter((p) => p.category === category);
 }
 
 export function getPostsByTag(tag: string): Post[] {
-  return getAllPosts().filter((p) => p.tags?.includes(tag));
+  return getIndexablePosts().filter((p) => p.tags?.includes(tag));
 }
 
 export function getAllCategories(): string[] {
-  return Array.from(new Set(getAllPosts().map((p) => p.category)));
+  return Array.from(new Set(getIndexablePosts().map((p) => p.category)));
 }
 
 export function getAllTags(): string[] {
-  return Array.from(new Set(getAllPosts().flatMap((p) => p.tags || [])));
+  return Array.from(new Set(getIndexablePosts().flatMap((p) => p.tags || [])));
 }

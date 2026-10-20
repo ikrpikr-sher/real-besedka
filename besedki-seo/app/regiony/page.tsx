@@ -111,6 +111,14 @@ export default function RegionsPage() {
         <Link className="text-accent hover:underline" href="/regiony/korolev">
           Королёв
         </Link>
+        {' · '}
+        <Link className="text-accent hover:underline" href="/regiony/lyubertsy">
+          Люберцы
+        </Link>
+        {' · '}
+        <Link className="text-accent hover:underline" href="/regiony/dolgoprudny">
+          Долгопрудный
+        </Link>
       </p>
 
       <h2 className="mb-3 font-heading text-2xl">Химки — Ленинградка, Новогорск, Сходня</h2>

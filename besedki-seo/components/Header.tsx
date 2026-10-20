@@ -3,9 +3,11 @@ import Container from './Container';
 import TelegramLink from './TelegramLink';
 import MobileNav from './MobileNav';
 import { getSite } from '@/lib/content';
+import { mergeSiteNav } from '@/lib/siteNav';
 
 export default function Header() {
   const site = getSite();
+  const nav = mergeSiteNav(site.nav);
   const telegramHref = site.telegram || site.social?.telegram || '';
 
   return (
@@ -20,7 +22,7 @@ export default function Header() {
 
         <div className="ml-auto flex min-w-0 items-center gap-2 lg:gap-3">
           <nav className="hidden items-center gap-3 lg:flex xl:gap-5" aria-label="Основная навигация">
-            {site.nav.map((item) => (
+            {nav.map((item) => (
               <NavLink
                 key={item.href}
                 href={item.href}
@@ -68,7 +70,7 @@ export default function Header() {
                 />
               </svg>
             </NavLink>
-            <MobileNav nav={site.nav} phone={site.phone} telegramHref={telegramHref} />
+            <MobileNav nav={nav} phone={site.phone} telegramHref={telegramHref} />
           </div>
         </div>
       </Container>

@@ -111,8 +111,34 @@ export default function HubPage() {
       </div>
 
       <h2 className="mb-3 font-heading text-2xl">Дальше</h2>
+      <p className="mb-4 max-w-3xl text-text-muted">
+        Не плодим сотни статей «сваи + любой город РФ». Рабочий разбор — здесь и в двух статьях по МО.
+        Каталог моделей — отдельно.
+      </p>
       <p className="mb-8 max-w-3xl text-text-muted">
-        <Link className="text-accent hover:underline" href="/besedka-na-svayah">Беседка на сваях</Link> · <Link className="text-accent hover:underline" href="/dostavka-i-montazh">Монтаж</Link> · <Link className="text-accent hover:underline" href="/blog/vintovye-svai-pod-besedku">Статья про сваи МО</Link>
+        <Link className="text-accent hover:underline" href="/besedka-na-svayah">
+          Беседка на сваях
+        </Link>
+        {' · '}
+        <Link className="text-accent hover:underline" href="/dostavka-i-montazh">
+          Монтаж
+        </Link>
+        {' · '}
+        <Link className="text-accent hover:underline" href="/blog/vintovye-svai-pod-besedku">
+          Сваи в МО
+        </Link>
+        {' · '}
+        <Link className="text-accent hover:underline" href="/blog/fundament-dlya-besedki-kakoy-vybrat">
+          Какой фундамент
+        </Link>
+        {' · '}
+        <Link className="text-accent hover:underline" href="/katalog">
+          Каталог
+        </Link>
+        {' · '}
+        <Link className="text-accent hover:underline" href="/regiony">
+          Города МО
+        </Link>
       </p>
 
       <p className="mb-8 text-sm">
