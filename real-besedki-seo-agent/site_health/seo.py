@@ -8,6 +8,40 @@ from site_health.http_probe import fetch, parse_page
 
 CANONICAL_BASE = SITE_URL.rstrip("/")
 
+# Программные города вне коммерческого ядра «Москва и МО».
+GEO_TEMPLATE_PREFIXES = (
+    "/blog/klimat-nagruzki-",
+    "/blog/zakaz-dostavka-",
+    "/blog/krovlya-ostekleni-",
+    "/blog/fundament-svai-",
+)
+
+
+def geo_template_counts(locs: list[str]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for prefix in GEO_TEMPLATE_PREFIXES:
+        counts[prefix] = sum(1 for loc in locs if prefix in loc)
+    return counts
+
+
+def check_indexnow() -> dict[str, Any]:
+    resp = fetch(f"{CANONICAL_BASE}/indexnow.txt")
+    issues: list[dict[str, Any]] = []
+    status = resp.get("status")
+    if status != 200:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "indexnow",
+                "problem": "IndexNow ключ недоступен (/indexnow.txt 404)",
+                "url": f"{CANONICAL_BASE}/indexnow.txt",
+                "cause": resp.get("error") or f"status {status}",
+                "impact": "Нельзя пинговать Яндекс/Bing при новых URL. Коммерческие хабы не отправлялись",
+                "fact_kind": "verified",
+            }
+        )
+    return {"status": status, "issues": issues}
+
 
 def check_robots() -> dict[str, Any]:
     resp = fetch(f"{CANONICAL_BASE}/robots.txt")
@@ -115,12 +149,30 @@ def check_sitemap(sample_size: int = 15) -> dict[str, Any]:
                 "evidence": {"failures": failures, "sample": len(sample)},
             }
         )
+    geo = geo_template_counts(locs)
+    geo_total = sum(geo.values())
+    if geo_total >= 100:
+        detail = ", ".join(f"{prefix.rstrip('-').split('/')[-1]}={count}" for prefix, count in geo.items())
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "sitemap",
+                "problem": f"В sitemap {geo_total} городских шаблонов блога",
+                "url": f"{CANONICAL_BASE}/sitemap.xml",
+                "cause": detail,
+                "impact": "Доля обхода уходит с коммерческих URL Москвы и МО на программные города",
+                "fact_kind": "verified",
+                "evidence": {"geo_templates": geo, "sitemap_urls": len(locs)},
+            }
+        )
     return {
         "status": resp.get("status"),
         "url_count": len(locs),
         "bad_locs": bad_locs[:10],
         "sample": sample_results,
         "sample_failures": failures,
+        "geo_templates": geo,
+        "geo_template_total": geo_total,
         "issues": issues,
     }
 
