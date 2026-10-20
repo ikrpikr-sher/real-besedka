@@ -2,11 +2,101 @@ from __future__ import annotations
 
 import re
 from typing import Any
+from urllib.parse import urlparse
 
 from config import SITE_URL
 from site_health.http_probe import fetch, parse_page
 
 CANONICAL_BASE = SITE_URL.rstrip("/")
+
+# Программные города вне коммерческого ядра «Москва и МО».
+GEO_TEMPLATE_PREFIXES = (
+    "/blog/klimat-nagruzki-",
+    "/blog/zakaz-dostavka-",
+    "/blog/krovlya-ostekleni-",
+    "/blog/fundament-svai-",
+)
+
+
+def geo_template_counts(locs: list[str]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for prefix in GEO_TEMPLATE_PREFIXES:
+        counts[prefix] = sum(1 for loc in locs if prefix in loc)
+    return counts
+
+
+# Старые коммерческие URL. Живые адреса уже в sitemap; без 301 это 404.
+LEGACY_REDIRECTS = (
+    ("/katalog/besedki-s-ostekleniem/b-51", "/katalog/otkrytye-besedki/b-51"),
+    ("/katalog/besedki-s-mangalom/b-51", "/katalog/otkrytye-besedki/b-51"),
+    ("/katalog/loft", "/katalog/besedki-osteklennye-loft"),
+    ("/katalog/loft/b-53", "/katalog/besedki-osteklennye-loft/b-53"),
+)
+
+
+def legacy_move_ok(chain: list[dict[str, Any]] | None, final_url: str, destination: str) -> bool:
+    """Старый путь считается починенным, если финальный URL — живой адрес.
+
+    urllib в fetch сам проходит 301/308, поэтому в цепочке часто остаётся только
+    финальный 200. Совпадение пути важнее кода первого хопа.
+    """
+    del chain
+    final_path = urlparse(final_url or "").path.rstrip("/") or "/"
+    want = destination.rstrip("/") or "/"
+    return final_path == want
+
+
+def check_legacy_redirects() -> dict[str, Any]:
+    issues: list[dict[str, Any]] = []
+    rows: list[dict[str, Any]] = []
+    for path, destination in LEGACY_REDIRECTS:
+        resp = fetch(f"{CANONICAL_BASE}{path}")
+        chain = resp.get("redirect_chain") or []
+        final_url = resp.get("final_url") or ""
+        ok = legacy_move_ok(chain, final_url, destination)
+        first = (chain or [{}])[0].get("status")
+        rows.append(
+            {
+                "path": path,
+                "destination": destination,
+                "first_status": first,
+                "final_url": final_url,
+                "ok": ok,
+            }
+        )
+        if ok:
+            continue
+        issues.append(
+            {
+                "priority": "P1",
+                "category": "redirect",
+                "problem": f"Старый URL {path} не ведёт 301 на {destination}",
+                "url": f"{CANONICAL_BASE}{path}",
+                "cause": f"первый ответ {first}, финал {final_url or 'нет'}",
+                "impact": "Коммерческий URL в выдаче отдаёт 404 и не передаёт вес живой карточке",
+                "fact_kind": "verified",
+            }
+        )
+    return {"rows": rows, "issues": issues}
+
+
+def check_indexnow() -> dict[str, Any]:
+    resp = fetch(f"{CANONICAL_BASE}/indexnow.txt")
+    issues: list[dict[str, Any]] = []
+    status = resp.get("status")
+    if status != 200:
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "indexnow",
+                "problem": "IndexNow ключ недоступен (/indexnow.txt 404)",
+                "url": f"{CANONICAL_BASE}/indexnow.txt",
+                "cause": resp.get("error") or f"status {status}",
+                "impact": "Нельзя пинговать Яндекс/Bing при новых URL. Коммерческие хабы не отправлялись",
+                "fact_kind": "verified",
+            }
+        )
+    return {"status": status, "issues": issues}
 
 
 def check_robots() -> dict[str, Any]:
@@ -115,12 +205,30 @@ def check_sitemap(sample_size: int = 15) -> dict[str, Any]:
                 "evidence": {"failures": failures, "sample": len(sample)},
             }
         )
+    geo = geo_template_counts(locs)
+    geo_total = sum(geo.values())
+    if geo_total >= 100:
+        detail = ", ".join(f"{prefix.rstrip('-').split('/')[-1]}={count}" for prefix, count in geo.items())
+        issues.append(
+            {
+                "priority": "P2",
+                "category": "sitemap",
+                "problem": f"В sitemap {geo_total} городских шаблонов блога",
+                "url": f"{CANONICAL_BASE}/sitemap.xml",
+                "cause": detail,
+                "impact": "Доля обхода уходит с коммерческих URL Москвы и МО на программные города",
+                "fact_kind": "verified",
+                "evidence": {"geo_templates": geo, "sitemap_urls": len(locs)},
+            }
+        )
     return {
         "status": resp.get("status"),
         "url_count": len(locs),
         "bad_locs": bad_locs[:10],
         "sample": sample_results,
         "sample_failures": failures,
+        "geo_templates": geo,
+        "geo_template_total": geo_total,
         "issues": issues,
     }
 
