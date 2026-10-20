@@ -114,6 +114,8 @@ def scan_repo(repo_root: Path | None = None) -> dict[str, Any]:
     pages: list[dict[str, Any]] = []
     if app_dir.exists():
         for page in sorted(app_dir.rglob("page.tsx")):
+            if page.name.startswith("._"):
+                continue
             pages.append(_scan_page(page, app_dir))
 
     layout = app_dir / "layout.tsx"
@@ -184,11 +186,13 @@ def _has_metrica(root: Path) -> bool:
         if not folder.exists():
             continue
         for path in folder.rglob("*"):
+            if path.name.startswith("._"):
+                continue
             if path.suffix not in {".ts", ".tsx", ".js", ".jsx", ".html"}:
                 continue
             try:
                 text = path.read_text(encoding="utf-8")
-            except OSError:
+            except (OSError, UnicodeDecodeError):
                 continue
             lowered = text.lower()
             if any(n in lowered for n in needles):
