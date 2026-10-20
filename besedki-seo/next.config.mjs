@@ -27,7 +27,6 @@ const nextConfig = {
         destination: '/katalog/besedki-osteklennye-loft/b-53',
         permanent: true,
       },
-      { source: '/proekty', destination: '/katalog', permanent: true },
       { source: '/loft', destination: '/besedka-loft', permanent: true },
       { source: '/panorama', destination: '/besedka-panorama', permanent: true },
       { source: '/zakrytaya', destination: '/zakrytaya-besedka', permanent: true },
