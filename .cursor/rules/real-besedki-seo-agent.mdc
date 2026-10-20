@@ -15,5 +15,7 @@ alwaysApply: true
 
 ```bash
 bash scripts/seo-weekday.sh
-cd besedki-seo && bash scripts/deploy.sh
+cd besedki-seo && bash scripts/site-release.sh "кратко что изменилось" --push --deploy
 ```
+
+Версии: `besedki-seo/VERSION` · теги `site-vYYYY.MM.DD.N` · правило `site-versioning.mdc`.

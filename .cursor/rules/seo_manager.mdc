@@ -17,4 +17,6 @@ alwaysApply: true
 
 `python3 real-besedki-seo-agent/main.py health` · `bash scripts/seo-weekday.sh`
 
+После крупных правок сайта — версия/коммит/тег: `site-versioning.mdc` · `besedki-seo/scripts/site-release.sh`.
+
 Не выдумывать метрики. Нет GSC/Метрики — «Недостаточно данных», но код и health проверять всё равно.

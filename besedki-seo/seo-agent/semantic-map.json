@@ -1,0 +1,170 @@
+{
+  "_notes": "Стартовое ядро собрано веб-поиском без доступа к Яндекс.Вордстату из этой сессии. Поле vol = null везде — точную частотность нужно снять вручную (10-15 минут, см. docs/semcore-raw.md) или дать Claude Code доступ к Wordstat/парсеру на вашем компьютере (шаг 1.5 гайда, варианты A/B). Кластеризация — режим Soft (один интент = одна страница), как требует гайд для блога.",
+  "clusters": [
+    {
+      "id": "dizaynerskie-besedki",
+      "page": "/",
+      "status": "planned",
+      "intent": "commercial",
+      "main": { "q": "дизайнерские беседки", "vol": null },
+      "keywords": [
+        { "q": "беседки на заказ", "vol": null },
+        { "q": "оригинальные беседки для дачи", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "besedki-pod-klyuch",
+      "page": "/uslugi/besedki-pod-klyuch",
+      "status": "planned",
+      "intent": "commercial",
+      "main": { "q": "беседки под ключ", "vol": null },
+      "keywords": [
+        { "q": "заказать беседку под ключ", "vol": null },
+        { "q": "строительство беседки под ключ цена", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "proekty-besedok",
+      "page": "/proekty",
+      "status": "planned",
+      "intent": "commercial",
+      "main": { "q": "проекты беседок", "vol": null },
+      "keywords": [
+        { "q": "готовые проекты беседок", "vol": null },
+        { "q": "типовые беседки цена", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "besedka-shestigrannik",
+      "page": "/proekty/besedka-shestigrannik",
+      "status": "planned",
+      "intent": "commercial",
+      "main": { "q": "беседка шестигранник", "vol": null },
+      "keywords": [
+        { "q": "беседка восьмигранник", "vol": null },
+        { "q": "шестигранная беседка цена", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "materialy-sravnenie",
+      "page": "/materialy",
+      "status": "planned",
+      "intent": "commercial",
+      "main": { "q": "беседки из дерева металла поликарбоната", "vol": null },
+      "keywords": [
+        { "q": "сравнение материалов для беседки", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "kak-vybrat-besedku",
+      "page": "/blog/kak-vybrat-besedku-dlya-dachi",
+      "status": "planned",
+      "intent": "info",
+      "main": { "q": "как выбрать беседку для дачи", "vol": null },
+      "keywords": [
+        { "q": "виды беседок для дачи", "vol": null },
+        { "q": "какую беседку выбрать", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "razmery-besedki",
+      "page": "/blog/kak-opredelit-razmer-besedki",
+      "status": "planned",
+      "intent": "info",
+      "main": { "q": "размеры беседки", "vol": null },
+      "keywords": [
+        { "q": "какого размера должна быть беседка", "vol": null },
+        { "q": "стандартные размеры беседки", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "derevo-ili-metall",
+      "page": "/blog/besedka-derevo-ili-metall-sravnenie",
+      "status": "planned",
+      "intent": "info",
+      "main": { "q": "беседка из дерева или металла что лучше", "vol": null },
+      "keywords": [
+        { "q": "беседка из поликарбоната плюсы минусы", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "besedka-s-mangalom-normy",
+      "page": "/blog/besedka-s-mangalom-normy-i-pravila",
+      "status": "planned",
+      "intent": "info",
+      "main": { "q": "беседка с мангалом нормы", "vol": null },
+      "keywords": [
+        { "q": "расстояние от мангала до забора", "vol": null },
+        { "q": "беседка с барбекю правила установки", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "zimnyaya-besedka",
+      "page": "/blog/zimnyaya-besedka-dlya-dachi",
+      "status": "planned",
+      "intent": "info",
+      "main": { "q": "зимняя беседка для дачи", "vol": null },
+      "keywords": [
+        { "q": "утепленная беседка для дачи", "vol": null },
+        { "q": "закрытая беседка на зиму", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "idei-besedok-foto",
+      "page": "/blog/idei-besedok-dlya-dachi-foto",
+      "status": "planned",
+      "intent": "info",
+      "main": { "q": "идеи беседок для дачи фото", "vol": null },
+      "keywords": [
+        { "q": "красивые беседки фото", "vol": null },
+        { "q": "оригинальные беседки идеи", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "fundament-dlya-besedki",
+      "page": "/blog/fundament-dlya-besedki-kakoy-vybrat",
+      "status": "planned",
+      "intent": "info",
+      "main": { "q": "фундамент для беседки", "vol": null },
+      "keywords": [
+        { "q": "какой фундамент нужен для беседки", "vol": null },
+        { "q": "монтаж беседки своими руками", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "stili-besedok",
+      "page": "/blog/stili-besedok-finskiy-yaponskiy-loft",
+      "status": "planned",
+      "intent": "info",
+      "main": { "q": "стили беседок", "vol": null },
+      "keywords": [
+        { "q": "финская беседка", "vol": null },
+        { "q": "беседка в стиле лофт", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    },
+    {
+      "id": "besedka-otkrytaya-ili-zakrytaya",
+      "page": "/blog/besedka-otkrytaya-ili-zakrytaya-chto-luchshe",
+      "status": "planned",
+      "intent": "info",
+      "main": { "q": "беседка открытая или закрытая что лучше", "vol": null },
+      "keywords": [
+        { "q": "закрытая беседка плюсы минусы", "vol": null }
+      ],
+      "updated": "2026-08-02"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" role="img" aria-label=" 50; 5A54:8  real-besedki.ru">
+  <defs>
+    <!-- 0;8B@0 :0: C 8:>=:8 RB: @>70 ’ F80= ’ >E@0 -->
+    <radialGradient id="rbMesh" cx="42%" cy="48%" r="72%">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="28%" stop-color="#29B6F6"/>
+      <stop offset="52%" stop-color="#7E57C2"/>
+      <stop offset="72%" stop-color="#C62828"/>
+      <stop offset="100%" stop-color="#C9A227"/>
+    </radialGradient>
+    <linearGradient id="rbMesh2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#AD1457" stop-opacity="0.85"/>
+      <stop offset="40%" stop-color="#29B6F6" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#F9A825" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- @C3;K9 15946 :0: 8:>=:0 -->
+  <circle cx="320" cy="320" r="300" fill="url(#rbMesh)"/>
+  <circle cx="320" cy="320" r="300" fill="url(#rbMesh2)" opacity="0.55"/>
+
+  <!-- 0;L<0 15A54:8 -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter">
+    <line x1="250" y1="145" x2="390" y2="145"/>
+    <path d="M220 210 L250 145 L390 145 L420 210 Z"/>
+    <line x1="220" y1="210" x2="250" y2="145"/>
+    <line x1="420" y1="210" x2="390" y2="145"/>
+    <line x1="210" y1="210" x2="430" y2="210"/>
+    <line x1="320" y1="210" x2="320" y2="235"/>
+  </g>
+
+  <text
+    x="320"
+    y="355"
+    text-anchor="middle"
+    fill="#FFFFFF"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="168"
+    font-weight="800"
+    letter-spacing="-4"
+  >RB</text>
+
+  <text
+    x="320"
+    y="430"
+    text-anchor="middle"
+    fill="#FFFFFF"
+    font-family="Georgia, 'Times New Roman', Times, serif"
+    font-size="28"
+    font-weight="500"
+  >real-besedki.ru</text>
+</svg>

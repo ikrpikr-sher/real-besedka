@@ -1,0 +1,769 @@
+{
+  "version": 1,
+  "frameColor": "RAL 7016",
+  "frameColorHex": "#383E42",
+  "blenderScriptsEnv": "BLENDER_SCRIPTS",
+  "blenderScriptsDefault": "~/real-besedka/blender",
+  "models": {
+    "b-10": {
+      "buildScript": "build_besedka_2x2.py"
+    },
+    "b-11": {
+      "buildScript": "build_besedka_4x4_bogatyr.py"
+    },
+    "b-12": {
+      "buildScript": "build_besedka_3x3_medvedi.py"
+    },
+    "b-13": {
+      "buildScript": "build_besedka_4x3.py"
+    },
+    "b-14": {
+      "buildScript": "build_besedka_6x3.py"
+    },
+    "b-15": {
+      "buildScript": "build_besedka_4x3.py"
+    },
+    "b-16": {
+      "buildScript": "build_besedka_5x4.py"
+    },
+    "b-17": {
+      "buildScript": "build_besedka_3x4.py"
+    },
+    "b-18": {
+      "buildScript": "build_besedka_loft_small.py"
+    },
+    "b-19": {
+      "buildScript": "build_besedka_loft_small.py"
+    },
+    "b-21": {
+      "buildScript": "build_glazed_besedka.py",
+      "buildOnly": [
+        3,
+        3,
+        2.5
+      ]
+    },
+    "b-22": {
+      "buildScript": "build_glazed_besedka.py",
+      "buildOnly": [
+        3,
+        4,
+        2.5
+      ]
+    },
+    "b-23": {
+      "buildScript": "build_glazed_besedka.py",
+      "buildOnly": [
+        4,
+        4,
+        2.7
+      ]
+    },
+    "b-24": {
+      "buildScript": "build_glazed_besedka.py",
+      "buildOnly": [
+        5,
+        4,
+        3
+      ]
+    },
+    "b-25": {
+      "buildScript": "build_glazed_besedka.py",
+      "buildOnly": [
+        5,
+        5,
+        3
+      ]
+    },
+    "b-26": {
+      "buildScript": "build_glazed_besedka.py",
+      "buildOnly": [
+        6,
+        3,
+        3
+      ]
+    },
+    "b-27": {
+      "buildScript": "build_glazed_besedka.py",
+      "buildOnly": [
+        6,
+        4,
+        3
+      ]
+    },
+    "b-28": {
+      "buildScript": "build_glazed_besedka.py",
+      "buildOnly": [
+        6,
+        5,
+        3
+      ]
+    },
+    "b-29": {
+      "buildScript": "build_glazed_besedka.py",
+      "buildOnly": [
+        8,
+        4,
+        3
+      ]
+    },
+    "b-30": {
+      "buildScript": "build_glazed_besedka.py",
+      "buildOnly": [
+        8,
+        5,
+        3
+      ]
+    },
+    "b-31": {
+      "buildScript": "build_glazed_panels.py",
+      "buildOnly": [
+        3,
+        3,
+        2.5
+      ]
+    },
+    "b-32": {
+      "buildScript": "build_glazed_panels.py",
+      "buildOnly": [
+        3,
+        4,
+        2.5
+      ]
+    },
+    "b-33": {
+      "buildScript": "build_glazed_panels.py",
+      "buildOnly": [
+        4,
+        4,
+        2.7
+      ]
+    },
+    "b-34": {
+      "buildScript": "build_glazed_panels.py",
+      "buildOnly": [
+        5,
+        4,
+        3
+      ]
+    },
+    "b-35": {
+      "buildScript": "build_glazed_panels.py",
+      "buildOnly": [
+        5,
+        5,
+        3
+      ]
+    },
+    "b-36": {
+      "buildScript": "build_glazed_panels.py",
+      "buildOnly": [
+        6,
+        3,
+        3
+      ]
+    },
+    "b-37": {
+      "buildScript": "build_glazed_panels.py",
+      "buildOnly": [
+        6,
+        4,
+        3
+      ]
+    },
+    "b-38": {
+      "buildScript": "build_glazed_panels.py",
+      "buildOnly": [
+        6,
+        5,
+        3
+      ]
+    },
+    "b-39": {
+      "buildScript": "build_glazed_panels.py",
+      "buildOnly": [
+        8,
+        4,
+        3
+      ]
+    },
+    "b-40": {
+      "buildScript": "build_glazed_panels.py",
+      "buildOnly": [
+        8,
+        5,
+        3
+      ]
+    },
+    "b-41": {
+      "buildScript": "build_open_panels.py",
+      "buildOnly": [
+        3,
+        3,
+        2.5
+      ]
+    },
+    "b-42": {
+      "buildScript": "build_open_panels.py",
+      "buildOnly": [
+        3,
+        4,
+        2.5
+      ]
+    },
+    "b-43": {
+      "buildScript": "build_open_panels.py",
+      "buildOnly": [
+        4,
+        4,
+        2.7
+      ]
+    },
+    "b-44": {
+      "buildScript": "build_open_panels.py",
+      "buildOnly": [
+        5,
+        4,
+        3
+      ]
+    },
+    "b-45": {
+      "buildScript": "build_open_panels.py",
+      "buildOnly": [
+        5,
+        5,
+        3
+      ]
+    },
+    "b-46": {
+      "buildScript": "build_open_panels.py",
+      "buildOnly": [
+        6,
+        3,
+        3
+      ]
+    },
+    "b-47": {
+      "buildScript": "build_open_panels.py",
+      "buildOnly": [
+        6,
+        4,
+        3
+      ]
+    },
+    "b-48": {
+      "buildScript": "build_open_panels.py",
+      "buildOnly": [
+        6,
+        5,
+        3
+      ]
+    },
+    "b-49": {
+      "buildScript": "build_open_panels.py",
+      "buildOnly": [
+        8,
+        4,
+        3
+      ]
+    },
+    "b-50": {
+      "buildScript": "build_open_panels.py",
+      "buildOnly": [
+        8,
+        5,
+        3
+      ]
+    },
+    "b-51": {
+      "buildScript": "build_besedka_hex_loft.py"
+    },
+    "b-52": {
+      "buildScript": "build_besedka_hex_loft.py"
+    },
+    "b-53": {
+      "buildScript": "build_panorama_c8.py"
+    },
+    "b-54": {
+      "buildScript": "build_besedka_loft_c8.py"
+    },
+    "b-55": {
+      "buildScript": "build_pavilion_glazed_8x6.py"
+    },
+    "b-56": {
+      "buildScript": "build_besedka_hex_loft.py"
+    },
+    "b-57": {
+      "buildScript": "build_besedka_octagon_6.py"
+    },
+    "b-58": {
+      "buildScript": "build_besedka_square_open.py"
+    },
+    "b-59": {
+      "buildScript": "build_besedka_octagon_6.py"
+    },
+    "b-60": {
+      "buildScript": "build_besedka_square_open.py"
+    },
+    "b-61": {
+      "buildScript": "build_besedka_square_open.py"
+    },
+    "b-62": {
+      "buildScript": "build_glazed_besedka.py",
+      "buildOnly": [
+        6,
+        3,
+        3
+      ]
+    },
+    "b-63": {
+      "buildScript": "apply_b63_ral1001.py"
+    },
+    "n-01": {
+      "buildScript": "build_besedka_5x4.py"
+    },
+    "n-02": {
+      "buildScript": "build_besedka_4x3.py"
+    },
+    "n-03": {
+      "buildScript": "build_besedka_5x4.py"
+    },
+    "k-01": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "bogatyri"
+      ]
+    },
+    "k-02": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "bogatyri"
+      ]
+    },
+    "k-03": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "medvedi"
+      ]
+    },
+    "k-04": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "medvedi"
+      ]
+    },
+    "k-05": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "losi"
+      ]
+    },
+    "k-06": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "losi"
+      ]
+    },
+    "k-07": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "rytsari"
+      ]
+    },
+    "k-08": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "rytsari"
+      ]
+    },
+    "k-09": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "oleni"
+      ]
+    },
+    "k-10": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "oleni"
+      ]
+    },
+    "k-11": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "tema"
+      ]
+    },
+    "k-12": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "tema"
+      ]
+    },
+    "k-13": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "damask"
+      ]
+    },
+    "k-14": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "damask"
+      ]
+    },
+    "k-15": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "alexandria"
+      ]
+    },
+    "k-16": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "alexandria"
+      ]
+    },
+    "k-17": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "vavilon"
+      ]
+    },
+    "k-18": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "vavilon"
+      ]
+    },
+    "k-19": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "srednyaya_aziya"
+      ]
+    },
+    "k-20": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "srednyaya_aziya"
+      ]
+    },
+    "k-21": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "drevnyaya_rus"
+      ]
+    },
+    "k-22": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "drevnyaya_rus"
+      ]
+    },
+    "k-23": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "2p",
+        "kavkaz"
+      ]
+    },
+    "k-24": {
+      "buildScript": "build_kacheli.py",
+      "buildOnly": [
+        "3p",
+        "kavkaz"
+      ]
+    },
+    "k-25": {
+      "buildScript": "build_kacheli_lyon_steel.py"
+    },
+    "k-26": {
+      "buildScript": "build_kacheli_malmo_steel.py"
+    },
+    "k-28": {
+      "buildScript": "build_kacheli_art1618.py"
+    },
+    "k-29": {
+      "buildScript": "build_kacheli_art1626.py"
+    },
+    "k-30": {
+      "buildScript": "build_kacheli_cherdak.py"
+    },
+    "k-31": {
+      "buildScript": "build_kacheli_fea.py"
+    },
+    "k-32": {
+      "buildScript": "build_kacheli_oleni.py"
+    },
+    "k-33": {
+      "buildScript": "build_kacheli_k33_lattice.py"
+    },
+    "k-33-poly": {
+      "buildScript": "build_kacheli_k33_lattice.py"
+    },
+    "k-34": {
+      "buildScript": "build_kacheli_k34.py"
+    },
+    "k-34-poly": {
+      "buildScript": "build_kacheli_k34.py"
+    },
+    "k-35": {
+      "buildScript": "build_kacheli_oleni_aframe_3m.py"
+    },
+    "p-03": {
+      "buildScript": "build_pavilion_trade_6x2_5.py"
+    },
+    "p-06": {
+      "buildScript": "build_pavilion_event_6x4.py"
+    },
+    "m-05": {
+      "buildScript": "build_mangal_estate_3x2.py"
+    },
+    "m-10": {
+      "buildScript": "build_mangal_besedka_3x4.py"
+    },
+    "m-01": {
+      "buildScript": "build_mangal_canopy_2x1_7.py"
+    },
+    "m-02": {
+      "buildScript": "build_mangal_villa_2_5x2.py"
+    },
+    "m-03": {
+      "buildScript": "build_mangal_diplomat_2x1_5.py"
+    },
+    "m-04": {
+      "buildScript": "build_mangal_estate_s_2_5x2.py"
+    },
+    "m-06": {
+      "buildScript": "build_mangal_estate_l_3_5x2_5.py"
+    },
+    "m-07": {
+      "buildScript": "build_mangal_loft_2_8.py"
+    },
+    "m-08": {
+      "buildScript": "build_mangal_chef_2x1_7.py"
+    },
+    "m-09": {
+      "buildScript": "build_mangal_besedka_3x3.py"
+    },
+    "m-11": {
+      "buildScript": "build_mangal_besedka_4x4.py"
+    },
+    "m-12": {
+      "buildScript": "build_mangal_bar_3x0_8.py"
+    },
+    "m-13": {
+      "buildScript": "build_mangal_tandyr_3x2.py"
+    },
+    "m-14": {
+      "buildScript": "build_mangal_premium_2_5x0_8.py"
+    },
+    "m-15": {
+      "buildScript": "build_mangal_grand_4x3.py"
+    },
+    "m-16": {
+      "buildScript": "build_mangal_zone.py"
+    },
+    "bm-42": {
+      "buildScript": "build_besedka_mangal_3x4.py"
+    },
+    "bm-32": {
+      "buildScript": "build_besedka_mangal_3x2.py"
+    },
+    "bm-12": {
+      "buildScript": "build_besedka_mangal_3x3.py"
+    },
+    "bm-11": {
+      "buildScript": "build_besedka_mangal_4x4.py"
+    },
+    "bm-13": {
+      "buildScript": "build_besedka_mangal_4x3.py"
+    },
+    "bm-16": {
+      "buildScript": "build_besedka_mangal_5x4.py"
+    },
+    "bm-43": {
+      "buildScript": "build_besedka_mangal_4x4_vavilon.py"
+    },
+    "bm-14": {
+      "buildScript": "build_besedka_mangal_6x3.py"
+    },
+    "bm-52": {
+      "buildScript": "build_besedka_mangal_4x3_chef.py"
+    },
+    "bm-48": {
+      "buildScript": "build_besedka_mangal_6x5_chef.py"
+    },
+    "p-09": {
+      "buildScript": "build_pavilion_open_large.py"
+    },
+    "p-10": {
+      "buildScript": "build_pavilion_open_large.py"
+    },
+    "p-11": {
+      "buildScript": "build_pavilion_open_large.py"
+    },
+    "p-12": {
+      "buildScript": "build_pavilion_open_large.py"
+    },
+    "p-13": {
+      "buildScript": "build_pavilion_open_large.py"
+    },
+    "p-01": {
+      "buildScript": "build_pavilion_trade_6x2_5.py"
+    },
+    "p-02": {
+      "buildScript": "build_pavilion_trade_6x2_5.py"
+    },
+    "p-04": {
+      "buildScript": "build_pavilion_trade_6x2_5.py"
+    },
+    "p-05": {
+      "buildScript": "build_pavilion_trade_6x2_5.py"
+    },
+    "p-07": {
+      "buildScript": "build_pavilion_event_6x4.py"
+    },
+    "p-08": {
+      "buildScript": "build_pavilion_glazed_8x6.py"
+    },
+    "b-64": {
+      "glb": "public/models/b-64.glb",
+      "source": "Mangal_zone_001"
+    },
+    "b-65": {
+      "glb": "public/models/b-65.glb",
+      "source": "Mangal_zone_002"
+    },
+    "b-66": {
+      "glb": "public/models/b-66.glb",
+      "source": "Mangal_zone_003"
+    },
+    "b-67": {
+      "glb": "public/models/b-67.glb",
+      "source": "Mangal_zone_004"
+    },
+    "b-68": {
+      "glb": "public/models/b-68.glb",
+      "source": "Mangal_zone_005"
+    },
+    "b-69": {
+      "glb": "public/models/b-69.glb",
+      "source": "Mangal_zone_006"
+    },
+    "b-71": {
+      "glb": "public/models/b-71.glb",
+      "source": "Mangal_zone_007"
+    },
+    "b-72": {
+      "glb": "public/models/b-72.glb",
+      "source": "Mangal_zone_008"
+    },
+    "b-74": {
+      "glb": "public/models/b-74.glb",
+      "source": "Mangal_zone_010"
+    },
+    "b-75": {
+      "glb": "public/models/b-75.glb",
+      "source": "Mangal_zone_011"
+    },
+    "b-76": {
+      "glb": "public/models/b-76.glb",
+      "source": "Mangal_zone_012"
+    },
+    "b-77": {
+      "glb": "public/models/b-77.glb",
+      "source": "Mangal_zone_013"
+    },
+    "b-78": {
+      "glb": "public/models/b-78.glb",
+      "source": "Mangal_zone_014"
+    },
+    "b-79": {
+      "glb": "public/models/b-79.glb",
+      "source": "Mangal_zone_015"
+    },
+    "b-80": {
+      "glb": "public/models/b-80.glb",
+      "source": "Mangal_zone_016"
+    },
+    "b-81": {
+      "glb": "public/models/b-81.glb",
+      "source": "Mangal_zone_017"
+    },
+    "b-82": {
+      "glb": "public/models/b-82.glb",
+      "source": "Mangal_zone_018"
+    },
+    "b-83": {
+      "glb": "public/models/b-83.glb",
+      "source": "Mangal_zone_019"
+    },
+    "b-84": {
+      "glb": "public/models/b-84.glb",
+      "source": "Mangal_zone_020"
+    },
+    "b-85": {
+      "glb": "public/models/b-85.glb",
+      "source": "Mangal_zone_021"
+    },
+    "b-86": {
+      "glb": "public/models/b-86.glb",
+      "source": "Mangal_zone_022"
+    },
+    "b-87": {
+      "glb": "public/models/b-87.glb",
+      "source": "Mangal_zone_023"
+    },
+    "b-88": {
+      "glb": "public/models/b-88.glb",
+      "source": "Mangal_zone_024"
+    },
+    "b-89": {
+      "glb": "public/models/b-89.glb",
+      "source": "Mangal_zone_025"
+    },
+    "b-90": {
+      "glb": "public/models/b-90.glb",
+      "source": "Mangal_zone_026"
+    },
+    "b-91": {
+      "glb": "public/models/b-91.glb",
+      "source": "Mangal_zone_027"
+    },
+    "b-92": {
+      "glb": "public/models/b-92.glb",
+      "source": "Mangal_zone_028"
+    },
+    "b-93": {
+      "glb": "public/models/b-93.glb",
+      "source": "Mangal_zone_029"
+    },
+    "b-94": {
+      "glb": "public/models/b-94.glb",
+      "source": "Mangal_zone_030"
+    }
+  }
+}

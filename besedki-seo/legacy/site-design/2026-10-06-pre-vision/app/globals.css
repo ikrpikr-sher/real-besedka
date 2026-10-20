@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-heading: 'Fraunces', ui-serif, Georgia, serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior-y: auto;
+}
+
+body {
+  background-color: #FAF6EF;
+  color: #2B2A26;
+  font-family: var(--font-body);
+  overflow-x: clip;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+body.mobile-nav-open .hide-when-nav-open {
+  display: none;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  text-wrap: balance;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-DEFAULT bg-accent px-5 py-3 text-base text-white transition-colors hover:bg-accent-hover sm:text-sm;
+  }
+  .btn-secondary {
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-DEFAULT border border-border px-5 py-3 text-base text-text transition-colors hover:bg-surface sm:text-sm;
+  }
+  .btn-hero-outline {
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-DEFAULT border-2 border-white/90 px-5 py-3 text-base font-medium text-white transition-colors hover:bg-white/15 sm:text-sm;
+  }
+  .card {
+    @apply rounded-DEFAULT border border-border bg-surface p-4 shadow-sm;
+    touch-action: manipulation;
+  }
+  .input {
+    @apply w-full rounded-DEFAULT border border-border px-3 py-2.5 text-base focus:border-accent focus:outline-none sm:py-2 sm:text-sm;
+  }
+  .page-title {
+    @apply mb-4 font-heading text-2xl sm:text-3xl;
+  }
+  .page-section {
+    @apply py-8 sm:py-10 md:py-12;
+  }
+  .hero-overlay-text {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.35);
+  }
+}

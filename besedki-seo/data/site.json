@@ -1,0 +1,39 @@
+{
+  "siteName": "Реал Беседки",
+  "siteUrl": "https://real-besedki.ru",
+  "legalName": "ООО «Пулман»",
+  "inn": "7713471284",
+  "kpp": "771301001",
+  "phone": "+7 (495) 255-54-77",
+  "email": "info@real-besedki.ru",
+  "emailBackup": "real-besedka.ru@mail.ru",
+  "telegram": "https://t.me/real_groupp",
+  "description": "Реал Беседки — производитель металлических беседок под ключ в Москве и МО. Каркас 80×80, пол из влагостойкой нескользящей фанеры, металлочерепица, панели из стали 3 мм ЧПУ. Срок службы более 10 лет.",
+  "logo": "/images/logo.svg",
+  "serviceArea": ["Москва", "Московская область"],
+  "address": {
+    "streetAddress": "Складочная улица, 3с3",
+    "addressLocality": "Москва",
+    "addressRegion": "Москва",
+    "postalCode": "127018",
+    "addressCountry": "RU"
+  },
+  "geo": {
+    "latitude": 55.80595,
+    "longitude": 37.59315
+  },
+  "openingHours": "Mo-Sa 09:00-19:00",
+  "social": {
+    "telegram": "https://t.me/real_groupp",
+    "pinterest": "https://ru.pinterest.com/realbesedki/"
+  },
+  "nav": [
+    { "label": "Каталог", "href": "/katalog" },
+    { "label": "Конфигуратор", "href": "/konfigurator" },
+    { "label": "Услуги", "href": "/uslugi" },
+    { "label": "Материалы", "href": "/materialy" },
+    { "label": "Блог", "href": "/blog" },
+    { "label": "О компании", "href": "/o-kompanii" },
+    { "label": "Контакты", "href": "/kontakty" }
+  ]
+}

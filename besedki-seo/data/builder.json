@@ -1,0 +1,97 @@
+{
+  "title": "Соберите беседку",
+  "intro": "Выберите размер, тип и рисунок панелей — справа сразу откроется 3D-модель и расчёт цены.",
+  "formats": [
+    {
+      "id": "open",
+      "label": "Открытая беседка",
+      "description": "Готовые модели серии «Графит» с резными панелями.",
+      "image": "/images/proekty/b-12-1.png"
+    },
+    {
+      "id": "closed",
+      "label": "С остеклением",
+      "description": "Закрытые беседки «Панорама» — раздвижное остекление по периметру.",
+      "image": "/images/osteklenie/b-21/02-hero.png"
+    }
+  ],
+  "modularSlug": "b-10",
+  "panels": [
+    {
+      "id": "oleni",
+      "label": "Олени",
+      "previewImage": "/images/panels/oleni.png",
+      "catalogSlug": "b-15"
+    },
+    {
+      "id": "medvedi",
+      "label": "Медведи",
+      "previewImage": "/images/panels/medvedi.png",
+      "catalogSlug": "b-12"
+    },
+    {
+      "id": "bogatyr",
+      "label": "Богатыри",
+      "previewImage": "/images/panels/bogatyr.png",
+      "catalogSlug": "b-11"
+    },
+    {
+      "id": "los",
+      "label": "Лоси",
+      "previewImage": "/images/panels/los.png",
+      "catalogSlug": "b-13"
+    },
+    {
+      "id": "rytsari",
+      "label": "Рыцари",
+      "previewImage": "/images/panels/rytsari.png",
+      "catalogSlug": "b-14"
+    },
+    {
+      "id": "tema",
+      "label": "Лесная жизнь",
+      "previewImage": "/images/panels/tema.png",
+      "catalogSlug": "b-16"
+    },
+    {
+      "id": "ornament",
+      "label": "Орнамент",
+      "previewImage": "/images/panels/ornament.png",
+      "catalogSlug": "b-11"
+    },
+    {
+      "id": "dragon",
+      "label": "Дракон",
+      "previewImage": "/images/panels/dragon.png",
+      "catalogSlug": "b-11"
+    },
+    {
+      "id": "drevnyaya-rus",
+      "label": "Древняя Русь",
+      "previewImage": "/images/panels/drevnyaya-rus.png",
+      "catalogSlug": "b-11"
+    },
+    {
+      "id": "kavkaz",
+      "label": "Кавказ",
+      "previewImage": "/images/panels/kavkaz.png",
+      "catalogSlug": "b-14"
+    },
+    {
+      "id": "vavilon",
+      "label": "Вавилон",
+      "previewImage": "/images/panels/vavilon.png",
+      "catalogSlug": "b-11"
+    },
+    {
+      "id": "alexandria",
+      "label": "Александрия",
+      "previewImage": "/images/panels/alexandria.png",
+      "catalogSlug": "b-11"
+    }
+  ],
+  "resultCta": {
+    "title": "Конфигурация готова",
+    "text": "Отправьте заявку — менеджер уточнит детали, сроки монтажа и финальную смету."
+  }
+}

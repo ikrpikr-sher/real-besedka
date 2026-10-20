@@ -1,0 +1,31 @@
+---
+description: После крупных правок сайта — версия по дате, коммит, тег, GitHub, деплой.
+alwaysApply: true
+---
+
+# Версии сайта real-besedki.ru
+
+Код: `besedki-seo/`. Прод: https://real-besedki.ru/
+
+## После каждого крупного изменения на сайте
+
+1. Правки в `besedki-seo/` (код, копирайт, layout, SEO-шаблоны, скрипты деплоя).
+2. Релиз:
+   ```bash
+   cd besedki-seo && bash scripts/site-release.sh "кратко что изменилось" --push
+   ```
+   С деплоем на прод:
+   ```bash
+   bash scripts/site-release.sh "кратко что изменилось" --push --deploy
+   ```
+3. Версия: `YYYY.MM.DD.N` (файл `besedki-seo/VERSION`, тег `site-v…`, строка в `docs/SITE-RELEASES.md`). Старт учёта: **2026.10.20.1**.
+
+## Крупное = нужна новая версия
+
+Hero/layout/CTA, новые разделы страниц, SEO-шаблоны title/H1, деплой/nginx/CF-схема в репо, серия карточек/категорий в коде, заметный копирайт на ключевых URL.
+
+Мелочь (опечатка, один CSS-пиксель) — обычный коммит без бампа, или патч в конце дня одним релизом.
+
+## Не класть в git / не в релиз-коммит
+
+Секреты `.env*`, целый `katalog.json` / `priceFrom`, `public/videos/`, `*.glb`, `public/images/blog/`. Каталог — админка / `push:katalog --slugs`. См. `catalog-safety.mdc`.
