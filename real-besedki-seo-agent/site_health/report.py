@@ -59,8 +59,10 @@ def render_health_report(health: dict[str, Any]) -> str:
         lines.append("| URL | Status | Final |")
         lines.append("|-----|--------|-------|")
         for row in domains:
+            chain = row.get("redirect_chain") or []
+            first_status = chain[0].get("status") if chain else row.get("status")
             lines.append(
-                f"| {row.get('start_url')} | {row.get('status')} | {row.get('final_url')} |"
+                f"| {row.get('start_url')} | {first_status} | {row.get('final_url')} |"
             )
         lines.append("")
 

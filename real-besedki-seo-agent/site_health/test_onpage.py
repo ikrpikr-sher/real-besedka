@@ -17,6 +17,18 @@ class OnpageParseTests(unittest.TestCase):
         html = '<meta content="product" property="og:type">'
         self.assertEqual(parse_og(html).get("type"), "product")
 
+    def test_parse_og_product_wins_over_later_website(self) -> None:
+        html = (
+            '<meta property="og:type" content="product">'
+            '<meta property="og:image" content="https://x/a.jpg">'
+            '<meta property="og:type" content="website">'
+        )
+        og = parse_og(html)
+        self.assertEqual(og.get("type"), "product")
+        self.assertEqual(og.get("image"), "https://x/a.jpg")
+        self.assertIn("product", (og.get("types") or ""))
+        self.assertIn("website", (og.get("types") or ""))
+
     def test_jsonld_and_h1(self) -> None:
         html = '<script type="application/ld+json">{"@type":"ContactPage"}</script><h1>Категория: sovety</h1>'
         self.assertIn("ContactPage", parse_jsonld_types(html))

@@ -99,6 +99,7 @@ export default function ArticlePage({ params }: Props) {
     <Container className="page-section">
       <JsonLd data={[articleLd, breadcrumbLd, ...(faqLd ? [faqLd] : [])]} />
       <Breadcrumbs
+        schema={false}
         items={[
           { label: 'Главная', href: '/' },
           { label: 'Блог', href: '/blog' },

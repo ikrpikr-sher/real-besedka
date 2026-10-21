@@ -45,6 +45,7 @@ export function generateMetadata(): Metadata {
     description: seo.description,
     alternates: { canonical: '/' },
     openGraph: {
+      type: 'website',
       title: seo.title,
       description: seo.description,
       url: site.siteUrl,

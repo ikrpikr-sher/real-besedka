@@ -28,7 +28,6 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      type: 'website',
       locale: 'ru_RU',
       siteName: site.siteName,
     },

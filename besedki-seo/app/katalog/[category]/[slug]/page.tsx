@@ -46,7 +46,6 @@ export function generateMetadata({ params }: Props): Metadata {
     description,
     alternates: { canonical: itemUrl },
     openGraph: {
-      type: 'website',
       locale: 'ru_RU',
       siteName: site.siteName,
       title: seoTitle,
@@ -116,8 +115,10 @@ export default function KatalogItemPage({ params }: Props) {
 
   return (
     <Container className="page-section">
+      <meta property="og:type" content="product" />
       <JsonLd data={[productLd, breadcrumbLd]} />
       <Breadcrumbs
+        schema={false}
         items={[
           { label: 'Главная', href: '/' },
           { label: 'Каталог', href: '/katalog' },

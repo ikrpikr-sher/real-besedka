@@ -29,7 +29,7 @@ export default function MaterialyPage() {
   return (
     <Container className="page-section">
       <JsonLd data={breadcrumbLd} />
-      <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Материалы', href: '/materialy' }]} />
+      <Breadcrumbs schema={false} items={[{ label: 'Главная', href: '/' }, { label: 'Материалы', href: '/materialy' }]} />
       <h1 className="page-title mb-6">Материалы</h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {materialy.map((m) => (

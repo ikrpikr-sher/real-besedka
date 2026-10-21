@@ -29,7 +29,7 @@ export default function UslugiPage() {
   return (
     <Container className="page-section">
       <JsonLd data={breadcrumbLd} />
-      <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Услуги', href: '/uslugi' }]} />
+      <Breadcrumbs schema={false} items={[{ label: 'Главная', href: '/' }, { label: 'Услуги', href: '/uslugi' }]} />
       <h1 className="page-title mb-6">Услуги</h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {uslugi.map((u) => (
