@@ -9,5 +9,10 @@
 | 2026-08-25 | `site_health/viewport.py` | P1 «нет mobile-nav» | CTA «Каталог» `lg:hidden` = ок | ложный P1 | не блокировать SEO |
 | 2026-08-25 | `site_health/runner.py` | CF без прокси = P0 / emergency | P1 owner_action, если origin 200 + форма/tel | ложная авария блокировала SEO | weekday идёт дальше |
 | 2026-08-25 | `site_health/onpage.py` | health не видел OG/ContactPage/H1 блога | живой HTML прода в P1/P2 | журнал врал без `besedki-seo/` | честный backlog |
+| 2026-10-21 | nginx + `next.config.mjs` | B-51 остекление/мангал и `/katalog/loft` → 404 | 301 на живые URL (nginx на проде) | индексированные алиасы | сниппет не теряется |
+| 2026-10-21 | агент `/proekty` | P1 «заменить ссылки на каталог» | не флаг | `/proekty` — портфолио 200 | честный backlog |
+| 2026-10-21 | `sources/catalog.py` | брал `katalog.prod.json` | только `katalog.json` или sitemap | снимок 128 SKU ≠ прод 167 | без чужих priceFrom |
+| 2026-10-21 | `sources/local.py` | Метрика только app/lib | ещё `components/` | счётчик в `Analytics.tsx` | нет ложного warning |
+| 2026-10-21 | sitemap / poisk / sovety / хаб мангала | poisk в карте; sovety без noindex; хаб без b-76… | правки в репо | P2 | на прод не выехали: Next staging ENOENT |
 
 **Файл для агента:** дополнять `real-besedki-seo-agent/logs/YYYY-MM-DD_changes.md` после каждого деплоя с SEO-правками.
