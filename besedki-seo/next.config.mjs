@@ -27,6 +27,22 @@ const nextConfig = {
         destination: '/katalog/besedki-osteklennye-loft/b-53',
         permanent: true,
       },
+      {
+        source: '/katalog/besedki-s-ostekleniem/b-51',
+        destination: '/katalog/otkrytye-besedki/b-51',
+        permanent: true,
+      },
+      {
+        source: '/katalog/besedki-s-mangalom/b-51',
+        destination: '/katalog/otkrytye-besedki/b-51',
+        permanent: true,
+      },
+      { source: '/katalog/loft', destination: '/katalog/besedki-osteklennye-loft', permanent: true },
+      {
+        source: '/katalog/loft/:slug',
+        destination: '/katalog/besedki-osteklennye-loft/:slug',
+        permanent: true,
+      },
       { source: '/loft', destination: '/besedka-loft', permanent: true },
       { source: '/panorama', destination: '/besedka-panorama', permanent: true },
       { source: '/zakrytaya', destination: '/zakrytaya-besedka', permanent: true },

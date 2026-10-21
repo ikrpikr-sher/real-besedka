@@ -12,6 +12,16 @@ PRODUCT_LOC_RE = re.compile(
     re.I,
 )
 
+# Черновики витрины: 301 на /katalog, карточки не в выдаче.
+UNPUBLISHED_CATEGORIES = {
+    "pergoly",
+    "hozbloki",
+    "drovniki",
+    "bytovki",
+    "mebel",
+    "ochagi",
+}
+
 
 def _catalog_path(root: Path) -> Path | None:
     for candidate in (
@@ -40,7 +50,7 @@ def parse_catalog_from_sitemap(sitemap_xml: str | None = None) -> list[dict[str,
         if not match:
             continue
         category, slug = match.group(1), match.group(2)
-        if category == "poisk":
+        if category == "poisk" or category in UNPUBLISHED_CATEGORIES:
             continue
         rel = f"/katalog/{category}/{slug}"
         if rel in seen:
@@ -77,7 +87,7 @@ def parse_catalog(repo_root: Path | None = None) -> list[dict[str, Any]]:
             continue
         slug = str(item.get("slug") or "").strip()
         category = str(item.get("category") or "").strip()
-        if not slug or not category:
+        if not slug or not category or category in UNPUBLISHED_CATEGORIES:
             continue
         title = str(item.get("title") or slug)
         size = str(item.get("size") or "")
