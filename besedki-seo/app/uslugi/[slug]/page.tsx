@@ -44,6 +44,7 @@ export default function ServicePage({ params }: Props) {
     <Container className="page-section">
       <JsonLd data={[serviceLd, breadcrumbLd]} />
       <Breadcrumbs
+        schema={false}
         items={[
           { label: 'Главная', href: '/' },
           { label: 'Услуги', href: '/uslugi' },

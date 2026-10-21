@@ -56,7 +56,7 @@ export default function KatalogPage() {
   return (
     <Container className="page-section">
       <JsonLd data={[ld, breadcrumbLd]} />
-      <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Каталог', href: '/katalog' }]} />
+      <Breadcrumbs schema={false} items={[{ label: 'Главная', href: '/' }, { label: 'Каталог', href: '/katalog' }]} />
       <h1 className="page-title mb-3 text-3xl md:text-4xl">Каталог</h1>
       <p className="mb-10 max-w-2xl text-text-muted">
         Своё производство в Москве: открытые, стекло, мангал, навесы, качели. Цена — на карточке модели.

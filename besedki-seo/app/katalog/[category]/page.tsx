@@ -91,6 +91,7 @@ export default function KatalogCategoryPage({ params }: Props) {
     <Container className="page-section">
       <JsonLd data={[ld, breadcrumbLd, ...(itemListLd ? [itemListLd] : [])]} />
       <Breadcrumbs
+        schema={false}
         items={[
           { label: 'Главная', href: '/' },
           { label: 'Каталог', href: '/katalog' },

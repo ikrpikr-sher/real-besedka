@@ -20,11 +20,28 @@ SLUG_H1_RE = re.compile(r"Категория[:\s]+[«\"]?([a-z0-9-]{3,})", re.I)
 
 
 def parse_og(body: str) -> dict[str, str]:
+    """Собирает Open Graph. Если в <head> два og:type (product и website от layout), остаётся product."""
     found: dict[str, str] = {}
+    types: list[str] = []
     for key, value in OG_RE.findall(body or ""):
-        found[key.lower()] = value
+        k = key.lower()
+        if k == "type":
+            types.append(value.strip().lower())
+        else:
+            found.setdefault(k, value)
     for value, key in OG_RE_REV.findall(body or ""):
-        found.setdefault(key.lower(), value)
+        k = key.lower()
+        if k == "type":
+            types.append(value.strip().lower())
+        else:
+            found.setdefault(k, value)
+    if types:
+        uniq: list[str] = []
+        for item in types:
+            if item not in uniq:
+                uniq.append(item)
+        found["type"] = "product" if "product" in uniq else uniq[0]
+        found["types"] = ",".join(uniq)
     return found
 
 
@@ -96,17 +113,36 @@ def check_live_onpage() -> dict[str, Any]:
             "jsonld": types,
         }
         pages.append(row)
-        if resp.get("status") == 200 and (og.get("type") != "product" or not og.get("image")):
+        if resp.get("status") != 200:
+            continue
+        type_list = [part for part in (og.get("types") or "").split(",") if part]
+        has_image = bool(og.get("image"))
+        has_product_type = "product" in type_list or og.get("type") == "product"
+        has_product_ld = "Product" in types
+        if not has_image or not (has_product_type or has_product_ld):
             og_bad.append(path)
+        elif not has_product_type and has_product_ld:
+            issues.append(
+                {
+                    "priority": "P2",
+                    "category": "on-page",
+                    "problem": "На карточке og:type=website при живом og:image и JSON-LD Product",
+                    "url": f"{SITE_URL}{path}",
+                    "cause": "тип шаринга website, товар уже описан в JSON-LD и есть og:image",
+                    "impact": "Превью в соцсетях есть, для ранжирования Яндекса/Google это не блокер",
+                    "fact_kind": "verified",
+                }
+            )
+            break
 
     if og_bad:
         issues.append(
             {
                 "priority": "P1",
                 "category": "on-page",
-                "problem": "На карточках нет товарного Open Graph (og:image + og:type=product)",
+                "problem": "На карточках нет товарного Open Graph (og:image и сигнал Product)",
                 "url": f"{SITE_URL}{og_bad[0]}",
-                "cause": f"выборка {', '.join(og_bad)}: og:type≠product или нет og:image",
+                "cause": f"выборка {', '.join(og_bad)}: нет og:image или нет ни og:type=product, ни JSON-LD Product",
                 "impact": "Превью в Telegram/VK/соцсетях без фото товара — слабее CTR шаринга",
                 "fact_kind": "verified",
             }

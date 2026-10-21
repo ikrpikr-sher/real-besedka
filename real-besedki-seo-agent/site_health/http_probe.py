@@ -5,11 +5,16 @@ import ssl
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlparse
-from urllib.request import Request, urlopen
+from urllib.request import HTTPSHandler, HTTPRedirectHandler, Request, build_opener
 
 from sources.live import TIMEOUT, _parse_html, _ssl_context
 
 DEFAULT_UA = "real-besedki-seo-agent/2.0 (+site-health)"
+
+
+class _NoRedirect(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
 
 
 def fetch(
@@ -27,10 +32,11 @@ def fetch(
     error: str | None = None
     ssl_error = False
 
+    opener = build_opener(_NoRedirect(), HTTPSHandler(context=_ssl_context()))
     for _ in range(max_redirects + 1):
         req = Request(current, headers={"User-Agent": user_agent})
         try:
-            with urlopen(req, timeout=TIMEOUT, context=_ssl_context()) as resp:
+            with opener.open(req, timeout=TIMEOUT) as resp:
                 status = getattr(resp, "status", 200)
                 headers = {k.lower(): v for k, v in resp.headers.items()}
                 raw = resp.read()
