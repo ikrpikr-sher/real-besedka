@@ -8,7 +8,13 @@ from site_health.client import check_cdn_headers, check_form_and_phone, check_in
 from site_health.dns import check_dns
 from site_health.domains import check_domain_variants, check_path_redirect
 from site_health.onpage import check_live_onpage, origin_healthy
-from site_health.seo import check_canonical, check_robots, check_sitemap
+from site_health.seo import (
+    check_canonical,
+    check_indexnow,
+    check_legacy_redirects,
+    check_robots,
+    check_sitemap,
+)
 from site_health.server import check_server_logs
 from site_health.ssl_check import check_all_ssl
 from site_health.user_agents import check_search_params, check_user_agents
@@ -40,6 +46,8 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
     search_params = check_search_params()
     robots = check_robots()
     sitemap = check_sitemap()
+    indexnow = check_indexnow()
+    legacy = check_legacy_redirects()
     canonical_paths = ["/", "/katalog"] + [p["path"] for p in internal.get("paths", []) if p["path"].startswith("/katalog/")][:2]
     canonical = check_canonical(canonical_paths)
     client = check_form_and_phone()
@@ -108,6 +116,20 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
                 "fact_kind": "verified",
             }
         )
+    for host, info in (ssl.get("hosts") or {}).items():
+        days = info.get("days_left")
+        if info.get("ok") and days is not None and 3 < days <= 40:
+            ssl_issues.append(
+                {
+                    "priority": "P2",
+                    "category": "ssl",
+                    "problem": f"SSL {host} истекает через {days} дн. ({info.get('expires')})",
+                    "url": f"https://{host}/",
+                    "cause": f"Let's Encrypt {info.get('issuer')}, TLS {info.get('tls_version')}",
+                    "impact": "После истечения браузер покажет предупреждение — сайт перестанет открываться",
+                    "fact_kind": "verified",
+                }
+            )
 
     all_issues = _merge_issues(
         {"issues": domains.get("issues") or []},
@@ -120,6 +142,8 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
         client,
         robots,
         sitemap,
+        indexnow,
+        legacy,
         canonical,
         cdn,
         server,
@@ -152,6 +176,8 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
             "search_params": search_params,
             "robots": robots,
             "sitemap": sitemap,
+            "indexnow": indexnow,
+            "legacy_redirects": legacy,
             "canonical": canonical,
             "client": client,
             "cdn": cdn,

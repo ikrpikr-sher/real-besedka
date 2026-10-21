@@ -43,20 +43,25 @@ PY
 slug_count="$(echo "$slugs" | grep -c . || true)"
 echo "Config slugs: $slug_count"
 
-# GLB files
-for slug in $slugs; do
-  glb="$MODELS_DIR/${slug}.glb"
-  if [[ ! -f "$glb" ]]; then
-    fail "Missing GLB: public/models/${slug}.glb (run: npm run export:models)"
-    continue
-  fi
-  size="$(wc -c < "$glb" | tr -d ' ')"
-  if [[ "$size" -lt "$MIN_GLB_BYTES" ]]; then
-    fail "GLB too small (${size} B): ${slug}.glb — likely corrupt export"
-    continue
-  fi
-  ok "${slug}.glb (${size} bytes)"
-done
+# GLB в gitignore и в .rsync-exclude — деплой их не заливает. В среде агента файлов нет.
+local_glb_count="$(find "$MODELS_DIR" -maxdepth 1 -name '*.glb' -type f 2>/dev/null | wc -l | tr -d ' ')"
+if [[ "${SKIP_LOCAL_GLB:-}" == "1" || "$local_glb_count" -eq 0 ]]; then
+  warn_msg "local public/models has ${local_glb_count} GLB — skip file check (rsync excludes *.glb; live models stay on server)"
+else
+  for slug in $slugs; do
+    glb="$MODELS_DIR/${slug}.glb"
+    if [[ ! -f "$glb" ]]; then
+      fail "Missing GLB: public/models/${slug}.glb (run: npm run export:models)"
+      continue
+    fi
+    size="$(wc -c < "$glb" | tr -d ' ')"
+    if [[ "$size" -lt "$MIN_GLB_BYTES" ]]; then
+      fail "GLB too small (${size} B): ${slug}.glb — likely corrupt export"
+      continue
+    fi
+    ok "${slug}.glb (${size} bytes)"
+  done
+fi
 
 # npm deps for model-viewer
 if ! grep -q '"@google/model-viewer"' "$ROOT/package.json"; then

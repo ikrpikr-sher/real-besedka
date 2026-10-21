@@ -116,6 +116,8 @@ export default function KatalogItemPage({ params }: Props) {
 
   return (
     <Container className="page-section">
+      {/* Next 14 Metadata отвергает type:'product'. Тег в разметке — для шаринга и health. */}
+      <meta property="og:type" content="product" />
       <JsonLd data={[productLd, breadcrumbLd]} />
       <Breadcrumbs
         items={[
