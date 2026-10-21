@@ -77,7 +77,7 @@ def compute_traffic_light(
     search_ok = summary.get("search_ok", 0) == summary.get("search_total", 2)
     index_technical = bool(robots.get("exists")) and bool(sitemap.get("exists"))
     find_partial = index_technical or search_ok
-    find_ok = index_technical and search_ok and not content.get("proekty_links")
+    find_ok = index_technical and search_ok
     find_status = _status(find_ok, find_partial and not find_ok)
 
     blockers: list[str] = []
@@ -102,8 +102,6 @@ def compute_traffic_light(
             blockers.append("robots/sitemap на проде")
         if not search_ok:
             blockers.append("Поиск B-51 / В51")
-        if content.get("proekty_links"):
-            blockers.append(f"{content['proekty_links']} ссылок /proekty в блоге")
         blockers.append("Нет данных Вебмастера/GSC — позиции не оцениваем")
 
     overall = "ok"
