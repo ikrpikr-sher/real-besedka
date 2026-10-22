@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 import subprocess
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -9,6 +10,37 @@ VPS_HOST = "31.128.44.47"
 SSH_USER = "root"
 SSH_KEY = Path.home() / ".ssh/besedki_deploy"
 FIVEXX_RE = re.compile(r'" [5]\d{2} ')
+AGENT_UA = "real-besedki-seo-agent"
+LOG_TIME_RE = re.compile(r"\[(\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2} [+-]\d{4})\]")
+FIVEXX_WINDOW = timedelta(minutes=15)
+
+
+def _parse_log_time(line: str) -> datetime | None:
+    match = LOG_TIME_RE.search(line)
+    if not match:
+        return None
+    try:
+        return datetime.strptime(match.group(1), "%d/%b/%Y:%H:%M:%S %z")
+    except ValueError:
+        return None
+
+
+def filter_client_5xx(
+    lines: list[str], *, now: datetime | None = None, window: timedelta = FIVEXX_WINDOW
+) -> list[str]:
+    """P0 only for recent client 5xx — not health-agent probes during PM2 swap."""
+    now = now or datetime.now(timezone.utc)
+    kept: list[str] = []
+    for line in lines:
+        if not line.strip() or not FIVEXX_RE.search(line):
+            continue
+        if AGENT_UA in line:
+            continue
+        stamp = _parse_log_time(line)
+        if stamp is not None and now - stamp > window:
+            continue
+        kept.append(line)
+    return kept
 
 
 def check_server_logs() -> dict[str, Any]:
@@ -49,9 +81,7 @@ def check_server_logs() -> dict[str, Any]:
             section = output.split("=== 5xx today ===", 1)[1]
             if "=== mobile 200 ===" in section:
                 section = section.split("=== mobile 200 ===", 1)[0]
-            recent_5xx = [
-                ln for ln in section.strip().splitlines() if ln.strip() and FIVEXX_RE.search(ln)
-            ]
+            recent_5xx = filter_client_5xx(section.strip().splitlines())
         if recent_5xx:
             issues.append(
                 {

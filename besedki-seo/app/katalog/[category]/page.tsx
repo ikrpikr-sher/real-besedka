@@ -12,7 +12,7 @@ import {
 } from '@/lib/catalogCategories';
 import { getKatalogByCategory, getSite } from '@/lib/content';
 import { groupKacheliItems, isKacheliGraphiteItem, sortKacheliMoreItems } from '@/lib/kacheliCatalog';
-import { groupBesedkiSMangalom, groupMangalyItems } from '@/lib/mangalCatalog';
+import { groupBesedkiSMangalom, groupMangalyItems, isBesedkaMangalItem } from '@/lib/mangalCatalog';
 import { getSeo } from '@/lib/seo';
 
 type Props = { params: { category: string } };
@@ -55,6 +55,9 @@ export default function KatalogCategoryPage({ params }: Props) {
       ? sortKacheliMoreItems(items.filter((item) => !isKacheliGraphiteItem(item)))
       : [];
   const kacheliGroups = params.category === 'kacheli' ? groupKacheliItems(kacheliGraphite) : [];
+  const mangalGroups = params.category === 'besedki-s-mangalom' ? groupBesedkiSMangalom(items) : [];
+  const mangalRest =
+    params.category === 'besedki-s-mangalom' ? items.filter((item) => !isBesedkaMangalItem(item)) : [];
 
   const ld = {
     '@context': 'https://schema.org',
@@ -111,7 +114,7 @@ export default function KatalogCategoryPage({ params }: Props) {
               Мангалы и мангальные зоны →
             </Link>
           </div>
-          {groupBesedkiSMangalom(items).map((group) => (
+          {mangalGroups.map((group) => (
             <section key={group.id} className="mb-12">
               <h2 className="mb-1 font-heading text-2xl">{group.title}</h2>
               <p className="mb-6 max-w-2xl text-sm text-text-muted">{group.hint}</p>
@@ -122,6 +125,19 @@ export default function KatalogCategoryPage({ params }: Props) {
               </div>
             </section>
           ))}
+          {mangalRest.length > 0 ? (
+            <section className="mb-12">
+              <h2 className="mb-1 font-heading text-2xl">Другие модели с мангалом</h2>
+              <p className="mb-6 max-w-2xl text-sm text-text-muted">
+                Модели этой категории вне серий «Огонь» BM — те же каркас 80×80 и расчёт под ключ.
+              </p>
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {mangalRest.map((item) => (
+                  <CatalogCard key={item.slug} item={item} compact />
+                ))}
+              </div>
+            </section>
+          ) : null}
         </>
       ) : params.category === 'mangaly' ? (
         <>
