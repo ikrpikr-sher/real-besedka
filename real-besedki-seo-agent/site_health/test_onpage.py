@@ -27,6 +27,17 @@ class OnpageParseTests(unittest.TestCase):
         self.assertFalse(_dpk_as_default_floor(text))
         self.assertTrue(_dpk_as_default_floor("Полы из ДПК под ключ"))
 
+    def test_blog_category_seo_map_is_not_slug_h1(self) -> None:
+        from sources.content_audit import audit_content
+        from pathlib import Path
+        from config import SITE_CODE_ROOT
+
+        page = SITE_CODE_ROOT / "app" / "blog" / "category" / "[category]" / "page.tsx"
+        if not page.exists():
+            self.skipTest("site code missing")
+        result = audit_content()
+        self.assertFalse(result.get("blog_category_slug_h1"))
+
     def test_origin_healthy(self) -> None:
         internal = {"paths": [{"ok": True}, {"ok": True}]}
         client = {"home_form": True, "home_tel": True}

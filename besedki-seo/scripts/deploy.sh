@@ -11,6 +11,10 @@ if [[ -n "${BESEDKI_DEPLOY_SSH_KEY:-}" && "$BESEDKI_DEPLOY_SSH_KEY" == *"BEGIN"*
 else
   KEY="${DEPLOY_SSH_KEY:-$HOME/.ssh/besedki_deploy}"
 fi
+mkdir -p "$HOME/.ssh"
+if [[ ! -f "$HOME/.ssh/known_hosts" ]] || ! grep -q '31.128.44.47' "$HOME/.ssh/known_hosts"; then
+  ssh-keyscan -T 10 -H 31.128.44.47 >> "$HOME/.ssh/known_hosts" 2>/dev/null || true
+fi
 REMOTE="${DEPLOY_REMOTE:-/var/www/besedki}"
 SSH="ssh -i $KEY -o IdentitiesOnly=yes"
 
@@ -30,7 +34,7 @@ if [[ -z "$REMOTE_BLOG_HASH" ]]; then
 fi
 
 echo "Syncing files (live .next on server is not touched)..."
-rsync -az \
+rsync -az --checksum \
   --exclude-from="$ROOT/.rsync-exclude" \
   -e "ssh -i $KEY -o IdentitiesOnly=yes" \
   "$ROOT/" "$HOST:$REMOTE/"

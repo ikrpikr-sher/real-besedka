@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 from typing import Any
@@ -64,12 +65,27 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
     blog_category_slug_h1 = False
     if blog_category.exists():
         text = blog_category.read_text(encoding="utf-8")
-        blog_category_slug_h1 = "Категория:" in text or "category" in text.lower()
+        # Слово "category" есть у любого динамического роута — это не slug-H1.
+        blog_category_slug_h1 = bool(re.search(r"Категория:\s*\{", text)) or (
+            "Категория:" in text and "CATEGORY_SEO" not in text
+        )
 
     seo_path = root / "data" / "seo.json"
     seo_home_dpk = False
     if seo_path.exists():
         seo_home_dpk = _dpk_as_default_floor(seo_path.read_text(encoding="utf-8"))
+
+    empty_seo_descriptions = 0
+    katalog_path = root / "data" / "katalog.json"
+    if katalog_path.exists():
+        try:
+            raw = json.loads(katalog_path.read_text(encoding="utf-8"))
+            items = raw if isinstance(raw, list) else raw.get("items") or []
+            empty_seo_descriptions = sum(
+                1 for item in items if isinstance(item, dict) and not str(item.get("seoDescription") or "").strip()
+            )
+        except (OSError, json.JSONDecodeError, TypeError):
+            empty_seo_descriptions = 0
 
     live_og = _live_product_og()
     if live_og.get("checked") and live_og.get("product_og_image") and (live_og.get("product_og_type") or "") == "product":
@@ -82,5 +98,6 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
         "product_og_live": live_og,
         "blog_category_slug_h1": blog_category_slug_h1,
         "seo_json_mentions_dpk": seo_home_dpk,
+        "empty_seo_descriptions": empty_seo_descriptions,
         "site_code_missing": not root.exists(),
     }

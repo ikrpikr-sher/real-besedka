@@ -43,11 +43,20 @@ PY
 slug_count="$(echo "$slugs" | grep -c . || true)"
 echo "Config slugs: $slug_count"
 
-# GLB files
+# GLB on the server stay put (rsync excludes *.glb). Missing local files must not block deploy.
+glb_excluded=0
+if grep -q 'public/models/\*\.glb' "$ROOT/.rsync-exclude" 2>/dev/null; then
+  glb_excluded=1
+fi
+
 for slug in $slugs; do
   glb="$MODELS_DIR/${slug}.glb"
   if [[ ! -f "$glb" ]]; then
-    fail "Missing GLB: public/models/${slug}.glb (run: npm run export:models)"
+    if [[ "$glb_excluded" -eq 1 ]]; then
+      warn_msg "local GLB absent (ok, rsync-excluded): public/models/${slug}.glb"
+    else
+      fail "Missing GLB: public/models/${slug}.glb (run: npm run export:models)"
+    fi
     continue
   fi
   size="$(wc -c < "$glb" | tr -d ' ')"

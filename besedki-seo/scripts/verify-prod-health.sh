@@ -27,10 +27,15 @@ fi
 if [[ -z "$resolved" ]]; then
   resolved="$(python3 -c "import socket; print(socket.gethostbyname('$DOMAIN'))" 2>/dev/null || true)"
 fi
+ns_records="$(dig +short NS "$DOMAIN" 2>/dev/null | tr '\n' ' ' || true)"
 if [[ -z "$resolved" ]]; then
   fail "DNS: no A record for $DOMAIN"
 elif [[ "$resolved" == "$ORIGIN_IP" ]]; then
-  fail "DNS A is origin $ORIGIN_IP (grey cloud) — LTE Moscow/MO can RESET. A must be Cloudflare proxied."
+  if echo "$ns_records" | grep -qi beget; then
+    ok "DNS A $DOMAIN -> origin $ORIGIN_IP (Beget NS, без Cloudflare)"
+  else
+    fail "DNS A is origin $ORIGIN_IP (grey cloud) — LTE Moscow/MO can RESET. A must be Cloudflare proxied."
+  fi
 else
   ok "DNS A $DOMAIN -> $resolved (not origin — proxy)"
 fi
@@ -44,7 +49,11 @@ else
 fi
 
 if ! grep -qi 'cf-ray:' <<<"$headers"; then
-  fail "no cf-ray on / — traffic is not going through Cloudflare"
+  if echo "$ns_records" | grep -qi beget; then
+    ok "no cf-ray — трафик на Beget origin, Cloudflare не в пути"
+  else
+    fail "no cf-ray on / — traffic is not going through Cloudflare"
+  fi
 else
   ok "cf-ray present (orange proxy)"
 fi
