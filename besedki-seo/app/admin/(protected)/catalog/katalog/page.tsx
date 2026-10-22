@@ -91,7 +91,12 @@ export default function AdminKatalogListPage() {
   }
 
   async function fillEmptySeo() {
-    if (!confirm('Заполнить пустые SEO-описания у карточек без сниппета? Цены и фото не меняются.')) return;
+    if (
+      !confirm(
+        'Заполнить пустые SEO-описания у максимум 3 карточек без сниппета? Цены и фото не меняются.',
+      )
+    )
+      return;
     setFillingSeo(true);
     setError(null);
     try {
@@ -104,7 +109,7 @@ export default function AdminKatalogListPage() {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ onlyEmpty: true }),
+        body: JSON.stringify({ onlyEmpty: true, limit: 3 }),
       });
       if (!ok || !data.ok) {
         setError(data.error || 'Не удалось заполнить описания');
