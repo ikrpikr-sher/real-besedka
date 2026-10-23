@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ArticleCard from '@/components/ArticleCard';
-import { blogCategoryLabel, getAllCategories, getPostsByCategory } from '@/lib/blog';
+import { BLOG_CATEGORY_LABELS, blogCategoryLabel, getAllCategories, getPostsByCategory } from '@/lib/blog';
 import { blogCategoryPath } from '@/lib/urlPath';
 
 type Props = { params: { category: string } };
@@ -10,6 +10,8 @@ type Props = { params: { category: string } };
 export function generateStaticParams() {
   return getAllCategories().map((category) => ({ category }));
 }
+
+export const dynamicParams = false;
 
 const CATEGORY_SEO: Record<string, { title: string; description: string; h1: string }> = {
   'kak-vybrat': {
@@ -48,12 +50,14 @@ export function generateMetadata({ params }: Props): Metadata {
   const categoryPath = blogCategoryPath(params.category);
   const label = blogCategoryLabel(params.category);
   const seo = CATEGORY_SEO[params.category];
+  const known = params.category in BLOG_CATEGORY_LABELS;
   return {
     title: seo?.title || `${label} — блог Реал Беседки`,
     description:
       seo?.description ||
       `Статьи Реал Беседки в рубрике «${label}»: выбор, монтаж и стили металлических беседок для Москвы и МО.`,
     alternates: { canonical: categoryPath },
+    robots: known ? { index: true, follow: true } : { index: false, follow: true },
   };
 }
 

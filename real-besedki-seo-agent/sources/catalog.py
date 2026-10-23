@@ -11,16 +11,23 @@ PRODUCT_LOC_RE = re.compile(
     r"^https?://[^/]+/katalog/([^/]+)/([^/?#]+)/?$",
     re.I,
 )
+# Size landings and search are /katalog/{hub}/{slug} but not SKU cards.
+HUB_CATEGORIES = frozenset({"razmer", "poisk"})
+
+
+def is_product_catalog_path(path: str) -> bool:
+    """True for /katalog/{category}/{sku}; false for size hubs and search."""
+    parts = [p for p in (path or "").split("/") if p]
+    if len(parts) != 3 or parts[0].lower() != "katalog":
+        return False
+    return parts[1].lower() not in HUB_CATEGORIES
 
 
 def _catalog_path(root: Path) -> Path | None:
-    for candidate in (
-        root / "data" / "katalog.json",
-        root / "data" / "katalog.prod.json",
-    ):
-        if candidate.exists():
-            return candidate
-    return None
+    # Только живой katalog.json. Снимок katalog.prod.json не берём —
+    # там может быть урезанный список и чужие priceFrom.
+    live = root / "data" / "katalog.json"
+    return live if live.exists() else None
 
 
 def parse_catalog_from_sitemap(sitemap_xml: str | None = None) -> list[dict[str, Any]]:
@@ -40,7 +47,7 @@ def parse_catalog_from_sitemap(sitemap_xml: str | None = None) -> list[dict[str,
         if not match:
             continue
         category, slug = match.group(1), match.group(2)
-        if category == "poisk":
+        if category.lower() in HUB_CATEGORIES:
             continue
         rel = f"/katalog/{category}/{slug}"
         if rel in seen:
@@ -77,7 +84,7 @@ def parse_catalog(repo_root: Path | None = None) -> list[dict[str, Any]]:
             continue
         slug = str(item.get("slug") or "").strip()
         category = str(item.get("category") or "").strip()
-        if not slug or not category:
+        if not slug or not category or category.lower() in HUB_CATEGORIES:
             continue
         title = str(item.get("title") or slug)
         size = str(item.get("size") or "")
