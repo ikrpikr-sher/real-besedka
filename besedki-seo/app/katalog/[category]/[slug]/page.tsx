@@ -46,7 +46,6 @@ export function generateMetadata({ params }: Props): Metadata {
     description,
     alternates: { canonical: itemUrl },
     openGraph: {
-      type: 'website',
       locale: 'ru_RU',
       siteName: site.siteName,
       title: seoTitle,
@@ -115,6 +114,9 @@ export default function KatalogItemPage({ params }: Props) {
   };
 
   return (
+    <>
+      {/* Next Metadata API rejects type "product" at build. Top-level meta is hoisted to <head>. */}
+      <meta property="og:type" content="product" />
     <Container className="page-section">
       <JsonLd data={[productLd, breadcrumbLd]} />
       <Breadcrumbs
@@ -212,5 +214,6 @@ export default function KatalogItemPage({ params }: Props) {
         </div>
       </div>
     </Container>
+    </>
   );
 }

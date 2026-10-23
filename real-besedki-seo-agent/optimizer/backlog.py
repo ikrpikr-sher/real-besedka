@@ -74,26 +74,36 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         add(
             "P1",
             "on-page",
-            "Open Graph на карточках товаров (og:title, og:description, og:image)",
+            "Open Graph на карточках товаров (og:title, og:description, og:image, og:type=product)",
             "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
             "низкий",
         )
 
-    if catalog_count:
+    empty_seo = int(content.get("empty_seo_descriptions") or 0)
+    if catalog_count and empty_seo:
         add(
             "P1",
             "on-page",
-            f"Уникальные title/description {catalog_count} карточек по шаблону (пилот 1–3 за прогон)",
-            "templates/onpage-product.md",
-            "высокий",
+            f"Пилот seoDescription: {empty_seo} карточек без сниппета (лимит 3 за прогон)",
+            "scripts/seo-daily-ship.sh",
+            "средний",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
-    )
+    elif catalog_count:
+        add(
+            "info",
+            "on-page",
+            f"Title/description {catalog_count} карточек: шаблон уникальный, пилот seoDescription закрыт",
+            "templates/onpage-product.md",
+            "—",
+        )
+    if content.get("blog_category_slug_h1"):
+        add(
+            "P1",
+            "on-page",
+            "Meta категорий и тегов блога — человекочитаемые H1/title",
+            "besedki-seo/app/blog/",
+            "средний",
+        )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -104,27 +114,24 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    add(
-        "P2",
-        "on-page",
-        "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
-        "besedki-seo/app/katalog/",
-        "средний",
-    )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
-    add(
-        "P2",
-        "on-page",
-        "Поле seoDescription в каталоге (админка)",
-        "besedki-seo/admin/catalog",
-        "средний",
-    )
+    health_issues = (snapshot.get("site_health") or {}).get("issues") or []
+    health_problems = " ".join(str(i.get("problem") or "") for i in health_issues)
+    if "BreadcrumbList" in health_problems:
+        add(
+            "P2",
+            "on-page",
+            "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
+            "besedki-seo/app/katalog/",
+            "средний",
+        )
+    if "ContactPage" in health_problems:
+        add(
+            "P2",
+            "on-page",
+            "ContactPage schema на /kontakty",
+            "besedki-seo/app/kontakty/page.tsx",
+            "низкий",
+        )
 
     if live and sitemap_urls:
         add(

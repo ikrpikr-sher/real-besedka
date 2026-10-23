@@ -72,7 +72,7 @@ function parseArgs(argv) {
   let only = null;
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === '--limit' && argv[i + 1]) {
-      limit = Math.max(1, Math.min(10, Number(argv[++i]) || 3));
+      limit = Math.max(1, Math.min(3, Number(argv[++i]) || 3));
     } else if (argv[i] === '--slugs' && argv[i + 1]) {
       only = new Set(
         argv[++i]
