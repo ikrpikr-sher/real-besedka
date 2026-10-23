@@ -9,5 +9,8 @@
 | 2026-08-25 | `site_health/viewport.py` | P1 «нет mobile-nav» | CTA «Каталог» `lg:hidden` = ок | ложный P1 | не блокировать SEO |
 | 2026-08-25 | `site_health/runner.py` | CF без прокси = P0 / emergency | P1 owner_action, если origin 200 + форма/tel | ложная авария блокировала SEO | weekday идёт дальше |
 | 2026-08-25 | `site_health/onpage.py` | health не видел OG/ContactPage/H1 блога | живой HTML прода в P1/P2 | журнал врал без `besedki-seo/` | честный backlog |
+| 2026-10-23 | leftover `/blog/category/{proizvodstvo,soveti,novosti,obzory,news,…}` | 200 + H1=slug | nginx/Next 301 → `/blog` | тонкие сироты вне sitemap | краулер не индексирует пустые рубрики |
+| 2026-10-23 | SEO-агент honesty | main без sku_aliases/IndexNow/hub_links | стек с PR 56 + first-hop leftover | weekday показывал P2=0 при 1734 постах | честный P0/P1/P2 |
+| 2026-10-23 | git ↔ прод | sitemap с poisk, OG website, без 301 B-51/loft | код как на live 2026.10.22.1 | следующий деплой с main не откатит SEO | без регресса |
 
 **Файл для агента:** дополнять `real-besedki-seo-agent/logs/YYYY-MM-DD_changes.md` после каждого деплоя с SEO-правками.

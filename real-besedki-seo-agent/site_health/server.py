@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 import subprocess
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -9,6 +10,32 @@ VPS_HOST = "31.128.44.47"
 SSH_USER = "root"
 SSH_KEY = Path.home() / ".ssh/besedki_deploy"
 FIVEXX_RE = re.compile(r'" [5]\d{2} ')
+NGINX_TIME_RE = re.compile(r"\[(\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}) ([+-]\d{4})\]")
+# «Недавние» — не хвост всего access.log. Утренний 502, который уже отдаёт 200, не авария.
+RECENT_5XX_WINDOW = timedelta(minutes=45)
+
+
+def nginx_line_age(line: str, now: datetime | None = None) -> timedelta | None:
+    match = NGINX_TIME_RE.search(line or "")
+    if not match:
+        return None
+    moment = datetime.strptime(match.group(1) + match.group(2), "%d/%b/%Y:%H:%M:%S%z")
+    current = now or datetime.now(timezone.utc)
+    return current - moment
+
+
+def is_recent_nginx_5xx(
+    line: str,
+    now: datetime | None = None,
+    window: timedelta = RECENT_5XX_WINDOW,
+) -> bool:
+    """5xx из access.log считается аварией только если строка свежая."""
+    if not line or not FIVEXX_RE.search(line):
+        return False
+    age = nginx_line_age(line, now)
+    if age is None:
+        return True
+    return timedelta(0) <= age <= window
 
 
 def check_server_logs() -> dict[str, Any]:
@@ -50,7 +77,7 @@ def check_server_logs() -> dict[str, Any]:
             if "=== mobile 200 ===" in section:
                 section = section.split("=== mobile 200 ===", 1)[0]
             recent_5xx = [
-                ln for ln in section.strip().splitlines() if ln.strip() and FIVEXX_RE.search(ln)
+                ln for ln in section.strip().splitlines() if is_recent_nginx_5xx(ln)
             ]
         if recent_5xx:
             issues.append(
