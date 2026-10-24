@@ -1,7 +1,8 @@
 import { getCatalogCategory, type CatalogCategorySlug } from '@/lib/catalogCategories';
 import type { CatalogItem } from '@/lib/content';
 
-export const SEO_DESCRIPTION_MAX = 250;
+/** Живая карточка режет meta до 160 символов (`page.tsx` на проде). */
+export const SEO_DESCRIPTION_MAX = 160;
 
 export type ProductSeoSource = Pick<
   CatalogItem,
@@ -30,6 +31,15 @@ function has(text: string, needle: string): boolean {
   return text.toLowerCase().includes(needle.toLowerCase());
 }
 
+/** «Мангала нет» / «без мангала» не считаем зоной жарки. */
+function mentionsGrill(text: string): boolean {
+  const cleaned = text
+    .toLowerCase()
+    .replace(/мангала нет/g, '')
+    .replace(/без мангала/g, '');
+  return cleaned.includes('мангал');
+}
+
 function featureBits(item: ProductSeoSource): string[] {
   const blob = `${item.title} ${item.tagline ?? ''} ${item.description}`;
   const bits: string[] = [];
@@ -42,7 +52,7 @@ function featureBits(item: ProductSeoSource): string[] {
 
   if (has(blob, 'чпу') || has(blob, 'лазер')) bits.push('панели ЧПУ');
   if (has(blob, 'стеклопакет') || has(blob, 'остеклен')) bits.push('раздвижное остекление');
-  if (has(blob, 'мангал') || item.category === 'besedki-s-mangalom') bits.push('зона жарки');
+  if (mentionsGrill(blob) || item.category === 'besedki-s-mangalom') bits.push('зона жарки');
   if (has(blob, 'фанер')) bits.push('пол фанера в базе');
   else if (has(blob, 'дпк') && item.category === 'besedki-s-mangalom') bits.push('пол ДПК');
 
