@@ -28,7 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     '',
     '/katalog',
-    '/katalog/poisk',
     ...CATALOG_CATEGORIES.map((c) => `/katalog/${c.slug}`),
     // Коммерческие хабы — приоритет для топа (раньше не попадали в карту)
     '/kupit-metallicheskuyu-besedku',
