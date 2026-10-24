@@ -58,13 +58,25 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
     has_og_products = False
     if product_meta.exists():
         text = product_meta.read_text(encoding="utf-8")
-        has_og_products = "openGraph" in text
+        has_og_products = "openGraph" in text and ("ogImage" in text or "images:" in text)
 
     blog_category = root / "app" / "blog" / "category" / "[category]" / "page.tsx"
     blog_category_slug_h1 = False
     if blog_category.exists():
         text = blog_category.read_text(encoding="utf-8")
-        blog_category_slug_h1 = "Категория:" in text or "category" in text.lower()
+        # «category» есть в пути и импортах — не считать slug-H1
+        blog_category_slug_h1 = "Категория:" in text
+
+    kontakty_page = root / "app" / "kontakty" / "page.tsx"
+    has_contact_page = kontakty_page.exists() and "ContactPage" in kontakty_page.read_text(encoding="utf-8")
+
+    katalog_hub = root / "app" / "katalog" / "page.tsx"
+    has_breadcrumb_katalog = katalog_hub.exists() and "BreadcrumbList" in katalog_hub.read_text(encoding="utf-8")
+
+    admin_form = root / "components" / "admin" / "KatalogForm.tsx"
+    has_seo_description_field = admin_form.exists() and "seoDescription" in admin_form.read_text(
+        encoding="utf-8"
+    )
 
     seo_path = root / "data" / "seo.json"
     seo_home_dpk = False
@@ -81,6 +93,9 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
         "product_open_graph": has_og_products,
         "product_og_live": live_og,
         "blog_category_slug_h1": blog_category_slug_h1,
+        "has_contact_page": has_contact_page,
+        "has_breadcrumb_katalog": has_breadcrumb_katalog,
+        "has_seo_description_field": has_seo_description_field,
         "seo_json_mentions_dpk": seo_home_dpk,
         "site_code_missing": not root.exists(),
     }

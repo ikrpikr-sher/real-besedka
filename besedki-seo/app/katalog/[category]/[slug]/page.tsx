@@ -33,7 +33,12 @@ export function generateMetadata({ params }: Props): Metadata {
   const item = getCatalogItem(params.category, params.slug);
   if (!item) return {};
   const site = getSite();
-  const seoTitle = `${item.title} — ${item.size}, от ${item.priceFrom.toLocaleString('ru-RU')} ₽`;
+  const priceLabel = item.priceFrom > 0 ? `от ${item.priceFrom.toLocaleString('ru-RU')} ₽` : 'цена по запросу';
+  let seoTitle = `${item.title} — ${priceLabel}`;
+  if (seoTitle.length > 55) {
+    const shortName = item.title.length > 36 ? `${item.title.slice(0, 36).replace(/[\s,.—-]+$/u, '')}…` : item.title;
+    seoTitle = `${shortName} — ${priceLabel}`;
+  }
   const description = getProductMetaDescription(item);
   const itemUrl = getCatalogItemUrl(item);
   const ogImage = item.images[0]
@@ -92,8 +97,9 @@ export default function KatalogItemPage({ params }: Props) {
     offers: {
       '@type': 'Offer',
       priceCurrency: 'RUB',
-      price: item.priceFrom,
-      priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
+      ...(item.priceFrom > 0
+        ? { price: item.priceFrom, priceValidUntil: `${new Date().getFullYear() + 1}-12-31` }
+        : {}),
       availability: 'https://schema.org/InStock',
       url: `${site.siteUrl}${itemUrl}`,
       seller: {
@@ -171,7 +177,7 @@ export default function KatalogItemPage({ params }: Props) {
             <PavilionVentilation slug={item.slug} />
           ) : null}
           <p className="mt-6 text-xl font-semibold text-accent">
-            от {item.priceFrom.toLocaleString('ru-RU')} ₽
+            {item.priceFrom > 0 ? `от ${item.priceFrom.toLocaleString('ru-RU')} ₽` : 'по запросу'}
           </p>
           <p className="mt-2 text-sm text-text-muted">
             {configProfile.baseNote ??

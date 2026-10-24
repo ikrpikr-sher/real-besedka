@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ArticleCard from '@/components/ArticleCard';
-import { blogCategoryLabel, getAllCategories, getPostsByCategory } from '@/lib/blog';
+import { blogCategoryLabel, decodeBlogParam, getAllCategories, getPostsByCategory } from '@/lib/blog';
 import { blogCategoryPath } from '@/lib/urlPath';
 
 type Props = { params: { category: string } };
@@ -45,9 +45,10 @@ const CATEGORY_SEO: Record<string, { title: string; description: string; h1: str
 };
 
 export function generateMetadata({ params }: Props): Metadata {
-  const categoryPath = blogCategoryPath(params.category);
-  const label = blogCategoryLabel(params.category);
-  const seo = CATEGORY_SEO[params.category];
+  const category = decodeBlogParam(params.category);
+  const categoryPath = blogCategoryPath(category);
+  const label = blogCategoryLabel(category);
+  const seo = CATEGORY_SEO[category];
   return {
     title: seo?.title || `${label} — блог Реал Беседки`,
     description:
@@ -58,9 +59,10 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 export default function CategoryPage({ params }: Props) {
-  const posts = getPostsByCategory(params.category);
-  const label = blogCategoryLabel(params.category);
-  const seo = CATEGORY_SEO[params.category];
+  const category = decodeBlogParam(params.category);
+  const posts = getPostsByCategory(category);
+  const label = blogCategoryLabel(category);
+  const seo = CATEGORY_SEO[category];
   const h1 = seo?.h1 || label;
   return (
     <Container className="page-section">
@@ -68,7 +70,7 @@ export default function CategoryPage({ params }: Props) {
         items={[
           { label: 'Главная', href: '/' },
           { label: 'Блог', href: '/blog' },
-          { label: label, href: blogCategoryPath(params.category) },
+          { label: label, href: blogCategoryPath(category) },
         ]}
       />
       <h1 className="page-title mb-6">{h1}</h1>
