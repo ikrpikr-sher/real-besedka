@@ -13,7 +13,8 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const KATALOG = path.join(ROOT, 'data', 'katalog.json');
-const MAX = 250;
+/** Живая карточка режет meta до 160 символов. */
+const MAX = 160;
 
 const KIND = {
   'otkrytye-besedki': 'Открытая металлическая беседка',
@@ -38,6 +39,15 @@ function has(text, needle) {
   return String(text || '').toLowerCase().includes(needle.toLowerCase());
 }
 
+/** «Мангала нет» / «без мангала» не считаем зоной жарки. */
+function mentionsGrill(text) {
+  const cleaned = String(text || '')
+    .toLowerCase()
+    .replace(/мангала нет/g, '')
+    .replace(/без мангала/g, '');
+  return cleaned.includes('мангал');
+}
+
 function featureBits(item) {
   const blob = `${item.title} ${item.tagline ?? ''} ${item.description ?? ''}`;
   const bits = [];
@@ -48,7 +58,7 @@ function featureBits(item) {
   }
   if (has(blob, 'чпу') || has(blob, 'лазер')) bits.push('панели ЧПУ');
   if (has(blob, 'стеклопакет') || has(blob, 'остеклен')) bits.push('раздвижное остекление');
-  if (has(blob, 'мангал') || item.category === 'besedki-s-mangalom') bits.push('зона жарки');
+  if (mentionsGrill(blob) || item.category === 'besedki-s-mangalom') bits.push('зона жарки');
   if (has(blob, 'фанер')) bits.push('пол фанера в базе');
   if (item.roof && !has(item.roof, '—')) {
     bits.push(String(item.roof).toLowerCase().includes('черепиц') ? 'металлочерепица' : item.roof);
