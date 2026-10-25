@@ -38,8 +38,17 @@ function has(text, needle) {
   return String(text || '').toLowerCase().includes(needle.toLowerCase());
 }
 
+function scrubNegations(text) {
+  return String(text || '')
+    .replace(/мангала\s+нет/gi, ' ')
+    .replace(/без\s+мангал[а-яё]*/gi, ' ')
+    .replace(/без\s+остекл[а-яё]*/gi, ' ')
+    .replace(/не\s+остекл[а-яё]*/gi, ' ')
+    .replace(/дпк\s*[—–-]\s*опция/gi, ' ');
+}
+
 function featureBits(item) {
-  const blob = `${item.title} ${item.tagline ?? ''} ${item.description ?? ''}`;
+  const blob = scrubNegations(`${item.title} ${item.tagline ?? ''} ${item.description ?? ''}`);
   const bits = [];
   if (has(blob, '80×80') || has(blob, '80x80')) bits.push('каркас 80×80×3 мм');
   else if (item.material) {
