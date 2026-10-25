@@ -133,12 +133,12 @@ export default function HomePage() {
             alt=""
             width={1600}
             height={900}
-            className="h-full w-full object-cover object-[center_40%] scale-[1.02]"
+            className="h-full w-full object-cover object-[center_40%] scale-[1.02] opacity-95 brightness-110"
             fetchPriority="high"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/30 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
         </div>
         <Container className="relative z-10 flex min-h-[min(92svh,880px)] flex-col justify-center py-14 sm:py-16 md:py-20">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,400px)] lg:items-center lg:gap-14">

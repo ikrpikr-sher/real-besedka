@@ -1,9 +1,10 @@
 /**
- * Политика индексации блога: режем doorways «сваи/город» вне рынка Москва+МО.
+ * Политика индексации блога: режем geo-doorways вне рынка Москва+МО.
+ * Серии: fundament-svai-*, zakaz-dostavka-*, krovlya-ostekleni-*.
  * Шаблоны title+MDX с двумя H1 чинятся отдельно (stripLeadingMarkdownH1).
  */
 
-/** Города/районы, где реально ставим (slug как в fundament-svai-{slug}). */
+/** Города/районы, где реально ставим / возим в рынке (хвост slug после префикса). */
 export const BLOG_GEO_INDEX_ALLOWLIST = new Set([
   'moskva',
   'moscow',
@@ -60,13 +61,22 @@ export const BLOG_GEO_INDEX_ALLOWLIST = new Set([
   'dzerzhinsky',
 ]);
 
-const DOORWAY_PREFIXES = ['fundament-svai-'] as const;
+/** Массовые geo-серии: вне allowlist → noindex (не раздуваем эталоном). */
+const DOORWAY_PREFIXES = [
+  'fundament-svai-',
+  'zakaz-dostavka-',
+  'krovlya-ostekleni-',
+] as const;
 
 export function blogCityFromDoorwaySlug(slug: string): string | null {
   for (const prefix of DOORWAY_PREFIXES) {
     if (slug.startsWith(prefix)) return slug.slice(prefix.length);
   }
   return null;
+}
+
+export function isBlogDoorwaySlug(slug: string): boolean {
+  return blogCityFromDoorwaySlug(slug) !== null;
 }
 
 /** true → robots noindex,follow; не в sitemap / листинг блога. */
@@ -95,6 +105,7 @@ export function shouldNoindexBlogPost(slug: string, tags: string[] = []): boolea
         'alushta',
         'anapa',
         'yalta',
+        'bratsk',
       ].includes(t),
   );
   if (farHit && city === null && slug.includes(farHit)) return true;
@@ -109,6 +120,7 @@ export function blogThinContentHubLinks() {
     { href: '/katalog', label: 'Каталог беседок' },
     { href: '/blog/vintovye-svai-pod-besedku', label: 'Винтовые сваи в МО' },
     { href: '/blog/fundament-dlya-besedki-kakoy-vybrat', label: 'Какой фундамент выбрать' },
+    { href: '/blog/kak-vybrat-besedku-dlya-dachi', label: 'Как выбрать беседку для дачи' },
   ] as const;
 }
 

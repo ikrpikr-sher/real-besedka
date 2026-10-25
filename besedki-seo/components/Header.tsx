@@ -3,26 +3,27 @@ import Container from './Container';
 import TelegramLink from './TelegramLink';
 import MobileNav from './MobileNav';
 import { getSite } from '@/lib/content';
-import { mergeSiteNav } from '@/lib/siteNav';
+import { desktopNav, mergeSiteNav } from '@/lib/siteNav';
 
 export default function Header() {
   const site = getSite();
   const nav = mergeSiteNav(site.nav);
+  const primaryNav = desktopNav(nav);
   const telegramHref = site.telegram || site.social?.telegram || '';
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-bg/85 pt-[env(safe-area-inset-top)] backdrop-blur-md supports-[backdrop-filter]:bg-bg/80">
-      <Container className="flex h-14 items-center gap-2 sm:h-[4.25rem] sm:gap-3">
+      <Container className="flex h-14 items-center gap-3 sm:h-[4.25rem] sm:gap-4">
         <NavLink
           href="/"
-          className="min-w-0 shrink font-heading text-sm font-semibold tracking-tight text-text whitespace-nowrap sm:text-lg"
+          className="min-w-0 shrink font-heading text-base font-semibold tracking-tight text-text whitespace-nowrap sm:text-lg"
         >
           {site.siteName}
         </NavLink>
 
-        <div className="ml-auto flex min-w-0 items-center gap-2 lg:gap-3">
-          <nav className="hidden items-center gap-3 lg:flex xl:gap-5" aria-label="Основная навигация">
-            {nav.map((item) => (
+        <div className="ml-auto flex min-w-0 items-center gap-2 lg:gap-4">
+          <nav className="hidden items-center gap-5 xl:gap-6 lg:flex" aria-label="Основная навигация">
+            {primaryNav.map((item) => (
               <NavLink
                 key={item.href}
                 href={item.href}
@@ -34,8 +35,11 @@ export default function Header() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-2">
-            <div className="hidden items-center gap-2 lg:flex">
-              <a href={`tel:${site.phone.replace(/[^\d+]/g, '')}`} className="text-sm text-text hover:text-accent">
+            <div className="hidden items-center gap-3 lg:flex">
+              <a
+                href={`tel:${site.phone.replace(/[^\d+]/g, '')}`}
+                className="whitespace-nowrap text-sm font-medium text-text hover:text-accent"
+              >
                 {site.phone}
               </a>
               <TelegramLink href={telegramHref} />
@@ -48,7 +52,7 @@ export default function Header() {
             </div>
             <NavLink
               href="/kontakty"
-              className="btn-primary hidden px-3 py-2 text-xs md:inline-flex md:px-5 md:py-3 md:text-sm lg:inline-flex"
+              className="btn-primary hidden px-4 py-2.5 text-sm md:inline-flex"
             >
               Заявка
             </NavLink>

@@ -11,6 +11,15 @@ export const REQUIRED_NAV: NavItem[] = [
   { label: 'Контакты', href: '/kontakty' },
 ];
 
+/** Desktop: короткий ряд — иначе 11 пунктов + телефон ломают шапку. */
+export const DESKTOP_NAV_HREFS = new Set([
+  '/katalog',
+  '/konfigurator',
+  '/proekty',
+  '/blog',
+  '/kontakty',
+]);
+
 export function mergeSiteNav(nav: NavItem[] | undefined): NavItem[] {
   const fromFile = Array.isArray(nav) ? nav : [];
   const byHref = new Map<string, NavItem>();
@@ -33,4 +42,8 @@ export function mergeSiteNav(nav: NavItem[] | undefined): NavItem[] {
     seen.add(item.href);
   }
   return ordered;
+}
+
+export function desktopNav(nav: NavItem[]): NavItem[] {
+  return nav.filter((item) => DESKTOP_NAV_HREFS.has(item.href));
 }
