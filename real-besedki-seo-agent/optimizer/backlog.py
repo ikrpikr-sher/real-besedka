@@ -2,6 +2,13 @@ from __future__ import annotations
 
 from typing import Any
 
+from config import SITE_CODE_ROOT
+
+
+def _text_has(rel: str, needle: str) -> bool:
+    path = SITE_CODE_ROOT / rel
+    return path.exists() and needle in path.read_text(encoding="utf-8")
+
 
 def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
     content = snapshot.get("content") or {}
@@ -83,17 +90,22 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         add(
             "P1",
             "on-page",
-            f"Уникальные title/description {catalog_count} карточек по шаблону (пилот 1–3 за прогон)",
-            "templates/onpage-product.md",
-            "высокий",
+            f"Пилот seoDescription: до 3 карточек за прогон (каталог {catalog_count})",
+            "scripts/seo-daily-ship.sh",
+            "средний",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
-    )
+
+    blog_cat = SITE_CODE_ROOT / "app" / "blog" / "category" / "[category]" / "page.tsx"
+    if content.get("blog_category_slug_h1") or not (
+        blog_cat.exists() and "CATEGORY_SEO" in blog_cat.read_text(encoding="utf-8")
+    ):
+        add(
+            "P1",
+            "on-page",
+            "Meta категорий и тегов блога — человекочитаемые H1/title",
+            "besedki-seo/app/blog/",
+            "средний",
+        )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -104,27 +116,30 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    add(
-        "P2",
-        "on-page",
-        "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
-        "besedki-seo/app/katalog/",
-        "средний",
-    )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
-    add(
-        "P2",
-        "on-page",
-        "Поле seoDescription в каталоге (админка)",
-        "besedki-seo/admin/catalog",
-        "средний",
-    )
+    if not _text_has("app/katalog/page.tsx", "BreadcrumbList"):
+        add(
+            "P2",
+            "on-page",
+            "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
+            "besedki-seo/app/katalog/",
+            "средний",
+        )
+    if not _text_has("app/kontakty/page.tsx", "ContactPage"):
+        add(
+            "P2",
+            "on-page",
+            "ContactPage schema на /kontakty",
+            "besedki-seo/app/kontakty/page.tsx",
+            "низкий",
+        )
+    if not _text_has("components/admin/KatalogForm.tsx", "seoDescription"):
+        add(
+            "P2",
+            "on-page",
+            "Поле seoDescription в каталоге (админка)",
+            "besedki-seo/admin/catalog",
+            "средний",
+        )
 
     if live and sitemap_urls:
         add(

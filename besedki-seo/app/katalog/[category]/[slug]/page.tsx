@@ -46,6 +46,8 @@ export function generateMetadata({ params }: Props): Metadata {
     description,
     alternates: { canonical: itemUrl },
     openGraph: {
+      // Next 14 throws "Invalid OpenGraph type: product" at build.
+      // Живой HTML карточки получает og:type=product через nginx sub_filter.
       type: 'website',
       locale: 'ru_RU',
       siteName: site.siteName,

@@ -93,6 +93,25 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
                 "status": "owner_action",
             }
         )
+    elif not dns.get("cloudflare_ns") and not cdn.get("cloudflare_headers"):
+        healthy = origin_healthy(internal, client, ua)
+        dns_issues.append(
+            {
+                "priority": "P1" if healthy else "P0",
+                "category": "cdn",
+                "problem": "Трафик идёт на origin без Cloudflare (NS Beget, нет cf-*)",
+                "url": site_url,
+                "cause": f"NS={', '.join(dns.get('ns') or []) or 'н/д'}; A={dns.get('a')}",
+                "impact": (
+                    "Риск ERR_CONNECTION_RESET на LTE Москва/МО. Origin 200 — SEO не блокируем, "
+                    "нужны NS Cloudflare и оранжевое облако (docs/CLOUDFLARE-SCHEME.md)"
+                    if healthy
+                    else "Без края Cloudflare обрывы до VPS режут и SEO, и заявки"
+                ),
+                "fact_kind": "verified",
+                "status": "owner_action",
+            }
+        )
 
     ssl_issues: list[dict[str, Any]] = []
     for host in ssl.get("critical") or []:

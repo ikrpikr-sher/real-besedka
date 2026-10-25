@@ -15,7 +15,9 @@ UA_SAFARI="Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/60
 UA_ANDROID="Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
 
 errors=0
+warnings=0
 fail() { echo "FAIL: $1" >&2; errors=$((errors + 1)); }
+warn() { echo "WARN: $1"; warnings=$((warnings + 1)); }
 ok() { echo "  ok: $1"; }
 
 echo "=== Production health: $DOMAIN ==="
@@ -30,7 +32,7 @@ fi
 if [[ -z "$resolved" ]]; then
   fail "DNS: no A record for $DOMAIN"
 elif [[ "$resolved" == "$ORIGIN_IP" ]]; then
-  fail "DNS A is origin $ORIGIN_IP (grey cloud) — LTE Moscow/MO can RESET. A must be Cloudflare proxied."
+  warn "DNS A is origin $ORIGIN_IP (no Cloudflare proxy) — LTE Moscow/MO can RESET. Owner: orange cloud, see docs/CLOUDFLARE-SCHEME.md"
 else
   ok "DNS A $DOMAIN -> $resolved (not origin — proxy)"
 fi
@@ -44,7 +46,7 @@ else
 fi
 
 if ! grep -qi 'cf-ray:' <<<"$headers"; then
-  fail "no cf-ray on / — traffic is not going through Cloudflare"
+  warn "no cf-ray on / — traffic is not going through Cloudflare (owner: Proxied A)"
 else
   ok "cf-ray present (orange proxy)"
 fi
@@ -194,5 +196,9 @@ if [[ "$errors" -gt 0 ]]; then
   exit 1
 fi
 
-echo "HEALTHY: production checks passed"
+if [[ "$warnings" -gt 0 ]]; then
+  echo "HEALTHY: production checks passed ($warnings owner warning(s) — Cloudflare / LTE)"
+else
+  echo "HEALTHY: production checks passed"
+fi
 exit 0
