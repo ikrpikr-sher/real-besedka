@@ -30,8 +30,18 @@ function has(text: string, needle: string): boolean {
   return text.toLowerCase().includes(needle.toLowerCase());
 }
 
+/** «Мангала нет» и «без остекления» не должны становиться плюсами карточки. */
+function scrubNegations(text: string): string {
+  return text
+    .replace(/мангала\s+нет/gi, ' ')
+    .replace(/без\s+мангал[а-яё]*/gi, ' ')
+    .replace(/без\s+остекл[а-яё]*/gi, ' ')
+    .replace(/не\s+остекл[а-яё]*/gi, ' ')
+    .replace(/дпк\s*[—–-]\s*опция/gi, ' ');
+}
+
 function featureBits(item: ProductSeoSource): string[] {
-  const blob = `${item.title} ${item.tagline ?? ''} ${item.description}`;
+  const blob = scrubNegations(`${item.title} ${item.tagline ?? ''} ${item.description}`);
   const bits: string[] = [];
 
   if (has(blob, '80×80') || has(blob, '80x80')) bits.push('каркас 80×80×3 мм');
