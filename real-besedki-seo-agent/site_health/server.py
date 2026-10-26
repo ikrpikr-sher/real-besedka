@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 import subprocess
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -9,6 +10,24 @@ VPS_HOST = "31.128.44.47"
 SSH_USER = "root"
 SSH_KEY = Path.home() / ".ssh/besedki_deploy"
 FIVEXX_RE = re.compile(r'" [5]\d{2} ')
+NGINX_TS_RE = re.compile(r"\[(\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}) ([+\-]\d{4})\]")
+# Старый 502 в access.log не должен держать аварийный режим весь день.
+RECENT_5XX_WINDOW = timedelta(hours=2)
+
+
+def _line_is_recent_5xx(line: str, now: datetime) -> bool:
+    if not FIVEXX_RE.search(line):
+        return False
+    match = NGINX_TS_RE.search(line)
+    if not match:
+        return False
+    stamp = datetime.strptime(match.group(1), "%d/%b/%Y:%H:%M:%S")
+    offset = match.group(2)
+    sign = -1 if offset.startswith("-") else 1
+    hours = int(offset[1:3])
+    minutes = int(offset[3:5])
+    stamp = stamp.replace(tzinfo=timezone(sign * timedelta(hours=hours, minutes=minutes)))
+    return now - stamp <= RECENT_5XX_WINDOW
 
 
 def check_server_logs() -> dict[str, Any]:
@@ -49,8 +68,11 @@ def check_server_logs() -> dict[str, Any]:
             section = output.split("=== 5xx today ===", 1)[1]
             if "=== mobile 200 ===" in section:
                 section = section.split("=== mobile 200 ===", 1)[0]
+            now = datetime.now(timezone.utc)
             recent_5xx = [
-                ln for ln in section.strip().splitlines() if ln.strip() and FIVEXX_RE.search(ln)
+                ln
+                for ln in section.strip().splitlines()
+                if ln.strip() and _line_is_recent_5xx(ln, now)
             ]
         if recent_5xx:
             issues.append(
