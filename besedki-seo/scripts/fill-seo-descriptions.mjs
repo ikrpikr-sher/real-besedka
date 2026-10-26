@@ -38,6 +38,20 @@ function has(text, needle) {
   return String(text || '').toLowerCase().includes(needle.toLowerCase());
 }
 
+function hasAffirmative(text, needle) {
+  const low = String(text || '').toLowerCase();
+  const n = needle.toLowerCase();
+  let from = 0;
+  while (from < low.length) {
+    const i = low.indexOf(n, from);
+    if (i < 0) return false;
+    const before = low.slice(Math.max(0, i - 16), i);
+    if (!/(?:без|не)\s*$/.test(before)) return true;
+    from = i + n.length;
+  }
+  return false;
+}
+
 function featureBits(item) {
   const blob = `${item.title} ${item.tagline ?? ''} ${item.description ?? ''}`;
   const bits = [];
@@ -47,7 +61,7 @@ function featureBits(item) {
     if (shortMaterial && shortMaterial.length <= 40) bits.push(shortMaterial);
   }
   if (has(blob, 'чпу') || has(blob, 'лазер')) bits.push('панели ЧПУ');
-  if (has(blob, 'стеклопакет') || has(blob, 'остеклен')) bits.push('раздвижное остекление');
+  if (hasAffirmative(blob, 'стеклопакет') || hasAffirmative(blob, 'остеклен')) bits.push('раздвижное остекление');
   if (has(blob, 'мангал') || item.category === 'besedki-s-mangalom') bits.push('зона жарки');
   if (has(blob, 'фанер')) bits.push('пол фанера в базе');
   if (item.roof && !has(item.roof, '—')) {
