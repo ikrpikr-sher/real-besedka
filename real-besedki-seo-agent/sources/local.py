@@ -180,7 +180,7 @@ def scan_repo(repo_root: Path | None = None) -> dict[str, Any]:
 
 def _has_metrica(root: Path) -> bool:
     needles = ("mc.yandex", "ym(", "metrika", "gtag(", "googletagmanager", "webmaster")
-    for folder in (root / "app", root / "lib"):
+    for folder in (root / "app", root / "lib", root / "components"):
         if not folder.exists():
             continue
         for path in folder.rglob("*"):
