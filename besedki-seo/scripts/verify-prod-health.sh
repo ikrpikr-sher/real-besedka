@@ -20,6 +20,15 @@ ok() { echo "  ok: $1"; }
 
 echo "=== Production health: $DOMAIN ==="
 
+ns_blob="$(dig +short NS "$DOMAIN" 2>/dev/null | tr '\n' ' ' || true)"
+if [[ -z "$ns_blob" ]]; then
+  ns_blob="$(host -t NS "$DOMAIN" 2>/dev/null | awk '/name server/ {print $NF}' | tr '\n' ' ' || true)"
+fi
+beget_origin=0
+if [[ "$ns_blob" == *beget* ]]; then
+  beget_origin=1
+fi
+
 resolved="$(dig +short A "$DOMAIN" 2>/dev/null | grep -E '^[0-9.]+$' | head -1 || true)"
 if [[ -z "$resolved" ]]; then
   resolved="$(host -t A "$DOMAIN" 2>/dev/null | awk '/has address/ {print $4; exit}' || true)"
@@ -29,6 +38,8 @@ if [[ -z "$resolved" ]]; then
 fi
 if [[ -z "$resolved" ]]; then
   fail "DNS: no A record for $DOMAIN"
+elif [[ "$resolved" == "$ORIGIN_IP" && "$beget_origin" -eq 1 ]]; then
+  ok "DNS A $DOMAIN -> $resolved (Beget NS, origin; Cloudflare proxy не используется)"
 elif [[ "$resolved" == "$ORIGIN_IP" ]]; then
   fail "DNS A is origin $ORIGIN_IP (grey cloud) — LTE Moscow/MO can RESET. A must be Cloudflare proxied."
 else
@@ -43,10 +54,12 @@ else
   ok "HTTPS / -> $code"
 fi
 
-if ! grep -qi 'cf-ray:' <<<"$headers"; then
-  fail "no cf-ray on / — traffic is not going through Cloudflare"
-else
+if grep -qi 'cf-ray:' <<<"$headers"; then
   ok "cf-ray present (orange proxy)"
+elif [[ "$beget_origin" -eq 1 ]]; then
+  ok "no cf-ray (Beget origin, ожидаемо)"
+else
+  fail "no cf-ray on / — traffic is not going through Cloudflare"
 fi
 
 if grep -qiE 'alt-svc:.*h3' <<<"$headers"; then

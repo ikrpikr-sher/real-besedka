@@ -43,20 +43,38 @@ PY
 slug_count="$(echo "$slugs" | grep -c . || true)"
 echo "Config slugs: $slug_count"
 
-# GLB files
-for slug in $slugs; do
-  glb="$MODELS_DIR/${slug}.glb"
-  if [[ ! -f "$glb" ]]; then
-    fail "Missing GLB: public/models/${slug}.glb (run: npm run export:models)"
-    continue
+local_glb_count="$(find "$MODELS_DIR" -maxdepth 1 -name '*.glb' -type f 2>/dev/null | wc -l | tr -d ' ')"
+if [[ "${local_glb_count:-0}" -eq 0 ]]; then
+  # GLB не в git. Для деплоя из облака проверяем, что модели есть на проде, а не качаем 100+ файлов.
+  HOST="${DEPLOY_HOST:-root@31.128.44.47}"
+  KEY="${DEPLOY_SSH_KEY:-$HOME/.ssh/besedki_deploy}"
+  REMOTE="${DEPLOY_REMOTE:-/var/www/besedki}"
+  if [[ -f "$KEY" ]]; then
+    remote_glb_count="$(ssh -i "$KEY" -o IdentitiesOnly=yes -o ConnectTimeout=15 "$HOST" \
+      "find $REMOTE/public/models -maxdepth 1 -name '*.glb' -type f | wc -l" | tr -d ' ')"
+    if [[ "${remote_glb_count:-0}" -lt 10 ]]; then
+      fail "No local GLB and remote public/models has only ${remote_glb_count:-0} files"
+    else
+      ok "local GLB skipped (not in git); remote public/models: ${remote_glb_count} GLB"
+    fi
+  else
+    fail "No local GLB and no SSH key to verify remote models"
   fi
-  size="$(wc -c < "$glb" | tr -d ' ')"
-  if [[ "$size" -lt "$MIN_GLB_BYTES" ]]; then
-    fail "GLB too small (${size} B): ${slug}.glb — likely corrupt export"
-    continue
-  fi
-  ok "${slug}.glb (${size} bytes)"
-done
+else
+  for slug in $slugs; do
+    glb="$MODELS_DIR/${slug}.glb"
+    if [[ ! -f "$glb" ]]; then
+      fail "Missing GLB: public/models/${slug}.glb (run: npm run export:models)"
+      continue
+    fi
+    size="$(wc -c < "$glb" | tr -d ' ')"
+    if [[ "$size" -lt "$MIN_GLB_BYTES" ]]; then
+      fail "GLB too small (${size} B): ${slug}.glb — likely corrupt export"
+      continue
+    fi
+    ok "${slug}.glb (${size} bytes)"
+  done
+fi
 
 # npm deps for model-viewer
 if ! grep -q '"@google/model-viewer"' "$ROOT/package.json"; then

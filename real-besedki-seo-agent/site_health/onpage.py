@@ -56,9 +56,14 @@ def origin_healthy(internal: dict[str, Any], client: dict[str, Any], ua: dict[st
 
 
 def _product_paths(n: int = 3) -> list[str]:
-    from sources.catalog import parse_catalog
+    from sources.catalog import UNPUBLISHED_CATEGORIES, parse_catalog
 
-    catalog = parse_catalog()
+    catalog = [
+        p
+        for p in parse_catalog()
+        if (p.get("category") or "").split("/")[0] not in UNPUBLISHED_CATEGORIES
+        and "/katalog/poisk" not in (p.get("path") or "")
+    ]
     if not catalog:
         return ["/katalog/besedki-s-ostekleniem/b-22"]
     sample = catalog if len(catalog) <= n else random.sample(catalog, n)
