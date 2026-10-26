@@ -45,6 +45,8 @@ export function generateMetadata({ params }: Props): Metadata {
     title: { absolute: `${seoTitle} | ${BRAND_NAME}` },
     description,
     alternates: { canonical: itemUrl },
+    // Next.js 14 Metadata не принимает og:type=product — на проде nginx
+    // (location карточки) подменяет website → product. Не ставить type:'product' здесь.
     openGraph: {
       type: 'website',
       locale: 'ru_RU',
