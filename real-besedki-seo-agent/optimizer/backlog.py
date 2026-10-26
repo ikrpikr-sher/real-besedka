@@ -1,6 +1,17 @@
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any
+
+from config import SITE_CODE_ROOT
+
+
+def _site_has(rel: str, needle: str) -> bool:
+    path = SITE_CODE_ROOT / rel
+    try:
+        return path.exists() and needle in path.read_text(encoding="utf-8")
+    except OSError:
+        return False
 
 
 def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
@@ -81,19 +92,20 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
 
     if catalog_count:
         add(
+            "P2",
+            "on-page",
+            f"Пилот seoDescription: до 3 карточек за прогон (каталог {catalog_count})",
+            "scripts/seo-daily-ship.sh",
+            "низкий",
+        )
+    if content.get("blog_category_slug_h1"):
+        add(
             "P1",
             "on-page",
-            f"Уникальные title/description {catalog_count} карточек по шаблону (пилот 1–3 за прогон)",
-            "templates/onpage-product.md",
-            "высокий",
+            "Meta категорий и тегов блога — человекочитаемые H1/title",
+            "besedki-seo/app/blog/",
+            "средний",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
-    )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -104,27 +116,30 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    add(
-        "P2",
-        "on-page",
-        "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
-        "besedki-seo/app/katalog/",
-        "средний",
-    )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
-    add(
-        "P2",
-        "on-page",
-        "Поле seoDescription в каталоге (админка)",
-        "besedki-seo/admin/catalog",
-        "средний",
-    )
+    if not _site_has(Path("app/katalog/page.tsx").as_posix(), "BreadcrumbList"):
+        add(
+            "P2",
+            "on-page",
+            "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
+            "besedki-seo/app/katalog/",
+            "средний",
+        )
+    if not _site_has(Path("app/kontakty/page.tsx").as_posix(), "ContactPage"):
+        add(
+            "P2",
+            "on-page",
+            "ContactPage schema на /kontakty",
+            "besedki-seo/app/kontakty/page.tsx",
+            "низкий",
+        )
+    if not _site_has(Path("components/admin/KatalogForm.tsx").as_posix(), "seoDescription"):
+        add(
+            "P2",
+            "on-page",
+            "Поле seoDescription в каталоге (админка)",
+            "besedki-seo/admin/catalog",
+            "средний",
+        )
 
     if live and sitemap_urls:
         add(
