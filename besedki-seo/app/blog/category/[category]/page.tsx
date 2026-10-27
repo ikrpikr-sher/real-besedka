@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ArticleCard from '@/components/ArticleCard';
+import JsonLd from '@/components/JsonLd';
 import { blogCategoryLabel, getAllCategories, getPostsByCategory } from '@/lib/blog';
+import { getSite } from '@/lib/content';
 import { blogCategoryPath } from '@/lib/urlPath';
 
 type Props = { params: { category: string } };
@@ -98,13 +100,32 @@ export default function CategoryPage({ params }: Props) {
   const label = blogCategoryLabel(params.category);
   const seo = CATEGORY_SEO[params.category];
   const h1 = seo?.h1 || label;
+  const site = getSite();
+  const categoryPath = blogCategoryPath(params.category);
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: site.siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Блог', item: `${site.siteUrl}/blog` },
+      { '@type': 'ListItem', position: 3, name: label, item: `${site.siteUrl}${categoryPath}` },
+    ],
+  };
+  const collectionLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: h1,
+    description: seo?.description || `Статьи Реал Беседки в рубрике «${label}».`,
+    url: `${site.siteUrl}${categoryPath}`,
+  };
   return (
     <Container className="page-section">
+      <JsonLd data={[collectionLd, breadcrumbLd]} />
       <Breadcrumbs
         items={[
           { label: 'Главная', href: '/' },
           { label: 'Блог', href: '/blog' },
-          { label: label, href: blogCategoryPath(params.category) },
+          { label: label, href: categoryPath },
         ]}
       />
       <h1 className="page-title mb-6">{h1}</h1>
