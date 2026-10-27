@@ -35,6 +35,12 @@ export const BLOG_CATEGORY_LABELS: Record<string, string> = {
   'proekty-i-idei': 'Проекты и идеи',
   'montazh-i-uhod': 'Монтаж и уход',
   stili: 'Стили',
+  razmery: 'Размеры',
+  'mangal-i-ogon': 'Мангал и огонь',
+  'katalog-serii': 'Серии каталога',
+  konstrukciya: 'Конструкция',
+  'zakaz-i-montazh': 'Заказ и монтаж',
+  'zakaz-i-dogovor': 'Замер и договор',
 };
 
 export function blogCategoryLabel(slug: string): string {

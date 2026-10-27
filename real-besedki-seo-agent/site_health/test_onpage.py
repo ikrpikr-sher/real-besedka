@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from site_health.onpage import origin_healthy, parse_h1, parse_jsonld_types, parse_og
+from site_health.onpage import LATIN_SLUG_H1_RE, origin_healthy, parse_h1, parse_jsonld_types, parse_og
 from sources.content_audit import _dpk_as_default_floor
 
 
@@ -26,6 +26,11 @@ class OnpageParseTests(unittest.TestCase):
         text = "В базовой комплектации — фанера. ДПК доступен как опция."
         self.assertFalse(_dpk_as_default_floor(text))
         self.assertTrue(_dpk_as_default_floor("Полы из ДПК под ключ"))
+
+    def test_latin_slug_h1(self) -> None:
+        self.assertIsNotNone(LATIN_SLUG_H1_RE.match("zakaz i montazh"))
+        self.assertIsNone(LATIN_SLUG_H1_RE.match("Заказ и монтаж"))
+        self.assertIsNone(LATIN_SLUG_H1_RE.match("Категория: sravneniya"))
 
     def test_origin_healthy(self) -> None:
         internal = {"paths": [{"ok": True}, {"ok": True}]}

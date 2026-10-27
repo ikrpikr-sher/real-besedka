@@ -1,6 +1,6 @@
 {
   "name": "besedki-seo",
-  "version": "0.0.0-2026.10.25.1",
+  "version": "0.0.0-2026.10.27.2",
   "private": true,
   "scripts": {
     "dev": "next dev",

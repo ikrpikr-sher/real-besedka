@@ -4,6 +4,10 @@
 
 | Дата | Объект (URL / файл) | Было | Стало | Причина | Ожидаемый эффект |
 |------|---------------------|------|-------|---------|------------------|
+| 2026-10-27 | `/blog/category/{razmery,mangal-i-ogon,katalog-serii,konstrukciya,zakaz-i-montazh,zakaz-i-dogovor}` | title/H1 латиницей со slug | русские title и H1, CollectionPage + BreadcrumbList | рубрики в sitemap с мусорным сниппетом | нормальный сниппет рубрики |
+| 2026-10-27 | `katalog` m-03, m-04, m-05 | пустой seoDescription, шаблонный meta | уникальный seoDescription, priceFrom с сервера | 3 карточки за прогон, `push:katalog --slugs` | сниппет мангала/зоны по фактам карточки |
+| 2026-10-27 | `lib/productSeoDescription.ts` | `остеклен` ловит «без остекления» | `hasAffirmative` | ложное «раздвижное остекление» в генераторе | пустые карточки больше не получают стекло из отрицания |
+| 2026-10-27 | IndexNow | ключ `indexnow.txt` уже был | +31 коммерческих URL, Яндекс и IndexNow 202 | приоритетные хабы, не блог | переобход коммерческих URL |
 | 2026-08-25 | `sources/local.py` | fallback на create-next-app | `site_code_missing`, без скана стартера | ложные critical weekday | честный аудит прода |
 | 2026-08-25 | `sources/catalog.py` | пустой каталог без json | 129 URL из sitemap | без `besedki-seo/` не проверялись карточки | 10/10 hero/GLB |
 | 2026-08-25 | `site_health/viewport.py` | P1 «нет mobile-nav» | CTA «Каталог» `lg:hidden` = ок | ложный P1 | не блокировать SEO |
