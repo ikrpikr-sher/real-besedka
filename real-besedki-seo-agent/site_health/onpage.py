@@ -17,6 +17,7 @@ OG_RE_REV = re.compile(
 )
 H1_RE = re.compile(r"<h1\b[^>]*>([\s\S]*?)</h1>", re.I)
 SLUG_H1_RE = re.compile(r"Категория[:\s]+[«\"]?([a-z0-9-]{3,})", re.I)
+LATIN_SLUG_H1_RE = re.compile(r"^[a-z]+(?: [a-z]+){0,5}$", re.I)
 
 
 def parse_og(body: str) -> dict[str, str]:
@@ -72,7 +73,7 @@ def _blog_category_paths() -> list[str]:
     body = resp.get("body") or ""
     locs = re.findall(r"<loc>(https?://[^<]+/blog/category/[^<]+)</loc>", body, re.I)
     if locs:
-        return [re.sub(r"^https?://[^/]+", "", loc.rstrip("/")) for loc in locs[:2]]
+        return [re.sub(r"^https?://[^/]+", "", loc.rstrip("/")) for loc in locs]
     return ["/blog/category/sovety"]
 
 
@@ -134,7 +135,7 @@ def check_live_onpage() -> dict[str, Any]:
         body = resp.get("body") or ""
         h1s = parse_h1(body)
         pages.append({"path": path, "status": resp.get("status"), "h1": h1s})
-        slug_h1 = next((h for h in h1s if SLUG_H1_RE.search(h)), None)
+        slug_h1 = next((h for h in h1s if SLUG_H1_RE.search(h) or LATIN_SLUG_H1_RE.match(h)), None)
         if resp.get("status") == 200 and slug_h1:
             issues.append(
                 {
@@ -147,6 +148,5 @@ def check_live_onpage() -> dict[str, Any]:
                     "fact_kind": "verified",
                 }
             )
-            break
 
     return {"pages": pages, "issues": issues}
