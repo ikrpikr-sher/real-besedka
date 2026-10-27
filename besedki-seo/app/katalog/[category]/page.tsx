@@ -78,7 +78,7 @@ export default function KatalogCategoryPage({ params }: Props) {
           '@type': 'ItemList',
           name: cat.title,
           numberOfItems: items.length,
-          itemListElement: items.slice(0, 20).map((item, index) => ({
+          itemListElement: items.map((item, index) => ({
             '@type': 'ListItem',
             position: index + 1,
             name: item.title,
