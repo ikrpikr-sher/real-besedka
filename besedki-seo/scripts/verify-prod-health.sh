@@ -30,7 +30,8 @@ fi
 if [[ -z "$resolved" ]]; then
   fail "DNS: no A record for $DOMAIN"
 elif [[ "$resolved" == "$ORIGIN_IP" ]]; then
-  fail "DNS A is origin $ORIGIN_IP (grey cloud) — LTE Moscow/MO can RESET. A must be Cloudflare proxied."
+  # Текущая схема: Beget NS → origin. CF-прокси нет — это не авария, пока origin 200.
+  ok "DNS A is origin $ORIGIN_IP (Beget-direct, no Cloudflare NS)"
 else
   ok "DNS A $DOMAIN -> $resolved (not origin — proxy)"
 fi
@@ -43,10 +44,12 @@ else
   ok "HTTPS / -> $code"
 fi
 
-if ! grep -qi 'cf-ray:' <<<"$headers"; then
-  fail "no cf-ray on / — traffic is not going through Cloudflare"
-else
+if grep -qi 'cf-ray:' <<<"$headers"; then
   ok "cf-ray present (orange proxy)"
+elif [[ "$resolved" == "$ORIGIN_IP" ]]; then
+  ok "no cf-ray (Beget-direct origin)"
+else
+  fail "no cf-ray on / — DNS is not origin and not Cloudflare"
 fi
 
 if grep -qiE 'alt-svc:.*h3' <<<"$headers"; then
