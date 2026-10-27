@@ -46,7 +46,8 @@ export function generateMetadata({ params }: Props): Metadata {
     description,
     alternates: { canonical: itemUrl },
     openGraph: {
-      type: 'website',
+      // Next.js Metadata union has no "product"; the string must stay product (live OG).
+      type: 'product' as 'website',
       locale: 'ru_RU',
       siteName: site.siteName,
       title: seoTitle,
