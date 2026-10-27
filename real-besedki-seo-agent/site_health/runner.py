@@ -8,9 +8,11 @@ from site_health.client import check_cdn_headers, check_form_and_phone, check_in
 from site_health.dns import check_dns
 from site_health.domains import check_domain_variants, check_path_redirect
 from site_health.onpage import check_live_onpage, origin_healthy
+from site_health.hub_links import check_hub_links
 from site_health.seo import check_canonical, check_robots, check_sitemap
+from site_health.sku_aliases import check_sku_aliases
 from site_health.server import check_server_logs
-from site_health.ssl_check import check_all_ssl
+from site_health.ssl_check import check_all_ssl, ssl_expiry_issues
 from site_health.user_agents import check_search_params, check_user_agents
 from site_health.viewport import check_viewport_signals
 
@@ -47,6 +49,8 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
     server = check_server_logs()
     viewport = check_viewport_signals()
     onpage = check_live_onpage()
+    sku_aliases = check_sku_aliases()
+    hub_links = check_hub_links()
 
     dns_issues: list[dict[str, Any]] = []
     if dns.get("ipv6_declared") and dns.get("ipv6_reachable") is False:
@@ -108,6 +112,7 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
                 "fact_kind": "verified",
             }
         )
+    ssl_issues.extend(ssl_expiry_issues(ssl.get("hosts") or {}))
 
     all_issues = _merge_issues(
         {"issues": domains.get("issues") or []},
@@ -125,6 +130,8 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
         server,
         viewport,
         onpage,
+        sku_aliases,
+        hub_links,
     )
 
     p0 = [i for i in all_issues if i.get("priority") == "P0"]
@@ -158,5 +165,7 @@ def run_site_health(*, site_url: str = SITE_URL) -> dict[str, Any]:
             "server": server,
             "viewport": viewport,
             "onpage": onpage,
+            "sku_aliases": sku_aliases,
+            "hub_links": hub_links,
         },
     }
