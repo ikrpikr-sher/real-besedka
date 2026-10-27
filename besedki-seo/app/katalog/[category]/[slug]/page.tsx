@@ -46,8 +46,9 @@ export function generateMetadata({ params }: Props): Metadata {
     description,
     alternates: { canonical: itemUrl },
     openGraph: {
-      // Next.js Metadata union has no "product"; the string must stay product (live OG).
-      type: 'product' as 'website',
+      // Next 14.2 rejects og:type=product at prerender ("Invalid OpenGraph type: product").
+      // Schema.org Product on the page is the search signal. Social type stays website.
+      type: 'website',
       locale: 'ru_RU',
       siteName: site.siteName,
       title: seoTitle,
