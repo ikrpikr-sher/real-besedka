@@ -70,7 +70,19 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "средний",
         )
 
-    if not content.get("product_open_graph"):
+    health = snapshot.get("site_health") or {}
+    onpage = (health.get("checks") or {}).get("onpage") or {}
+    onpage_issues = onpage.get("issues") or []
+    onpage_pages = onpage.get("pages") or []
+    live_og_gap = any("Open Graph" in (i.get("problem") or "") for i in onpage_issues)
+    live_blog_slug = any("H1 категории блога" in (i.get("problem") or "") for i in onpage_issues)
+    live_contact = any(
+        p.get("path") == "/kontakty" and "ContactPage" in (p.get("jsonld") or [])
+        for p in onpage_pages
+    )
+    live_katalog_crumbs = True  # код + прод: BreadcrumbList на /katalog
+
+    if live_og_gap or not content.get("product_open_graph"):
         add(
             "P1",
             "on-page",
@@ -83,17 +95,18 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         add(
             "P1",
             "on-page",
-            f"Уникальные title/description {catalog_count} карточек по шаблону (пилот 1–3 за прогон)",
-            "templates/onpage-product.md",
-            "высокий",
+            f"Пилот seoDescription: до 3 из {catalog_count} карточек за прогон (без priceFrom)",
+            "scripts/seo-daily-ship.sh",
+            "низкий",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
-    )
+    if live_blog_slug:
+        add(
+            "P1",
+            "on-page",
+            "Meta категорий и тегов блога — человекочитаемые H1/title",
+            "besedki-seo/app/blog/",
+            "средний",
+        )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -104,27 +117,22 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    add(
-        "P2",
-        "on-page",
-        "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
-        "besedki-seo/app/katalog/",
-        "средний",
-    )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
-    add(
-        "P2",
-        "on-page",
-        "Поле seoDescription в каталоге (админка)",
-        "besedki-seo/admin/catalog",
-        "средний",
-    )
+    if not live_katalog_crumbs:
+        add(
+            "P2",
+            "on-page",
+            "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
+            "besedki-seo/app/katalog/",
+            "средний",
+        )
+    if not live_contact:
+        add(
+            "P2",
+            "on-page",
+            "ContactPage schema на /kontakty",
+            "besedki-seo/app/kontakty/page.tsx",
+            "низкий",
+        )
 
     if live and sitemap_urls:
         add(

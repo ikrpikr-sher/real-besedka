@@ -64,7 +64,7 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
     blog_category_slug_h1 = False
     if blog_category.exists():
         text = blog_category.read_text(encoding="utf-8")
-        blog_category_slug_h1 = "Категория:" in text or "category" in text.lower()
+        blog_category_slug_h1 = "Категория:" in text and "CATEGORY_SEO" not in text
 
     seo_path = root / "data" / "seo.json"
     seo_home_dpk = False
