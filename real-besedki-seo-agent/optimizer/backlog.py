@@ -70,7 +70,11 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "средний",
         )
 
-    if not content.get("product_open_graph"):
+    live_og = content.get("product_og_live") or {}
+    og_ok = bool(content.get("product_open_graph")) or (
+        live_og.get("product_og_image") and (live_og.get("product_og_type") or "") == "product"
+    )
+    if not og_ok:
         add(
             "P1",
             "on-page",
@@ -83,17 +87,21 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         add(
             "P1",
             "on-page",
-            f"Уникальные title/description {catalog_count} карточек по шаблону (пилот 1–3 за прогон)",
-            "templates/onpage-product.md",
-            "высокий",
+            "Пилот seoDescription: максимум 3 пустые опубликованные карточки за прогон (scripts/seo-daily-ship.sh)",
+            "besedki-seo/scripts/ship-seo-descriptions.mjs",
+            "средний",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
-    )
+
+    health_issues = ((snapshot.get("site_health") or {}).get("issues") or [])
+    blog_h1_issue = any("H1 категории блога" in (i.get("problem") or "") for i in health_issues)
+    if blog_h1_issue or content.get("blog_category_slug_h1"):
+        add(
+            "P1",
+            "on-page",
+            "Meta категорий и тегов блога — человекочитаемые H1/title",
+            "besedki-seo/app/blog/",
+            "средний",
+        )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -104,27 +112,23 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
-    add(
-        "P2",
-        "on-page",
-        "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
-        "besedki-seo/app/katalog/",
-        "средний",
-    )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
-    add(
-        "P2",
-        "on-page",
-        "Поле seoDescription в каталоге (админка)",
-        "besedki-seo/admin/catalog",
-        "средний",
-    )
+    contact_issue = any("ContactPage" in (i.get("problem") or "") for i in health_issues)
+    if contact_issue:
+        add(
+            "P2",
+            "on-page",
+            "ContactPage schema на /kontakty",
+            "besedki-seo/app/kontakty/page.tsx",
+            "низкий",
+        )
+    else:
+        add(
+            "info",
+            "on-page",
+            "ContactPage, BreadcrumbList и товарный OG на проде уже есть (health P1/P2=0)",
+            "https://real-besedki.ru/kontakty",
+            "—",
+        )
 
     if live and sitemap_urls:
         add(
