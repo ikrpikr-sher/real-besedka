@@ -71,11 +71,17 @@ class OnpageParseTests(unittest.TestCase):
         self.assertFalse(is_slug_h1("Советы", "/blog/category/sovety"))
         self.assertFalse(is_slug_h1("Сравнения", "/blog/category/sravneniya"))
 
+    def test_latin_slug_h1_phrase(self) -> None:
+        self.assertTrue(is_slug_h1("zakaz i montazh", "/blog/category/zakaz-i-montazh"))
+        self.assertFalse(is_slug_h1("Заказ и монтаж", "/blog/category/zakaz-i-montazh"))
+
     def test_leftover_blog_cats_constant(self) -> None:
         from site_health.onpage import LEFTOVER_BLOG_CATS
 
         self.assertIn("/blog/category/sovety", LEFTOVER_BLOG_CATS)
         self.assertIn("/blog/category/proizvodstvo", LEFTOVER_BLOG_CATS)
+        self.assertIn("/blog/category/materialy", LEFTOVER_BLOG_CATS)
+        self.assertIn("/blog/category/obzory-i-sravneniya", LEFTOVER_BLOG_CATS)
 
     def test_size_hub_not_sampled_as_product(self) -> None:
         self.assertFalse(is_product_catalog_path("/katalog/razmer/6x3"))

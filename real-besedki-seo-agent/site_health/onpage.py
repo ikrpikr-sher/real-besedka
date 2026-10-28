@@ -18,6 +18,7 @@ OG_RE_REV = re.compile(
 H1_RE = re.compile(r"<h1\b[^>]*>([\s\S]*?)</h1>", re.I)
 SLUG_H1_RE = re.compile(r"Категория[:\s]+[«\"]?([a-z0-9-]{3,})", re.I)
 BARE_SLUG_H1_RE = re.compile(r"^[a-z0-9-]{3,}$", re.I)
+LATIN_SLUG_H1_RE = re.compile(r"^[a-z]+(?: [a-z]+){0,5}$", re.I)
 GENERIC_OG_RE = re.compile(r"/images/hero-besedka", re.I)
 LEFTOVER_BLOG_CATS = (
     "/blog/category/sovety",
@@ -25,15 +26,21 @@ LEFTOVER_BLOG_CATS = (
     "/blog/category/soveti",
     "/blog/category/novosti",
     "/blog/category/obzory",
+    "/blog/category/materialy",
+    "/blog/category/ukhod",
+    "/blog/category/proizvodstvo-i-kachestvo",
+    "/blog/category/obzory-i-sravneniya",
 )
 
 
 def is_slug_h1(h1: str, path: str = "") -> bool:
-    """H1 is a URL slug: «Категория: sovety» or bare «sovety»."""
+    """H1 is a URL slug: «Категория: sovety», bare «sovety», or latin «zakaz i montazh»."""
     text = (h1 or "").strip()
     if not text:
         return False
     if SLUG_H1_RE.search(text):
+        return True
+    if LATIN_SLUG_H1_RE.fullmatch(text) and " " in text:
         return True
     if not BARE_SLUG_H1_RE.fullmatch(text):
         return False
