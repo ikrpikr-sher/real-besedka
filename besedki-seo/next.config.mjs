@@ -65,6 +65,11 @@ const nextConfig = {
       { source: '/besedka-5-na-5', destination: '/besedka-5x5', permanent: true },
       { source: '/besedka-6-na-4', destination: '/besedka-6x4', permanent: true },
       { source: '/besedka-6x4-metra', destination: '/besedka-6x4', permanent: true },
+      // leftover blog slugs: 200 + latin H1, not in sitemap
+      { source: '/blog/category/materialy', destination: '/blog', permanent: true },
+      { source: '/blog/category/ukhod', destination: '/blog', permanent: true },
+      { source: '/blog/category/proizvodstvo-i-kachestvo', destination: '/blog', permanent: true },
+      { source: '/blog/category/obzory-i-sravneniya', destination: '/blog', permanent: true },
 
     ];
   },
