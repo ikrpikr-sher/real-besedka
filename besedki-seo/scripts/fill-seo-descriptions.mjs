@@ -38,6 +38,11 @@ function has(text, needle) {
   return String(text || '').toLowerCase().includes(needle.toLowerCase());
 }
 
+function hasWord(text, needle) {
+  const escaped = needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?:^|[^\\p{L}])${escaped}(?:$|[^\\p{L}])`, 'iu').test(text);
+}
+
 function featureBits(item) {
   const blob = `${item.title} ${item.tagline ?? ''} ${item.description ?? ''}`;
   const bits = [];
@@ -47,9 +52,12 @@ function featureBits(item) {
     if (shortMaterial && shortMaterial.length <= 40) bits.push(shortMaterial);
   }
   if (has(blob, 'чпу') || has(blob, 'лазер')) bits.push('панели ЧПУ');
-  if (has(blob, 'стеклопакет') || has(blob, 'остеклен')) bits.push('раздвижное остекление');
+  const mentionsGlazing = has(blob, 'стеклопакет') || has(blob, 'остеклен');
+  const noGlazing = has(blob, 'без остекл');
+  if (mentionsGlazing && !noGlazing) bits.push('раздвижное остекление');
   if (has(blob, 'мангал') || item.category === 'besedki-s-mangalom') bits.push('зона жарки');
-  if (has(blob, 'фанер')) bits.push('пол фанера в базе');
+  if (has(blob, 'фанер') && hasWord(blob, 'пол')) bits.push('пол фанера в базе');
+  else if (has(blob, 'дпк') && item.category === 'besedki-s-mangalom') bits.push('пол ДПК');
   if (item.roof && !has(item.roof, '—')) {
     bits.push(String(item.roof).toLowerCase().includes('черепиц') ? 'металлочерепица' : item.roof);
   }

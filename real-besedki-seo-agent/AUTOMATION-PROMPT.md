@@ -50,6 +50,7 @@
 
 ```bash
 bash scripts/seo-weekday.sh
+bash scripts/seo-daily-ship.sh
 ```
 
 Или по шагам:
@@ -66,11 +67,13 @@ python3 real-besedki-seo-agent/main.py backlog
 ## Каждый прогон
 
 1. `bash scripts/seo-weekday.sh`
-2. Пройти backlog сверху вниз — **чинить**, не только перечислять
-3. Обновить `SEO-AUDIT-REAL-BESEDKI.md` (🔴🟡🟢)
-4. Логи в `real-besedki-seo-agent/logs/`
-5. Сводку «SEO — сегодня» в **Canvas**: что сломано, что починено, что осталось
-6. Записать правки в `real-besedki-seo-agent/templates/change-log.md` или журнал
+2. `bash scripts/seo-daily-ship.sh` — пилот ≤3 `seoDescription` (сначала ложное остекление)
+3. Пройти backlog сверху вниз — **чинить**, не только перечислять
+4. Не деплоить git поверх прода, если `VERSION` на сервере новее тега в репо
+5. Обновить `SEO-AUDIT-REAL-BESEDKI.md` (🔴🟡🟢)
+6. Логи в `real-besedki-seo-agent/logs/`
+7. Сводку «SEO — сегодня» в **Canvas**: что сломано, что починено, что осталось
+8. Записать правки в `real-besedki-seo-agent/templates/change-log.md` или журнал
 
 ## Нет данных
 
