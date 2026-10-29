@@ -70,7 +70,21 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "средний",
         )
 
-    if not content.get("product_open_graph"):
+    health = snapshot.get("site_health") or {}
+    on_pages = ((health.get("checks") or {}).get("onpage") or {}).get("pages") or []
+    health_issues = health.get("issues") or []
+    product_pages = [p for p in on_pages if str(p.get("path") or "").startswith("/katalog/") and "og_type" in p]
+    if product_pages and all(p.get("og_image") for p in product_pages) and any(
+        p.get("og_type") != "product" for p in product_pages
+    ):
+        add(
+            "P2",
+            "on-page",
+            "Карточки: сменить og:type website → product (og:image и JSON-LD Product уже на проде)",
+            "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
+            "низкий",
+        )
+    elif not content.get("product_open_graph"):
         add(
             "P1",
             "on-page",
@@ -87,13 +101,19 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "templates/onpage-product.md",
             "высокий",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
+    blog_pages = [p for p in on_pages if str(p.get("path") or "").startswith("/blog/category/") and p.get("h1")]
+    slug_h1_open = any(
+        i.get("category") == "on-page" and "slug" in (i.get("problem") or "")
+        for i in health_issues
     )
+    if not (blog_pages and not slug_h1_open):
+        add(
+            "P1",
+            "on-page",
+            "Meta категорий и тегов блога — человекочитаемые H1/title",
+            "besedki-seo/app/blog/",
+            "средний",
+        )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -111,13 +131,26 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         "besedki-seo/app/katalog/",
         "средний",
     )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
+    kontakt = next((p for p in on_pages if p.get("path") == "/kontakty"), None)
+    if not (kontakt and "ContactPage" in (kontakt.get("jsonld") or [])):
+        add(
+            "P2",
+            "on-page",
+            "ContactPage schema на /kontakty",
+            "besedki-seo/app/kontakty/page.tsx",
+            "низкий",
+        )
+
+    sitemap = ((health.get("checks") or {}).get("sitemap") or {})
+    geo_total = int(sitemap.get("geo_template_total") or 0)
+    if geo_total >= 100:
+        add(
+            "P2",
+            "sitemap",
+            f"Городские шаблоны блога в sitemap: {geo_total} URL (климат, заказ, кровля, фундамент). Коммерческое ядро — Москва и МО",
+            "https://real-besedki.ru/sitemap.xml",
+            "высокий",
+        )
     add(
         "P2",
         "on-page",
