@@ -27,6 +27,12 @@ const nextConfig = {
         destination: '/katalog/besedki-osteklennye-loft/b-53',
         permanent: true,
       },
+      // leftover blog slugs: 200 + latin H1, not in sitemap
+      { source: '/blog/category/materialy', destination: '/blog', permanent: true },
+      { source: '/blog/category/ukhod', destination: '/blog', permanent: true },
+      { source: '/blog/category/proizvodstvo-i-kachestvo', destination: '/blog', permanent: true },
+      { source: '/blog/category/obzory-i-sravneniya', destination: '/blog', permanent: true },
+      { source: '/blog/category/sovety', destination: '/blog', permanent: true },
       { source: '/loft', destination: '/besedka-loft', permanent: true },
       { source: '/panorama', destination: '/besedka-panorama', permanent: true },
       { source: '/zakrytaya', destination: '/zakrytaya-besedka', permanent: true },

@@ -70,6 +70,7 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "средний",
         )
 
+    live_og = content.get("product_og_live") or {}
     if not content.get("product_open_graph"):
         add(
             "P1",
@@ -78,22 +79,23 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "besedki-seo/app/katalog/[category]/[slug]/page.tsx",
             "низкий",
         )
+    elif live_og.get("product_og_type") == "product" and live_og.get("product_og_image"):
+        add(
+            "info",
+            "on-page",
+            "Товарный OG на проде: og:type=product + og:image (nginx rewrite + JSON-LD Product)",
+            live_og.get("url") or "карточки",
+            "—",
+        )
 
     if catalog_count:
         add(
             "P1",
             "on-page",
-            f"Уникальные title/description {catalog_count} карточек по шаблону (пилот 1–3 за прогон)",
-            "templates/onpage-product.md",
-            "высокий",
+            "Пилот seoDescription: ≤3 карточки/прогон через scripts/seo-daily-ship.sh (сначала ложное остекление, потом пустые)",
+            "scripts/seo-daily-ship.sh",
+            "средний",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
-    )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -105,25 +107,11 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         )
 
     add(
-        "P2",
+        "info",
         "on-page",
-        "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
-        "besedki-seo/app/katalog/",
-        "средний",
-    )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
-    add(
-        "P2",
-        "on-page",
-        "Поле seoDescription в каталоге (админка)",
-        "besedki-seo/admin/catalog",
-        "средний",
+        "BreadcrumbList / ContactPage / H1 рубрик блога / поле seoDescription в админке — на проде есть",
+        "besedki-seo/app/",
+        "—",
     )
 
     if live and sitemap_urls:
