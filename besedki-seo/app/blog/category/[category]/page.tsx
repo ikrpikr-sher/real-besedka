@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import Container from '@/components/Container';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ArticleCard from '@/components/ArticleCard';
+import JsonLd from '@/components/JsonLd';
 import { blogCategoryLabel, getAllCategories, getPostsByCategory } from '@/lib/blog';
+import { getSite } from '@/lib/content';
 import { blogCategoryPath } from '@/lib/urlPath';
 
 type Props = { params: { category: string } };
@@ -42,9 +45,50 @@ const CATEGORY_SEO: Record<string, { title: string; description: string; h1: str
       'Стили беседок: лофт, лазерные панели, графит RAL 7016. Как подобрать вид под фасад дома.',
     h1: 'Стили металлических беседок',
   },
+  razmery: {
+    title: 'Размеры металлических беседок — от 2×2 до 6×6 | Реал Беседки',
+    description:
+      'Какой размер беседки из металла выбрать: 2×2, 3×3, 3×4, 4×4 и больше. Каркас 80×80, посадка на участок в Москве и МО.',
+    h1: 'Размеры металлических беседок',
+  },
+  'mangal-i-ogon': {
+    title: 'Мангал и серия «Огонь» — статьи Реал Беседки',
+    description:
+      'Мангал в металлической беседке: дымоход, серия «Огонь», жаровня и печь под казан. Производство и монтаж в Москве и МО.',
+    h1: 'Мангал и серия «Огонь»',
+  },
+  'katalog-serii': {
+    title: 'Серии беседок «Панорама» и «Огонь» — Реал Беседки',
+    description:
+      'Чем серии каталога отличаются: остекление «Панорама», мангал «Огонь», открытый каркас 80×80. Москва и МО.',
+    h1: 'Серии каталога беседок',
+  },
+  konstrukciya: {
+    title: 'Конструкция беседки: каркас 80×80×3 мм — Реал Беседки',
+    description:
+      'Несущий профиль металлической беседки 80×80 со стенкой 3 мм: чем он отличается от более тонкого каркаса. Завод ООО «Пулман».',
+    h1: 'Конструкция каркаса 80×80',
+  },
+  'zakaz-i-montazh': {
+    title: 'Заказ и монтаж металлической беседки под ключ — Реал Беседки',
+    description:
+      'Что входит в беседку под ключ: производство, доставка и монтаж на участке в Москве и Московской области.',
+    h1: 'Заказ и монтаж под ключ',
+  },
+  'zakaz-i-dogovor': {
+    title: 'Замер, договор и доставка беседки — Реал Беседки',
+    description:
+      'Замер участка, что не входит в базу под ключ, доставка металлической беседки по Москве и МО.',
+    h1: 'Замер, договор и доставка',
+  },
 };
 
+function isLiveBlogCategory(slug: string): boolean {
+  return Boolean(CATEGORY_SEO[slug]) || getAllCategories().includes(slug);
+}
+
 export function generateMetadata({ params }: Props): Metadata {
+  if (!isLiveBlogCategory(params.category)) notFound();
   const categoryPath = blogCategoryPath(params.category);
   const label = blogCategoryLabel(params.category);
   const seo = CATEGORY_SEO[params.category];
@@ -58,17 +102,37 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 export default function CategoryPage({ params }: Props) {
+  if (!isLiveBlogCategory(params.category)) notFound();
   const posts = getPostsByCategory(params.category);
   const label = blogCategoryLabel(params.category);
   const seo = CATEGORY_SEO[params.category];
   const h1 = seo?.h1 || label;
+  const site = getSite();
+  const categoryPath = blogCategoryPath(params.category);
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: site.siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Блог', item: `${site.siteUrl}/blog` },
+      { '@type': 'ListItem', position: 3, name: label, item: `${site.siteUrl}${categoryPath}` },
+    ],
+  };
+  const collectionLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: h1,
+    description: seo?.description || `Статьи Реал Беседки в рубрике «${label}».`,
+    url: `${site.siteUrl}${categoryPath}`,
+  };
   return (
     <Container className="page-section">
+      <JsonLd data={[collectionLd, breadcrumbLd]} />
       <Breadcrumbs
         items={[
           { label: 'Главная', href: '/' },
           { label: 'Блог', href: '/blog' },
-          { label: label, href: blogCategoryPath(params.category) },
+          { label: label, href: categoryPath },
         ]}
       />
       <h1 className="page-title mb-6">{h1}</h1>

@@ -12,7 +12,7 @@ import {
 } from '@/lib/catalogCategories';
 import { getKatalogByCategory, getSite } from '@/lib/content';
 import { groupKacheliItems, isKacheliGraphiteItem, sortKacheliMoreItems } from '@/lib/kacheliCatalog';
-import { groupBesedkiSMangalom, groupMangalyItems } from '@/lib/mangalCatalog';
+import { groupBesedkiSMangalom, groupMangalyItems, isBesedkaMangalItem } from '@/lib/mangalCatalog';
 import { getSeo } from '@/lib/seo';
 
 type Props = { params: { category: string } };
@@ -78,7 +78,7 @@ export default function KatalogCategoryPage({ params }: Props) {
           '@type': 'ItemList',
           name: cat.title,
           numberOfItems: items.length,
-          itemListElement: items.slice(0, 20).map((item, index) => ({
+          itemListElement: items.map((item, index) => ({
             '@type': 'ListItem',
             position: index + 1,
             name: item.title,
@@ -122,6 +122,21 @@ export default function KatalogCategoryPage({ params }: Props) {
               </div>
             </section>
           ))}
+          {items.filter((item) => !isBesedkaMangalItem(item)).length > 0 ? (
+            <section className="mb-12">
+              <h2 className="mb-1 font-heading text-2xl">Другие модели с мангалом</h2>
+              <p className="mb-6 max-w-2xl text-sm text-text-muted">
+                Остальные беседки этой категории — с зоной жарки, но без индекса BM.
+              </p>
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {items
+                  .filter((item) => !isBesedkaMangalItem(item))
+                  .map((item) => (
+                    <CatalogCard key={item.slug} item={item} compact />
+                  ))}
+              </div>
+            </section>
+          ) : null}
         </>
       ) : params.category === 'mangaly' ? (
         <>

@@ -1,46 +1,67 @@
 #!/usr/bin/env bash
-# Runs ON THE SERVER after rsync. Builds into a staging dir, then swaps atomically.
-# If build or health-check fails, the previous .next stays live.
+# Runs ON THE SERVER after rsync. Builds in a sibling tree (default .next),
+# then swaps atomically. If build or health-check fails, the previous .next stays live.
+#
+# Do not use NEXT_DIST_DIR=.next-staging: Next 14.2 App Router dies after compile
+# with ENOENT pages-manifest.json / _app.js.nft.json, and live .next is never swapped.
 set -euo pipefail
 
 APP_DIR="${1:-/var/www/besedki}"
 APP_NAME="${PM2_APP_NAME:-besedki}"
 PORT="${APP_PORT:-3000}"
 
-STAGING=".next-staging"
+LOCK="${DEPLOY_LOCK:-/var/lock/besedki-deploy.lock}"
+mkdir -p "$(dirname "$LOCK")"
+exec 9>"$LOCK"
+if ! flock -n 9; then
+  echo "ERROR: another deploy holds $LOCK — not starting a second Next build."
+  exit 1
+fi
+
 PREV=".next-prev"
 ACTIVE=".next"
+BUILD_ROOT="${APP_DIR}.build"
 
 cd "$APP_DIR"
 
 echo "==> Installing dependencies..."
 npm install
 
-echo "==> Building Next.js into $STAGING (live $ACTIVE untouched)..."
-rm -rf "$STAGING"
+echo "==> Building Next.js in $BUILD_ROOT (live $ACTIVE untouched)..."
+rm -rf "$BUILD_ROOT"
+mkdir -p "$BUILD_ROOT"
+rsync -a \
+  --exclude '.next' \
+  --exclude '.next-staging' \
+  --exclude '.next-prev' \
+  --exclude 'node_modules' \
+  --exclude '.git' \
+  "$APP_DIR/" "$BUILD_ROOT/"
+ln -sfn "$APP_DIR/node_modules" "$BUILD_ROOT/node_modules"
 
-# Subshell keeps NEXT_DIST_DIR out of PM2 / parent shell (pm2 save would stick it).
 if ! (
-  export NEXT_DIST_DIR="$STAGING"
+  cd "$BUILD_ROOT"
+  unset NEXT_DIST_DIR || true
   npm run build
 ); then
   echo "ERROR: build failed — site keeps the previous build."
-  rm -rf "$STAGING"
+  rm -rf "$BUILD_ROOT"
   exit 1
 fi
 
-if [ ! -f "$STAGING/BUILD_ID" ] || [ ! -d "$STAGING/server" ]; then
+if [ ! -f "$BUILD_ROOT/.next/BUILD_ID" ] || [ ! -d "$BUILD_ROOT/.next/server" ]; then
   echo "ERROR: build output is incomplete — site keeps the previous build."
-  rm -rf "$STAGING"
+  rm -rf "$BUILD_ROOT"
   exit 1
 fi
 
-echo "==> Swapping $STAGING → $ACTIVE..."
+echo "==> Swapping $BUILD_ROOT/.next → $ACTIVE..."
 rm -rf "$PREV"
 if [ -d "$ACTIVE" ]; then
   mv "$ACTIVE" "$PREV"
 fi
-mv "$STAGING" "$ACTIVE"
+mv "$BUILD_ROOT/.next" "$ACTIVE"
+rm -rf "$BUILD_ROOT"
 
 echo "==> Restarting PM2 ($APP_NAME)..."
 pm2 startOrRestart ecosystem.config.cjs --only "$APP_NAME" 2>/dev/null || pm2 restart "$APP_NAME"
