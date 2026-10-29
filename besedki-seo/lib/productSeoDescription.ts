@@ -30,6 +30,21 @@ function has(text: string, needle: string): boolean {
   return text.toLowerCase().includes(needle.toLowerCase());
 }
 
+/** «без остекления» / «не остеклена» не считаем остеклением. */
+function hasAffirmative(text: string, needle: string): boolean {
+  const low = text.toLowerCase();
+  const n = needle.toLowerCase();
+  let from = 0;
+  while (from < low.length) {
+    const i = low.indexOf(n, from);
+    if (i < 0) return false;
+    const before = low.slice(Math.max(0, i - 16), i);
+    if (!/(?:без|не)\s*$/.test(before)) return true;
+    from = i + n.length;
+  }
+  return false;
+}
+
 function featureBits(item: ProductSeoSource): string[] {
   const blob = `${item.title} ${item.tagline ?? ''} ${item.description}`;
   const bits: string[] = [];
@@ -41,7 +56,7 @@ function featureBits(item: ProductSeoSource): string[] {
   }
 
   if (has(blob, 'чпу') || has(blob, 'лазер')) bits.push('панели ЧПУ');
-  if (has(blob, 'стеклопакет') || has(blob, 'остеклен')) bits.push('раздвижное остекление');
+  if (hasAffirmative(blob, 'стеклопакет') || hasAffirmative(blob, 'остеклен')) bits.push('раздвижное остекление');
   if (has(blob, 'мангал') || item.category === 'besedki-s-mangalom') bits.push('зона жарки');
   if (has(blob, 'фанер')) bits.push('пол фанера в базе');
   else if (has(blob, 'дпк') && item.category === 'besedki-s-mangalom') bits.push('пол ДПК');

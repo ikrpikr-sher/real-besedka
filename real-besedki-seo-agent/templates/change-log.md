@@ -9,5 +9,11 @@
 | 2026-08-25 | `site_health/viewport.py` | P1 «нет mobile-nav» | CTA «Каталог» `lg:hidden` = ок | ложный P1 | не блокировать SEO |
 | 2026-08-25 | `site_health/runner.py` | CF без прокси = P0 / emergency | P1 owner_action, если origin 200 + форма/tel | ложная авария блокировала SEO | weekday идёт дальше |
 | 2026-08-25 | `site_health/onpage.py` | health не видел OG/ContactPage/H1 блога | живой HTML прода в P1/P2 | журнал врал без `besedki-seo/` | честный backlog |
+| 2026-10-28 | `/katalog/poisk` | в sitemap, без noindex | `robots: noindex,follow` + нет в sitemap | индексация пустого поиска | поиск не в выдаче |
+| 2026-10-28 | leftover-рубрики блога | 200 + H1 `materialy` / `ukhod` / … | 301 → `/blog` | сироты со slug в сниппете | не индексировать пустые рубрики |
+| 2026-10-28 | `/katalog/besedki-s-mangalom` | ItemList 20, сетка только BM | ItemList все SKU + секция остальных | хаб не отдавал вес b-76… | внутренние ссылки = карта |
+| 2026-10-28 | `deploy/nginx-real-besedki.ru.conf` | в git без location карточки | снимок живого nginx + leftover 301 | не потерять `og:type=product` | безопасный эталон |
+| 2026-10-29 | `/blog/category/{any-slug}` | любой slug → 200 + латинский H1 | неизвестные рубрики `notFound()` | soft-404 в индексе | краулер не кормит пустые рубрики |
+| 2026-10-29 | `/blog/category/uhod`, `/montazh` | 200 + H1 slug | 301 → `/blog/category/montazh-i-uhod` | алиасы живой рубрики | вес на «Монтаж и уход» |
 
 **Файл для агента:** дополнять `real-besedki-seo-agent/logs/YYYY-MM-DD_changes.md` после каждого деплоя с SEO-правками.

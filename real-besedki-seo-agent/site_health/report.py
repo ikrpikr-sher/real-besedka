@@ -56,11 +56,12 @@ def render_health_report(health: dict[str, Any]) -> str:
     if domains:
         lines.append("### Редиректы домена")
         lines.append("")
-        lines.append("| URL | Status | Final |")
-        lines.append("|-----|--------|-------|")
+        lines.append("| URL | First hop | Final status | Final |")
+        lines.append("|-----|-----------|--------------|-------|")
         for row in domains:
+            first = row.get("first_status") if row.get("first_status") is not None else row.get("status")
             lines.append(
-                f"| {row.get('start_url')} | {row.get('status')} | {row.get('final_url')} |"
+                f"| {row.get('start_url')} | {first} | {row.get('status')} | {row.get('final_url')} |"
             )
         lines.append("")
 
@@ -69,9 +70,30 @@ def render_health_report(health: dict[str, Any]) -> str:
         lines.append("### SSL")
         lines.append("")
         for host, info in ssl_hosts.items():
+            days = info.get("days_left")
+            days_part = f" days_left={days}" if days is not None else ""
             lines.append(
-                f"- {host}: ok={info.get('ok')} expires={info.get('expires')} issuer={info.get('issuer')}"
+                f"- {host}: ok={info.get('ok')} expires={info.get('expires')}{days_part} issuer={info.get('issuer')}"
             )
+        lines.append("")
+
+    sitemap = checks.get("sitemap") or {}
+    composition = sitemap.get("composition") or {}
+    if sitemap.get("url_count") or composition:
+        lines.append("### Sitemap")
+        lines.append("")
+        lines.append(
+            f"- URL: {sitemap.get('url_count') or composition.get('url_count') or '—'} · "
+            f"SKU {composition.get('products', '—')} · "
+            f"статьи {composition.get('posts', '—')} · "
+            f"теги {composition.get('tags', '—')} · "
+            f"хабы размера {composition.get('size_hubs', '—')} · "
+            f"коммерческие посадочные {composition.get('commercial', '—')}"
+        )
+        by_cat = composition.get("products_by_category") or {}
+        if by_cat:
+            parts = [f"{cat} {count}" for cat, count in by_cat.items()]
+            lines.append(f"- SKU по категориям: {', '.join(parts)}")
         lines.append("")
 
     lines.append("---")

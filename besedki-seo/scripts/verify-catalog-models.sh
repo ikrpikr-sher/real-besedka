@@ -22,6 +22,12 @@ if [[ ! -f "$CONFIG" ]]; then
   exit 1
 fi
 
+# В git-среде без media GLB нет — на сервере они остаются (rsync exclude *.glb).
+if ! compgen -G "$MODELS_DIR/*.glb" > /dev/null; then
+  echo "SKIP: no local GLB files (excluded from git). Server models stay in place."
+  exit 0
+fi
+
 # slug list: товары из katalog.json (не kacheli), иначе все из config
 slugs="$(python3 - <<PY
 import json
