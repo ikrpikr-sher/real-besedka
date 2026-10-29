@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import re
 import subprocess
+import urllib.error
+import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -9,6 +12,37 @@ VPS_HOST = "31.128.44.47"
 SSH_USER = "root"
 SSH_KEY = Path.home() / ".ssh/besedki_deploy"
 FIVEXX_RE = re.compile(r'" [5]\d{2} ')
+NGINX_TS_RE = re.compile(r"\[(\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2})")
+REQ_PATH_RE = re.compile(r'"(?:GET|HEAD|POST|PUT|PATCH|DELETE) ([^ ]+) HTTP/')
+FIVEXX_MAX_AGE_HOURS = 2
+
+
+def _line_age_hours(line: str) -> float | None:
+    match = NGINX_TS_RE.search(line)
+    if not match:
+        return None
+    ts = datetime.strptime(match.group(1), "%d/%b/%Y:%H:%M:%S").replace(tzinfo=timezone.utc)
+    return (datetime.now(timezone.utc) - ts).total_seconds() / 3600
+
+
+def _path_still_5xx(path: str) -> bool:
+    """502 во время рестарта не авария, если URL сейчас не 5xx."""
+    clean = path.split("?", 1)[0]
+    if not clean.startswith("/"):
+        return True
+    url = f"https://real-besedki.ru{clean}"
+    req = urllib.request.Request(
+        url,
+        method="HEAD",
+        headers={"User-Agent": "real-besedki-seo-agent"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            return resp.status >= 500
+    except urllib.error.HTTPError as exc:
+        return exc.code >= 500
+    except Exception:
+        return True
 
 
 def check_server_logs() -> dict[str, Any]:
@@ -52,14 +86,25 @@ def check_server_logs() -> dict[str, Any]:
             recent_5xx = [
                 ln for ln in section.strip().splitlines() if ln.strip() and FIVEXX_RE.search(ln)
             ]
-        if recent_5xx:
+        live_5xx = []
+        for line in recent_5xx:
+            age = _line_age_hours(line)
+            if age is None or age > FIVEXX_MAX_AGE_HOURS:
+                continue
+            path_match = REQ_PATH_RE.search(line)
+            path = path_match.group(1) if path_match else "/"
+            if _path_still_5xx(path):
+                live_5xx.append(line)
+        if live_5xx:
+            path_match = REQ_PATH_RE.search(live_5xx[0])
+            path = path_match.group(1) if path_match else "/"
             issues.append(
                 {
                     "priority": "P0",
                     "category": "server",
                     "problem": "5xx в nginx access.log (недавние)",
-                    "url": f"https://real-besedki.ru/",
-                    "cause": recent_5xx[0][:200],
+                    "url": f"https://real-besedki.ru{path.split('?', 1)[0]}",
+                    "cause": live_5xx[0][:200],
                     "impact": "Клиенты видят ошибку сервера",
                     "fact_kind": "verified",
                 }

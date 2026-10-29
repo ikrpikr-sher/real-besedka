@@ -55,13 +55,26 @@ def origin_healthy(internal: dict[str, Any], client: dict[str, Any], ua: dict[st
     return True
 
 
+# Черновики katalog.json: 308 на /katalog, у хаба нет og:type=product.
+UNPUBLISHED_CATALOG = {
+    "pergoly",
+    "hozbloki",
+    "drovniki",
+    "bytovki",
+    "mebel",
+    "ochagi",
+}
+
+
 def _product_paths(n: int = 3) -> list[str]:
     from sources.catalog import parse_catalog
 
     catalog = parse_catalog()
-    if not catalog:
-        return ["/katalog/besedki-s-ostekleniem/b-22"]
-    sample = catalog if len(catalog) <= n else random.sample(catalog, n)
+    published = [p for p in catalog if p.get("category") not in UNPUBLISHED_CATALOG]
+    pool = published or catalog
+    if not pool:
+        return ["/katalog/otkrytye-besedki/b-46"]
+    sample = pool if len(pool) <= n else random.sample(pool, n)
     return [p["path"] for p in sample]
 
 
@@ -96,7 +109,13 @@ def check_live_onpage() -> dict[str, Any]:
             "jsonld": types,
         }
         pages.append(row)
-        if resp.get("status") == 200 and (og.get("type") != "product" or not og.get("image")):
+        final = str(resp.get("final_url") or "")
+        stayed_on_card = final.rstrip("/").endswith(path.rstrip("/"))
+        if (
+            stayed_on_card
+            and resp.get("status") == 200
+            and (og.get("type") != "product" or not og.get("image"))
+        ):
             og_bad.append(path)
 
     if og_bad:
