@@ -36,8 +36,8 @@ def build_proposals(snapshot: dict[str, Any]) -> list[str]:
     proposals = [
         "**Этап 2** — автономные правки. P0/P1 чинить и деплоить. Не трогать priceFrom и целый katalog.json на проде.",
         "**Off-page P1:** Яндекс Бизнес, Google Business, отзывы, Вебмастер, Search Console, цели Метрики.",
-        "**On-page P1:** title/description 128 карточек (`templates/onpage-product.md`), Open Graph, meta блога, `/proekty` → `/katalog`.",
-        "**On-page P2:** BreadcrumbList, ContactPage, поле seoDescription в каталоге.",
+        "**On-page P1:** пилот seoDescription 1–3 карточки за прогон (`scripts/seo-daily-ship.sh`). Не переписывать 128 title разом.",
+        "**On-page P2:** ТОП-20 текстов 800–1500 знаков. OG/ContactPage/H1 блога/BreadcrumbList — уже на проде.",
     ]
     if live_ok and sitemap_urls:
         proposals.append(

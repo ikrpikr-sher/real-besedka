@@ -64,7 +64,17 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
     blog_category_slug_h1 = False
     if blog_category.exists():
         text = blog_category.read_text(encoding="utf-8")
-        blog_category_slug_h1 = "Категория:" in text or "category" in text.lower()
+        # старый шаблон «Категория: {slug}»; человекочитаемый H1 — не сигнал
+        blog_category_slug_h1 = bool(re.search(r"Категория:\s*[`$]\{", text)) or "Категория: " in text
+
+    kontakty_page = root / "app" / "kontakty" / "page.tsx"
+    contact_page_schema = kontakty_page.exists() and "ContactPage" in kontakty_page.read_text(encoding="utf-8")
+
+    katalog_hub = root / "app" / "katalog" / "page.tsx"
+    katalog_breadcrumb = katalog_hub.exists() and "BreadcrumbList" in katalog_hub.read_text(encoding="utf-8")
+
+    katalog_form = root / "components" / "admin" / "KatalogForm.tsx"
+    seo_desc_admin = katalog_form.exists() and "seoDescription" in katalog_form.read_text(encoding="utf-8")
 
     seo_path = root / "data" / "seo.json"
     seo_home_dpk = False
@@ -81,6 +91,9 @@ def audit_content(repo_root: Path | None = None) -> dict[str, Any]:
         "product_open_graph": has_og_products,
         "product_og_live": live_og,
         "blog_category_slug_h1": blog_category_slug_h1,
+        "contact_page_schema": contact_page_schema,
+        "katalog_breadcrumb": katalog_breadcrumb,
+        "seo_description_admin": seo_desc_admin,
         "seo_json_mentions_dpk": seo_home_dpk,
         "site_code_missing": not root.exists(),
     }

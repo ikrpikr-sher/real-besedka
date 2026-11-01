@@ -83,17 +83,18 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
         add(
             "P1",
             "on-page",
-            f"Уникальные title/description {catalog_count} карточек по шаблону (пилот 1–3 за прогон)",
-            "templates/onpage-product.md",
-            "высокий",
+            f"Пилот seoDescription: 1–3 карточки без сниппета из {catalog_count} (scripts/seo-daily-ship.sh)",
+            "besedki-seo/scripts/fill-seo-descriptions.mjs",
+            "низкий",
         )
-    add(
-        "P1",
-        "on-page",
-        "Meta категорий и тегов блога — человекочитаемые H1/title",
-        "besedki-seo/app/blog/",
-        "средний",
-    )
+    if content.get("blog_category_slug_h1"):
+        add(
+            "P1",
+            "on-page",
+            "Meta категорий и тегов блога — человекочитаемые H1/title",
+            "besedki-seo/app/blog/",
+            "средний",
+        )
 
     if content.get("seo_json_mentions_dpk"):
         add(
@@ -104,26 +105,36 @@ def build_backlog(snapshot: dict[str, Any]) -> list[dict[str, str]]:
             "низкий",
         )
 
+    if not content.get("katalog_breadcrumb"):
+        add(
+            "P2",
+            "on-page",
+            "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
+            "besedki-seo/app/katalog/",
+            "средний",
+        )
+    if not content.get("contact_page_schema"):
+        add(
+            "P2",
+            "on-page",
+            "ContactPage schema на /kontakty",
+            "besedki-seo/app/kontakty/page.tsx",
+            "низкий",
+        )
+    if not content.get("seo_description_admin"):
+        add(
+            "P2",
+            "on-page",
+            "Поле seoDescription в каталоге (админка)",
+            "besedki-seo/admin/catalog",
+            "средний",
+        )
     add(
         "P2",
-        "on-page",
-        "BreadcrumbList JSON-LD на /katalog, категориях, услугах",
-        "besedki-seo/app/katalog/",
-        "средний",
-    )
-    add(
-        "P2",
-        "on-page",
-        "ContactPage schema на /kontakty",
-        "besedki-seo/app/kontakty/page.tsx",
-        "низкий",
-    )
-    add(
-        "P2",
-        "on-page",
-        "Поле seoDescription в каталоге (админка)",
-        "besedki-seo/admin/catalog",
-        "средний",
+        "content",
+        "ТОП-20 карточек: уникальный текст 800–1500 знаков (не title пачкой)",
+        "besedki-seo/data + карточки",
+        "высокий",
     )
 
     if live and sitemap_urls:
