@@ -27,7 +27,7 @@ export function generateMetadata({ searchParams }: Props): Metadata {
     title: seo.title,
     description: seo.description,
     alternates: { canonical: '/katalog/poisk' },
-    robots: query ? { index: false, follow: true } : undefined,
+    robots: { index: false, follow: true },
   };
 }
 
