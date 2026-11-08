@@ -6,7 +6,7 @@ from typing import Any
 
 from config import SITE_URL
 from site_health.http_probe import fetch, has_form, has_tel_links, parse_page
-from sources.catalog import parse_catalog
+from sources.catalog import is_product_catalog_path, parse_catalog
 
 INTERNAL_PATHS = (
     "/",
@@ -21,7 +21,7 @@ INTERNAL_PATHS = (
 
 
 def _pick_product_paths(n: int = 3) -> list[str]:
-    catalog = parse_catalog()
+    catalog = [p for p in parse_catalog() if is_product_catalog_path(p.get("path") or "")]
     if not catalog:
         return []
     sample = catalog if len(catalog) <= n else random.sample(catalog, n)

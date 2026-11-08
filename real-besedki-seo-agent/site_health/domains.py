@@ -81,6 +81,7 @@ def check_domain_variants(path: str = "/") -> dict[str, Any]:
             {
                 "start_url": url,
                 "status": status,
+                "first_status": resp.get("first_status"),
                 "final_url": resp.get("final_url"),
                 "redirect_chain": chain,
                 "redirect_count": resp.get("redirect_count"),
