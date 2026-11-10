@@ -5,11 +5,49 @@ import ssl
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlparse
-from urllib.request import Request, urlopen
+from urllib.request import HTTPSHandler, HTTPRedirectHandler, Request, build_opener
 
 from sources.live import TIMEOUT, _parse_html, _ssl_context
 
 DEFAULT_UA = "real-besedki-seo-agent/2.0 (+site-health)"
+
+
+class _NoRedirect(HTTPRedirectHandler):
+    """urllib follows 301 by default and hides the hop. Health needs the first status."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):  # noqa: ANN001
+        return None
+
+
+def _opener():
+    return build_opener(HTTPSHandler(context=_ssl_context()), _NoRedirect())
+
+
+def _result(
+    *,
+    url: str,
+    final_url: str,
+    status: int | None,
+    headers: dict[str, str],
+    body: str,
+    chain: list[dict[str, Any]],
+    error: str | None,
+    ssl_error: bool,
+    redirect_count: int | None = None,
+) -> dict[str, Any]:
+    first = chain[0].get("status") if chain else status
+    return {
+        "url": url,
+        "final_url": final_url,
+        "status": status,
+        "first_status": first,
+        "headers": headers,
+        "body": body,
+        "redirect_chain": chain,
+        "redirect_count": len(chain) - 1 if redirect_count is None else redirect_count,
+        "error": error,
+        "ssl_error": ssl_error,
+    }
 
 
 def fetch(
@@ -24,13 +62,12 @@ def fetch(
     headers: dict[str, str] = {}
     body = ""
     status: int | None = None
-    error: str | None = None
-    ssl_error = False
+    opener = _opener()
 
     for _ in range(max_redirects + 1):
         req = Request(current, headers={"User-Agent": user_agent})
         try:
-            with urlopen(req, timeout=TIMEOUT, context=_ssl_context()) as resp:
+            with opener.open(req, timeout=TIMEOUT) as resp:
                 status = getattr(resp, "status", 200)
                 headers = {k.lower(): v for k, v in resp.headers.items()}
                 raw = resp.read()
@@ -38,21 +75,21 @@ def fetch(
                 body = raw.decode(charset, errors="replace")
                 final = resp.geturl()
                 chain.append({"url": current, "status": status, "location": headers.get("location")})
-                return {
-                    "url": url,
-                    "final_url": final,
-                    "status": status,
-                    "headers": headers,
-                    "body": body,
-                    "redirect_chain": chain,
-                    "redirect_count": len(chain) - 1,
-                    "error": None,
-                    "ssl_error": False,
-                }
+                return _result(
+                    url=url,
+                    final_url=final,
+                    status=status,
+                    headers=headers,
+                    body=body,
+                    chain=chain,
+                    error=None,
+                    ssl_error=False,
+                )
         except HTTPError as exc:
             status = exc.code
-            headers = dict(exc.headers.items()) if exc.headers else {}
-            location = headers.get("Location") or headers.get("location")
+            raw_headers = dict(exc.headers.items()) if exc.headers else {}
+            headers = {k.lower(): v for k, v in raw_headers.items()}
+            location = headers.get("location")
             chain.append({"url": current, "status": status, "location": location})
             if follow_redirects and status in (301, 302, 303, 307, 308) and location:
                 current = urljoin(current, location)
@@ -62,44 +99,42 @@ def fetch(
                 body = exc.read().decode("utf-8", errors="replace")
             except Exception:
                 pass
-            return {
-                "url": url,
-                "final_url": current,
-                "status": status,
-                "headers": headers,
-                "body": body,
-                "redirect_chain": chain,
-                "redirect_count": len(chain) - 1,
-                "error": str(exc),
-                "ssl_error": False,
-            }
+            return _result(
+                url=url,
+                final_url=current,
+                status=status,
+                headers=headers,
+                body=body,
+                chain=chain,
+                error=str(exc),
+                ssl_error=False,
+            )
         except (URLError, TimeoutError, OSError, ssl.SSLError) as exc:
             error = str(exc)
             ssl_error = "certificate" in error.lower() or "ssl" in error.lower()
             chain.append({"url": current, "status": None, "error": error})
-            return {
-                "url": url,
-                "final_url": current,
-                "status": None,
-                "headers": headers,
-                "body": body,
-                "redirect_chain": chain,
-                "redirect_count": len(chain) - 1,
-                "error": error,
-                "ssl_error": ssl_error,
-            }
+            return _result(
+                url=url,
+                final_url=current,
+                status=None,
+                headers=headers,
+                body=body,
+                chain=chain,
+                error=error,
+                ssl_error=ssl_error,
+            )
 
-    return {
-        "url": url,
-        "final_url": current,
-        "status": None,
-        "headers": headers,
-        "body": body,
-        "redirect_chain": chain,
-        "redirect_count": len(chain),
-        "error": "redirect loop or too many redirects",
-        "ssl_error": False,
-    }
+    return _result(
+        url=url,
+        final_url=current,
+        status=None,
+        headers=headers,
+        body=body,
+        chain=chain,
+        error="redirect loop or too many redirects",
+        ssl_error=False,
+        redirect_count=len(chain),
+    )
 
 
 def parse_page(body: str) -> dict[str, Any]:

@@ -9,5 +9,7 @@
 | 2026-08-25 | `site_health/viewport.py` | P1 «нет mobile-nav» | CTA «Каталог» `lg:hidden` = ок | ложный P1 | не блокировать SEO |
 | 2026-08-25 | `site_health/runner.py` | CF без прокси = P0 / emergency | P1 owner_action, если origin 200 + форма/tel | ложная авария блокировала SEO | weekday идёт дальше |
 | 2026-08-25 | `site_health/onpage.py` | health не видел OG/ContactPage/H1 блога | живой HTML прода в P1/P2 | журнал врал без `besedki-seo/` | честный backlog |
+| 2026-09-30 | агент honesty (PR 18–19, не влиты) | ложный P1 OG; size hub как SKU; без first_status | one collect, live backlog, SKU≠razmer, missing size hubs | weekday с main 25.08 врал | честный P0/P1/P2 |
+| 2026-10-01 | `site_health/seo.py` | 1943 статьи = «посты», без P2; корневые посадочные не считались | P2 при ≥400 статей; composition.commercial | карта 620→2200, теги 0, блог раздут | backlog видит регресс |
 
 **Файл для агента:** дополнять `real-besedki-seo-agent/logs/YYYY-MM-DD_changes.md` после каждого деплоя с SEO-правками.

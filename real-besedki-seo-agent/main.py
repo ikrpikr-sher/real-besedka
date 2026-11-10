@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT))
 from analytics.analyzer import analyze
 from analytics.check_report import render_check_report
 from analytics.reports import render_report
-from analytics.traffic_light import compute_traffic_light, render_traffic_light_block
+from analytics.traffic_light import compute_traffic_light
 from config import SITE_URL
 from database.models import last_snapshot, save_snapshot
 from optimizer.actions import READ_ONLY
@@ -94,13 +94,7 @@ def run_health() -> int:
     print("SITE HEALTH: P0 → P1 → P2 (read-only диагностика)")
     health = run_site_health()
     text = render_health_report(health)
-    logs = ROOT / "logs"
-    logs.mkdir(exist_ok=True)
-    stamp = health.get("report_date") or date.today().isoformat()
-    md_path = logs / f"{stamp}_health.md"
-    json_path = logs / f"{stamp}_health.json"
-    md_path.write_text(text, encoding="utf-8")
-    json_path.write_text(json.dumps(health, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+    md_path, json_path = _persist_health(health)
     print(text)
     if health.get("emergency_mode"):
         print(f"\n⚠️  АВАРИЙНЫЙ РЕЖИМ: {health['summary'].get('p0_count', 0)} проблем P0. SEO-задачи приостановлены.")
@@ -110,24 +104,11 @@ def run_health() -> int:
 
 def run_check(with_pagespeed: bool) -> int:
     print("РЕЖИМ: ТОЛЬКО ЧТЕНИЕ. Проверка сайта на проде.")
-    health = run_site_health()
-    site_check = run_site_check()
-    content = audit_content()
-    live_data = fetch_live(SITE_URL, extra_paths=["/katalog/poisk"])
-    pagespeed = fetch_weekly_pagespeed() if with_pagespeed else None
-    traffic_light = compute_traffic_light(site_check, live_data, content, site_health=health)
-    text = render_check_report(site_check, traffic_light, pagespeed)
-    health_block = render_health_report(health)
-    logs = ROOT / "logs"
-    logs.mkdir(exist_ok=True)
-    stamp = date.today().isoformat()
-    path = logs / f"{stamp}_check.md"
-    combined = health_block + "\n\n---\n\n" + text
-    path.write_text(combined, encoding="utf-8")
-    (logs / f"{stamp}_health.json").write_text(
-        json.dumps(health, ensure_ascii=False, indent=2, default=str), encoding="utf-8"
-    )
-    print(combined)
+    snapshot = collect(live=True, with_check=True, with_pagespeed=with_pagespeed)
+    health = snapshot.get("site_health") or {}
+    _persist_health(health)
+    path = _persist_check(snapshot)
+    print(path.read_text(encoding="utf-8"))
     print(f"Файл: {path}")
     return 1 if health.get("emergency_mode") else 0
 
@@ -157,50 +138,44 @@ def run_pagespeed() -> int:
 def run_backlog(no_live: bool) -> int:
     print("РЕЖИМ: ТОЛЬКО ЧТЕНИЕ. Backlog — план работ, без правок на сайте.")
     snapshot = collect(live=not no_live, with_check=not no_live)
-    text = render_backlog(snapshot)
-    logs = ROOT / "logs"
-    logs.mkdir(exist_ok=True)
-    stamp = snapshot["report_date"]
-    path = logs / f"{stamp}_backlog.md"
-    path.write_text(text, encoding="utf-8")
-    print(text)
+    path = _persist_backlog(snapshot)
+    print(path.read_text(encoding="utf-8"))
     print(f"Файл: {path}")
     return 0
 
 
-def run_weekday(with_pagespeed: bool = False) -> int:
-    """Полный будничный прогон: health → check → report → backlog."""
-    is_monday = date.today().weekday() == 0
-    pagespeed = with_pagespeed or is_monday
-    print("=== WEEKDAY: health → check → report → backlog ===")
-    codes = []
-    codes.append(run_health())
-    codes.append(run_check(pagespeed))
-    codes.append(run_report(no_live=False, with_pagespeed=pagespeed))
-    codes.append(run_backlog(no_live=False))
-    exit_code = max(codes)
-    if exit_code:
-        print(f"\n⚠️  Weekday завершён с кодом {exit_code} (см. logs/)")
-    else:
-        print("\n✓ Weekday OK")
-    return exit_code
-
-
-def run_report(no_live: bool, with_pagespeed: bool) -> int:
-    print("РЕЖИМ: ТОЛЬКО ЧТЕНИЕ. Код сайта и прод не изменяются.")
-    previous = last_snapshot("real-besedki")
-    is_monday = date.today().weekday() == 0
-    snapshot = collect(
-        live=not no_live,
-        with_check=not no_live,
-        with_pagespeed=with_pagespeed or is_monday,
-    )
-    text = render_report(snapshot, previous)
-    save_snapshot("real-besedki", snapshot)
-
+def _persist_health(health: dict) -> tuple[Path, Path]:
     logs = ROOT / "logs"
     logs.mkdir(exist_ok=True)
-    stamp = snapshot["report_date"]
+    stamp = health.get("report_date") or date.today().isoformat()
+    text = render_health_report(health)
+    md_path = logs / f"{stamp}_health.md"
+    json_path = logs / f"{stamp}_health.json"
+    md_path.write_text(text, encoding="utf-8")
+    json_path.write_text(json.dumps(health, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+    return md_path, json_path
+
+
+def _persist_check(snapshot: dict) -> Path:
+    logs = ROOT / "logs"
+    logs.mkdir(exist_ok=True)
+    stamp = snapshot.get("report_date") or date.today().isoformat()
+    health_block = render_health_report(snapshot.get("site_health") or {})
+    text = render_check_report(
+        snapshot.get("site_check") or {},
+        snapshot.get("traffic_light") or {},
+        snapshot.get("pagespeed"),
+    )
+    path = logs / f"{stamp}_check.md"
+    path.write_text(health_block + "\n\n---\n\n" + text, encoding="utf-8")
+    return path
+
+
+def _persist_report(snapshot: dict, previous: dict | None) -> Path:
+    logs = ROOT / "logs"
+    logs.mkdir(exist_ok=True)
+    stamp = snapshot.get("report_date") or date.today().isoformat()
+    text = render_report(snapshot, previous)
     (logs / f"{stamp}_seo.md").write_text(text, encoding="utf-8")
     slim = {k: snapshot[k] for k in snapshot if k != "live"}
     slim["live"] = None
@@ -221,7 +196,62 @@ def run_report(no_live: bool, with_pagespeed: bool) -> int:
         json.dumps(slim, ensure_ascii=False, indent=2, default=str),
         encoding="utf-8",
     )
-    print(text)
+    return logs / f"{stamp}_seo.md"
+
+
+def _persist_backlog(snapshot: dict) -> Path:
+    logs = ROOT / "logs"
+    logs.mkdir(exist_ok=True)
+    stamp = snapshot.get("report_date") or date.today().isoformat()
+    path = logs / f"{stamp}_backlog.md"
+    path.write_text(render_backlog(snapshot), encoding="utf-8")
+    return path
+
+
+def run_weekday(with_pagespeed: bool = False) -> int:
+    """Один collect: health + check + report + backlog без повторных обходов прода."""
+    is_monday = date.today().weekday() == 0
+    pagespeed = with_pagespeed or is_monday
+    print("=== WEEKDAY: one collect → health → check → report → backlog ===")
+    previous = last_snapshot("real-besedki")
+    snapshot = collect(live=True, with_check=True, with_pagespeed=pagespeed)
+    save_snapshot("real-besedki", snapshot)
+
+    health = snapshot.get("site_health") or {}
+    health_md, health_json = _persist_health(health)
+    check_path = _persist_check(snapshot)
+    report_path = _persist_report(snapshot, previous)
+    backlog_path = _persist_backlog(snapshot)
+
+    print(render_health_report(health))
+    print(f"Файлы: {health_md} , {health_json}")
+    print((check_path.read_text(encoding="utf-8").split("---", 1)[-1] if check_path.exists() else ""))
+    print(report_path.read_text(encoding="utf-8"))
+    print(backlog_path.read_text(encoding="utf-8"))
+    print(f"Check: {check_path}")
+    print(f"Report: {report_path}")
+    print(f"Backlog: {backlog_path}")
+
+    exit_code = 1 if health.get("emergency_mode") else 0
+    if exit_code:
+        print(f"\n⚠️  Weekday завершён с кодом {exit_code} (см. logs/)")
+    else:
+        print("\n✓ Weekday OK")
+    return exit_code
+
+
+def run_report(no_live: bool, with_pagespeed: bool) -> int:
+    print("РЕЖИМ: ТОЛЬКО ЧТЕНИЕ. Код сайта и прод не изменяются.")
+    previous = last_snapshot("real-besedki")
+    is_monday = date.today().weekday() == 0
+    snapshot = collect(
+        live=not no_live,
+        with_check=not no_live,
+        with_pagespeed=with_pagespeed or is_monday,
+    )
+    save_snapshot("real-besedki", snapshot)
+    path = _persist_report(snapshot, previous)
+    print(path.read_text(encoding="utf-8"))
     return 0
 
 
